@@ -44,12 +44,39 @@ def classify(data: dict[str, Any]) -> list[dict[str, str]]:
     return issues
 
 
+MAX_STEP = 0.02
+FIRST_STEP = 0.01
+
+
+def next_step_limit(action: str, candidate: dict[str, Any], evidence: dict[str, Any]) -> tuple[float, str]:
+    """Choose the next step size so the loop can actually reach its target.
+
+    Previously every accepted step was halved, so from 2% the total correction could
+    never exceed ~4% however far the map was from target. Now:
+    - abort: no next step until a human releases the session;
+    - rollback/review: halve, because the last step was not proven;
+    - accepted with a known remaining error: step by that error, capped at MAX_STEP,
+      so large errors keep moving at the cap and small ones are not overshot;
+    - accepted without a remaining-error figure: halve (the old conservative rule).
+    """
+    current = abs(float(candidate.get("change_fraction", 0.0))) or FIRST_STEP
+    if action == "rollback_and_abort":
+        return 0.0, "critical issue: no further change until a human releases the session"
+    if action == "rollback_and_review":
+        return min(current / 2, MAX_STEP), "last step not proven: retry at half size"
+    remaining = evidence.get("remaining_error_fraction")
+    if isinstance(remaining, (int, float)) and not isinstance(remaining, bool):
+        remaining = abs(float(remaining))
+        if remaining >= MAX_STEP:
+            return MAX_STEP, "accepted and still far from target: keep stepping at the policy cap"
+        return remaining, "accepted and close to target: step by the remaining error only"
+    return min(current / 2, MAX_STEP), "accepted but remaining error unknown: halve to stay conservative"
+
+
 def assess(data: dict[str, Any]) -> dict[str, Any]:
     issues = classify(data)
     critical = any(item["severity"] == "critical" for item in issues)
     candidate = data.get("candidate", {})
-    current_step = abs(float(candidate.get("change_fraction", 0.0)))
-    next_step = min(current_step / 2 if current_step else 0.01, 0.02)
     score_up = float(data.get("candidate_score", 0)) > float(data.get("baseline_score", 0))
     repeatable = data.get("evidence", {}).get("repeatable") is True
     sparse = any(item["code"] == "sparse_coverage" for item in issues)
@@ -69,12 +96,14 @@ def assess(data: dict[str, Any]) -> dict[str, Any]:
         action = "accept_candidate_and_prepare_smaller_next_step"
         reason = "candidate improved the objective with clean repeatable evidence"
 
+    next_step, step_reason = next_step_limit(action, candidate, data.get("evidence", {}))
     return {
         "iteration": data.get("iteration", 0),
         "decision": action,
         "reason": reason,
         "issues": issues,
         "next_change_fraction_limit": round(next_step, 5),
+        "next_step_reason": step_reason,
         "next_change_family": candidate.get("family", "fuel"),
         "write_authorization": "never",
         "required_operator_actions": [

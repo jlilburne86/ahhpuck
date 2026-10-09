@@ -13,6 +13,8 @@ import statistics
 from pathlib import Path
 from typing import Any, Iterable
 
+from freedom_grid import cell as freedom_cell
+
 
 DEFAULT_TARGET_LAMBDA = 0.90
 DEFAULT_RPM_BINS = 10
@@ -89,14 +91,31 @@ def telemetry_completeness(frames: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def per_cell_mean(frames: list[dict[str, Any]], key: str) -> dict[tuple[int, int], float]:
+    """Mean of `key` per Freedom cell (500 rpm x 50 mmHg; `load` is read as kPa)."""
     buckets: dict[tuple[int, int], list[float]] = {}
     for frame in frames:
         data = decoded(frame)
         rpm, load, value = data.get("rpm"), data.get("load"), data.get(key)
         if all(isinstance(item, (int, float)) for item in (rpm, load, value)):
-            cell = (bin_index(float(rpm), 9000, DEFAULT_RPM_BINS), bin_index(float(load), 100, DEFAULT_LOAD_BINS))
-            buckets.setdefault(cell, []).append(float(value))
+            buckets.setdefault(freedom_cell(float(rpm), float(load)), []).append(float(value))
     return {cell: statistics.fmean(values) for cell, values in buckets.items()}
+
+
+def shared_cell_error(baseline: list[dict[str, Any]], candidate: list[dict[str, Any]], target_lambda: float) -> dict[str, Any]:
+    """Lambda error compared only on cells both runs visited.
+
+    Averaging each run over whatever cells it happened to hit compares different parts
+    of the map, so a run that stayed in an easy region looked like an improvement.
+    """
+    base, cand = per_cell_mean(baseline, "lambda"), per_cell_mean(candidate, "lambda")
+    shared = sorted(set(base) & set(cand))
+    if not shared:
+        return {"shared_cells": 0, "baseline_error": None, "candidate_error": None}
+    return {
+        "shared_cells": len(shared),
+        "baseline_error": round(statistics.fmean(abs(base[c] - target_lambda) for c in shared), 6),
+        "candidate_error": round(statistics.fmean(abs(cand[c] - target_lambda) for c in shared), 6),
+    }
 
 
 def repeatability(run_a: list[dict[str, Any]], run_b: list[dict[str, Any]], key: str = "lambda", tolerance: float = 0.03) -> dict[str, Any]:
@@ -139,7 +158,8 @@ def compare(
     candidate_repeat: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     base, cand = summarize(baseline, target_lambda), summarize(candidate, target_lambda)
-    base_error, cand_error = base["lambda_error"]["mean"], cand["lambda_error"]["mean"]
+    shared = shared_cell_error(baseline, candidate, target_lambda)
+    base_error, cand_error = shared["baseline_error"], shared["candidate_error"]
     improvement = None
     if isinstance(base_error, (int, float)) and base_error > 0 and isinstance(cand_error, (int, float)):
         improvement = round((base_error - cand_error) / base_error, 4)
@@ -148,10 +168,17 @@ def compare(
         if candidate_repeat is not None
         else {"repeatable": None, "status": "not_assessed", "reason": "provide a second candidate run"}
     )
+    # The gain must be larger than the run-to-run noise between candidate and repeat,
+    # otherwise an "improvement" may be measurement scatter.
+    noise = repeatability_result.get("mean_absolute_difference")
+    gain = (base_error - cand_error) if isinstance(base_error, (int, float)) and isinstance(cand_error, (int, float)) else None
+    above_noise = isinstance(gain, (int, float)) and isinstance(noise, (int, float)) and gain > noise
     return {
         "baseline": base,
         "candidate": cand,
         "lambda_error_improvement": improvement,
+        "shared_cell_comparison": shared,
+        "improvement_above_noise": above_noise,
         "repeatability": repeatability_result,
         "candidate_clean": (
             candidate != []
@@ -159,6 +186,7 @@ def compare(
             and cand["knock_events"] == 0
             and isinstance(improvement, (int, float))
             and improvement > 0
+            and above_noise
             and repeatability_result["repeatable"] is True
         ),
     }

@@ -39,5 +39,19 @@
     "torque_smoothness": 0.91,
     "usable_samples": 3
   },
+  "score_note": "purpose scores reflect driving style as much as calibration; use tune_objective to judge the tune",
+  "skipped_samples": {
+    "high_load_not_allowed": 3,
+    "protection:coolant_high": 1,
+    "protection:knock_detected": 1,
+    "protection:lean_under_load": 1,
+    "protection:oil_pressure_low_under_load": 1
+  },
+  "tune_objective": {
+    "high_load": {
+      "mean_abs_lambda_error": 0.02,
+      "samples": 3
+    }
+  },
   "write_authorization": "never"
 }

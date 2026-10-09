@@ -4,6 +4,7 @@
   "iteration": 1,
   "next_change_family": "fuel",
   "next_change_fraction_limit": 0.005,
+  "next_step_reason": "accepted but remaining error unknown: halve to stay conservative",
   "reason": "candidate improved the objective with clean repeatable evidence",
   "required_operator_actions": [
     "preserve baseline, candidate, raw log, and assessment",
