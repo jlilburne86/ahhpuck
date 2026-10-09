@@ -14,11 +14,8 @@ data/
 *.sqlite3-shm
 *.sqlite3-wal
 
-# Downloaded research archives and extracted third-party binaries
-downloads/
-extracted/
-source_files/
-design-import/
+# Research captures, supplied archives, extracted analysis inputs, and design imports
+# are intentionally versioned in the private repository.
 
 # Local editor and machine configuration
 .idea/
