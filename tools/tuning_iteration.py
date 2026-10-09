@@ -8,6 +8,8 @@ from pathlib import Path
 from typing import Any
 
 
+MIN_MAP_COVERAGE = 0.6
+
 CRITICAL = {
     "knock_detected": "possible detonation or false-knock/noise; reduce load and verify knock sensing",
     "lean_under_load": "fuel delivery, injector data, lambda calibration, air leak, or insufficient fuel correction",
@@ -26,14 +28,17 @@ def classify(data: dict[str, Any]) -> list[dict[str, str]]:
     for fault in sorted(faults):
         issues.append({"severity": "critical", "code": fault, "likely_issue": CRITICAL.get(fault, "unknown protection fault")})
     evidence = data.get("evidence", {})
-    if evidence.get("telemetry_complete") is False:
-        issues.append({"severity": "critical", "code": "telemetry_incomplete", "likely_issue": "dropped, stale, or out-of-order samples; do not learn from this run"})
-    if evidence.get("sensor_plausibility") is False:
-        issues.append({"severity": "critical", "code": "sensor_plausibility", "likely_issue": "sensor calibration, wiring, grounding, or unit conversion problem"})
-    if evidence.get("repeatable") is False:
-        issues.append({"severity": "warning", "code": "not_repeatable", "likely_issue": "temperature, fuel pressure, driver input, cell coverage, or test-condition variation"})
-    if evidence.get("map_coverage", 0) < 0.6:
-        issues.append({"severity": "warning", "code": "sparse_coverage", "likely_issue": "insufficient repeated samples in the affected RPM/load cells"})
+    # Fail closed: evidence must be explicitly True. Missing evidence is treated the
+    # same as failed evidence, because "we did not check" is not "it was fine".
+    if evidence.get("telemetry_complete") is not True:
+        issues.append({"severity": "critical", "code": "telemetry_incomplete", "likely_issue": "dropped, stale, out-of-order, or unverified samples; do not learn from this run"})
+    if evidence.get("sensor_plausibility") is not True:
+        issues.append({"severity": "critical", "code": "sensor_plausibility", "likely_issue": "sensor plausibility failed or was not checked: calibration, wiring, grounding, or unit conversion"})
+    if evidence.get("repeatable") is not True:
+        issues.append({"severity": "warning", "code": "not_repeatable", "likely_issue": "repeatability failed or was not assessed: temperature, fuel pressure, driver input, cell coverage, or test-condition variation"})
+    coverage = evidence.get("map_coverage")
+    if not isinstance(coverage, (int, float)) or coverage < MIN_MAP_COVERAGE:
+        issues.append({"severity": "warning", "code": "sparse_coverage", "likely_issue": "insufficient or unreported repeated samples in the affected RPM/load cells"})
     if data.get("candidate_score", 0) < data.get("baseline_score", 0):
         issues.append({"severity": "warning", "code": "performance_regression", "likely_issue": "wrong direction, unrelated hardware change, test variation, or an over-large step"})
     return issues
@@ -47,6 +52,7 @@ def assess(data: dict[str, Any]) -> dict[str, Any]:
     next_step = min(current_step / 2 if current_step else 0.01, 0.02)
     score_up = float(data.get("candidate_score", 0)) > float(data.get("baseline_score", 0))
     repeatable = data.get("evidence", {}).get("repeatable") is True
+    sparse = any(item["code"] == "sparse_coverage" for item in issues)
 
     if critical:
         action = "rollback_and_abort"
@@ -54,6 +60,11 @@ def assess(data: dict[str, Any]) -> dict[str, Any]:
     elif not repeatable or not score_up:
         action = "rollback_and_review"
         reason = "result is not a repeatable improvement"
+    elif sparse:
+        # Previously a warning only, so a change learned from a handful of cells
+        # could still be accepted. Coverage is now part of the decision.
+        action = "rollback_and_review"
+        reason = "improvement is based on too few RPM/load cells"
     else:
         action = "accept_candidate_and_prepare_smaller_next_step"
         reason = "candidate improved the objective with clean repeatable evidence"

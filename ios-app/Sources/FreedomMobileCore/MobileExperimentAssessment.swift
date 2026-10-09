@@ -52,7 +52,7 @@ public enum MobileExperimentAssessor {
         if knockEvents > 0 { concerns.append(.init(severity: .critical, code: "knock_detected", title: "Knock detected", detail: "Stop the test and investigate before learning from this change.")) }
         if !telemetryComplete { concerns.append(.init(severity: .critical, code: "telemetry_incomplete", title: "Telemetry incomplete", detail: "Dropped or missing frames mean this run cannot be used for learning.")) }
         if repeatable == false { concerns.append(.init(severity: .warning, code: "not_repeatable", title: "Repeatability not proven", detail: "Repeat the same test condition before accepting the candidate.")) }
-        if candidate.isEmpty || repeatRun.isEmpty { concerns.append(.init(severity: .warning, code: "missing_run", title: "Run data missing", detail: "Baseline, candidate, and repeat captures are all required.")) }
+        if baseline.isEmpty || candidate.isEmpty || repeatRun.isEmpty { concerns.append(.init(severity: .warning, code: "missing_run", title: "Run data missing", detail: "Baseline, candidate, and repeat captures are all required.")) }
 
         let critical = concerns.contains { $0.severity == .critical }
         let accepted = !critical && improvement.map { $0 > 0 } == true && repeatable == true
@@ -67,9 +67,10 @@ public enum MobileExperimentAssessor {
     }
 
     private static func isComplete(_ frames: [MobileTelemetryFrame]) -> Bool {
-        guard !frames.isEmpty else { return false }
+        // Fail closed and match tools/telemetry_stats.py: every frame needs a sequence number,
+        // there must be at least two, and there may be no gaps (frames 1, 5, 9 are incomplete).
         let sequences = frames.compactMap(\.sequence)
-        guard sequences.count > 1 else { return true }
-        return Set(sequences).count == sequences.count && zip(sequences, sequences.dropFirst()).allSatisfy { $1 > $0 }
+        guard frames.count > 1, sequences.count == frames.count else { return false }
+        return zip(sequences, sequences.dropFirst()).allSatisfy { $1 == $0 + 1 }
     }
 }

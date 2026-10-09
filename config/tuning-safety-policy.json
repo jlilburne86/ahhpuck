@@ -1,5 +1,5 @@
 {
-  "policy_version": "0.1-provisional",
+  "policy_version": "0.2-provisional",
   "purpose": "offline and read-only review gates for FC-03 calibration experiments",
   "hard_limits": {
     "max_fuel_cell_change_fraction": 0.02,
@@ -9,7 +9,8 @@
     "max_iat_c": 65,
     "min_voltage_v": 12.0,
     "max_knock_level": 0.15,
-    "min_oil_pressure_kpa_under_load": 180
+    "min_oil_pressure_kpa_under_load": 180,
+    "max_lambda_under_load": 1.05
   },
   "required_evidence": [
     "original_map_backup",
@@ -32,6 +33,8 @@
     "never combine fuel and ignition changes in one experiment",
     "never extrapolate unknown cells without an explicit review flag",
     "never permit an LLM to authorize an ECU write",
-    "always retain immutable source map, candidate diff, and rollback copy"
+    "always retain immutable source map, candidate diff, and rollback copy",
+    "treat a missing safety channel as a failed check, never as a pass",
+    "never change ignition without verified knock sensing"
   ]
 }
