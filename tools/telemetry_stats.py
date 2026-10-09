@@ -76,8 +76,11 @@ def cell_coverage(frames: list[dict[str, Any]], rpm_bins: int, load_bins: int) -
 
 def telemetry_completeness(frames: list[dict[str, Any]]) -> dict[str, Any]:
     sequences = [frame.get("sequence") for frame in frames if isinstance(frame.get("sequence"), int)]
-    if len(sequences) < 2:
-        return {"complete": True, "score": 1.0, "dropped_frames": 0, "out_of_order": 0}
+    # Fail closed: completeness can only be proven from sequence numbers on every frame.
+    # Previously fewer than two sequence numbers (including an empty log) counted as complete.
+    if len(frames) < 2 or len(sequences) != len(frames):
+        return {"complete": False, "score": 0.0, "dropped_frames": 0, "out_of_order": 0,
+                "reason": "too few frames or missing sequence numbers; completeness not provable"}
     expected = max(sequences) - min(sequences) + 1
     dropped = max(0, expected - len(set(sequences)))
     out_of_order = sum(1 for left, right in zip(sequences, sequences[1:]) if right <= left)
