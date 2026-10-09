@@ -64,6 +64,8 @@ See [docs/user-stories.md](docs/user-stories.md) for the owner, tuner, and devel
 
 See [docs/product-design-overview.md](docs/product-design-overview.md) for the engineering product design, application surfaces, collected and displayed data, normalized telemetry model, processing pipeline, assessment states, safety boundaries, storage, and implementation phases.
 
+See [notes/10-future-platform-candidates.md](notes/10-future-platform-candidates.md) for separately documented ECU and tuner candidates. These remain out of scope until the Freedom FC-03 trial is connected, tested, and reviewed against real vehicle evidence.
+
 The native SwiftUI/Xcode implementation is in [ios-app](ios-app/README.md). It includes the imported mobile flow, deterministic experiment assessment, read-only safety boundary, and a fixture-backed first-trial workflow.
 
 The first-trial state machine runs profile/readiness → baseline → candidate → repeat → assessment → supervised approval locally. It is deliberately fixture-backed and read-only until the FC-03 protocol is verified.
