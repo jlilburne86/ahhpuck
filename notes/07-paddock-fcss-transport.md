@@ -20,9 +20,11 @@ reference.
 1. The first iPhone/macOS transport target is a raw serial bridge, not a
    modern CAN or OBD protocol.
 2. 9600 bps should be the initial read-only capture setting.
-3. Data bits, parity, stop bits, electrical levels, cable pinout, command
-   framing, response framing, timeouts, and checksum behavior remain unverified
-   until captures are made with the actual cable and ECU.
+3. Data bits, parity and stop bits are documented by a long-term FCSS user as
+   7 data bits, even parity, 1 stop bit (7E1) at 9600 bps, with no flow control
+   (`documented`, hiro0719jp FCSS article). Electrical levels, cable pinout,
+   command framing, response framing, timeouts, and checksum behavior remain
+   unverified until captures are made with the actual cable and ECU.
 4. The app must not assume that an adapter that works with a normal USB serial
    terminal is electrically or protocol-compatible with the Freedom Computer.
 5. FCSS compatibility problems strengthen the case for a narrow, deterministic
