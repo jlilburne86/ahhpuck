@@ -20,12 +20,19 @@ public struct SerialConfiguration: Sendable {
 
     public enum Parity: Sendable { case none, even, odd }
 
-    public init(path: String, baud: Int, dataBits: Int = 8, stopBits: Int = 1, parity: Parity = .none) {
+    /// Defaults match the Freedom/FCSS link: 9600 bps, 7 data bits, even parity, 1 stop bit.
+    /// Evidence: documented (hiro0719jp FCSS article). Not yet observed on this project's own captures.
+    public init(path: String, baud: Int = 9600, dataBits: Int = 7, stopBits: Int = 1, parity: Parity = .even) {
         self.path = path
         self.baud = baud
         self.dataBits = dataBits
         self.stopBits = stopBits
         self.parity = parity
+    }
+
+    /// The documented Freedom FC-03 serial setting.
+    public static func freedom(path: String) -> SerialConfiguration {
+        SerialConfiguration(path: path, baud: 9600, dataBits: 7, stopBits: 1, parity: .even)
     }
 }
 
