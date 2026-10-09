@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Package IgnorableNamespaces="uap rescap build" xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:build="http://schemas.microsoft.com/developer/appx/2015/build" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="Paddock-N.8081498DAC5B" Publisher="CN=72321973-353A-4374-B569-9936B0D0C038" Version="0.2.7.0" ProcessorArchitecture="neutral" />
+  <Properties>
+    <DisplayName>FreedomComputerSettingTool</DisplayName>
+    <PublisherDisplayName>Paddock-N</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="JA-JP" />
+    <Resource uap:Scale="200" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="FCST\FCST.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="FreedomComputerSettingTool" Description="Freedom Computerをセットアップするためのツールです。" BackgroundColor="transparent" Square150x150Logo="Images\Square150x150Logo.png" Square44x44Logo="Images\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png" />
+        <uap:SplashScreen Image="Images\SplashScreen.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+  <build:Metadata>
+    <build:Item Name="Microsoft.Build.DesktopBridge.Tasks.dll" Version="17.9.37031.30835" />
+    <build:Item Name="TargetFrameworkMoniker" Value=".NETFramework,Version=v4.5.1" />
+    <build:Item Name="VisualStudio" Version="17.0" />
+    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Community 2022" />
+    <build:Item Name="OperatingSystem" Version="10.0.19041.4165 (WinBuild.160101.0800)" />
+    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="17.9.37031.30835" />
+    <build:Item Name="ProjectGUID" Value="3c3baa4b-8cd3-4e3c-9f41-f2e0e2db422c" />
+    <build:Item Name="makepri.exe" Version="10.0.22621.755 (WinBuild.160101.0800)" />
+  </build:Metadata>
+  <mp:PhoneIdentity PhoneProductId="817c326d-3e0a-440f-88f4-4bb95a5fb622" PhonePublisherId="f219eec5-e14c-4898-9f35-e70f83396fde" />
+</Package>

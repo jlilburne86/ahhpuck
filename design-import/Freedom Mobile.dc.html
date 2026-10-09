@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>body{margin:0;background:oklch(.11 .015 250);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;color:oklch(.94 .015 90);-webkit-font-smoothing:antialiased}a{color:oklch(.77 .14 78)}a:hover{color:oklch(.84 .12 78)}*{box-sizing:border-box}::-webkit-scrollbar{display:none}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 16px">
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="position:relative;height:100%;display:flex;flex-direction:column;background:oklch(.14 .018 250)">
+<div style="flex:1;overflow-y:auto;padding:58px 0 112px">
+
+<sc-if value="{{ isLive }}" hint-placeholder-val="{{ true }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:6px">
+    <div><div style="font:10px ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em;color:oklch(.77 .14 78)">FC-03 · 9600 8N1 · READ-ONLY</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em;margin-top:4px">Live</div></div>
+    <div style="display:flex;padding:2px;border-radius:9px;background:oklch(.23 .025 250);margin-bottom:6px">
+      <button onClick="{{ setOwner }}" style="border:0;padding:6px 11px;border-radius:7px;font:600 12px -apple-system,sans-serif;cursor:pointer;background:{{ ownerBg }};color:{{ ownerInk }}">Owner</button>
+      <button onClick="{{ setTuner }}" style="border:0;padding:6px 11px;border-radius:7px;font:600 12px -apple-system,sans-serif;cursor:pointer;background:{{ tunerBg }};color:{{ tunerInk }}">Tuner</button>
+    </div>
+  </div>
+  <sc-if value="{{ liveAlert }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:oklch(.35 .1 25 / .45);border:1px solid oklch(.6 .16 25 / .7)">
+      <div style="flex:1"><div style="font:600 10px ui-monospace,monospace;letter-spacing:.08em;color:#ff9c9c">CRITICAL · KNOCK UNDER LOAD</div><div style="font-size:14px;margin-top:4px;line-height:1.35">3 knock events at 5,200 rpm / 78% load. λ 0.98 — lean.</div></div>
+      <button onClick="{{ openAbort }}" style="border:0;border-radius:999px;padding:9px 14px;background:oklch(.68 .19 25);color:#fff;font:700 13px -apple-system,sans-serif;cursor:pointer">Stop test</button>
+    </div>
+  </sc-if>
+  <div style="display:flex;align-items:center;gap:8px;font:11px ui-monospace,monospace;color:oklch(.7 .02 250)"><span style="width:7px;height:7px;border-radius:50%;background:{{ healthColor }}"></span><span>{{ healthText }}</span></div>
+  <div style="padding:18px;border-radius:22px;background:oklch(.19 .022 250);display:flex;flex-direction:column;gap:16px">
+    <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:12px;align-items:end">
+      <div><div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250);letter-spacing:.06em">RPM</div><div style="font:600 58px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:-.04em;margin-top:6px">{{ rpmText }}</div></div>
+      <div><div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250);letter-spacing:.06em">LAMBDA · TGT 0.90</div><div style="font:600 40px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:-.03em;margin-top:6px;color:{{ lamColor }}">{{ lamText }}</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="position:relative;height:6px;border-radius:3px;background:oklch(.27 .025 250);overflow:hidden"><div style="position:absolute;left:0;top:0;bottom:0;width:{{ rpmPct }};background:oklch(.77 .14 78);border-radius:3px;transition:width .2s"></div><div style="position:absolute;left:92%;top:0;bottom:0;width:2px;background:oklch(.68 .19 25)"></div></div>
+      <div style="display:flex;justify-content:space-between;font:9px ui-monospace,monospace;color:oklch(.6 .02 250)"><span>0</span><span>LIMIT 7,800</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="position:relative;height:22px;border-radius:6px;background:linear-gradient(90deg,oklch(.3 .05 250),oklch(.27 .025 250) 40%,oklch(.27 .025 250) 60%,oklch(.32 .08 25))">
+        <div style="position:absolute;left:{{ tgtPos }};top:-3px;bottom:-3px;width:2px;background:oklch(.94 .015 90 / .6)"></div>
+        <div style="position:absolute;left:{{ lamPos }};top:3px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:{{ lamColor }};box-shadow:0 0 0 3px oklch(.19 .022 250);transition:left .2s"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font:9px ui-monospace,monospace;color:oklch(.6 .02 250)"><span>RICH 0.75</span><span>1.10 LEAN</span></div>
+    </div>
+  </div>
+
+  <sc-if value="{{ isOwner }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:15px;line-height:1.45;color:oklch(.85 .015 90);text-wrap:pretty;padding:0 2px">{{ ownerSentence }}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <sc-for list="{{ ownerTiles }}" as="t" hint-placeholder-count="4">
+          <div style="padding:14px;border-radius:18px;background:oklch(.19 .022 250);display:flex;flex-direction:column;gap:6px">
+            <div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250);letter-spacing:.05em">{{ t.label }}</div>
+            <div style="display:flex;align-items:baseline;gap:4px"><span style="font:600 26px ui-monospace,monospace;letter-spacing:-.03em">{{ t.value }}</span><span style="font-size:12px;color:oklch(.7 .02 250)">{{ t.unit }}</span></div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:{{ t.color }}"><span style="width:6px;height:6px;border-radius:50%;background:{{ t.color }}"></span>{{ t.status }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding:14px 16px;border-radius:18px;background:oklch(.19 .022 250);display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250)">SPEED · PHONE GPS</div><div style="font:600 22px ui-monospace,monospace;margin-top:4px">{{ speedText }} <span style="font-size:12px;color:oklch(.7 .02 250)">km/h</span></div></div>
+        <div style="text-align:right"><div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250)">ACCEL</div><div style="font:600 22px ui-monospace,monospace;margin-top:4px">{{ longG }} <span style="font-size:12px;color:oklch(.7 .02 250)">g</span></div></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isTuner }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="padding:14px 14px 10px;border-radius:18px;background:oklch(.19 .022 250)">
+        <div style="display:flex;justify-content:space-between;font:10px ui-monospace,monospace;color:oklch(.7 .02 250)"><span>TRACE · LAST 10 s</span><span><span style="color:oklch(.77 .14 78)">— RPM</span>  <span style="color:oklch(.75 .13 155)">— λ</span></span></div>
+        <svg viewBox="0 0 300 70" preserveAspectRatio="none" style="display:block;width:100%;height:70px;margin-top:8px"><polyline points="{{ rpmPoints }}" fill="none" stroke="oklch(.77 .14 78)" stroke-width="1.5" vector-effect="non-scaling-stroke"></polyline><polyline points="{{ lamPoints }}" fill="none" stroke="oklch(.75 .13 155)" stroke-width="1.5" vector-effect="non-scaling-stroke"></polyline></svg>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+        <sc-for list="{{ tunerTiles }}" as="t" hint-placeholder-count="12">
+          <div style="padding:11px 12px;background:oklch(.19 .022 250)">
+            <div style="font:9px ui-monospace,monospace;color:oklch(.7 .02 250);letter-spacing:.05em">{{ t.label }}</div>
+            <div style="font:600 17px ui-monospace,monospace;margin-top:5px;color:{{ t.color }}">{{ t.value }}<span style="font-size:10px;color:oklch(.7 .02 250);font-weight:400"> {{ t.unit }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font:600 12px -apple-system,sans-serif;color:oklch(.7 .02 250);text-transform:uppercase;letter-spacing:.04em;padding:4px 4px 0">Vehicle · phone sensors</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+        <sc-for list="{{ vehTiles }}" as="t" hint-placeholder-count="6">
+          <div style="padding:11px 12px;background:oklch(.19 .022 250)">
+            <div style="font:9px ui-monospace,monospace;color:oklch(.7 .02 250);letter-spacing:.05em">{{ t.label }}</div>
+            <div style="font:600 17px ui-monospace,monospace;margin-top:5px">{{ t.value }}<span style="font-size:10px;color:oklch(.7 .02 250);font-weight:400"> {{ t.unit }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font:10px/1.5 ui-monospace,monospace;color:oklch(.6 .02 250);padding:0 4px">Motion calibrated · mount fixed · GPS ±2.4 m. Phone data is context only — it does not replace oil, fuel, λ or knock instrumentation.</div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRun }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <div style="padding-top:6px"><div style="font:10px ui-monospace,monospace;letter-spacing:.08em;color:oklch(.77 .14 78)">SESSION S-0143 · RUN CAPTURE</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em;margin-top:4px">Capture run</div></div>
+  <sc-if value="{{ tuningLocked }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:14px;border-radius:16px;background:oklch(.35 .1 25 / .3);border:1px solid oklch(.6 .16 25 / .6);font-size:13px;line-height:1.45"><b style="color:#ff9c9c;font:600 10px ui-monospace,monospace;letter-spacing:.08em">TUNING LOCKED</b><div style="margin-top:4px;color:oklch(.85 .015 90)">A critical fault was recorded. Candidate and repeat runs are blocked until a human investigation is logged.</div></div>
+  </sc-if>
+  <div style="display:flex;padding:2px;border-radius:10px;background:oklch(.23 .025 250)">
+    <sc-for list="{{ runTypes }}" as="r" hint-placeholder-count="3">
+      <button onClick="{{ r.onClick }}" style="flex:1;border:0;padding:8px 0;border-radius:8px;font:600 13px -apple-system,sans-serif;cursor:pointer;background:{{ r.bg }};color:{{ r.ink }}">{{ r.label }}</button>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+    <sc-for list="{{ runRows }}" as="r" hint-placeholder-count="6">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:46px;padding:0 16px;background:oklch(.19 .022 250);font-size:15px"><span>{{ r.k }}</span><span style="color:oklch(.7 .02 250);text-align:right;font-size:14px">{{ r.v }}</span></div>
+    </sc-for>
+  </div>
+  <sc-if value="{{ showChange }}" hint-placeholder-val="{{ true }}">
+    <div style="padding:14px 16px;border-radius:18px;background:oklch(.19 .022 250);border:1px solid oklch(.5 .1 78 / .4);display:flex;flex-direction:column;gap:6px">
+      <div style="font:10px ui-monospace,monospace;letter-spacing:.06em;color:oklch(.77 .14 78)">EXPERIMENT UNDER TEST · E-0143</div>
+      <div style="font-size:15px;line-height:1.4">Fuel +2.0% · 3,000–4,000 rpm × 40–60% load</div>
+      <div style="font-size:12px;color:oklch(.7 .02 250);line-height:1.4">Ignition unchanged. Bound 2.0% per cell. Rollback: baseline.raw · 3a91…c07e</div>
+    </div>
+  </sc-if>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 0 6px">
+    <div style="font:600 34px ui-monospace,monospace;letter-spacing:-.02em">{{ elapsedText }}</div>
+    <div style="font:11px ui-monospace,monospace;color:oklch(.7 .02 250)">{{ frameText }}</div>
+    <button onClick="{{ toggleRecord }}" style="width:84px;height:84px;border-radius:50%;border:4px solid oklch(.94 .015 90 / .85);background:transparent;display:grid;place-items:center;cursor:pointer;margin-top:6px;padding:0"><span style="display:block;width:{{ recSize }};height:{{ recSize }};border-radius:{{ recRadius }};background:{{ recColor }};transition:all .2s"></span></button>
+    <div style="font-size:13px;color:oklch(.7 .02 250)">{{ recHint }}</div>
+  </div>
+  <sc-if value="{{ savedRun }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:14px 16px;border-radius:18px;background:oklch(.19 .022 250);display:flex;align-items:center;gap:12px">
+      <div style="flex:1"><div style="font-size:15px">{{ savedName }} saved</div><div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250);margin-top:4px">sha256 {{ savedHash }} · immutable</div></div>
+      <button onClick="{{ goReview }}" style="border:0;border-radius:999px;padding:9px 14px;background:oklch(.77 .14 78);color:#1d1b14;font:700 13px -apple-system,sans-serif;cursor:pointer">Review</button>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:6px">
+    <div><div style="font:10px ui-monospace,monospace;letter-spacing:.08em;color:oklch(.77 .14 78)">E-0143 · FUEL +2.0%</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em;margin-top:4px">Review</div></div>
+    <div style="display:flex;padding:2px;border-radius:9px;background:oklch(.23 .025 250);margin-bottom:6px">
+      <button onClick="{{ setOwner }}" style="border:0;padding:6px 11px;border-radius:7px;font:600 12px -apple-system,sans-serif;cursor:pointer;background:{{ ownerBg }};color:{{ ownerInk }}">Owner</button>
+      <button onClick="{{ setTuner }}" style="border:0;padding:6px 11px;border-radius:7px;font:600 12px -apple-system,sans-serif;cursor:pointer;background:{{ tunerBg }};color:{{ tunerInk }}">Tuner</button>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:oklch(.7 .02 250)">
+    <span style="display:flex;align-items:center;gap:6px"><b style="display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:oklch(.31 .025 250);font:10px ui-monospace,monospace;color:oklch(.75 .13 155)">✓</b>Load runs</span><span style="flex:1;height:1px;background:oklch(.31 .025 250)"></span>
+    <span style="display:flex;align-items:center;gap:6px;color:oklch(.94 .015 90)"><b style="display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:oklch(.77 .14 78);font:10px ui-monospace,monospace;color:#1d1b14">2</b>Assess</span><span style="flex:1;height:1px;background:oklch(.31 .025 250)"></span>
+    <span style="display:flex;align-items:center;gap:6px"><b style="display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:oklch(.31 .025 250);font:10px ui-monospace,monospace">3</b>Decide</span>
+  </div>
+  <div style="padding:18px;border-radius:22px;background:{{ sc.bg }};border:1px solid {{ sc.border }};display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:600 10px ui-monospace,monospace;letter-spacing:.08em;color:{{ sc.tone }}">DECISION · DETERMINISTIC</span><button onClick="{{ openAi }}" style="border:1px solid oklch(.94 .015 90 / .2);background:transparent;color:oklch(.94 .015 90);border-radius:999px;padding:5px 10px;font:500 12px -apple-system,sans-serif;cursor:pointer">Explain</button></div>
+    <div style="font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;text-wrap:balance">{{ sc.decision }}</div>
+    <div style="font-size:14px;line-height:1.45;color:oklch(.85 .015 90);text-wrap:pretty">{{ sc.reason }}</div>
+    <div style="display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid oklch(.94 .015 90 / .12);font-size:13px"><span style="color:oklch(.75 .02 250)">Max next increment</span><b style="font-family:ui-monospace,monospace;font-weight:600">{{ sc.increment }}</b></div>
+  </div>
+
+  <sc-if value="{{ isOwner }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+      <sc-for list="{{ sc.answers }}" as="a" hint-placeholder-count="4">
+        <div style="padding:14px 16px;background:oklch(.19 .022 250);display:flex;flex-direction:column;gap:5px"><div style="font-size:12px;color:oklch(.7 .02 250)">{{ a.q }}</div><div style="font-size:15px;line-height:1.4;text-wrap:pretty">{{ a.a }}</div></div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isTuner }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+        <sc-for list="{{ runFiles }}" as="f" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 16px;background:oklch(.19 .022 250)"><div><div style="font-size:14px">{{ f.name }}</div><div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250);margin-top:3px">{{ f.meta }}</div></div><span style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250)">{{ f.hash }}</span></div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <sc-for list="{{ sc.metrics }}" as="m" hint-placeholder-count="6">
+          <div style="padding:12px;border-radius:14px;background:oklch(.19 .022 250)"><div style="font:9px ui-monospace,monospace;color:oklch(.7 .02 250);letter-spacing:.05em">{{ m.k }}</div><div style="font:600 18px ui-monospace,monospace;margin-top:5px;color:{{ m.color }}">{{ m.v }}</div><div style="font-size:11px;color:oklch(.7 .02 250);margin-top:3px">{{ m.sub }}</div></div>
+        </sc-for>
+      </div>
+      <div style="padding:14px;border-radius:18px;background:oklch(.19 .022 250);display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;font:10px ui-monospace,monospace;color:oklch(.7 .02 250)"><span>CELL COVERAGE · RPM × LOAD</span><span>{{ sc.coverage }}</span></div>
+        <div style="display:grid;grid-template-columns:34px repeat(4,1fr);gap:3px;font:9px ui-monospace,monospace;color:oklch(.6 .02 250)">
+          <span></span><span style="text-align:center">2.5k</span><span style="text-align:center">3k</span><span style="text-align:center">3.5k</span><span style="text-align:center">4k+</span>
+          <sc-for list="{{ covRows }}" as="row" hint-placeholder-count="4">
+            <span style="align-self:center">{{ row.label }}</span>
+            <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="4"><span style="height:26px;border-radius:5px;background:{{ c }}"></span></sc-for>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:12px;font-size:11px;color:oklch(.7 .02 250)"><span style="display:flex;align-items:center;gap:5px"><i style="width:9px;height:9px;border-radius:2px;background:oklch(.75 .13 155 / .6)"></i>covered</span><span style="display:flex;align-items:center;gap:5px"><i style="width:9px;height:9px;border-radius:2px;background:oklch(.77 .14 78 / .45)"></i>sparse</span><span style="display:flex;align-items:center;gap:5px"><i style="width:9px;height:9px;border-radius:2px;background:oklch(.68 .19 25 / .75)"></i>fault</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+        <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;padding:9px 14px;background:oklch(.23 .025 250);font:9px ui-monospace,monospace;color:oklch(.7 .02 250)"><span>SENSOR</span><span>BASE</span><span>CAND</span><span>REPEAT</span></div>
+        <sc-for list="{{ sc.stats }}" as="s" hint-placeholder-count="7">
+          <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;padding:9px 14px;background:oklch(.19 .022 250);font:11px ui-monospace,monospace"><span style="color:oklch(.7 .02 250)">{{ s.k }}</span><span>{{ s.b }}</span><span>{{ s.c }}</span><span>{{ s.r }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="font:600 12px -apple-system,sans-serif;color:oklch(.7 .02 250);text-transform:uppercase;letter-spacing:.04em;padding:4px 4px 0">Concerns & likely causes</div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <sc-for list="{{ sc.concerns }}" as="c" hint-placeholder-count="2">
+      <div style="padding:12px 14px;border-radius:14px;background:{{ c.bg }};border:1px solid {{ c.border }}"><div style="font:600 10px ui-monospace,monospace;letter-spacing:.06em;color:{{ c.color }}">{{ c.sev }}</div><div style="font-size:14px;margin-top:4px">{{ c.title }}</div><div style="font-size:12px;line-height:1.45;color:oklch(.72 .02 250);margin-top:3px">{{ c.body }}</div></div>
+    </sc-for>
+  </div>
+  <button onClick="{{ primaryAction }}" style="border:0;border-radius:14px;padding:15px;font:650 16px -apple-system,sans-serif;cursor:pointer;background:{{ sc.btnBg }};color:{{ sc.btnInk }}">{{ sc.action }}</button>
+  <div style="font-size:11px;line-height:1.45;color:oklch(.6 .02 250);text-align:center;padding:0 10px">Decision is computed by telemetry_stats + safety_gate. The assistant can explain it but cannot change it.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApproval }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <button onClick="{{ back }}" style="align-self:flex-start;border:0;background:transparent;color:oklch(.77 .14 78);font:17px -apple-system,sans-serif;padding:6px 0;cursor:pointer">‹ Review</button>
+  <div><div style="font:10px ui-monospace,monospace;letter-spacing:.08em;color:oklch(.77 .14 78)">{{ apprCrumb }}</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em;margin-top:4px">Approve test</div></div>
+  <div style="font-size:14px;line-height:1.45;color:oklch(.75 .02 250)">Confirm each item. Approval creates an experiment record — it does not write to the ECU.</div>
+  <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+    <sc-for list="{{ checks }}" as="c" hint-placeholder-count="6">
+      <button onClick="{{ c.toggle }}" style="display:flex;gap:12px;align-items:flex-start;text-align:left;border:0;padding:13px 16px;background:oklch(.19 .022 250);color:oklch(.94 .015 90);cursor:pointer;font-family:inherit">
+        <span style="flex:none;width:22px;height:22px;border-radius:50%;margin-top:1px;display:grid;place-items:center;font-size:13px;font-weight:700;border:1.5px solid {{ c.ring }};background:{{ c.fill }};color:#1d1b14">{{ c.mark }}</span>
+        <span style="display:flex;flex-direction:column;gap:3px"><span style="font-size:15px">{{ c.title }}</span><span style="font-size:12px;line-height:1.4;color:oklch(.7 .02 250)">{{ c.detail }}</span></span>
+      </button>
+    </sc-for>
+  </div>
+  <button onClick="{{ approve }}" style="border:0;border-radius:14px;padding:15px;font:650 16px -apple-system,sans-serif;cursor:pointer;background:{{ apprBg }};color:{{ apprInk }}">{{ apprLabel }}</button>
+  <div style="display:flex;align-items:center;justify-content:center;gap:6px;font:10px ui-monospace,monospace;color:oklch(.7 .02 250)"><span style="width:7px;height:7px;border-radius:50%;background:oklch(.75 .13 155)"></span>ECU WRITES LOCKED · READ-ONLY RELEASE</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLedger }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <div style="padding-top:6px"><div style="font:10px ui-monospace,monospace;letter-spacing:.08em;color:oklch(.77 .14 78)">LOCAL · ON DEVICE</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em;margin-top:4px">Ledger</div></div>
+  <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+    <sc-for list="{{ sessions }}" as="s" hint-placeholder-count="5">
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:oklch(.19 .022 250)">
+        <div style="flex:1;min-width:0"><div style="display:flex;gap:8px;align-items:baseline"><span style="font:600 13px ui-monospace,monospace">{{ s.id }}</span><span style="font-size:12px;color:oklch(.7 .02 250)">{{ s.date }}</span></div><div style="font-size:14px;margin-top:3px">{{ s.title }}</div></div>
+        <span style="font:600 9px ui-monospace,monospace;letter-spacing:.05em;padding:4px 7px;border-radius:999px;color:{{ s.color }};background:{{ s.bg }}">{{ s.tag }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font:600 12px -apple-system,sans-serif;color:oklch(.7 .02 250);text-transform:uppercase;letter-spacing:.04em;padding:4px 4px 0">S-0143 session bundle</div>
+  <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+    <sc-for list="{{ bundle }}" as="f" hint-placeholder-count="12">
+      <div style="display:flex;justify-content:space-between;padding:9px 16px;background:oklch(.19 .022 250);font:12px ui-monospace,monospace"><span>{{ f.n }}</span><span style="color:oklch(.7 .02 250)">{{ f.s }}</span></div>
+    </sc-for>
+  </div>
+  <button onClick="{{ exportBundle }}" style="border:0;border-radius:14px;padding:15px;font:650 16px -apple-system,sans-serif;cursor:pointer;background:oklch(.77 .14 78);color:#1d1b14">Export session bundle</button>
+  <div style="font-size:11px;line-height:1.45;color:oklch(.6 .02 250);text-align:center">Portable .zip with hashes. No cloud account required.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSetup }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <div style="padding-top:6px"><div style="font:10px ui-monospace,monospace;letter-spacing:.08em;color:oklch(.77 .14 78)">AE86 · AE111 BLACKTOP</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em;margin-top:4px">Setup</div></div>
+  <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+    <sc-for list="{{ setupRows }}" as="r" hint-placeholder-count="3">
+      <button onClick="{{ r.onClick }}" style="display:flex;align-items:center;gap:12px;border:0;padding:12px 16px;background:oklch(.19 .022 250);color:oklch(.94 .015 90);cursor:pointer;text-align:left;font-family:inherit">
+        <span style="width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:oklch(.27 .025 250);color:oklch(.77 .14 78);font-size:15px">{{ r.glyph }}</span>
+        <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-size:16px">{{ r.title }}</span><span style="font-size:12px;color:oklch(.7 .02 250)">{{ r.sub }}</span></span>
+        <span style="font:600 9px ui-monospace,monospace;padding:4px 7px;border-radius:999px;color:{{ r.color }};background:{{ r.bg }}">{{ r.tag }}</span>
+        <span style="color:oklch(.5 .02 250);font-size:18px">›</span>
+      </button>
+    </sc-for>
+  </div>
+  <div style="font:600 12px -apple-system,sans-serif;color:oklch(.7 .02 250);text-transform:uppercase;letter-spacing:.04em;padding:4px 4px 0">Demo outcome</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <sc-for list="{{ scenarioOpts }}" as="o" hint-placeholder-count="4">
+      <button onClick="{{ o.onClick }}" style="border:1px solid {{ o.border }};border-radius:12px;padding:11px 12px;background:oklch(.19 .022 250);color:oklch(.94 .015 90);text-align:left;cursor:pointer;font:500 13px -apple-system,sans-serif;display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:{{ o.tone }}"></span>{{ o.label }}</button>
+    </sc-for>
+  </div>
+  <div style="padding:14px;border-radius:16px;background:oklch(.29 .06 78 / .22);border:1px solid oklch(.5 .1 78 / .4);font-size:12px;line-height:1.5;color:oklch(.78 .02 250)"><b style="color:oklch(.77 .14 78)">Write gate closed.</b> ECU writes require verified identity, protocol, map scaling, immutable backup, read-after-write and bench validation. None are complete.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <button onClick="{{ back }}" style="align-self:flex-start;border:0;background:transparent;color:oklch(.77 .14 78);font:17px -apple-system,sans-serif;padding:6px 0;cursor:pointer">‹ Setup</button>
+  <div style="font-size:34px;font-weight:700;letter-spacing:-.02em">Vehicle profile</div>
+  <sc-for list="{{ profileGroups }}" as="g" hint-placeholder-count="3">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font:600 12px -apple-system,sans-serif;color:oklch(.7 .02 250);text-transform:uppercase;letter-spacing:.04em;padding:0 4px">{{ g.h }}</div>
+      <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+        <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="4">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:46px;padding:0 16px;background:oklch(.19 .022 250);font-size:15px"><span>{{ r.k }}</span><span style="text-align:right;font-size:14px;color:{{ r.color }}">{{ r.v }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-for>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <div style="font:600 12px -apple-system,sans-serif;color:oklch(.7 .02 250);text-transform:uppercase;letter-spacing:.04em;padding:0 4px">Objective</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <sc-for list="{{ objectives }}" as="o" hint-placeholder-count="7">
+        <button onClick="{{ o.onClick }}" style="border:1px solid {{ o.border }};border-radius:999px;padding:7px 12px;background:{{ o.bg }};color:{{ o.ink }};font:500 13px -apple-system,sans-serif;cursor:pointer">{{ o.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="font-size:12px;line-height:1.45;color:oklch(.77 .14 78);padding:0 4px">2 fields unknown. Unknown injector data blocks fuel proposals larger than 1.0%.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isConnect }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <button onClick="{{ back }}" style="align-self:flex-start;border:0;background:transparent;color:oklch(.77 .14 78);font:17px -apple-system,sans-serif;padding:6px 0;cursor:pointer">‹ Setup</button>
+  <div style="font-size:34px;font-weight:700;letter-spacing:-.02em">Connection</div>
+  <div style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:18px;background:oklch(.19 .022 250)">
+    <span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:oklch(.75 .13 155 / .14);color:oklch(.75 .13 155);font-size:20px">◉</span>
+    <div style="flex:1"><div style="font-size:16px;font-weight:600">Connected · receiving</div><div style="font:11px ui-monospace,monospace;color:oklch(.7 .02 250);margin-top:3px">last frame {{ lastRx }} ms ago</div></div>
+    <span style="font:600 9px ui-monospace,monospace;padding:4px 7px;border-radius:999px;color:oklch(.75 .13 155);background:oklch(.75 .13 155 / .12)">READ-ONLY</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+    <sc-for list="{{ connRows }}" as="r" hint-placeholder-count="10">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;padding:0 16px;background:oklch(.19 .022 250);font-size:15px"><span>{{ r.k }}</span><span style="text-align:right;font:13px ui-monospace,monospace;color:{{ r.color }}">{{ r.v }}</span></div>
+    </sc-for>
+  </div>
+  <div style="font:600 12px -apple-system,sans-serif;color:oklch(.7 .02 250);text-transform:uppercase;letter-spacing:.04em;padding:0 4px">Raw frames</div>
+  <div style="padding:12px 14px;border-radius:14px;background:oklch(.11 .015 250);font:10.5px/1.7 ui-monospace,SFMono-Regular,monospace;color:oklch(.75 .13 155);overflow:hidden">
+    <sc-for list="{{ rawLines }}" as="l" hint-placeholder-count="6"><div style="white-space:nowrap">{{ l }}</div></sc-for>
+  </div>
+  <div style="font-size:12px;line-height:1.45;color:oklch(.7 .02 250);padding:0 4px">Unknown bytes are preserved in the raw archive and labelled unknown. Only verified fields feed assessment.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPreflight }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <button onClick="{{ back }}" style="align-self:flex-start;border:0;background:transparent;color:oklch(.77 .14 78);font:17px -apple-system,sans-serif;padding:6px 0;cursor:pointer">‹ Setup</button>
+  <div style="font-size:34px;font-weight:700;letter-spacing:-.02em">Preflight</div>
+  <div style="font-size:14px;color:oklch(.75 .02 250)">8 passed · 2 need attention · 0 blocking</div>
+  <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.27 .025 250)">
+    <sc-for list="{{ preflight }}" as="p" hint-placeholder-count="10">
+      <div style="display:flex;align-items:center;gap:12px;padding:11px 16px;background:oklch(.19 .022 250)">
+        <span style="flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;background:{{ p.bg }};color:{{ p.color }}">{{ p.mark }}</span>
+        <span style="flex:1;font-size:15px">{{ p.k }}</span><span style="font:12px ui-monospace,monospace;color:oklch(.7 .02 250)">{{ p.v }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <button onClick="{{ captureBaseline }}" style="border:0;border-radius:14px;padding:15px;font:650 16px -apple-system,sans-serif;cursor:pointer;background:oklch(.77 .14 78);color:#1d1b14">Capture baseline</button>
+</div>
+</sc-if>
+
+</div>
+
+<div style="position:absolute;left:0;right:0;bottom:0;padding:8px 10px 30px;display:flex;justify-content:space-around;background:oklch(.16 .02 250 / .82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:0.5px solid oklch(.31 .025 250)">
+  <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+    <button onClick="{{ t.onClick }}" style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;cursor:pointer;color:{{ t.color }}"><span style="font-size:19px;line-height:22px">{{ t.glyph }}</span><span style="font:500 10px -apple-system,sans-serif">{{ t.label }}</span></button>
+  </sc-for>
+</div>
+
+<sc-if value="{{ aiOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;justify-content:flex-end">
+    <div onClick="{{ closeAi }}" style="position:absolute;inset:0;background:oklch(0 0 0 / .5)"></div>
+    <div style="position:relative;max-height:78%;overflow-y:auto;padding:10px 18px 40px;border-radius:28px 28px 0 0;background:oklch(.19 .022 250);display:flex;flex-direction:column;gap:14px">
+      <div style="align-self:center;width:36px;height:5px;border-radius:3px;background:oklch(.4 .02 250)"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font:10px ui-monospace,monospace;letter-spacing:.08em;color:oklch(.7 .02 250)">LOCAL ASSISTANT · EXPLANATION ONLY</div><div style="font-size:20px;font-weight:700;margin-top:4px">Why this decision</div></div><button onClick="{{ closeAi }}" style="border:0;width:30px;height:30px;border-radius:50%;background:oklch(.27 .025 250);color:oklch(.85 .015 90);cursor:pointer;font-size:14px">✕</button></div>
+      <sc-for list="{{ sc.ai }}" as="p" hint-placeholder-count="3"><div style="font-size:15px;line-height:1.5;text-wrap:pretty;color:oklch(.88 .015 90)">{{ p }}</div></sc-for>
+      <div style="display:flex;flex-direction:column;gap:6px"><div style="font:10px ui-monospace,monospace;color:oklch(.7 .02 250);letter-spacing:.05em">EVIDENCE CITED</div><div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ sc.evidence }}" as="e" hint-placeholder-count="4"><span style="font:11px ui-monospace,monospace;padding:5px 8px;border-radius:7px;background:oklch(.23 .025 250);color:oklch(.85 .015 90)">{{ e }}</span></sc-for></div></div>
+      <div style="display:flex;gap:8px;align-items:center;padding:4px 4px 4px 14px;border-radius:999px;background:oklch(.14 .018 250);border:1px solid oklch(.31 .025 250)"><span style="flex:1;font-size:14px;color:oklch(.6 .02 250)">Ask about this session…</span><span style="width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:oklch(.31 .025 250);color:oklch(.7 .02 250)">↑</span></div>
+      <div style="font-size:11px;line-height:1.45;color:oklch(.6 .02 250)">Cannot override faults, raise the increment, authorise ECU writes, or claim the engine is safe.</div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ abortOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;z-index:45;background:oklch(.2 .07 25);display:flex;flex-direction:column;padding:70px 20px 44px;gap:18px">
+    <div style="font:600 11px ui-monospace,monospace;letter-spacing:.12em;color:#ff9c9c">CRITICAL FAULT · CANNOT BE OVERRIDDEN</div>
+    <div style="font-size:52px;font-weight:800;letter-spacing:-.04em;line-height:.95">Stop the test.</div>
+    <div style="font-size:17px;line-height:1.45;color:oklch(.92 .02 30)">Knock detected under load. Return to idle when it is safe, then pull over and switch off.</div>
+    <div style="display:flex;flex-direction:column;gap:1px;border-radius:18px;overflow:hidden;background:oklch(.36 .08 25)">
+      <div style="display:flex;justify-content:space-between;padding:12px 16px;background:oklch(.26 .08 25);font-size:14px"><span>Knock events</span><b style="font-family:ui-monospace,monospace">3 · 5,200 rpm</b></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 16px;background:oklch(.26 .08 25);font-size:14px"><span>λ under load</span><b style="font-family:ui-monospace,monospace">0.98 · lean</b></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 16px;background:oklch(.26 .08 25);font-size:14px"><span>Load / IAT</span><b style="font-family:ui-monospace,monospace">78% · 47 °C</b></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 16px;background:oklch(.26 .08 25);font-size:14px"><span>Evidence</span><b style="font-family:ui-monospace,monospace">preserved · 9f3c…a21e</b></div>
+    </div>
+    <div style="font-size:13px;line-height:1.5;color:oklch(.85 .03 30)">Tuning is locked. Further experiments stay blocked until a human investigation is recorded in the ledger.</div>
+    <div style="flex:1"></div>
+    <button onClick="{{ recordInvestigation }}" style="border:0;border-radius:14px;padding:15px;font:650 16px -apple-system,sans-serif;cursor:pointer;background:#fff;color:oklch(.3 .1 25)">Record investigation</button>
+    <button onClick="{{ closeAbort }}" style="border:1px solid oklch(1 0 0 / .3);border-radius:14px;padding:14px;font:600 15px -apple-system,sans-serif;cursor:pointer;background:transparent;color:#fff">Close</button>
+  </div>
+</sc-if>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:16px;right:16px;bottom:104px;z-index:50;padding:13px 16px;border-radius:14px;background:oklch(.27 .025 250);box-shadow:0 10px 30px oklch(0 0 0 / .4);font-size:14px;display:flex;gap:10px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:oklch(.75 .13 155)"></span>{{ toast }}</div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;scenario&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;accept&quot;,&quot;repeat&quot;,&quot;rollback&quot;,&quot;abort&quot;],&quot;default&quot;:&quot;accept&quot;,&quot;tsType&quot;:&quot;'accept'|'repeat'|'rollback'|'abort'&quot;},&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;owner&quot;,&quot;tuner&quot;],&quot;default&quot;:&quot;owner&quot;,&quot;tsType&quot;:&quot;'owner'|'tuner'&quot;}}">
+const C={good:'oklch(.75 .13 155)',accent:'oklch(.77 .14 78)',blue:'oklch(.76 .11 250)',crit:'#ff9c9c',muted:'oklch(.7 .02 250)',ink:'oklch(.94 .015 90)',raised:'oklch(.23 .025 250)',dim:'oklch(.5 .02 250)'};
+const tint=(c,a)=>c.startsWith('#')?`oklch(.68 .19 25 / ${a})`:c.replace(')',` / ${a})`);
+const sev=(s)=>({CRITICAL:C.crit,WARNING:C.accent,NOTE:C.blue,PASS:C.good}[s]);
+const concern=(s,title,body)=>({sev:s,title,body,color:sev(s),bg:tint(s==='CRITICAL'?'#':sev(s),.12),border:tint(s==='CRITICAL'?'#':sev(s),.4)});
+const G='oklch(.75 .13 155 / .6)',S='oklch(.77 .14 78 / .45)',N='oklch(.25 .025 250)',F='oklch(.68 .19 25 / .75)';
+
+const SC={
+ accept:{label:'Accept',tone:C.good,decision:'Accept candidate. Prepare a smaller next step.',reason:'λ moved toward target in both candidate runs, the repeat agreed within tolerance, and no protection event occurred.',increment:'+1.0% fuel',action:'Review approval checklist',kind:'approve',
+  answers:[{q:'What happened to the engine?',a:'Mixture in the 3–4k rpm cruise band got closer to target — error fell from 0.093 to 0.015.'},{q:'Was the data complete and repeatable?',a:'Yes. 100% of frames received in all three runs; the repeat matched within 0.006 λ.'},{q:'What could have caused it?',a:'The +2.0% fuel change. Coolant, intake temperature and fuel pressure stayed stable between runs.'},{q:'What is the safest next action?',a:'Keep this as the working reference. Next step is half the size: +1.0% in the same cells.'}],
+  metrics:[['λ ERROR','0.093 → 0.015','mean, base → cand',C.good],['IMPROVEMENT','83.8%','objective',C.good],['REPEATABILITY','Δ 0.006','tol 0.020 · pass',C.good],['COMPLETENESS','100%','0 dropped · 0 OOO',C.good],['KNOCK','0','events',C.good],['PLAUSIBILITY','Pass','all verified sensors',C.good]],
+  coverage:'14 / 16 cells',cov:[[N,S,S,N],[G,G,G,S],[G,G,G,G],[N,G,G,N]],
+  stats:[['λ mean','0.993','0.915','0.909'],['λ err','0.093','0.015','0.012'],['Coolant °C','85.2','85.4','85.6'],['IAT °C','32.2','32.6','33.0'],['Oil bar','3.75','3.75','3.72'],['Fuel bar','3.00','3.00','3.00'],['Batt V','13.75','13.75','13.74']],
+  concerns:[concern('NOTE','Two edge cells still sparse','2.5k and 4k+ at 60–80% load have fewer than 40 samples. Not used for acceptance.'),concern('WARNING','Injector data unknown','Profile lists injectors as unknown — next increment is capped at 1.0%.')],
+  ai:['Both candidate runs pulled λ from about 0.99 down to 0.91, close to the 0.90 target, while the baseline sat 0.09 lean of it. The repeat landed within 0.006 of the first candidate, so the change behaves consistently.','Nothing else moved enough to explain the result: coolant varied by 0.4 °C, intake air by 0.8 °C, and fuel pressure held at 3.0 bar. That points to the fuel change itself.','The next step is halved to +1.0% because injector data is still unknown and two edge cells lack samples. Collect those before widening the band.'],
+  evidence:['telemetry_stats.lambda_error','repeatability.delta','telemetry.score=1.0','knock_events=0','profile.injectors=unknown']},
+ repeat:{label:'Repeat',tone:C.accent,decision:'Repeat the experiment.',reason:'The candidate looked better, but the repeat run disagreed and intake temperature rose 9 °C between runs.',increment:'0 — no new change',action:'Set up repeat run',kind:'repeat',
+  answers:[{q:'What happened to the engine?',a:'The first candidate run was closer to target, but the repeat drifted richer than expected.'},{q:'Was the data complete and repeatable?',a:'Complete, but not repeatable. The two candidate runs differ by 0.041 λ — twice the tolerance.'},{q:'What could have caused it?',a:'Conditions changed. Intake air was 9 °C hotter on the repeat and coverage was thin at higher load.'},{q:'What is the safest next action?',a:'Change nothing. Re-run the same test once intake temperature is back near 33 °C.'}],
+  metrics:[['λ ERROR','0.093 → 0.062','mean, base → cand',C.accent],['IMPROVEMENT','33.0%','ambiguous',C.accent],['REPEATABILITY','Δ 0.041','tol 0.020 · fail',C.crit],['COMPLETENESS','99.7%','4 dropped · 0 OOO',C.ink],['KNOCK','0','events',C.good],['PLAUSIBILITY','Pass','all verified sensors',C.good]],
+  coverage:'7 / 16 cells',cov:[[N,N,N,N],[S,G,S,N],[G,G,S,N],[N,S,N,N]],
+  stats:[['λ mean','0.993','0.931','0.890'],['λ err','0.093','0.031','0.062'],['Coolant °C','85.2','86.0','91.4'],['IAT °C','32.2','33.1','42.3'],['Oil bar','3.75','3.71','3.60'],['Fuel bar','3.00','3.00','3.00'],['Batt V','13.75','13.70','13.72']],
+  concerns:[concern('WARNING','Repeat out of tolerance','Candidate vs repeat Δλ 0.041, limit 0.020. Improvement is not proven.'),concern('WARNING','Conditions changed','IAT +9.2 °C and coolant +5.4 °C on the repeat. Heat soak likely.'),concern('NOTE','Sparse coverage','Only 7 of 16 target cells reached the 40-sample minimum.')],
+  ai:['The first candidate run looked like progress, but the repeat came out 0.041 λ richer. That gap is twice the allowed tolerance, so the improvement cannot be counted yet.','The repeat was done with intake air 9 °C hotter and coolant 5 °C warmer — consistent with heat soak after back-to-back pulls. Hotter, less dense air changes the mixture on its own.','No calibration change is permitted. Let the car cool, then repeat under the same conditions as the first candidate run.'],
+  evidence:['repeatability.delta=0.041','iat_c.range','coolant_c.range','map_coverage=7/16']},
+ rollback:{label:'Rollback',tone:C.blue,decision:'Rollback and investigate.',reason:'The candidate made the mixture worse and fuel pressure sagged during the run — the result is untrustworthy.',increment:'Locked until investigated',action:'Record rollback',kind:'rollback',
+  answers:[{q:'What happened to the engine?',a:'Mixture moved further from target — error grew from 0.093 to 0.110.'},{q:'Was the data complete and repeatable?',a:'Data is complete, and both candidate runs agree — the regression is real.'},{q:'What could have caused it?',a:'Fuel pressure dropped from 3.0 to 2.6 bar mid-run. A pump, filter or regulator issue is more likely than the map change.'},{q:'What is the safest next action?',a:'Return to the baseline, keep this evidence, and check the fuel system before another experiment.'}],
+  metrics:[['λ ERROR','0.093 → 0.110','mean, base → cand',C.crit],['IMPROVEMENT','−18.3%','regression',C.crit],['REPEATABILITY','Δ 0.008','tol 0.020 · pass',C.good],['COMPLETENESS','100%','0 dropped · 0 OOO',C.good],['KNOCK','0','events',C.good],['PLAUSIBILITY','Suspect','fuel pressure',C.accent]],
+  coverage:'12 / 16 cells',cov:[[N,S,G,N],[G,G,G,S],[G,G,G,G],[N,G,S,N]],
+  stats:[['λ mean','0.993','1.010','1.004'],['λ err','0.093','0.110','0.104'],['Coolant °C','85.2','85.6','85.9'],['IAT °C','32.2','32.9','33.4'],['Oil bar','3.75','3.74','3.73'],['Fuel bar','3.00','2.62','2.58'],['Batt V','13.75','13.62','13.60']],
+  concerns:[concern('WARNING','Fuel pressure sag','3.0 → 2.6 bar under load in both candidate runs. Baseline held 3.0 bar.'),concern('WARNING','Regression','λ error worsened 18% despite added fuel — inconsistent with the change.'),concern('NOTE','Battery slightly lower','13.6 V vs 13.75 V. Within limits, but check pump supply voltage.')],
+  ai:['Adding fuel should have moved λ richer, but it went leaner. When a result contradicts the change like this, the change is usually not the cause.','Fuel pressure fell from 3.0 to about 2.6 bar in both candidate runs while the baseline held steady. Lower rail pressure delivers less fuel than the map expects, which matches the lean shift.','Return to the baseline and inspect the pump, filter, regulator and pump voltage. Repeat the baseline once pressure holds 3.0 bar under load.'],
+  evidence:['fuel_pressure.min=2.58','lambda_error regression','battery_v.mean','repeatability pass']},
+ abort:{label:'Abort',tone:C.crit,decision:'Stop and abort.',reason:'Knock was detected three times under load with λ 0.98. Further tuning is locked until a human investigation is recorded.',increment:'Tuning locked',action:'Stop and lock tuning',kind:'abort',
+  answers:[{q:'What happened to the engine?',a:'The engine knocked three times at about 5,200 rpm and 78% load, while running lean.'},{q:'Was the data complete and repeatable?',a:'Data is complete. The repeat run was not attempted — the test stopped at the first critical event.'},{q:'What could have caused it?',a:'Lean mixture at high load, hot intake air (47 °C), or fuel quality. Ignition was not changed.'},{q:'What is the safest next action?',a:'Stop. Inspect plugs, check fuel, and record a human investigation before any further test.'}],
+  metrics:[['λ ERROR','0.093 → 0.080','≥60% load: 0.98',C.crit],['KNOCK','3','events · critical',C.crit],['REPEATABILITY','—','not attempted',C.muted],['COMPLETENESS','100%','0 dropped · 0 OOO',C.good],['IAT','47 °C','limit 65',C.accent],['PLAUSIBILITY','Pass','knock input verified',C.good]],
+  coverage:'Stopped',cov:[[N,N,F,F],[G,G,S,S],[G,G,G,N],[N,G,N,N]],
+  stats:[['λ mean','0.993','0.950','—'],['λ @ load','0.92','0.98','—'],['Coolant °C','85.2','93.1','—'],['IAT °C','32.2','47.0','—'],['Oil bar','3.75','3.62','—'],['Fuel bar','3.00','2.98','—'],['Knock','0','3','—']],
+  concerns:[concern('CRITICAL','Knock under load','3 events · 5,180–5,240 rpm · 74–80% load. Protection rule: never learn from a protection fault.'),concern('CRITICAL','Lean under load','λ 0.98 above 60% load. Limit for this objective is 0.95.'),concern('WARNING','Hot intake air','47 °C intake air raises knock risk.')],
+  ai:['The knock sensor reported three events within half a second at around 5,200 rpm and 78% load. At the same time λ read 0.98 — lean for that load.','Ignition was unchanged in this experiment, so the most likely contributors are the lean mixture and the 47 °C intake air. Fuel quality is worth checking too.','This is a critical fault. I cannot change the decision or unlock tuning. A person needs to inspect the engine and record what they found.'],
+  evidence:['knock_events=3','lambda@load=0.98','iat_c.max=47.0','safety_gate.critical']}
+};
+Object.values(SC).forEach(s=>{s.bg=tint(s.tone.startsWith('#')?'#':s.tone,.12);s.border=tint(s.tone.startsWith('#')?'#':s.tone,.4);s.metrics=s.metrics.map(([k,v,sub,color])=>({k,v,sub,color}));s.stats=s.stats.map(([k,b,c,r])=>({k,b,c,r}));const solid={accept:C.accent,repeat:C.accent,rollback:'oklch(.31 .025 250)',abort:'oklch(.68 .19 25)'};s.btnBg=solid[s===SC.accept?'accept':s===SC.repeat?'repeat':s===SC.rollback?'rollback':'abort'];s.btnInk=(s===SC.rollback||s===SC.abort)?'#fff':'#1d1b14';});
+
+class Component extends DCLogic {
+  state={tab:'live',push:null,tick:0,hist:[],density:null,scenario:null,runType:'candidate',recording:false,elapsed:0,saved:null,checks:[false,false,false,false,false,false],approved:false,ai:false,abort:false,toast:null,objective:'Drivability'};
+  componentDidMount(){this.iv=setInterval(()=>{this.setState(s=>{const t=s.tick+1;const v=this.live(t);const hist=[...s.hist,v].slice(-48);return {tick:t,hist,elapsed:s.recording?s.elapsed+0.2:s.elapsed};});},200);}
+  componentWillUnmount(){clearInterval(this.iv);clearTimeout(this.tt);}
+  scn(){return this.state.scenario??this.props.scenario??'accept';}
+  live(t){const ab=this.scn()==='abort';const n=Math.sin(t/4)+0.4*Math.sin(t/1.7);return ab?{rpm:5200+90*n,lam:0.975+0.006*n}:{rpm:3820+170*n,lam:0.912+0.012*Math.sin(t/3)};}
+  flash(m){this.setState({toast:m});clearTimeout(this.tt);this.tt=setTimeout(()=>this.setState({toast:null}),2600);}
+  renderVals(){
+    const st=this.state,key=this.scn(),sc=SC[key]||SC.accept,ab=key==='abort';
+    const density=st.density??this.props.density??'owner',isOwner=density==='owner';
+    const v=this.live(st.tick),t=st.tick;
+    const lamPos=Math.max(0,Math.min(100,(v.lam-0.75)/0.35*100));
+    const lamColor=Math.abs(v.lam-0.9)<0.03?C.good:(v.lam>0.95?C.crit:C.accent);
+    const j=(a,b)=>(a+Math.sin(t/b)*0.05);
+    const H=st.hist.length?st.hist:[v];
+    const pts=(f,lo,hi)=>H.map((h,i)=>`${(i/47*300).toFixed(1)},${(70-((f(h)-lo)/(hi-lo))*64-3).toFixed(1)}`).join(' ');
+    const segBtn=(on)=>({bg:on?'oklch(.4 .03 250)':'transparent',ink:on?C.ink:C.muted});
+    const go=(tab)=>()=>this.setState({tab,push:null,ai:false});
+    const tabs=[['live','◉','Live'],['run','∿','Run'],['review','✓','Review'],['ledger','▤','Ledger'],['setup','⚙','Setup']].map(([k,g,l])=>({glyph:g,label:l,onClick:go(k),color:st.tab===k?C.accent:C.dim}));
+    const scr=st.push||st.tab;
+    const ownerTiles=ab?[
+      {label:'COOLANT',value:'93',unit:'°C',status:'Rising',color:C.accent},{label:'OIL PRESSURE',value:'3.6',unit:'bar',status:'Normal',color:C.good},{label:'BATTERY',value:'13.7',unit:'V',status:'Normal',color:C.good},{label:'KNOCK',value:'3',unit:'events',status:'Stop now',color:C.crit}]:[
+      {label:'COOLANT',value:j(86.1,6).toFixed(1),unit:'°C',status:'Warm, stable',color:C.good},{label:'OIL PRESSURE',value:j(3.8,5).toFixed(1),unit:'bar',status:'Normal',color:C.good},{label:'BATTERY',value:j(13.8,7).toFixed(1),unit:'V',status:'Charging',color:C.good},{label:'KNOCK',value:'0',unit:'events',status:'None',color:C.good}];
+    const tunerTiles=[['LOAD',ab?'78.0':j(54.2,3).toFixed(1),'%'],['TPS',ab?'71':'38','%'],['IAT',ab?'47.0':j(38.4,9).toFixed(1),'°C'],['COOLANT',ab?'93.1':j(86.1,6).toFixed(1),'°C'],['OIL',ab?'3.62':j(3.8,5).toFixed(2),'bar'],['FUEL',ab?'2.98':'3.00','bar'],['BATT',ab?'13.7':j(13.8,7).toFixed(1),'V'],['IGN',ab?'31.0':j(24,4).toFixed(1),'°'],['IDC',ab?'71':j(41,3).toFixed(0),'%'],['VVT',ab?'38':'24','°'],['KNOCK',ab?'3':'0','evt'],['FRAMES','20.0','Hz']].map(([label,value,unit])=>({label,value,unit,color:(label==='KNOCK'&&ab)?C.crit:C.ink}));
+    const vehTiles=[['SPEED',ab?'118':j(64.2,8).toFixed(1),'km/h'],['LONG',ab?'0.31':j(0.42,2).toFixed(2),'g'],['LAT',j(0.18,3).toFixed(2),'g'],['YAW',j(0.07,4).toFixed(2),'rad/s'],['PITCH/ROLL','1.2/0.4','°'],['GPS ±','2.4','m']].map(([label,value,unit])=>({label,value,unit}));
+    const runTypes=['baseline','candidate','repeat'].map(r=>({label:r[0].toUpperCase()+r.slice(1),onClick:()=>this.setState({runType:r,saved:null,elapsed:0,recording:false}),...segBtn(st.runType===r)}));
+    const runRows=[['Objective',st.objective],['Gear','3rd'],['RPM range','2,500 – 5,500'],['Load range','30 – 70%'],['Context','Route · test loop A'],['Fuel · ambient','98 RON · 21 °C'],['Phone mount','Calibrated · fixed']].map(([k,vv])=>({k,v:vv}));
+    const fmt=(s)=>{const m=Math.floor(s/60),x=Math.floor(s%60);return `${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}.${Math.floor((s*10)%10)}`;};
+    const runNames={baseline:'baseline.raw',candidate:'candidate.raw',repeat:'candidate-repeat.raw'};
+    const hashes={baseline:'3a91…c07e',candidate:'9f3c…a21e',repeat:'51d8…e4b2'};
+    const locked=ab&&st.runType!=='baseline';
+    const toggleRecord=()=>{if(locked){this.flash('Blocked — tuning locked by critical fault');return;}if(st.recording){this.setState({recording:false,saved:st.runType});}else this.setState({recording:true,elapsed:0,saved:null});};
+    const checksData=[['Correct vehicle and ECU profile','AE86 · 4A-GE 20V Blacktop · FC-03 (identity inferred)'],['Baseline backup and rollback path','baseline.raw · sha256 3a91…c07e'],['Changed experiment and expected effect',key==='repeat'?'No calibration change · repeat E-0143 under matched conditions':'Fuel +1.0% · 3,000–4,000 rpm × 40–60% load → λ toward 0.90'],['Displayed warnings reviewed',`${sc.concerns.length} concerns on this assessment`],['Supervised test conditions','Closed route · second person present · phone mounted'],['Stop criteria','Knock · λ > 0.95 above 60% load · coolant > 105 °C · oil < 180 kPa · < 12.0 V']];
+    const allChecked=st.checks.every(Boolean);
+    const checks=checksData.map(([title,detail],i)=>{const on=st.checks[i];return {title,detail,mark:on?'✓':'',ring:on?C.accent:'oklch(.45 .02 250)',fill:on?C.accent:'transparent',toggle:()=>this.setState(s=>{const c=[...s.checks];c[i]=!c[i];return {checks:c,approved:false};})};});
+    const pf=(k,vv,m)=>({k,v:vv,mark:m==='ok'?'✓':'!',color:m==='ok'?C.good:C.accent,bg:m==='ok'?'oklch(.75 .13 155 / .15)':'oklch(.77 .14 78 / .18)'});
+    const preflight=[pf('Write lock engaged','read-only','ok'),pf('ECU identity','inferred','warn'),pf('Baseline backup','3a91…c07e','ok'),pf('Profile complete','2 unknown','warn'),pf('Wideband calibrated','free-air ✓','ok'),pf('Coolant at temp','86 °C','ok'),pf('Battery','13.8 V','ok'),pf('Oil pressure idle','3.8 bar','ok'),pf('Phone mount','calibrated','ok'),pf('GPS accuracy','±2.4 m','ok')];
+    const tag=(color,a=.12)=>({color,bg:tint(color.startsWith('#')?'#':color,a)});
+    const setupRows=[{glyph:'▦',title:'Vehicle profile',sub:'AE86 · 4A-GE 20V Blacktop · FC-03',tag:'2 UNKNOWN',...tag(C.accent),onClick:()=>this.setState({push:'profile'})},{glyph:'⌁',title:'Connection & identity',sub:'USB-C → RS-232 · 9600 8N1',tag:'CONNECTED',...tag(C.good),onClick:()=>this.setState({push:'connect'})},{glyph:'✓',title:'Preflight checks',sub:'8 passed · 2 attention',tag:'READY',...tag(C.good),onClick:()=>this.setState({push:'preflight'})}];
+    const U=C.accent,K=C.muted;
+    const profileGroups=[{h:'Vehicle',rows:[['Chassis','AE86 Trueno',K],['Engine','4A-GE 20V Blacktop',K],['ECU','Freedom FC-03',K],['Firmware evidence','Inferred',U],['Connector','FCSS serial · club4ag pinout',K]]},{h:'Engine strategy',rows:[['Load strategy','MAP / D-Jetronic',K],['Injection','Sequential',K],['Ignition','Direct / COP',K],['VVT','20V inlet VVT',K]]},{h:'Hardware',rows:[['Injectors','Unknown',U],['Fuel pressure','3.0 bar',K],['Fuel','98 RON',K],['Compression','Unknown',U],['Intake','Factory ITBs',K],['Exhaust','4-2-1 · 2.25"',K],['Forced induction','None',K]]}].map(g=>({h:g.h,rows:g.rows.map(([k,vv,color])=>({k,v:vv,color}))}));
+    const objectives=['Grip','Drift','Acceleration','Top speed','Drivability','Economy','Reliability'].map(l=>{const on=st.objective===l;return {label:l,onClick:()=>this.setState({objective:l}),bg:on?C.accent:'transparent',ink:on?'#1d1b14':C.ink,border:on?C.accent:'oklch(.35 .025 250)'};});
+    const frames=18422+t*4;
+    const connRows=[['Transport','USB-C → RS-232',K],['Baud · framing','9600 · 8N1',K],['ECU identity','Inferred',U],['Raw frames',frames.toLocaleString(),K],['Dropped','0',C.good],['Stale','0',C.good],['Duplicated','0',C.good],['Out of order','0',C.good],['Write access','Locked',C.good]].map(([k,vv,color])=>({k,v:vv,color}));
+    const hex=(n)=>((n*2654435761>>>0)%256).toString(16).padStart(2,'0').toUpperCase();
+    const rawLines=Array.from({length:6},(_,i)=>{const s=t-5+i;return `${String(1842+s).padStart(5,'0')}  `+Array.from({length:10},(_,k)=>hex(s*13+k)).join(' ');});
+    const decTag={accept:['ACCEPTED',C.good],repeat:['REPEAT',C.accent],rollback:['ROLLED BACK',C.blue],abort:['ABORTED','#']};
+    const dt=decTag[key];
+    const sessions=[{id:'S-0143',date:'Today',title:'Fuel +2.0% · 3–4k cruise',tag:dt[0],...tag(dt[1]==='#'?C.crit:dt[1])},{id:'S-0142',date:'6 Oct',title:'Repeat · heat-soaked',tag:'REPEAT',...tag(C.accent)},{id:'S-0141',date:'6 Oct',title:'Fuel +2.0% · idle–2.5k',tag:'ACCEPTED',...tag(C.good)},{id:'S-0140',date:'2 Oct',title:'Baseline · test loop A',tag:'BASELINE',...tag(C.muted)},{id:'S-0139',date:'29 Sep',title:'Fuel +2.0% · 4–5k',tag:'ROLLED BACK',...tag(C.blue)}];
+    const bundle=[['profile.json','2 KB'],['baseline.raw','1.4 MB'],['baseline.jsonl','3.1 MB'],['candidate.raw','1.5 MB'],['candidate.jsonl','3.2 MB'],['candidate-repeat.jsonl','3.2 MB'],['hashes.json','1 KB'],['preflight.json','2 KB'],['experiment-plan.json','3 KB'],['assessment.json','6 KB'],['approval.json','1 KB'],['operator-notes.md','1 KB']].map(([n,s])=>({n,s}));
+    const scenarioOpts=Object.entries(SC).map(([k,s])=>({label:s.label,tone:s.tone,border:k===key?s.tone:'oklch(.31 .025 250)',onClick:()=>{this.setState({scenario:k,approved:false,checks:[false,false,false,false,false,false]});this.flash(`Demo outcome: ${s.label}`);}}));
+    const runFiles=[{name:'baseline.jsonl',meta:'S-0140 · 4,812 frames',hash:hashes.baseline},{name:'candidate.jsonl',meta:'E-0143 · 4,790 frames',hash:hashes.candidate},{name:'candidate-repeat.jsonl',meta:ab?'not captured':'E-0143 · 4,806 frames',hash:ab?'—':hashes.repeat}];
+    const covRows=['80%','60%','40%','20%'].map((label,i)=>({label,cells:sc.cov[i]}));
+    const primaryAction=()=>{if(sc.kind==='approve'||sc.kind==='repeat')this.setState({push:'approval'});else if(sc.kind==='rollback')this.flash('Rollback record R-0143 saved · candidate preserved');else this.setState({abort:true});};
+    const apprLabel=st.approved?'Experiment record created':(allChecked?(key==='repeat'?'Approve repeat run':'Approve supervised test'):`Confirm ${st.checks.filter(x=>!x).length} more`);
+    return {
+      isLive:scr==='live',isRun:scr==='run',isReview:scr==='review',isLedger:scr==='ledger',isSetup:scr==='setup',isProfile:scr==='profile',isConnect:scr==='connect',isPreflight:scr==='preflight',isApproval:scr==='approval',
+      isOwner,isTuner:!isOwner,setOwner:()=>this.setState({density:'owner'}),setTuner:()=>this.setState({density:'tuner'}),
+      ownerBg:segBtn(isOwner).bg,ownerInk:segBtn(isOwner).ink,tunerBg:segBtn(!isOwner).bg,tunerInk:segBtn(!isOwner).ink,
+      liveAlert:ab,openAbort:()=>this.setState({abort:true}),closeAbort:()=>this.setState({abort:false}),
+      recordInvestigation:()=>{this.setState({abort:false,tab:'ledger',push:null});this.flash('Investigation note opened for S-0143');},
+      healthColor:ab?C.crit:C.good,healthText:ab?'Telemetry complete · protection event active':'Telemetry healthy · 20 Hz · 0 dropped · motion calibrated',
+      rpmText:Math.round(v.rpm).toLocaleString(),rpmPct:(v.rpm/8500*100).toFixed(1)+'%',lamText:v.lam.toFixed(3),lamColor,lamPos:lamPos+'%',tgtPos:((0.9-0.75)/0.35*100)+'%',
+      ownerSentence:ab?'Knock detected. Ease off and stop the test as soon as it is safe.':'Engine is warm and running close to its mixture target. Nothing needs attention.',
+      ownerTiles,tunerTiles,vehTiles,speedText:ab?'118':j(64.2,8).toFixed(0),longG:ab?'0.31':j(0.42,2).toFixed(2),
+      rpmPoints:pts(h=>h.rpm,ab?4900:3400,ab?5500:4300),lamPoints:pts(h=>h.lam,ab?0.95:0.88,ab?1.0:0.94),
+      tuningLocked:ab,runTypes,runRows,showChange:st.runType!=='baseline',
+      elapsedText:fmt(st.elapsed),frameText:st.recording?`REC · ${Math.floor(st.elapsed*20).toLocaleString()} frames · monotonic clock`:(st.saved?'Capture stopped':'Ready · ECU + phone sensors synced'),
+      toggleRecord,recSize:st.recording?'30px':'64px',recRadius:st.recording?'7px':'50%',recColor:locked?'oklch(.4 .02 250)':'oklch(.68 .19 25)',
+      recHint:locked?'Locked — critical fault on record':(st.recording?'Tap to stop':`Tap to record ${st.runType}`),
+      savedRun:!!st.saved,savedName:runNames[st.saved]||'',savedHash:hashes[st.saved]||'',goReview:go('review'),
+      sc,openAi:()=>this.setState({ai:true}),closeAi:()=>this.setState({ai:false}),aiOpen:st.ai,abortOpen:st.abort,
+      runFiles,covRows,primaryAction,back:()=>this.setState({push:null}),
+      apprCrumb:key==='repeat'?'E-0143 · REPEAT · NO CHANGE':'E-0144 · FUEL +1.0%',checks,
+      approve:()=>{if(!allChecked){this.flash('Confirm every item first');return;}this.setState({approved:true});this.flash(key==='repeat'?'Record E-0143R created · no ECU write':'Record E-0144 created · no ECU write');},
+      apprLabel,apprBg:allChecked?(st.approved?'oklch(.75 .13 155)':C.accent):'oklch(.27 .025 250)',apprInk:allChecked?'#1d1b14':C.muted,
+      sessions,bundle,exportBundle:()=>this.flash('S-0143.zip saved to Files · 12 files · hashes verified'),
+      setupRows,scenarioOpts,profileGroups,objectives,connRows,rawLines,lastRx:String(30+((t*17)%40)),preflight,
+      captureBaseline:()=>this.setState({tab:'run',push:null,runType:'baseline',saved:null,elapsed:0}),
+      tabs,toast:st.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<![endif]-->
+<html xmlns:fb="http://ogp.me/ns/fb#" lang="ja">
+<head>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4038633114881679",
+    enable_page_level_ads: true
+  });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-16EQWJ2VJT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-16EQWJ2VJT');
+</script>
+<meta charset="UTF-8" />
+<link rel="start" href="https://kunugi-runner.com" title="HOME" />
+
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1">
+<title>10.製品情報と本体機能の判別方法 E&amp;Eシステム Freedom Computer セッティングマニュアル | KUNUGI RUNNER</title>
+<meta name="keywords" content="一本クヌギ,スピードウェイ,クヌギランナー,クヌギ,タイム,ランキング,大分,サーキット,いのしし,カート,ジムカーナ,ラリー" />
+
+<!-- All in One SEO Pack 2.9.1.1 by Michael Torbert of Semper Fi Web Design[883,965] -->
+<link rel="canonical" href="https://kunugi-runner.com/2020/10/21/4361/" />
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="KUNUGI RUNNER &raquo; フィード" href="https://kunugi-runner.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="KUNUGI RUNNER &raquo; コメントフィード" href="https://kunugi-runner.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="KUNUGI RUNNER &raquo; 10.製品情報と本体機能の判別方法 E&#038;Eシステム Freedom Computer セッティングマニュアル のコメントのフィード" href="https://kunugi-runner.com/2020/10/21/4361/feed/" />
+<meta name="description" content="ここでは過去にE&amp;Eシステム社から販売されていた、通称「青箱」こと、自動車用エンジン・マネージメント・システム「Freedom Computer(以下、フリーダム)」の操作方法について解説をしています。化石の様な一部の車にしか需要のないネタですが、一部の内容はECUセッティングをする上で役に立つ…かもしれない、程度の内容も含んでいますので、興味のある方はご覧ください。尚、フリーダムを使用する上でセッティングソフト「FCSS」が必要ですが、オリジナルは3" />
+<style type="text/css">.keyColorBG,.keyColorBGh:hover,.keyColor_bg,.keyColor_bg_hover:hover{background-color: #e90000;}.keyColorCl,.keyColorClh:hover,.keyColor_txt,.keyColor_txt_hover:hover{color: #e90000;}.keyColorBd,.keyColorBdh:hover,.keyColor_border,.keyColor_border_hover:hover{border-color: #e90000;}.color_keyBG,.color_keyBGh:hover,.color_key_bg,.color_key_bg_hover:hover{background-color: #e90000;}.color_keyCl,.color_keyClh:hover,.color_key_txt,.color_key_txt_hover:hover{color: #e90000;}.color_keyBd,.color_keyBdh:hover,.color_key_border,.color_key_border_hover:hover{border-color: #e90000;}</style>
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/kunugi-runner.com\/wp\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.26"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])?!1:!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55358,56760,9792,65039],[55358,56760,8203,9792,65039])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='bbp-default-css'  href='https://kunugi-runner.com/wp/wp-content/plugins/bbpress/templates/default/css/bbpress.css?ver=2.5.14-6684' type='text/css' media='screen' />
+<link rel='stylesheet' id='bsp-css'  href='https://kunugi-runner.com/wp/wp-content/plugins/bbp-style-pack/css/bspstyle.css?ver=4.1.10' type='text/css' media='screen' />
+<link rel='stylesheet' id='dashicons-css'  href='https://kunugi-runner.com/wp/wp-includes/css/dashicons.min.css?ver=4.9.26' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_common_style-css'  href='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/css/bizvektor_common_min.css?ver=1.11.5' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_Design_style-css'  href='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/design_skins/003/css/003.css?ver=1.11.5' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_plugin_sns_style-css'  href='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/plugins/sns/style_bizvektor_sns.css?ver=4.9.26' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_add_web_fonts-css'  href='//fonts.googleapis.com/css?family=Droid+Sans%3A700%7CLato%3A900%7CAnton&#038;ver=4.9.26' type='text/css' media='all' />
+<link rel='stylesheet' id='gdatt-attachments-css'  href='https://kunugi-runner.com/wp/wp-content/plugins/gd-bbpress-attachments/css/front.min.css?ver=4.1_b2410_free' type='text/css' media='all' />
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-content/plugins/bbp-style-pack/js/bsp_enqueue_submit.js?ver=4.9.26'></script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='https://kunugi-runner.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://kunugi-runner.com/wp/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://kunugi-runner.com/wp/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='08-09.マップ軸変換と全域噴射量調整 E&#038;Eシステム Freedom Computer セッティングマニュアル' href='https://kunugi-runner.com/2020/10/21/4353/' />
+<link rel='next' title='11.本体設定及び初期化手順と空燃比計連動フラグ設定etc. E&#038;Eシステム Freedom Computer セッティングマニュアル' href='https://kunugi-runner.com/2020/10/22/4409/' />
+<link rel='shortlink' href='https://kunugi-runner.com/?p=4361' />
+<link rel="alternate" type="application/json+oembed" href="https://kunugi-runner.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkunugi-runner.com%2F2020%2F10%2F21%2F4361%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://kunugi-runner.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkunugi-runner.com%2F2020%2F10%2F21%2F4361%2F&#038;format=xml" />
+<!-- [ BizVektor OGP ] -->
+<meta property="og:site_name" content="KUNUGI RUNNER" />
+<meta property="og:url" content="https://kunugi-runner.com/2020/10/21/4361/" />
+<meta property="fb:app_id" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://kunugi-runner.com/wp/wp-content/uploads/2020/10/4throttle.jpg" />
+<meta property="og:title" content="10.製品情報と本体機能の判別方法 E&#038;Eシステム Freedom Computer セッティングマニュアル | KUNUGI RUNNER" />
+<meta property="og:description" content="ここでは過去にE&amp;Eシステム社から販売されていた、通称「青箱」こと、自動車用エンジン・マネージメント・システム「Freedom Computer(以下、フリーダム)」の操作方法について解説をしています。  化石の様な一部の車にしか需要のないネタですが、一部の内容はECUセッティングをする上で役に立つ…かもしれない、程度の内容も含んでいますので、興味のある方はご覧ください。  尚、フリーダムを使用する上でセッティングソフト「FCSS」が必要ですが、オリジナルは3" />
+<!-- [ /BizVektor OGP ] -->
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" media="all" href="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/design_skins/003/css/003_oldie.css" />
+<![endif]-->
+<link rel="SHORTCUT ICON" HREF="https//kunugi-runner.com/wp/wp-content/uploads/2018/11/favicon.ico" /><link rel="pingback" href="https://kunugi-runner.com/wp/xmlrpc.php" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<link rel="icon" href="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon-150x150.jpg" sizes="32x32" />
+<link rel="icon" href="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon.jpg" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon.jpg" />
+<meta name="msapplication-TileImage" content="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon.jpg" />
+		<style type="text/css">
+
+a { color:#8224e3 }
+
+#searchform input[type=submit],
+p.form-submit input[type=submit],
+form#searchform input#searchsubmit,
+.content form input.wpcf7-submit,
+#confirm-button input,
+a.btn,
+.linkBtn a,
+input[type=button],
+input[type=submit],
+.sideTower li#sideContact.sideBnr a,
+.content .infoList .rssBtn a { background-color:#e90000; }
+
+.moreLink a { border-left-color:#e90000; }
+.moreLink a:hover { background-color:#e90000; }
+.moreLink a:after { color:#e90000; }
+.moreLink a:hover:after { color:#fff; }
+
+#headerTop { border-top-color:#e90000; }
+
+.headMainMenu li:hover { color:#e90000; }
+.headMainMenu li > a:hover,
+.headMainMenu li.current_page_item > a { color:#e90000; }
+
+#pageTitBnr { background-color:#e90000; }
+
+.content h2,
+.content h1.contentTitle,
+.content h1.entryPostTitle,
+.sideTower h3.localHead,
+.sideWidget h4  { border-top-color:#e90000; }
+
+.content h3:after,
+.content .child_page_block h4:after { border-bottom-color:#e90000; }
+
+.sideTower li#sideContact.sideBnr a:hover,
+.content .infoList .rssBtn a:hover,
+form#searchform input#searchsubmit:hover { background-color:#8224e3; }
+
+#panList .innerBox ul a:hover { color:#8224e3; }
+
+.content .mainFootContact p.mainFootTxt span.mainFootTel { color:#e90000; }
+.content .mainFootContact .mainFootBt a { background-color:#e90000; }
+.content .mainFootContact .mainFootBt a:hover { background-color:#8224e3; }
+
+.content .infoList .infoCate a { background-color:fff5f5;color:#e90000; }
+.content .infoList .infoCate a:hover { background-color:#8224e3; }
+
+.paging span,
+.paging a	{ color:#e90000;border-color:#e90000; }
+.paging span.current,
+.paging a:hover	{ background-color:#e90000; }
+
+/* アクティブのページ */
+.sideTower .sideWidget li > a:hover,
+.sideTower .sideWidget li.current_page_item > a,
+.sideTower .sideWidget li.current-cat > a	{ color:#e90000; background-color:fff5f5; }
+
+.sideTower .ttBoxSection .ttBox a:hover { color:#e90000; }
+
+#footMenu { border-top-color:#e90000; }
+#footMenu .menu li a:hover { color:#e90000 }
+
+@media (min-width: 970px) {
+.headMainMenu li:hover li a:hover { color:#333; }
+.headMainMenu li.current-page-item a,
+.headMainMenu li.current_page_item a,
+.headMainMenu li.current-menu-ancestor a,
+.headMainMenu li.current-page-ancestor a { color:#333;}
+.headMainMenu li.current-page-item a span,
+.headMainMenu li.current_page_item a span,
+.headMainMenu li.current-menu-ancestor a span,
+.headMainMenu li.current-page-ancestor a span { color:#e90000; }
+}
+
+</style>
+<!--[if lte IE 8]>
+<style type="text/css">
+.headMainMenu li:hover li a:hover { color:#333; }
+.headMainMenu li.current-page-item a,
+.headMainMenu li.current_page_item a,
+.headMainMenu li.current-menu-ancestor a,
+.headMainMenu li.current-page-ancestor a { color:#333;}
+.headMainMenu li.current-page-item a span,
+.headMainMenu li.current_page_item a span,
+.headMainMenu li.current-menu-ancestor a span,
+.headMainMenu li.current-page-ancestor a span { color:#e90000; }
+</style>
+<![endif]-->
+<style type="text/css">
+/*-------------------------------------------*/
+/*	font
+/*-------------------------------------------*/
+h1,h2,h3,h4,h4,h5,h6,#header #site-title,#pageTitBnr #pageTitInner #pageTit,#content .leadTxt,#sideTower .localHead {font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif; }
+#pageTitBnr #pageTitInner #pageTit { font-weight:lighter; }
+#gMenu .menu li a strong {font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif; }
+</style>
+<link rel="stylesheet" href="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/style.css" type="text/css" media="all" />
+<meta name="google-site-verification" content="gneQxcBgA-_0h0O3LVGvD7P2FDR75jh-GXjzsjy4Pyk" />
+</head>
+
+<body class="post-template-default single single-post postid-4361 single-format-standard custom-background two-column right-sidebar">
+
+<div id="fb-root"></div>
+
+<div id="wrap">
+
+<!--[if lte IE 8]>
+<div id="eradi_ie_box">
+<div class="alert_title">ご利用の <span style="font-weight: bold;">Internet Exproler</span> は古すぎます。</div>
+<p>あなたがご利用の Internet Explorer はすでにサポートが終了しているため、正しい表示・動作を保証しておりません。<br />
+古い Internet Exproler はセキュリティーの観点からも、<a href="https://www.microsoft.com/ja-jp/windows/lifecycle/iesupport/" target="_blank" >新しいブラウザに移行する事が強く推奨されています。</a><br />
+<a href="http://windows.microsoft.com/ja-jp/internet-explorer/" target="_blank" >最新のInternet Exproler</a> や <a href="https://www.microsoft.com/ja-jp/windows/microsoft-edge" target="_blank" >Edge</a> を利用するか、<a href="https://www.google.co.jp/chrome/browser/index.html" target="_blank">Chrome</a> や <a href="https://www.mozilla.org/ja/firefox/new/" target="_blank">Firefox</a> など、より早くて快適なブラウザをご利用ください。</p>
+</div>
+<![endif]-->
+
+<!-- [ #headerTop ] -->
+<div id="headerTop">
+<div class="innerBox">
+<div id="site-description">一本クヌギスピードウェイ 公式タイムアタックランキング　クヌギランナー</div>
+</div>
+</div><!-- [ /#headerTop ] -->
+
+<!-- [ #header ] -->
+<header id="header" class="header">
+<div id="headerInner" class="innerBox">
+<!-- [ #headLogo ] -->
+<div id="site-title">
+<a href="https://kunugi-runner.com/" title="KUNUGI RUNNER" rel="home">
+<img src="https://kunugi-runner.com/wp/wp-content/uploads/2020/05/index_top2.jpg" alt="KUNUGI RUNNER" /></a>
+</div>
+<!-- [ /#headLogo ] -->
+
+<!-- [ #headContact ] -->
+
+	<!-- [ #gMenu ] -->
+	<div id="gMenu">
+	<div id="gMenuInner" class="innerBox">
+	<h3 class="assistive-text" onclick="showHide('header');"><span>MENU</span></h3>
+	<div class="skip-link screen-reader-text">
+		<a href="#content" title="メニューを飛ばす">メニューを飛ばす</a>
+	</div>
+<div class="headMainMenu">
+<div class="menu-%e3%83%98%e3%83%83%e3%83%80%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc-container"><ul id="menu-%e3%83%98%e3%83%83%e3%83%80%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc" class="menu"><li id="menu-item-199" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/course/"><strong>コース紹介</strong></a></li>
+<li id="menu-item-200" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/event/"><strong>イベント案内</strong></a></li>
+<li id="menu-item-201" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/rank/"><strong>ランキング</strong></a></li>
+<li id="menu-item-346" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/blog/"><strong>イベントレポート</strong></a></li>
+<li id="menu-item-203" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/tech/"><strong>テクニカルアドバイス</strong></a></li>
+<li id="menu-item-324" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://kunugi-runner.com/category/ad_blog/"><strong>ブログ一覧</strong></a></li>
+<li id="menu-item-204" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/inquiry/"><strong>お問い合わせ</strong></a></li>
+</ul></div>
+</div>
+</div><!-- [ /#gMenuInner ] -->
+	</div>
+	<!-- [ /#gMenu ] -->
+<!-- [ /#headContact ] -->
+
+</div>
+<!-- #headerInner -->
+</header>
+<!-- [ /#header ] -->
+
+
+
+<div id="pageTitBnr">
+<div class="innerBox">
+<div id="pageTitInner">
+<div id="pageTit">
+レポート</div>
+</div><!-- [ /#pageTitInner ] -->
+</div>
+</div><!-- [ /#pageTitBnr ] -->
+<!-- [ #panList ] -->
+<div id="panList">
+<div id="panListInner" class="innerBox"><ul><li id="panHome" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="https://kunugi-runner.com" itemprop="item"><span itemprop="name">HOME</span></a> &raquo; </li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="https://kunugi-runner.com" itemprop="item"><span itemprop="name">レポート</span></a> &raquo; </li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="https://kunugi-runner.com/category/ad_blog/" itemprop="item"><span itemprop="name">ブログ</span></a> &raquo; </li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">10.製品情報と本体機能の判別方法 E&#038;Eシステム Freedom Computer セッティングマニュアル</span></li></ul></div>
+</div>
+<!-- [ /#panList ] -->
+
+<div id="main" class="main">
+<!-- [ #container ] -->
+<div id="container" class="innerBox">
+	<!-- [ #content ] -->
+	<div id="content" class="content">
+
+<!-- [ #post- ] -->
+<div id="post-4361" class="post-4361 post type-post status-publish format-standard has-post-thumbnail hentry category-ad_blog tag-diy tag-ecu_tuning tag-tech3 tag-freedom tag-feature tag-electronics">
+		<h1 class="entryPostTitle entry-title">10.製品情報と本体機能の判別方法 E&#038;Eシステム Freedom Computer セッティングマニュアル</h1>
+	<div class="entry-meta">
+<span class="published">投稿日 : 2020年10月21日</span>
+<span class="updated entry-meta-items">最終更新日時 : 2024年4月4日</span>
+<span class="vcard author entry-meta-items">投稿者 : <span class="fn">ユースケ＠管理人</span></span>
+<span class="tags entry-meta-items">カテゴリー :  <a href="https://kunugi-runner.com/category/ad_blog/" rel="tag">ブログ</a></span>
+</div>
+<!-- .entry-meta -->	<div class="entry-content post-content">
+		<p>ここでは過去にE&amp;Eシステム社から販売されていた、通称「青箱」こと、自動車用エンジン・マネージメント・システム「Freedom Computer(以下、フリーダム)」の操作方法について解説をしています。</p>
+<p>化石の様な一部の車にしか需要のないネタですが、一部の内容はECUセッティングをする上で役に立つ…かもしれない、程度の内容も含んでいますので、興味のある方はご覧ください。</p>
+<p>尚、フリーダムを使用する上でセッティングソフト「FCSS」が必要ですが、オリジナルは<a href="https://amzn.to/3jiW1LF" target="_blank" rel="noopener">3.5インチフロッピーディスク</a>となりますので、ノートパソコンにFDDが装備されている必要がありますし、フリーダムとの接続にはPCに<a href="https://amzn.to/2HkVEDo" target="_blank" rel="noopener">RS-232Cシリアルポート</a>も必要です。</p>
+<p>エンジニア向けのビジネスモデルPCなら装備されている可能性もありますが、家庭向けモデルだとWindows95～98SE辺りの世代になると思いますので、入手がやや困難かもしれませんが、FCSSはWindowsXP SP3までは起動確認しています。</p>
+<p>尚、以下の環境設定を対象とした解説であり、旧バージョンやバージョンアップ版では多少内容が違ってくる場合もありますので、予めご了承下さい。</p>
+<p><strong>フリーダムバージョン：FC-03K (空燃比計連動機能オプション有り)</strong><br />
+<strong>FCSSバージョン：for Windows Ver.2.14</strong><br />
+<strong>環境設定</strong><br />
+<strong>エンジン&amp;車種選択：0 共通</strong><br />
+<strong>データ保存フォルダー：FCDATA</strong></p>
+<p><span style="color: #ff0000;"><strong>※注意！</strong></span><br />
+<span style="color: #ff0000;">当サイトの掲載情報はE&amp;Eシステム社の公式マニュアルの内容とは全く異なりますので、誤った解釈が混じっている可能性があります。予めご了承ください。</span></p>
+<p>本ページの項目では、かつて販売されていたフリーダムの対応車種ラインナップやオプションのリスト及び、E&amp;Eシステム社が推奨していた対応センサー類などの情報を掲載しています。</p>
+<p>また、中古購入時などに本体記載のシリアル番号から、フリーダム本体の仕様(車種や本体バージョン、追加オプションの有無)を判別する方法などを解説しています。</p>
+<p>他の係数やMAPの解説、フリーダムの初期設定などについては、セッティングマニュアルのメニューより、各項目の解説ページを参照してください。</p>
+<p><a href="#1"><strong>◆フリーダムのラインナップとオプション</strong></a></p>
+<p><a href="#2"><strong>◆シリアルナンバーについて(本体バージョン・仕様の判別方法)</strong></a></p>
+<p><a href="https://kunugi-runner.com/tag/freedom/"><strong>◆セッティングマニュアルメニュー</strong></a><br />
+</p><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="6135689124"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<h2><span style="color: #ff0000;"><a name="1"></a><strong>■フリーダムのラインナップとオプション</strong></span></h2>
+<p>当時販売されていたフリーダムのラインナップと、対応オプションの確認表。</p>
+<h3>フリーダムラインナップ車種</h3>
+<p>AE86<br />
+AW11<br />
+AE92 前期/後期<br />
+AE101<br />
+AE111<br />
+EP82<br />
+EP92<br />
+SW20 NAモデル(1～5型)<br />
+SW20 ターボモデル(1～5型)<br />
+NA6CE<br />
+NA8C(シリーズ1～2)<br />
+NB6C(シリーズ1)<br />
+NB8C(シリーズ1～2)<br />
+DC2<br />
+EK4<br />
+EG6<br />
+EK9 前期/後期</p>
+<p>※2018年の閉業時点でラインナップされていた対応車種リストです。</p>
+<p>&nbsp;</p>
+<h3>各種本体オプションと対応車種</h3>
+<p><span style="color: #ff0000;"><strong>ダイレクトイグニッション対応車種</strong></span></p>
+<p>AE111</p>
+<p>条件付き対応車種</p>
+<p>AE86・AW11・AE92前期<br />
+○AE92後期NAモデルまたは4A-GZのディストリビューター、または、オプションのクランクピックアップユニットが必要。</p>
+<p>標準装備</p>
+<p>SW20 NAモデル(1型)</p>
+<p><span style="color: #ff0000;"><strong>5バルブ with ダイレクトイグニッション対応車種</strong></span></p>
+<p>該当車両無し</p>
+<p>条件付き対応車種</p>
+<p>AE86・AW11・AE92前期<br />
+○5バルブ4A-Gのディストリビューターが必要。</p>
+<p>標準装備</p>
+<p>該当車両無し</p>
+<p><span style="color: #ff0000;"><strong>シーケンシャル噴射対応車種</strong></span></p>
+<p>AE92後期・NA6CE</p>
+<p>条件付き対応車種</p>
+<p>AE86・AW11・AE92前期<br />
+○AE92後期NAモデルまたは4A-GZのディストリビューター、または、オプションのクランクピックアップユニットが必要。</p>
+<p>標準装備</p>
+<p>AE101・AE111・SW20 NAモデル(1～5型)・SW20 ターボモデル(1～5型)<br />
+NA8C(シリーズ1～2)・NB6C(シリーズ1)・NB8C(シリーズ1～2)<br />
+DC2・EK4・EG6・EK9前期/後期</p>
+<p><span style="color: #ff0000;"><strong>同時点火対応車種</strong></span></p>
+<p>AE92後期・AE101</p>
+<p>条件付き対応車種</p>
+<p>AE86・AW11・AE92前期<br />
+○AE92後期NAモデルまたは4A-GZのディストリビューター、または、オプションのクランクピックアップユニットが必要。</p>
+<p>標準装備</p>
+<p>NA6CE・NA8C(シリーズ1～2)・NB6C(シリーズ1)・NB8C(シリーズ1～2)</p>
+<p><strong><span style="color: #ff0000;">ポンプ制御対応車種</span></strong></p>
+<p>AE101・NA6CE</p>
+<p>条件付き対応車種</p>
+<p>該当車両無し</p>
+<p>標準装備</p>
+<p>AE86・AW11・AE92前期/後期・AE111・EP82・EP92・SW20 NAモデル(1～5型)・SW20 ターボモデル(1～5型)<br />
+NA8C(シリーズ1～2)・NB6C(シリーズ1)・NB8C(シリーズ1～2)<br />
+DC2・EK4・EG6・EK9前期/後期</p>
+<p><strong><span style="color: #ff0000;">5バルブ対応車種</span></strong></p>
+<p>該当車両無し</p>
+<p>条件付き対応車種</p>
+<p>AE86・AW11・AE92前期<br />
+○5バルブ4A-Gのディストリビューターを使用。</p>
+<p>標準装備</p>
+<p>AE101・AE111</p>
+<p><strong><span style="color: #ff0000;">空燃比計連動機能対応車種</span></strong></p>
+<p>全車対応<br />
+ただし、基盤のバージョンによっては購入後にオプション追加出来ない場合があります。<br />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><br />
+<ins class="adsbygoogle" style="display: block; text-align: center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-4038633114881679" data-ad-slot="6135689124"></ins><br />
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<h3>その他オプション</h3>
+<p><span style="color: #ff0000;"><strong>FCSS＆ケーブルセット</strong></span></p>
+<p>フリーダムのセッティングに必要なソフトと通信ケーブルのセットです。<br />
+別途、<a href="https://amzn.to/2HkVEDo" target="_blank" rel="noopener">RS-232CシリアルポートD-Sub 9pin(COMポート)コネクタ</a>の接続端子を有し、FCSSのインストールに当たり<a href="https://amzn.to/3jiW1LF" target="_blank" rel="noopener">3.5インチフロッピーディスクドライブ</a>を有したパソコンが必要になります。<br />
+FDDを有したPCを借用可能、または別途所有している場合は、FDD中のデータを別の記録媒体(<a href="https://amzn.to/3mcYvgz" target="_blank" rel="noopener">USBメモリー</a>や<a href="https://amzn.to/3ocgDsH" target="_blank" rel="noopener">CD-R</a>)に移す事で、必ずしもセッティング用のPCにFDDが備わっている必要はありません。<br />
+シリアルポートは必須となります。(D-Sub 25pinのPLTポートや後継に当たるUSB端子は使用出来ません)</p>
+<p><span style="color: #ff0000;"><strong>クランクピックアップユニット</strong></span></p>
+<p>クランク角の検出を、ディストリビューターのセンサーではなく、クランクシャフトとカムシャフトで検出させるためのキットです。<br />
+クランク角信号を直接計測する事で、点火時期をより正確に制御する事ができるようになります。<br />
+取り付け後、イニシャル点火時期をフリーダムの設定で合わせる必要があります。<br />
+クランク角センサーを有していない、AE86、AE92、AE101、AW11等の4A-Gエンジン用。</p>
+<p><span style="color: #ff0000;"><strong>ランプハーネス(旧空燃比確認ランプ)</strong></span></p>
+<p>汎用出力機能の出力として、ハーネスに表示用ランプが付いた物です。<br />
+空燃比確認ランプ、シフトタイミングランプ等に利用出来ます。</p>
+<p><span style="color: #ff0000;"><strong>リレーハーネス</strong></span></p>
+<p>汎用出力機能の出力として、ハーネスにリレーが付いた物です。<br />
+ラジエターファンの制御や、ウォータースプレー等、17Aまでの電装品を制御出来ます。</p>
+<p><span style="color: #ff0000;"><strong>ディスビ交換ハーネス</strong></span></p>
+<p>同時点火やダイレクトイグニッションのオプションを利用する際に、ディスビをAE92後期用か4A-GZ用に交換する為の返還ハーネスです。<br />
+追加になるG2信号線はECUカプラーまでのシールド線が出ています。</p>
+<p><span style="color: #ff0000;"><strong>コイルカプラー</strong></span></p>
+<p>ダイレクトイグニッションコイル用のハーネス付きカプラーです。</p>
+<p><span style="color: #ff0000;"><strong>バキュームセンサーカプラー</strong></span></p>
+<p>バキュームセンサー用のハーネス付きカプラーです。</p>
+<p><span style="color: #ff0000;"><strong>吸気温センサーカプラー</strong></span></p>
+<p>吸気温センサー用のハーネス付きカプラーです。</p>
+<p><span style="color: #ff0000;"><strong>スロットルポジションセンサーカプラー</strong></span></p>
+<p>AE92後期、AE101、NA8C等のスロットルポジションセンサー用のハーネス付きカプラーです。<br />
+他車種に流用する時等に使用します。</p>
+<p>&nbsp;</p>
+<h3>各種オプション追加時の注意点</h3>
+<p><span style="color: #ff0000;"><strong>空燃比計連動機能</strong></span></p>
+<p>機能追加前にフリーダムに書き込んでいたセッティングデータ、パソコンにバックアップを取っていたセッティングデータはそのまま使用出来なくなる場合があります。<br />
+FC-03Kは機能の有無によるデータの違いはありませんので、そのまま使用可能です。<br />
+別途で外部出力を有したワイドバンドセンサーの<a href="https://amzn.to/2HmqsU7" target="_blank" rel="noopener">空燃比計</a>を取り付ける必要があります。</p>
+<p><span style="color: #ff0000;"><strong>ダイレクトイグニッション</strong></span></p>
+<p>機能追加後はノーマルの点火系は制御出来なくなります。<br />
+フリーダムに書き込んでいたデータは全て使用できなくなります。<br />
+パソコンにバックアップを取っていたデータは、付属する説明書を参考に、各係数の手動設定及び、転送手順に従って再設定の必要があります。</p>
+<p>&nbsp;</p>
+<h3>各種流用使用可能センサー</h3>
+<p>フリーダムで使用可能な各種センサーの品番リストです。<br />
+トヨタ車用の物を使用するため、最寄りのトヨタ系ディーラーで容易に入手可能です。</p>
+<p><strong>※旧式車両用のため、部品が廃版となっている場合や品番が変更となっている可能性がありますのでご注意ください。</strong></p>
+<p><span style="color: #ff0000;"><strong>NA用バキュームセンサー</strong></span></p>
+<p>品番：<a href="https://amzn.to/2HkwrJe" target="_blank" rel="noopener">89420-12010</a>(AE92レビン用)<br />
+品番：<a href="https://amzn.to/3ocPVzX" target="_blank" rel="noopener">89420-16020</a>(EL43カローラ2用)<br />
+品番：<a href="https://amzn.to/37GmXTB" target="_blank" rel="noopener">89420-12140</a>(AE111レビン用)</p>
+<p><span style="color: #ff0000;"><strong>S/C用バキュームセンサー</strong></span></p>
+<p>品番：<a href="https://amzn.to/2ITHEkv" target="_blank" rel="noopener">89421-12070</a>(AE92レビンS/Cモデル用)<br />
+品番：<a href="https://amzn.to/2INlJex" target="_blank" rel="noopener">89420-10020</a>(EP82スターレットターボモデル用)</p>
+<p><span style="color: #ff0000;"><strong>ターボ用バキュームセンサー</strong></span></p>
+<p>品番：<a href="https://amzn.to/37o34QW" target="_blank" rel="noopener">89420-20310</a>(セリカ用)</p>
+<p><span style="color: #ff0000;"><strong>吸気温センサー</strong></span></p>
+<p>品番：<a href="https://amzn.to/31tyjWW" target="_blank" rel="noopener">89422-35010</a>(AE101用水温センサー)<br />
+品番：<a href="https://amzn.to/31L5PIz" target="_blank" rel="noopener">89422-12010</a>(AW11用水温センサー)<br />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><br />
+<ins class="adsbygoogle" style="display: block; text-align: center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-4038633114881679" data-ad-slot="6135689124"></ins><br />
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<h2><span style="color: #ff0000;"><strong><a name="2"></a>■シリアルナンバーについて(本体バージョン・仕様の判別方法)</strong></span></h2>
+<p>フリーダムのシリアルナンバーで対応車種や基盤、各オプションの有無を判断出来ます。</p>
+<h3>シリアルナンバーの見方</h3>
+<p>2002年8月以降に出荷、またはオプション後付の改造を行ったフリーダムは、本体に製品種別コードとシリアルナンバーを記載した銀色のシールが貼られています。</p>
+<p>このシールでオプション等の本体仕様を確認する事が可能です。</p>
+<p>シールに記載のコードは上下２段構成で上段が対応車種やオプション、下段がシリアルナンバーとなっています。</p>
+<p>まずは表示の確認方法、後半にコード表を掲載していますので、中古購入の際は目的のオプションの有無を確認するのにご活用ください。</p>
+<p><strong>上段</strong></p>
+<p>例：Ａａ－１ＢＭＵ<br />
+Ａａ－１：対応車種　ＢＭＵ：仕様、オプション（その車種に非標準の機能のみ）</p>
+<p><strong>下段</strong></p>
+<p>例：Ｋ－Ｅ０１００１<br />
+Ｋ－：ＦＣ－０３Ｋのみ。他のＦＣ－０３は空白　Ｅ０１：ベース基板のロット　００１：ロット内のシリアルナンバー</p>
+<p>オプションを後から改造で追加した場合は、オプションの記号を手書きされているか、下段に追加して初期装備と区別されています。</p>
+<p><span style="color: #ff0000;"><strong>対応車種表</strong></span></p>
+<p><img class="alignnone wp-image-4372 size-full" src="https://kunugi-runner.com/wp/wp-content/uploads/2020/10/fc_code00.jpg" alt="" width="437" height="667" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2020/10/fc_code00.jpg 437w, https://kunugi-runner.com/wp/wp-content/uploads/2020/10/fc_code00-197x300.jpg 197w" sizes="(max-width: 437px) 100vw, 437px" /></p>
+<p><span style="color: #ff0000;"><strong>仕様・オプション表</strong></span></p>
+<p><img class="alignnone wp-image-4378 size-full" src="https://kunugi-runner.com/wp/wp-content/uploads/2020/10/fc_code01.jpg" alt="" width="501" height="325" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2020/10/fc_code01.jpg 501w, https://kunugi-runner.com/wp/wp-content/uploads/2020/10/fc_code01-300x195.jpg 300w" sizes="(max-width: 501px) 100vw, 501px" /></p>
+<p>※4連スロットルやダイレクトイグニッションのオプションは、E&amp;Eシステム社のオプション部品を使用する場合の対応表で、追加オプションのないフリーダム本体でも、元々ダイレクトイグニッションの車両は問題なく使用できます。また、4連スロットルはオプションの有無にかかわらずセッティングで対応可能です。</p>
+<p><span style="color: #ff0000;"><strong>シリアルナンバーの表示と判別例</strong></span></p>
+<p><strong>Ａａ－１</strong><br />
+<strong>Ａ０９００１Ｂ</strong><br />
+AE86・AW11・AE92前期のカプラーに対応した本体で、追加オプションはありません。</p>
+<p><strong>Ｆ－２Ｍ</strong><br />
+<strong>Ｋ－Ｅ０１００１</strong><br />
+NB8Cシリーズ２以降のカプラーに対応した本体で、空燃比計連動機能のオプションが追加されています。<br />
+また、シリアル番号が「K-」から始まるため、新型基盤を採用したFC-03Kのバージョンである事が確認できます。</p>
+		
+		<div class="entry-utility">
+						<dl class="tag-links">
+			<dt>投稿タグ</dt><dd><a href="https://kunugi-runner.com/tag/diy/" rel="tag">DIY</a>, <a href="https://kunugi-runner.com/tag/ecu_tuning/" rel="tag">ECUチューン</a>, <a href="https://kunugi-runner.com/tag/tech3/" rel="tag">テクニカルアドバイス 上級編</a>, <a href="https://kunugi-runner.com/tag/freedom/" rel="tag">フリーダムコンピュータ</a>, <a href="https://kunugi-runner.com/tag/feature/" rel="tag">特集</a>, <a href="https://kunugi-runner.com/tag/electronics/" rel="tag">電子デバイス</a></dd>			</dl>
+					</div>
+		<!-- .entry-utility -->
+	</div><!-- .entry-content -->
+
+
+<!-- [ .socialSet ] -->
+
+<div class="socialSet">
+
+<script>window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>
+
+<ul style="margin-left:0px;">
+
+<li class="sb_facebook sb_icon">
+<a href="http://www.facebook.com/sharer.php?src=bm&u=https://kunugi-runner.com/2020/10/21/4361/&amp;t=10.%E8%A3%BD%E5%93%81%E6%83%85%E5%A0%B1%E3%81%A8%E6%9C%AC%E4%BD%93%E6%A9%9F%E8%83%BD%E3%81%AE%E5%88%A4%E5%88%A5%E6%96%B9%E6%B3%95+E%26%23038%3BE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0+Freedom+Computer+%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB+%7C+KUNUGI+RUNNER" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" ><span class="vk_icon_w_r_sns_fb icon_sns"></span><span class="sns_txt">Facebook</span>
+</a>
+</li>
+
+<li class="sb_hatena sb_icon">
+<a href="http://b.hatena.ne.jp/add?mode=confirm&url=https://kunugi-runner.com/2020/10/21/4361/&amp;title=10.%E8%A3%BD%E5%93%81%E6%83%85%E5%A0%B1%E3%81%A8%E6%9C%AC%E4%BD%93%E6%A9%9F%E8%83%BD%E3%81%AE%E5%88%A4%E5%88%A5%E6%96%B9%E6%B3%95+E%26%23038%3BE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0+Freedom+Computer+%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB+%7C+KUNUGI+RUNNER" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=520');return false;"><span class="vk_icon_w_r_sns_hatena icon_sns"></span><span class="sns_txt">Hatena</span></a>
+</li>
+
+<li class="sb_twitter sb_icon">
+<a href="http://twitter.com/intent/tweet?url=https://kunugi-runner.com/2020/10/21/4361/&amp;text=10.%E8%A3%BD%E5%93%81%E6%83%85%E5%A0%B1%E3%81%A8%E6%9C%AC%E4%BD%93%E6%A9%9F%E8%83%BD%E3%81%AE%E5%88%A4%E5%88%A5%E6%96%B9%E6%B3%95+E%26%23038%3BE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0+Freedom+Computer+%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB+%7C+KUNUGI+RUNNER" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" ><span class="vk_icon_w_r_sns_twitter icon_sns"></span><span class="sns_txt">twitter</span></a>
+</li>
+
+
+<li class="sb_pocket"><span></span>
+<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-save-url="https://kunugi-runner.com/2020/10/21/4361/" data-lang="en"></a>
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+</li>
+
+</ul>
+
+</div>
+<!-- [ /.socialSet ] -->
+	<!-- [ .subPostListSection ] -->
+	<div class="subPostListSection">
+	<h3>関連記事</h3>
+	<ul class="child_outer">
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/10/05/17729/">ブレーキパッドは経年劣化で効きが悪くなる？ 研磨で性能回復できるのか試してみた</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/10/05/17729/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/10/11-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/10/11-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/10/11-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/09/03/17519/">不朽の名作&#8221;オペラ座の怪人&#8221;考察 ファントム＝クリスティーヌ説 Love Never Diesの真価を説く</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/09/03/17519/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/09/02-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/09/02-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/09/02-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/08/07/17413/">ロールしないと曲がらないはウソ？本当？ コーナーリングに於けるロールの役割と車が曲がる理屈</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/08/07/17413/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/08/02-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/08/02-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/08/02-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/07/29/17308/">真夏のドライブに心霊スポットはいかが？ 噂の真相や史実に基づくリアルなスポットまで</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/07/29/17308/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/07/10-1-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/07/10-1-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/07/10-1-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/06/22/17115/">平成５年８月豪雨の記録 キャンプはエキサイティング！大分県南部を襲った豪雨で自然の醍醐味を味わう</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/06/22/17115/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/01-200x200.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/01-200x200.png 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/06/01-150x150.png 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/06/13/17037/">ガーデニング未経験の初心者に薔薇を育てる事はできるのか 強健な新品種のミニバラ「ゼプティ」で花壇を埋める</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/06/13/17037/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/0502_00-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/0502_00-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/06/0502_00-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/06/07/16973/">添加剤でパワーアップや燃費向上に期待できるのか？ 実際に使用して効果を検証してみた</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/06/07/16973/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/00-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/00-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/06/00-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/05/12/16706/">マツダ・フレアワゴンで最近の軽自動車事情をチェック</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/05/12/16706/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/03/06-1-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/03/06-1-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/03/06-1-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+		</ul><!-- [ /.child_outer ] -->
+	</div><!-- [ /.subPostListSection ] -->
+<div class="sectionBox"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4038633114881679"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="3512879228"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><div id="nav-below" class="navigation">
+	<div class="nav-previous"><a href="https://kunugi-runner.com/2020/10/21/4353/" rel="prev"><span class="meta-nav">&larr;</span> 08-09.マップ軸変換と全域噴射量調整 E&#038;Eシステム Freedom Computer セッティングマニュアル</a></div>
+	<div class="nav-next"><a href="https://kunugi-runner.com/2020/10/22/4409/" rel="next">11.本体設定及び初期化手順と空燃比計連動フラグ設定etc. E&#038;Eシステム Freedom Computer セッティングマニュアル <span class="meta-nav">&rarr;</span></a></div>
+</div><!-- #nav-below -->
+</div>
+<!-- [ /#post- ] -->
+
+
+<div id="comments">
+
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2020/10/21/4361/#respond" style="display:none;">コメントをキャンセル</a></small></h3>			<form action="https://kunugi-runner.com/wp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-form-comment"><label for="comment">コメント</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">名前</label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" /></p>
+
+
+<div class="anr_captcha_field"><div id="anr_captcha_field_1" class="anr_captcha_field_div"></div></div><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='4361' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+
+
+</div>
+<!-- [ /#content ] -->
+
+<!-- [ #sideTower ] -->
+<div id="sideTower" class="sideTower">
+<div class="widget_text sideWidget widget widget_custom_html" id="custom_html-18"><h3 class="localHead">ＰＲ</h3><div class="textwidget custom-html-widget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 自動サイズ１ -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="9770436281"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div><div class="sideWidget widget widget_categories" id="categories-3"><h3 class="localHead">カテゴリー</h3>		<ul>
+	<li class="cat-item cat-item-79"><a href="https://kunugi-runner.com/category/kr/" >クヌギランナー</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="https://kunugi-runner.com/category/ad_blog/" >ブログ</a>
+</li>
+		</ul>
+</div><div class="sideWidget widget widget_nav_menu" id="nav_menu-16"><h3 class="localHead">サイトマップ</h3><div class="menu-%e3%82%b5%e3%82%a4%e3%83%89%e3%83%90%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc-container"><ul id="menu-%e3%82%b5%e3%82%a4%e3%83%89%e3%83%90%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc" class="menu"><li id="menu-item-366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-366"><a href="https://kunugi-runner.com/course/">コース紹介</a></li>
+<li id="menu-item-367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-367"><a href="https://kunugi-runner.com/event/">イベント案内</a></li>
+<li id="menu-item-368" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-368"><a href="https://kunugi-runner.com/rank/">ランキング</a></li>
+<li id="menu-item-369" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-369"><a href="https://kunugi-runner.com/blog/">イベントレポート</a></li>
+<li id="menu-item-370" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-370"><a href="https://kunugi-runner.com/tech/">テクニカルアドバイス</a></li>
+<li id="menu-item-365" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-365"><a href="https://kunugi-runner.com/category/ad_blog/">ブログ一覧</a></li>
+<li id="menu-item-371" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-371"><a href="https://kunugi-runner.com/inquiry/">お問い合わせ</a></li>
+<li id="menu-item-372" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-372"><a href="https://kunugi-runner.com/privacy_policy/">プライバシーポリシー</a></li>
+</ul></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-29"><h3 class="localHead">スポンサー様・関連サイト</h3><div class="textwidget custom-html-widget"><a href="https://ipponkunugi.com" target="_blank" rel="noopener"><img src="https://kunugi-runner.com/wp/wp-content/uploads/2018/11/is_banner.jpg"></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-30"><div class="textwidget custom-html-widget"><a href="https://www.google.co.jp/maps/place/%EF%BC%88%E6%9C%89%EF%BC%89%E6%9C%A8%E4%B8%8B%E9%83%A8%E5%93%81/@33.245352,131.6128913,17z/data=!4m5!3m4!1s0x35469f9c392b1c93:0xebac4b5f5875fa98!8m2!3d33.245352!4d131.61508" target="_blank" rel="noopener"><center><img src="https://kunugi-runner.com/data/kinoshita.jpg"></center></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-31"><div class="textwidget custom-html-widget"><a href="http://www.elan-de.net/sk/" target="_blank" rel="noopener"><img src="https://kunugi-runner.com/wp/wp-content/uploads/2018/11/elande1.gif"></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-32"><div class="textwidget custom-html-widget"><a href="https://twitter.com/KUNUGI_RUNNER" target="_blank" rel="noopener"><img src="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/images/bnr_twitter.png"></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-34"><h3 class="localHead">ＰＲ</h3><div class="textwidget custom-html-widget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 自動サイズ１ -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="9770436281"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div></div>
+<!-- [ /#sideTower ] -->
+</div>
+<!-- [ /#container ] -->
+
+</div><!-- #main -->
+
+<div id="back-top">
+<a href="#wrap">
+	<img id="pagetop" src="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/js/res-vektor/images/footer_pagetop.png" alt="PAGETOP" />
+</a>
+</div>
+
+<!-- [ #footerSection ] -->
+<div id="footerSection">
+
+	<div id="pagetop">
+	<div id="pagetopInner" class="innerBox">
+	<a href="#wrap">PAGETOP</a>
+	</div>
+	</div>
+
+	<div id="footMenu">
+	<div id="footMenuInner" class="innerBox">
+		</div>
+	</div>
+
+	<!-- [ #footer ] -->
+	<div id="footer">
+	<!-- [ #footerInner ] -->
+	<div id="footerInner" class="innerBox">
+		<dl id="footerOutline">
+		<dt><img src="https://kunugi-runner.com/wp/wp-content/uploads/2018/11/f_img.png" alt="KUNUGI RUNNER" /></dt>
+		<dd>
+				</dd>
+		</dl>
+		<!-- [ #footerSiteMap ] -->
+		<div id="footerSiteMap">
+</div>
+		<!-- [ /#footerSiteMap ] -->
+	</div>
+	<!-- [ /#footerInner ] -->
+	</div>
+	<!-- [ /#footer ] -->
+
+	<!-- [ #siteBottom ] -->
+	<div id="siteBottom">
+	<div id="siteBottomInner" class="innerBox">
+	<div id="copy">Copyright &copy; <a href="https://kunugi-runner.com/" rel="home">KUNUGI RUNNER</a> All Rights Reserved.</div>	</div>
+	</div>
+	<!-- [ /#siteBottom ] -->
+</div>
+<!-- [ /#footerSection ] -->
+</div>
+<!-- [ /#wrap ] -->
+			<script type="text/javascript">
+				var anr_onloadCallback = function() {
+					for ( var i = 0; i < document.forms.length; i++ ) {
+						var form = document.forms[i];
+						var captcha_div = form.querySelector( '.anr_captcha_field_div' );
+
+						if ( null === captcha_div )
+							continue;
+						captcha_div.innerHTML = '';
+						( function( form ) {	
+							var anr_captcha = grecaptcha.render( captcha_div,{
+								'sitekey' : '6LdEC60UAAAAADNa6jaXAboOZTgZbgmot2EBkGb0',
+								'size'  : 'normal',
+								'theme' : 'light'
+							});
+							if ( typeof wc_checkout_params !== 'undefined' ) {
+								jQuery( document.body ).on( 'checkout_error', function(){
+									grecaptcha.reset(anr_captcha);
+								});
+							}
+							if ( typeof wpcf7 !== 'undefined' ) {
+								document.addEventListener( 'wpcf7submit', function() {
+									grecaptcha.reset(anr_captcha);
+								}, false );
+							}
+						})(form);
+					}
+				};
+			</script>
+						<script src="https://www.google.com/recaptcha/api.js?onload=anr_onloadCallback&#038;render=explicit"
+			async defer>
+			</script>
+			<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/comment-reply.min.js?ver=4.9.26'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var gdbbPressAttachmentsInit = {"max_files":"4","are_you_sure":"This operation is not reversible. Are you sure?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-content/plugins/gd-bbpress-attachments/js/front.min.js?ver=4.1_b2410_free'></script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/wp-embed.min.js?ver=4.9.26'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var bv_sliderParams = {"slideshowSpeed":"3000","animation":"fade"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/js/biz-vektor-min.js?ver=1.11.5' defer='defer'></script>
+</body>
+</html>

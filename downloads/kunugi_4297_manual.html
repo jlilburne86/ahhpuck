@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<![endif]-->
+<html xmlns:fb="http://ogp.me/ns/fb#" lang="ja">
+<head>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4038633114881679",
+    enable_page_level_ads: true
+  });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-16EQWJ2VJT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-16EQWJ2VJT');
+</script>
+<meta charset="UTF-8" />
+<link rel="start" href="https://kunugi-runner.com" title="HOME" />
+
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1">
+<title>01A.係数1～3 E&amp;Eシステム Freedom Computer セッティングマニュアル | KUNUGI RUNNER</title>
+<meta name="keywords" content="一本クヌギ,スピードウェイ,クヌギランナー,クヌギ,タイム,ランキング,大分,サーキット,いのしし,カート,ジムカーナ,ラリー" />
+
+<!-- All in One SEO Pack 2.9.1.1 by Michael Torbert of Semper Fi Web Design[883,957] -->
+<link rel="canonical" href="https://kunugi-runner.com/2020/10/21/4297/" />
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="KUNUGI RUNNER &raquo; フィード" href="https://kunugi-runner.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="KUNUGI RUNNER &raquo; コメントフィード" href="https://kunugi-runner.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="KUNUGI RUNNER &raquo; 01A.係数1～3 E&#038;Eシステム Freedom Computer セッティングマニュアル のコメントのフィード" href="https://kunugi-runner.com/2020/10/21/4297/feed/" />
+<meta name="description" content="ここでは過去にE&amp;Eシステム社から販売されていた、通称「青箱」こと、自動車用エンジン・マネージメント・システム「Freedom Computer(以下、フリーダム)」の操作方法について解説をしています。化石の様な一部の車にしか需要のないネタですが、一部の内容はECUセッティングをする上で役に立つ…かもしれない、程度の内容も含んでいますので、興味のある方はご覧ください。尚、フリーダムを使用する上でセッティングソフト「FCSS」が必要ですが、オリジナルは3" />
+<style type="text/css">.keyColorBG,.keyColorBGh:hover,.keyColor_bg,.keyColor_bg_hover:hover{background-color: #e90000;}.keyColorCl,.keyColorClh:hover,.keyColor_txt,.keyColor_txt_hover:hover{color: #e90000;}.keyColorBd,.keyColorBdh:hover,.keyColor_border,.keyColor_border_hover:hover{border-color: #e90000;}.color_keyBG,.color_keyBGh:hover,.color_key_bg,.color_key_bg_hover:hover{background-color: #e90000;}.color_keyCl,.color_keyClh:hover,.color_key_txt,.color_key_txt_hover:hover{color: #e90000;}.color_keyBd,.color_keyBdh:hover,.color_key_border,.color_key_border_hover:hover{border-color: #e90000;}</style>
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/kunugi-runner.com\/wp\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.26"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])?!1:!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55358,56760,9792,65039],[55358,56760,8203,9792,65039])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='bbp-default-css'  href='https://kunugi-runner.com/wp/wp-content/plugins/bbpress/templates/default/css/bbpress.css?ver=2.5.14-6684' type='text/css' media='screen' />
+<link rel='stylesheet' id='bsp-css'  href='https://kunugi-runner.com/wp/wp-content/plugins/bbp-style-pack/css/bspstyle.css?ver=4.1.10' type='text/css' media='screen' />
+<link rel='stylesheet' id='dashicons-css'  href='https://kunugi-runner.com/wp/wp-includes/css/dashicons.min.css?ver=4.9.26' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_common_style-css'  href='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/css/bizvektor_common_min.css?ver=1.11.5' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_Design_style-css'  href='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/design_skins/003/css/003.css?ver=1.11.5' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_plugin_sns_style-css'  href='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/plugins/sns/style_bizvektor_sns.css?ver=4.9.26' type='text/css' media='all' />
+<link rel='stylesheet' id='Biz_Vektor_add_web_fonts-css'  href='//fonts.googleapis.com/css?family=Droid+Sans%3A700%7CLato%3A900%7CAnton&#038;ver=4.9.26' type='text/css' media='all' />
+<link rel='stylesheet' id='gdatt-attachments-css'  href='https://kunugi-runner.com/wp/wp-content/plugins/gd-bbpress-attachments/css/front.min.css?ver=4.1_b2410_free' type='text/css' media='all' />
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-content/plugins/bbp-style-pack/js/bsp_enqueue_submit.js?ver=4.9.26'></script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='https://kunugi-runner.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://kunugi-runner.com/wp/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://kunugi-runner.com/wp/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='00.FCSS環境設定 E&#038;Eシステム Freedom Computer セッティングマニュアル' href='https://kunugi-runner.com/2020/10/21/4283/' />
+<link rel='next' title='01B.係数4～6 E&#038;Eシステム Freedom Computer セッティングマニュアル' href='https://kunugi-runner.com/2020/10/21/4305/' />
+<link rel='shortlink' href='https://kunugi-runner.com/?p=4297' />
+<link rel="alternate" type="application/json+oembed" href="https://kunugi-runner.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkunugi-runner.com%2F2020%2F10%2F21%2F4297%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://kunugi-runner.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkunugi-runner.com%2F2020%2F10%2F21%2F4297%2F&#038;format=xml" />
+<!-- [ BizVektor OGP ] -->
+<meta property="og:site_name" content="KUNUGI RUNNER" />
+<meta property="og:url" content="https://kunugi-runner.com/2020/10/21/4297/" />
+<meta property="fb:app_id" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://kunugi-runner.com/wp/wp-content/uploads/2020/10/fc00_03.jpg" />
+<meta property="og:title" content="01A.係数1～3 E&#038;Eシステム Freedom Computer セッティングマニュアル | KUNUGI RUNNER" />
+<meta property="og:description" content="ここでは過去にE&amp;Eシステム社から販売されていた、通称「青箱」こと、自動車用エンジン・マネージメント・システム「Freedom Computer(以下、フリーダム)」の操作方法について解説をしています。  化石の様な一部の車にしか需要のないネタですが、一部の内容はECUセッティングをする上で役に立つ…かもしれない、程度の内容も含んでいますので、興味のある方はご覧ください。  尚、フリーダムを使用する上でセッティングソフト「FCSS」が必要ですが、オリジナルは3" />
+<!-- [ /BizVektor OGP ] -->
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" media="all" href="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/design_skins/003/css/003_oldie.css" />
+<![endif]-->
+<link rel="SHORTCUT ICON" HREF="https//kunugi-runner.com/wp/wp-content/uploads/2018/11/favicon.ico" /><link rel="pingback" href="https://kunugi-runner.com/wp/xmlrpc.php" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<link rel="icon" href="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon-150x150.jpg" sizes="32x32" />
+<link rel="icon" href="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon.jpg" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon.jpg" />
+<meta name="msapplication-TileImage" content="https://kunugi-runner.com/wp/wp-content/uploads/2018/12/favicon.jpg" />
+		<style type="text/css">
+
+a { color:#8224e3 }
+
+#searchform input[type=submit],
+p.form-submit input[type=submit],
+form#searchform input#searchsubmit,
+.content form input.wpcf7-submit,
+#confirm-button input,
+a.btn,
+.linkBtn a,
+input[type=button],
+input[type=submit],
+.sideTower li#sideContact.sideBnr a,
+.content .infoList .rssBtn a { background-color:#e90000; }
+
+.moreLink a { border-left-color:#e90000; }
+.moreLink a:hover { background-color:#e90000; }
+.moreLink a:after { color:#e90000; }
+.moreLink a:hover:after { color:#fff; }
+
+#headerTop { border-top-color:#e90000; }
+
+.headMainMenu li:hover { color:#e90000; }
+.headMainMenu li > a:hover,
+.headMainMenu li.current_page_item > a { color:#e90000; }
+
+#pageTitBnr { background-color:#e90000; }
+
+.content h2,
+.content h1.contentTitle,
+.content h1.entryPostTitle,
+.sideTower h3.localHead,
+.sideWidget h4  { border-top-color:#e90000; }
+
+.content h3:after,
+.content .child_page_block h4:after { border-bottom-color:#e90000; }
+
+.sideTower li#sideContact.sideBnr a:hover,
+.content .infoList .rssBtn a:hover,
+form#searchform input#searchsubmit:hover { background-color:#8224e3; }
+
+#panList .innerBox ul a:hover { color:#8224e3; }
+
+.content .mainFootContact p.mainFootTxt span.mainFootTel { color:#e90000; }
+.content .mainFootContact .mainFootBt a { background-color:#e90000; }
+.content .mainFootContact .mainFootBt a:hover { background-color:#8224e3; }
+
+.content .infoList .infoCate a { background-color:fff5f5;color:#e90000; }
+.content .infoList .infoCate a:hover { background-color:#8224e3; }
+
+.paging span,
+.paging a	{ color:#e90000;border-color:#e90000; }
+.paging span.current,
+.paging a:hover	{ background-color:#e90000; }
+
+/* アクティブのページ */
+.sideTower .sideWidget li > a:hover,
+.sideTower .sideWidget li.current_page_item > a,
+.sideTower .sideWidget li.current-cat > a	{ color:#e90000; background-color:fff5f5; }
+
+.sideTower .ttBoxSection .ttBox a:hover { color:#e90000; }
+
+#footMenu { border-top-color:#e90000; }
+#footMenu .menu li a:hover { color:#e90000 }
+
+@media (min-width: 970px) {
+.headMainMenu li:hover li a:hover { color:#333; }
+.headMainMenu li.current-page-item a,
+.headMainMenu li.current_page_item a,
+.headMainMenu li.current-menu-ancestor a,
+.headMainMenu li.current-page-ancestor a { color:#333;}
+.headMainMenu li.current-page-item a span,
+.headMainMenu li.current_page_item a span,
+.headMainMenu li.current-menu-ancestor a span,
+.headMainMenu li.current-page-ancestor a span { color:#e90000; }
+}
+
+</style>
+<!--[if lte IE 8]>
+<style type="text/css">
+.headMainMenu li:hover li a:hover { color:#333; }
+.headMainMenu li.current-page-item a,
+.headMainMenu li.current_page_item a,
+.headMainMenu li.current-menu-ancestor a,
+.headMainMenu li.current-page-ancestor a { color:#333;}
+.headMainMenu li.current-page-item a span,
+.headMainMenu li.current_page_item a span,
+.headMainMenu li.current-menu-ancestor a span,
+.headMainMenu li.current-page-ancestor a span { color:#e90000; }
+</style>
+<![endif]-->
+<style type="text/css">
+/*-------------------------------------------*/
+/*	font
+/*-------------------------------------------*/
+h1,h2,h3,h4,h4,h5,h6,#header #site-title,#pageTitBnr #pageTitInner #pageTit,#content .leadTxt,#sideTower .localHead {font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif; }
+#pageTitBnr #pageTitInner #pageTit { font-weight:lighter; }
+#gMenu .menu li a strong {font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif; }
+</style>
+<link rel="stylesheet" href="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/style.css" type="text/css" media="all" />
+<meta name="google-site-verification" content="gneQxcBgA-_0h0O3LVGvD7P2FDR75jh-GXjzsjy4Pyk" />
+</head>
+
+<body class="post-template-default single single-post postid-4297 single-format-standard custom-background two-column right-sidebar">
+
+<div id="fb-root"></div>
+
+<div id="wrap">
+
+<!--[if lte IE 8]>
+<div id="eradi_ie_box">
+<div class="alert_title">ご利用の <span style="font-weight: bold;">Internet Exproler</span> は古すぎます。</div>
+<p>あなたがご利用の Internet Explorer はすでにサポートが終了しているため、正しい表示・動作を保証しておりません。<br />
+古い Internet Exproler はセキュリティーの観点からも、<a href="https://www.microsoft.com/ja-jp/windows/lifecycle/iesupport/" target="_blank" >新しいブラウザに移行する事が強く推奨されています。</a><br />
+<a href="http://windows.microsoft.com/ja-jp/internet-explorer/" target="_blank" >最新のInternet Exproler</a> や <a href="https://www.microsoft.com/ja-jp/windows/microsoft-edge" target="_blank" >Edge</a> を利用するか、<a href="https://www.google.co.jp/chrome/browser/index.html" target="_blank">Chrome</a> や <a href="https://www.mozilla.org/ja/firefox/new/" target="_blank">Firefox</a> など、より早くて快適なブラウザをご利用ください。</p>
+</div>
+<![endif]-->
+
+<!-- [ #headerTop ] -->
+<div id="headerTop">
+<div class="innerBox">
+<div id="site-description">一本クヌギスピードウェイ 公式タイムアタックランキング　クヌギランナー</div>
+</div>
+</div><!-- [ /#headerTop ] -->
+
+<!-- [ #header ] -->
+<header id="header" class="header">
+<div id="headerInner" class="innerBox">
+<!-- [ #headLogo ] -->
+<div id="site-title">
+<a href="https://kunugi-runner.com/" title="KUNUGI RUNNER" rel="home">
+<img src="https://kunugi-runner.com/wp/wp-content/uploads/2020/05/index_top2.jpg" alt="KUNUGI RUNNER" /></a>
+</div>
+<!-- [ /#headLogo ] -->
+
+<!-- [ #headContact ] -->
+
+	<!-- [ #gMenu ] -->
+	<div id="gMenu">
+	<div id="gMenuInner" class="innerBox">
+	<h3 class="assistive-text" onclick="showHide('header');"><span>MENU</span></h3>
+	<div class="skip-link screen-reader-text">
+		<a href="#content" title="メニューを飛ばす">メニューを飛ばす</a>
+	</div>
+<div class="headMainMenu">
+<div class="menu-%e3%83%98%e3%83%83%e3%83%80%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc-container"><ul id="menu-%e3%83%98%e3%83%83%e3%83%80%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc" class="menu"><li id="menu-item-199" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/course/"><strong>コース紹介</strong></a></li>
+<li id="menu-item-200" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/event/"><strong>イベント案内</strong></a></li>
+<li id="menu-item-201" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/rank/"><strong>ランキング</strong></a></li>
+<li id="menu-item-346" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/blog/"><strong>イベントレポート</strong></a></li>
+<li id="menu-item-203" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/tech/"><strong>テクニカルアドバイス</strong></a></li>
+<li id="menu-item-324" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://kunugi-runner.com/category/ad_blog/"><strong>ブログ一覧</strong></a></li>
+<li id="menu-item-204" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://kunugi-runner.com/inquiry/"><strong>お問い合わせ</strong></a></li>
+</ul></div>
+</div>
+</div><!-- [ /#gMenuInner ] -->
+	</div>
+	<!-- [ /#gMenu ] -->
+<!-- [ /#headContact ] -->
+
+</div>
+<!-- #headerInner -->
+</header>
+<!-- [ /#header ] -->
+
+
+
+<div id="pageTitBnr">
+<div class="innerBox">
+<div id="pageTitInner">
+<div id="pageTit">
+レポート</div>
+</div><!-- [ /#pageTitInner ] -->
+</div>
+</div><!-- [ /#pageTitBnr ] -->
+<!-- [ #panList ] -->
+<div id="panList">
+<div id="panListInner" class="innerBox"><ul><li id="panHome" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="https://kunugi-runner.com" itemprop="item"><span itemprop="name">HOME</span></a> &raquo; </li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="https://kunugi-runner.com" itemprop="item"><span itemprop="name">レポート</span></a> &raquo; </li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="https://kunugi-runner.com/category/ad_blog/" itemprop="item"><span itemprop="name">ブログ</span></a> &raquo; </li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">01A.係数1～3 E&#038;Eシステム Freedom Computer セッティングマニュアル</span></li></ul></div>
+</div>
+<!-- [ /#panList ] -->
+
+<div id="main" class="main">
+<!-- [ #container ] -->
+<div id="container" class="innerBox">
+	<!-- [ #content ] -->
+	<div id="content" class="content">
+
+<!-- [ #post- ] -->
+<div id="post-4297" class="post-4297 post type-post status-publish format-standard has-post-thumbnail hentry category-ad_blog tag-diy tag-ecu_tuning tag-tech3 tag-freedom tag-feature tag-electronics">
+		<h1 class="entryPostTitle entry-title">01A.係数1～3 E&#038;Eシステム Freedom Computer セッティングマニュアル</h1>
+	<div class="entry-meta">
+<span class="published">投稿日 : 2020年10月21日</span>
+<span class="updated entry-meta-items">最終更新日時 : 2026年9月27日</span>
+<span class="vcard author entry-meta-items">投稿者 : <span class="fn">ユースケ＠管理人</span></span>
+<span class="tags entry-meta-items">カテゴリー :  <a href="https://kunugi-runner.com/category/ad_blog/" rel="tag">ブログ</a></span>
+</div>
+<!-- .entry-meta -->	<div class="entry-content post-content">
+		<p>ここでは過去にE&amp;Eシステム社から販売されていた、通称「青箱」こと、自動車用エンジン・マネージメント・システム「Freedom Computer(以下、フリーダム)」の操作方法について解説をしています。</p>
+<p>化石の様な一部の車にしか需要のないネタですが、一部の内容はECUセッティングをする上で役に立つ…かもしれない、程度の内容も含んでいますので、興味のある方はご覧ください。</p>
+<p>尚、フリーダムを使用する上でセッティングソフト「FCSS」が必要ですが、オリジナルは<a href="https://amzn.to/3jiW1LF" target="_blank" rel="noopener">3.5インチフロッピーディスク</a>となりますので、ノートパソコンにFDDが装備されている必要がありますし、フリーダムとの接続にはPCに<a href="https://amzn.to/2HkVEDo" target="_blank" rel="noopener">RS-232Cシリアルポート</a>も必要です。</p>
+<p>エンジニア向けのビジネスモデルPCなら装備されている可能性もありますが、家庭向けモデルだとWindows95～98SE辺りの世代になると思いますので、入手がやや困難かもしれませんが、FCSSはWindowsXP SP3までは起動確認しています。</p>
+<p>尚、以下の環境設定を対象とした解説であり、旧バージョンやバージョンアップ版では多少内容が違ってくる場合もありますので、予めご了承下さい。</p>
+<p><strong>フリーダムバージョン：FC-03K (空燃比計連動機能オプション有り)</strong><br />
+<strong>FCSSバージョン：for Windows Ver.2.14</strong><br />
+<strong>環境設定</strong><br />
+<strong>エンジン&amp;車種選択：0 共通</strong><br />
+<strong>データ保存フォルダー：FCDATA</strong></p>
+<p><span style="color: #ff0000;"><strong>※注意！</strong></span><br />
+<span style="color: #ff0000;">当サイトの掲載情報はE&amp;Eシステム社の公式マニュアルの内容とは全く異なりますので、誤った解釈が混じっている可能性があります。予めご了承ください。</span></p>
+<p>本ページの項目では排気量やインジェクター容量、各種センサーの種類や制御方式、機能の有効・無効の設定等、基盤となる様々な系数の設定を行います。</p>
+<p>係数は全14項目、ここでは1～3番の項目を解説しています。。</p>
+<p>他の係数やMAPの解説、フリーダムの初期設定などについては、セッティングマニュアルのメニューより、各項目の解説ページを参照してください。</p>
+<p><a href="#1"><strong>◆01.基本パラメータ</strong></a></p>
+<p><a href="#2"><strong>◆02.吸気温補正</strong></a></p>
+<p><a href="#3"><strong>◆03.水温補正</strong></a></p>
+<p><a href="https://kunugi-runner.com/tag/freedom/"><strong>◆セッティングマニュアルメニュー</strong></a><br />
+</p><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="6135689124"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<h2><span style="color: #ff0000;"><strong><a name="1"></a>■01.基本パラメータ</strong></span></h2>
+<p>基本的なパラメータです。</p>
+<p>単純であると同時に、不適切な値を入力するとエンジンが始動しない事もあります。</p>
+<h3>1 1気筒排気量</h3>
+<p><strong>○1気筒の排気量(cc)</strong></p>
+<p>1気筒当たりの排気量を設定します。</p>
+<p>ノーマルエンジンの場合は「車検証記載の総排気量÷気筒数＝1気筒排気量」として求める事も可能ですが、正確には燃焼室の「半径(mm)X半径(mm)X円周率(3.14で構わない)Xストローク量(mm)÷1000(cc換算)＝１気筒排気量」として求めます。</p>
+<p>例：ボア85.5mm(半径42.75mm)　ストローク89mmの場合<br />
+42.75 X 42.75 X 3.14 X 89 ÷ 1000 ＝ 510.73061625cc<br />
+入力値：510cc</p>
+<p>極端でなければ、実際の排気量より少し大めに520ccと入力したり、少なめに500ccと入力しても問題はありません。<br />
+ただし、噴射マップのセッティングを行った後に触れた場合は空燃比にズレが生じる場合がありますので注意して下さい。</p>
+<h3>2 インジェクター噴射量</h3>
+<p><strong>○インジェクタの噴射量(cc/分)</strong></p>
+<p>インジェクター単体の1分間辺りの最大噴射量(俗に言うインジェクター容量)を設定します。</p>
+<p>ノーマルの場合は整備書を参考にするか、実測を行います。</p>
+<p>アフターパーツに交換(純正上級グレード等の流用含む)している場合も同様です。</p>
+<p>こちらも多少の加減であれば、マップ生成前に限り実際の噴射量と違っても大きな問題ありませんが、デューティー表示等に誤差が生じますので、特に理由が無い場合は可能な限り正確な噴射量を設定して下さい。</p>
+<p>確認済みのインジェクター噴射量一覧は、<a href="https://kunugi-runner.com/2020/10/22/4409/#4">別記のサービスデータ</a>に掲載していますので参考にして下さい。</p>
+<h3>3 レブリミット回転数</h3>
+<p><strong>○レブリミット回転数(この値以上になると燃料カットまたは点火カットを行う)</strong></p>
+<p>レブリミッターの設定をします。</p>
+<p>単純に、これ以上回さないとするエンジン回転数(rpm)で設定を行います。</p>
+<p>基本的にはノーマルと同等の回転数で作動するように設定し、レブの引き上げを行う場合は熱害や金属摩擦、ピストン重量、バランス等を考慮して無理の無い範囲で行って下さい。</p>
+<h3>4 レブリミッタモード</h3>
+<p><strong>○レブリミッターの方式(0：燃料カット　1：点火カット)</strong></p>
+<p>レブリミッターの方式を0か1の値で設定します。</p>
+<p>レブリミット回転数で設定した回転数に達した時に、燃料カットでリミッターを作動させるか、点火カットでリミッターを作動させるかを選択して下さい。</p>
+<p>一般的には燃料カット方式で、チューニングカーでは点火カット方式を選ぶ傾向にあります。</p>
+<p>燃料カットが行われるとエンジンにダメージを与えると噂されておりますが、本来リミッターを作動させる事自体が御法度な事と、一瞬の燃料カットが及ぼす影響はゼロに等しいので、O2センサー保護を優先するメリットは十分にあります。</p>
+<p>ただし、過給機付きエンジン等は自然吸気エンジンとは比べものにならない発熱量ですので、気化冷却を考慮した点火カットを選択するのが無難と言えます。</p>
+<h3>5 アイドル燃料カット回転数</h3>
+<p><strong>○暖機終了後アイドル状態での燃料カットの回転数(この回転数以上で燃料カットする)</strong></p>
+<p>アイドリングの判定が入っている中、何らかの影響で回転数が異常な上昇をするのを防ぎます。</p>
+<p>また、主な目的はエンジンブレーキ使用時の燃料カットと、その復帰位置の設定を意味します。</p>
+<p>例えば2000回転と設定していた場合、2000回転以上で走行中にアクセルをオフ(アイドル接点ON)にした場合、燃料噴射がカットされます。</p>
+<p>また、2000回転以下まで回転数が降下すると、燃料噴射を開始します。</p>
+<p>一般的には2000rpm前後(1800～2200rpm)で設定されますが、好みに応じて加減を行って下さい。</p>
+<p>ただし、極端に下げ過ぎると不安定になり、ストール症状が出る事もあります。</p>
+<h3>6 ノーマル吸気圧なまし量</h3>
+<p><strong>○非アイドル状態での吸気圧変化のなまし量</strong></p>
+<p>正直「なまし」と言う言葉の正確な意味を知らないのですが、意図する所は恐らく急激な変化を抑えてなめらかにする処理。</p>
+<p>この係数の働きとしては、アクセルを一気に踏み込む場合等、急激な吸気圧変化に合わせてレスポンス良く完璧なマップトレースが行われると、返って不安定になる場合がある。</p>
+<p>この部分を敢えて鈍らせ<del>(平均を取って滑らかに変化させる？)</del>、緩やかにトレースさせる事で動きの段付きを消して安定させる度合いを設定する。</p>
+<p>数値を大きくする程、なめらかな制御になるが代償としてレスポンスが低下する。</p>
+<p>※2026.09.27追記<br />
+なまし量は、急激な変化を抑えて滑らかにするニュアンスとしては同じですが、正確には平均を擦るのではなく前回処理値の反映割合を設定する項目。(情報提供：<a href="http://mbwspl.web.fc2.com" target="_blank" rel="noopener">まつざき＠ＭＢＷ流</a>さん)</p>
+<h3>7 アイドル吸気圧なまし量</h3>
+<p><strong>○アイドル状態での吸気圧変化のなまし量</strong></p>
+<p>「6 ノーマル吸気圧なまし量」の内容をアイドリング状態の時に適用する内容。</p>
+<p>ハイカムで安定したアイドリングを実現するには必要不可欠な項目となる。</p>
+<h3>8 噴射時間なまし量</h3>
+<p><strong>○有効噴射時間が変化した時のなまし量</strong></p>
+<p>噴射時間に対するなまし量を設定する。</p>
+<h3>9 点火時期なまし量</h3>
+<p><strong>○点火時期が変化した時のなまし量</strong></p>
+<p>点火マップに対するなまし量を設定する。</p>
+<h3>10 フィードバック上限吸気圧</h3>
+<p><strong>○吸気圧がこの値以上の時は空燃比フィードバックは行わない</strong></p>
+<p>フィードバック制御を有効にしている場合、ここで設定した吸気圧以上になった場合にフィードバック制御を無効とする設定。</p>
+<p>基本的には全域で有効となる設定で構わないが、学習との兼ね合いで上の領域にフィードバックを掛けたくない場合等に設定を行う。</p>
+<h3>11 O2センサ出力表示フラグ</h3>
+<p><strong>○O2センサの信号をエンジンチェックランプに表示するか否かの指定(0：しない　1：する)</strong></p>
+<p>当然ながら、エンジンチェックランプの無い車両では無効ですので、オプションの空燃比チェックランプが必要となります。</p>
+<p>O2センサーの信号を基に、空燃比のリーン・リッチ判定を行う設定です。</p>
+<p>基本的にはワイドバンドO2センサーを用いた<a href="https://amzn.to/31su9ib" target="_blank" rel="noopener">空燃比計</a>を使ってセッティングを行うため、表示の必要性はほとんどありません。</p>
+<h3>12 噴射量マップ使用フラグ</h3>
+<p><strong>○噴射量の算出に噴射量マップか1次式を使うかの指定(0：1次式　1：マップ)</strong></p>
+<p>燃料噴射量を決定するのに、燃料噴射マップを使うか、1次式(後に説明)を使うかを選択します。</p>
+<p>1次式を選択した場合、燃料噴射マップは無効となり、数式で算出された値で噴射量が制御されます。</p>
+<h3>13 マップ軸関係</h3>
+<p>内容はメインメニュー「8 マップ軸変換」と同じですが、こちらではスロットル開度軸の変更が出来ません。</p>
+<p>基本的にはメインメニューから作業を行いますので、こちらに触れる事は無いと思いますが、変更出来る内容は以下の通りとなります。</p>
+<p><strong>1 吸気圧ピッチ</strong><br />
+<strong>○噴射量マップの吸気圧軸の間隔(mmHg)</strong></p>
+<p>FCSSのヘルプ欄では「噴射量マップの」となっておりますが、全てのマップ(スロットル開度マップ除く)の吸気圧軸のピッチを変更します。<br />
+基本的には「50」で問題ありませんが、自然吸気エンジンで800mmHg以上のマップを使用しない場合は「25」ピッチでよりなめらかな制御にしても良いでしょう。</p>
+<p><strong>2 回転数軸データ数</strong><br />
+<strong>○マップの回転軸のデータ数の指定</strong></p>
+<p>マップの回転数軸のポイント数を指定出来ます。<br />
+次項の回転数ピッチを500回転ピッチで、こちらのポイント数を「18」に設定した場合<br />
+500、1000、1500…と500回転刻みで18ポイント、9000rpmまでとなります。<br />
+回転数ピッチを250で18ポイントの場合は250、500、750…の4500rpmまで。<br />
+ポイント数を「36」にすれば500回転刻みで18000rpm、250回転刻みで9000rpmまでと言う具合になります。</p>
+<p><strong>3 回転数ピッチ</strong><br />
+<strong>○回転数軸のピッチ(間隔)rpm</strong></p>
+<p>マップの回転数軸のピッチを指定出来ます。<br />
+基本的には「500」回転刻みで問題ありませんが、よりなめらかにしたい場合は間隔を小さく、大雑把で構わない場合は大きくします。<br />
+回転数軸の最大値は前項のポイント数で決まります。</p>
+<p><strong>4 マップモードフラグ</strong><br />
+<strong>○マップモード(0：1面　1：2面　2：2段回転数ピッチ)</strong></p>
+<p>マップタイプを0～2で選択出来ます。<br />
+標準的な1面マップ、条件によって別々のマップを切り替えて使用する2面マップ、一定の回転数を超えてからの回転数軸ピッチが変化する2段回転数マップがあります。<br />
+使用目的により適切な物を選択して下さい。</p>
+<p><strong>5 マップ切替条件</strong><br />
+<strong>○2面マップでのマップ切換え条件(0：VVTorV-TEC　1：可変吸気　2：アイドル)</strong></p>
+<p>前項で2面マップを選択した場合にのみ有効な設定です。<br />
+マップの切り替え条件を0～2で選択出来ます。<br />
+VVTの作動を検知してから第2マップに切り替える、アイドル接点の検出を境に切り替える等。</p>
+<p><strong>6 1stマップ軸数</strong><br />
+<strong>○2面マップでの1面目、または、2段回転数ピッチの1段目の回転数軸のデータ数</strong></p>
+<p>2面マップを選択している場合は、第1マップの回転数軸のポイント数を指定。<br />
+2段回転数マップを選択している場合は、1段目の回転数軸のポイント数を指定出来ます。</p>
+<p><strong>7 2ndマップ開始回転数</strong><br />
+<strong>○2面マップでの2面目、または、2段回転数ピッチの2段目の開始回転数</strong></p>
+<p>2面マップを選択している場合は、第2マップの開始位置となる回転数を指定。<br />
+2段回転数マップを選択している場合は、2段目の開始位置となる回転数を指定出来ます。</p>
+<p><strong>8 2ndマップ回転数ピッチ</strong><br />
+<strong>○2面マップでの2面目、または、2段回転数ピッチの2段目の回転数軸のピッチ(間隔)</strong></p>
+<p>2面マップを選択している場合は、第2マップの回転数軸のピッチを指定。<br />
+2段回転数マップを選択している場合は、2段目の回転数軸のピッチを指定出来ます。</p>
+<h3>14 その他の基本パラメータ</h3>
+<p>その他の項目になっていますが、細かい制御方法等のデータが入っている部分です。</p>
+<p>ノーマル車両に初期データをセットアップしてセッティングを行う場合は基本的に触れる必要がない部分ですが、細かい変更を行っている場合や、制御方式を変更したい場合は無視出来ない重要な項目となります。</p>
+<p>内容は以下の通りです。</p>
+<p><strong>1 機種選択フラグ</strong><br />
+<strong>○機種選択(0：4A-G同時噴射　1：4A-Gグループ噴射　2：ロードスター他)</strong></p>
+<p>燃料噴射方式を選択します。<br />
+「0」では同時噴射方式、「1」ではグループ噴射と後の設定でシーケンシャル噴射を選択可能、「2」はロードスターの噴射方式です。<br />
+具体的に説明をすると、同時噴射はクランクシャフトが1回転する工程の中で、全シリンダに配置された全てのインジェクターが同時に燃料の噴射を行うタイプで、古い車に多い単純な制御である。<br />
+グループ噴射は、4気筒を例に上げると2つのシリンダでピストンが上死点に達している時、残りの2つは下死点に達している。<br />
+この際、同じ周期で回るシリンダ同士を一つのグループとして分け、そのグループに対してクランクシャフトが2回転する内にグループ毎のインジェクタを開く方式となる。<br />
+ここでは方式を選択出来るのではなく、車の噴射方式に合わせてフラグを設定する。</p>
+<p><strong>2 スロットルスピードフラグ</strong><br />
+<strong>○基本噴射量の算出方式(0：スピードデンシティ＝Dジェトロ　1：スロットルスピード＝スロポジ制御)</strong></p>
+<p>制御方式を選択します。<br />
+「0」は吸気管圧力で制御を行うDジェトロ方式で、アイドル制御、外気圧の変化等に強い半面、独立スロットル制御の複雑化と、ハイレスポンス化が難しくなります。<br />
+過給機付きエンジンの場合は圧力で制御されるため、こちらを選択して下さい。<br />
+「1」はスロットル開度で制御を行うスロポジ方式で、マップ生成の簡略化、独立スロットル制御の容易性が得られる半面、外乱に弱く、アイドル制御が難しく、外気圧補正が不適切な場合は天候や標高の影響が露骨に出ます。<br />
+街乗り～ツーリング等、快適なドライブを楽しみたい方はDジェトロ、サーキット走行等、競技使用が主体の方はスロポジ制御がお勧めです。</p>
+<p><strong>3 サブボード使用フラグ</strong><br />
+<strong>○サブボードを使用しているか否か(0：使用していない　1：使用している)</strong></p>
+<p>フリーダム基盤のバージョンがFC-01等、古いモデルの場合は追加基盤の有無により設定を行います。<br />
+FC-03以降の基盤であれば、デフォルトで「1 使用している」が設定されていますが、プログラム上ここの判定は行わないため、どちらを指定しても問題ありません。<br />
+旧バージョンのみ、使用中のフリーダムに適した設定を行って下さい。</p>
+<p><strong>4 シーケンシャル噴射フラグ</strong><br />
+<strong>○シーケンシャル噴射を行うか否かの指定(0：グループ噴射　1：シーケンシャル噴射)</strong></p>
+<p>シーケンシャル噴射はグループ噴射をより精密にしたもので、各シリンダのわずかな同期ズレに対しても細かい制御が行われる方式。<br />
+1気筒毎に独立したインジェクター制御が行われます。<br />
+当然、シーケンシャル噴射に対応していない場合は無効ですが、対応している場合は用途に応じてグループ噴射とシーケンシャル噴射を選択出来ます。<br />
+後に説明する気筒別制御を行うにはシーケンシャル噴射である事が条件となります。</p>
+<p><strong>5 温度センサーモードフラグ</strong><br />
+<strong>○温度センサー電圧がFreedomオリジナルか、ノーマルと同じかの指定</strong></p>
+<p>0か1で指定します。<br />
+フリーダムを含む複数のECUを同時に使用する場合、温度センサーを共有する場合は「1」を、その必要が無い場合やフリーダムを単体で使用する場合は「0」を選択します。<br />
+例を上げると、空燃比計連動機能が無いフリーダムで空燃比学習を行いたい場合、<a href="https://amzn.to/3m3QGcI" target="_blank" rel="noopener">TRUST e-manage Ultimate</a>等の通称「サブコン」を繋げる荒業もあります。(普通はやりませんが、オプションが付けられない旧モデルや、たまたまサブコンを所持していた場合等)<br />
+この際にサブコン側でも温度センサーの入力が必要だった場合、こちらのフラグで指定する事が出来ます。</p>
+<p><strong>6 クランク角センサーモードフラグ</strong><br />
+<strong>○BPエンジンでクランク角センサの形式指定(0：NA#C　1：BG8Z　2：NB#C)</strong></p>
+<p>点火時期の制御を行うための、クランク角センサー形式を0～2で指定します。<br />
+ロードスターNA6CE、NA8Cの場合は「0」、ファミリアBG8Zの場合は「1」、ロードスターNB6C、NB8Cの場合はカム角センサーを併用する「2」を指定します。<br />
+AE86やAW11その他、4A-Gエンジンの場合はディストリビューターで点火時期を制御するため、基本的にはこちらの設定は必要ありません。</p>
+<p><strong>7 クランク角センサーモードフラグ２</strong><br />
+<strong>○F105エンジンでカム角センサを使用するか否かの指定</strong></p>
+<p>フェラーリのF308、F328等に搭載されるF105ユニットでカム角センサーを使用するか否かを0か1で無効・有効を指定します。<br />
+使用する方が精度は上がるのではないかと思いますが、当然、この様な高級車は所有しておりませんので、具体的な影響は確認出来ておりません。</p>
+<p><strong>8 B電圧測定回路選択フラグ</strong><br />
+<strong>○バッテリー電圧の入力ポートの指定</strong></p>
+<p>バッテリー電圧を測定するためのポートを指定します。<br />
+標準データをセットアップしてセッティングする上ではデフォルトから変更する必要はありませんが、モニター中にバッテリー電圧が正常に表示されない場合は変更を行います。</p>
+<p><strong>9 パージコントロール出力指定</strong><br />
+<strong>○キャニスタパージバルブの制御信号を出力するポートの指定</strong></p>
+<p>チャコールキャニスタのソレノイドバルブを制御するためのポートを指定します。<br />
+こちらも標準データでセッティングをする上ではデフォルトから変更の必要はありません。<br />
+エンジン停止後も極端にガソリン臭い場合等は、実際にキャニスタのバルブ開閉を確認しながら変更を行います。</p>
+<p><strong>10 スロットル開度なまし量</strong><br />
+<strong>○スロットル開度変化のなまし量</strong></p>
+<p>吸気圧軸とは別に、スロットル開度マップでのなまし量を設定する。</p>
+<p><strong>11 入力回路数指定</strong></p>
+<p>水温センサー、吸気温センサー共に標準以外のセンサーを使用する場合に設定を行います。<br />
+標準のセンサーを使用する場合は触れる必要はありません。</p>
+<p>各項目に書いている事がそのままですが、少し説明を行います。</p>
+<p>温度センサーはサーミスタ素子と呼ばれる物を使用しており、温度によってその抵抗値が変化します。<br />
+その抵抗値の変化を読み取る事で、現在の温度を知ると言う仕組みになっているため、基準の抵抗値とその感度を設定する必要があります。</p>
+<p>分かり易く説明すると、基準抵抗値がバイアス、B定数がゲインと言い換える事が出来ます。<br />
+プルアップ抵抗は、簡潔に言えば安定器？と考える事も出来る。</p>
+<p>プルアップ抵抗は電子論理回路上で外部デバイスが遮断された際、回路上の入力レベルを論理レベルに保つ働きをする抵抗の事。<br />
+ここでは、何らかの外乱により電圧が乱れた際、計測温度が不安定な値になるのを防ぐために内臓された抵抗の値を入力する。<br />
+基本的には温度センサーの仕様書に記載されているはずですので、そちらを参考に入力して下さい。</p>
+<p><strong>1 水温センサプルアップ抵抗値</strong><br />
+<strong>○標準以外の水温センサ回路でのプルアップ抵抗値の指定</strong></p>
+<p><strong>2 水温センサ基準抵抗値</strong><br />
+<strong>○標準以外の水温センサ回路での基準抵抗値の指定</strong></p>
+<p><strong>3 水温センサB定数</strong><br />
+<strong>○標準以外の水温センサ回路でのB定数の指定</strong></p>
+<p><strong>4 吸気温センサプルアップ抵抗値</strong><br />
+<strong>○標準以外の吸気温センサ回路でのプルアップ抵抗値の指定</strong></p>
+<p><strong>5 吸気温センサ基準抵抗値</strong><br />
+<strong>○標準以外の吸気温センサ回路での基準抵抗値の指定</strong></p>
+<p><strong>6 吸気温センサB定数</strong><br />
+<strong>○標準以外の吸気温センサ回路でのB定数の指定</strong></p>
+<p><strong>12 ポンプ制御極性</strong><br />
+<strong>○燃料ポンプリレー出力の極性指定(0：ノーマル　1：リバース)</strong></p>
+<p>燃料ポンプ電源の極性を指定する。<br />
+実際に電流を流してみるとわかる様に、モーターは電気の流れる方向で回転方向が変わる。<br />
+この回転方向の設定。</p>
+<p><strong>13 バックアップ無しフラグ</strong><br />
+<strong>○イグニッションOFF時の学習結果等の保存指定(0：保存　1：非保存)</strong></p>
+<p>エンジンを切った際、エンジン始動から停止直前までに学習した内容を保存するか否かの設定。<br />
+非保存を選択した場合、学習内容は保存されず前回始動時と同じデータに戻ります。</p>
+<p><strong>14 G入力上限回転数</strong><br />
+<strong>○クランク角センサG信号無効回転数(この回転数以上でG入力を無視する)</strong></p>
+<p>G信号とは、第1シリンダのピストンが上死点に達している時のクランク角を検知した際の信号です。(TDC信号とも呼ばれる)<br />
+ただし、トヨタ車の場合はクランク角センサーから発する信号はNe信号となり、カム角センサーが発する信号がG信号とNe信号となる。</p>
+<p>ここで設定する内容はどちらにしてもクランク角センサーからの信号入力を高回転域で無視するか否かの設定を行う。</p>
+<p>点火時期と燃料噴射のタイミングをクランク角センサー(無い場合はディストリビューターで点火時期制御を担う)とカム角センサーで判定しているが、これはピックアップセンサー(回転する指針の磁気をセンサーに拾わせる方式)で取り出しており、精度の問題から誤差が生じる。(厳密にはノイズが発生する事で正常に判定が出来なくなる)</p>
+<p>回転数が上昇する程この誤差は大きくなり信号情報の信頼性に欠けるため、敢えて無視する設定を行う項目である。<br />
+構造上、クランクの半分の角速度(角度の変化量)で回転するカム側のセンサー信号を基に制御する事で、クランク角センサーの信号より精度を高く保つ事が出来ると言う理屈である。</p>
+<p>どれくらいの回転数で問題視されるほどの誤差が出るかを確認して、適切な所でキャンセルを掛ける様に設定します。<br />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><br />
+<ins class="adsbygoogle" style="display: block; text-align: center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-4038633114881679" data-ad-slot="6135689124"></ins><br />
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<h2><span style="color: #ff0000;"><strong><a name="2"></a>■02.吸気温補正</strong></span></h2>
+<p>吸気温の変化に対する噴射マップへの一律補正値を設定します。</p>
+<p>吸気温が低い場合は空気の密度が上がり、実酸素量が増える事で空燃比が薄くなる傾向にありますが、噴射量を増量して調整します。</p>
+<p>また、吸気温が高い場合は空気の密度が下がり、空燃比が濃くなる傾向にあるため、噴射量を減量します。</p>
+<h3>1 吸気温補正 -20℃</h3>
+<p><strong>○吸気温-20度での吸気温補正値</strong></p>
+<p>吸気温が-20度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここが最も濃くする部分です。</p>
+<h3>2 吸気温補正 0℃</h3>
+<p><strong>○吸気温0度での吸気温補正値</strong></p>
+<p>吸気温が0度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここは少し濃くする部分です。</p>
+<h3>3 吸気温補正 20℃</h3>
+<p><strong>○吸気温20度での吸気温補正値</strong></p>
+<p>吸気温が20度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+主にここが基準位置となります。</p>
+<h3>4 吸気温補正 40℃</h3>
+<p><strong>○吸気温40度での吸気温補正値</strong></p>
+<p>吸気温が40度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここは少し薄くする部分です。</p>
+<h3>5 吸気温補正 60℃</h3>
+<p><strong>○吸気温60度での吸気温補正値</strong></p>
+<p>吸気温が60度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+薄めになります。</p>
+<h3>6 吸気温補正 80℃</h3>
+<p><strong>○吸気温80度での吸気温補正値</strong></p>
+<p>吸気温が80度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+理論上はより薄くなりますが、この辺りからは温度上昇によるノッキングを警戒し、僅かに増量方向で考えると良いでしょう。</p>
+<h3>7 吸気温補正 100℃</h3>
+<p><strong>○吸気温100度での吸気温補正値</strong></p>
+<p>吸気温が100度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+考え方は吸気温80度と同様で、気化冷却を狙って逆に濃くする補正が良いです。</p>
+<h3>8 基準吸気温</h3>
+<p><strong>○吸気温補正指定の最低吸気温</strong></p>
+<p>吸気温補正が有効となる最低吸気温を設定します。<br />
+補正係数の入力されている値は-20度までとなっており、こちらの値もデフォルトでは-20度となっています。</p>
+<p>基本的には温度を上げる必要はなく、余程冷え込む地区にお住まいで-20度以下と言う状況が有り得る場合は下げて下さい。<br />
+-20度以下の補正係数は-20度で設定した補正値がそのまま使用されます。<br />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><br />
+<ins class="adsbygoogle" style="display: block; text-align: center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-4038633114881679" data-ad-slot="6135689124"></ins><br />
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<h2><span style="color: #ff0000;"><strong><a name="3"></a>■03.水温補正</strong></span></h2>
+<p>水温の変化に対する噴射マップへの一律補正値を設定します。</p>
+<p>自動車の冷却水はスロットルバルブ、インテークマニフォールド等の吸気管にも通っており、この部分を加熱、保温する働きもあります。</p>
+<p>ガソリンの気化温度は非常に低い物ですが、吸気管が冷たい程気化スピードは遅く、熱い程気化スピードは早くなります。</p>
+<p>そのため、エンジン始動～暖機が終了していない状態や、実際にオーバークール状態の時は適切な燃料気化が行われず、実際の混合気濃度が薄くなる傾向にあります。</p>
+<p>この滞留分を見越して噴射量を増量させる補正です。</p>
+<h3>1 水温補正 -30℃</h3>
+<p><strong>○水温-30度での水温補正値</strong></p>
+<p>水温が-30度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここが最も濃くする部分です。</p>
+<h3>2 水温補正 -10℃</h3>
+<p><strong>○水温-10度での水温補正値</strong></p>
+<p>水温が-10度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここもかなり濃くする部分です。</p>
+<h3>3 水温補正 10℃</h3>
+<p><strong>○水温10度での水温補正値</strong></p>
+<p>水温が10度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここは濃くする部分です。</p>
+<h3>4 水温補正 30℃</h3>
+<p><strong>○水温30度での水温補正値</strong></p>
+<p>水温が30度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここもやや濃くする部分です。</p>
+<h3>5 水温補正 50℃</h3>
+<p><strong>○水温50度での水温補正値</strong></p>
+<p>水温が50度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+ここは少し濃くする部分です。</p>
+<h3>6 水温補正 70℃</h3>
+<p><strong>○水温70度での水温補正値</strong></p>
+<p>水温が70度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+主にここが基準位置となる部分です。</p>
+<h3>7 水温補正 90℃</h3>
+<p><strong>○水温90度での水温補正値</strong></p>
+<p>水温が90度の時、燃料噴射量に掛ける補正係数を設定します。<br />
+基本的に補正の必要は無い部分です。</p>
+<h3>8 基準水温</h3>
+<p><strong>○水温補正指定の最低水温</strong></p>
+<p>水温補正が有効となる最低水温を設定します。<br />
+補正係数の入力されている値は-30度までとなっており、こちらの値もデフォルトでは-30度となっています。</p>
+<p>基本的には温度を上げる必要はなく、余程冷え込む地区にお住まいで-30度以下と言う状況が有り得る場合は下げて下さい。<br />
+-30度以下の補正係数は-30度で設定した補正値がそのまま使用されます。</p>
+<h3>9 水温補正吸気圧分400mmHg以下</h3>
+<p>水温が低い時に燃料の気化スピードが遅くなるため、水温による補正を行うが、実際には空気の密度等によっても気化スピードは変化します。<br />
+そのため、ここでは水温補正に加え、更に吸気圧別に補正を掛ける事でより精密に増量補正を制御します。</p>
+<p>水温補正とは逆に、吸気圧が低いほど値は小さく、高いほど大きくなります。</p>
+<p><strong>1 水温補正吸気圧分50mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧50mmHgでの補正値</strong></p>
+<p><strong>2 水温補正吸気圧分100mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧100mmHgでの補正値</strong></p>
+<p><strong>3 水温補正吸気圧分150mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧150mmHgでの補正値</strong></p>
+<p><strong>4 水温補正吸気圧分200mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧200mmHgでの補正値</strong></p>
+<p><strong>5 水温補正吸気圧分250mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧250mmHgでの補正値</strong></p>
+<p><strong>6 水温補正吸気圧分300mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧300mmHgでの補正値</strong></p>
+<p><strong>7 水温補正吸気圧分350mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧350mmHgでの補正値</strong></p>
+<p><strong>8 水温補正吸気圧分400mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧400mmHgでの補正値</strong></p>
+<h3>10 水温補正吸気圧分400mmHg以上</h3>
+<p>水温が低い時に燃料の気化スピードが遅くなるため、水温による補正を行うが、実際には空気の密度等によっても気化スピードは変化します。<br />
+そのため、ここでは水温補正に加え、更に吸気圧別に補正を掛ける事でより精密に増量補正を制御します。</p>
+<p>水温補正とは逆に、吸気圧が低いほど値は小さく、高いほど大きくなります。</p>
+<p><strong>1 水温補正吸気圧分450mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧450mmHgでの補正値</strong></p>
+<p><strong>2 水温補正吸気圧分500mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧500mmHgでの補正値</strong></p>
+<p><strong>3 水温補正吸気圧分550mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧550mmHgでの補正値</strong></p>
+<p><strong>4 水温補正吸気圧分600mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧600mmHgでの補正値</strong></p>
+<p><strong>5 水温補正吸気圧分650mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧650mmHgでの補正値</strong></p>
+<p><strong>6 水温補正吸気圧分700mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧700mmHgでの補正値</strong></p>
+<p><strong>7 水温補正吸気圧分750mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧750mmHgでの補正値</strong></p>
+<p><strong>8 水温補正吸気圧分800mmHg</strong><br />
+<strong>○水温補正をさらに吸気圧によって補正するための吸気圧800mmHgでの補正値</strong></p>
+		
+		<div class="entry-utility">
+						<dl class="tag-links">
+			<dt>投稿タグ</dt><dd><a href="https://kunugi-runner.com/tag/diy/" rel="tag">DIY</a>, <a href="https://kunugi-runner.com/tag/ecu_tuning/" rel="tag">ECUチューン</a>, <a href="https://kunugi-runner.com/tag/tech3/" rel="tag">テクニカルアドバイス 上級編</a>, <a href="https://kunugi-runner.com/tag/freedom/" rel="tag">フリーダムコンピュータ</a>, <a href="https://kunugi-runner.com/tag/feature/" rel="tag">特集</a>, <a href="https://kunugi-runner.com/tag/electronics/" rel="tag">電子デバイス</a></dd>			</dl>
+					</div>
+		<!-- .entry-utility -->
+	</div><!-- .entry-content -->
+
+
+<!-- [ .socialSet ] -->
+
+<div class="socialSet">
+
+<script>window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>
+
+<ul style="margin-left:0px;">
+
+<li class="sb_facebook sb_icon">
+<a href="http://www.facebook.com/sharer.php?src=bm&u=https://kunugi-runner.com/2020/10/21/4297/&amp;t=01A.%E4%BF%82%E6%95%B01%EF%BD%9E3+E%26%23038%3BE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0+Freedom+Computer+%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB+%7C+KUNUGI+RUNNER" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" ><span class="vk_icon_w_r_sns_fb icon_sns"></span><span class="sns_txt">Facebook</span>
+</a>
+</li>
+
+<li class="sb_hatena sb_icon">
+<a href="http://b.hatena.ne.jp/add?mode=confirm&url=https://kunugi-runner.com/2020/10/21/4297/&amp;title=01A.%E4%BF%82%E6%95%B01%EF%BD%9E3+E%26%23038%3BE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0+Freedom+Computer+%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB+%7C+KUNUGI+RUNNER" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=520');return false;"><span class="vk_icon_w_r_sns_hatena icon_sns"></span><span class="sns_txt">Hatena</span></a>
+</li>
+
+<li class="sb_twitter sb_icon">
+<a href="http://twitter.com/intent/tweet?url=https://kunugi-runner.com/2020/10/21/4297/&amp;text=01A.%E4%BF%82%E6%95%B01%EF%BD%9E3+E%26%23038%3BE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0+Freedom+Computer+%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB+%7C+KUNUGI+RUNNER" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" ><span class="vk_icon_w_r_sns_twitter icon_sns"></span><span class="sns_txt">twitter</span></a>
+</li>
+
+
+<li class="sb_pocket"><span></span>
+<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-save-url="https://kunugi-runner.com/2020/10/21/4297/" data-lang="en"></a>
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+</li>
+
+</ul>
+
+</div>
+<!-- [ /.socialSet ] -->
+	<!-- [ .subPostListSection ] -->
+	<div class="subPostListSection">
+	<h3>関連記事</h3>
+	<ul class="child_outer">
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/10/05/17729/">ブレーキパッドは経年劣化で効きが悪くなる？ 研磨で性能回復できるのか試してみた</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/10/05/17729/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/10/11-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/10/11-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/10/11-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/09/03/17519/">不朽の名作&#8221;オペラ座の怪人&#8221;考察 ファントム＝クリスティーヌ説 Love Never Diesの真価を説く</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/09/03/17519/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/09/02-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/09/02-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/09/02-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/08/07/17413/">ロールしないと曲がらないはウソ？本当？ コーナーリングに於けるロールの役割と車が曲がる理屈</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/08/07/17413/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/08/02-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/08/02-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/08/02-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/07/29/17308/">真夏のドライブに心霊スポットはいかが？ 噂の真相や史実に基づくリアルなスポットまで</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/07/29/17308/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/07/10-1-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/07/10-1-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/07/10-1-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/06/22/17115/">平成５年８月豪雨の記録 キャンプはエキサイティング！大分県南部を襲った豪雨で自然の醍醐味を味わう</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/06/22/17115/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/01-200x200.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/01-200x200.png 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/06/01-150x150.png 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/06/13/17037/">ガーデニング未経験の初心者に薔薇を育てる事はできるのか 強健な新品種のミニバラ「ゼプティ」で花壇を埋める</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/06/13/17037/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/0502_00-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/0502_00-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/06/0502_00-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/06/07/16973/">添加剤でパワーアップや燃費向上に期待できるのか？ 実際に使用して効果を検証してみた</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/06/07/16973/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/00-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/06/00-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/06/00-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+			<li class="ttBox">
+		<div class="entryTxtBox ttBoxTxt ttBoxRight haveThumbnail">
+		<a href="https://kunugi-runner.com/2026/05/12/16706/">マツダ・フレアワゴンで最近の軽自動車事情をチェック</a>
+		</div><!-- [ /.entryTxtBox ] -->
+					<div class="ttBoxThumb ttBoxLeft"><a href="https://kunugi-runner.com/2026/05/12/16706/"><img width="200" height="200" src="https://kunugi-runner.com/wp/wp-content/uploads/2026/03/06-1-200x200.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://kunugi-runner.com/wp/wp-content/uploads/2026/03/06-1-200x200.jpg 200w, https://kunugi-runner.com/wp/wp-content/uploads/2026/03/06-1-150x150.jpg 150w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+				</li>
+		</ul><!-- [ /.child_outer ] -->
+	</div><!-- [ /.subPostListSection ] -->
+<div class="sectionBox"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4038633114881679"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="3512879228"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><div id="nav-below" class="navigation">
+	<div class="nav-previous"><a href="https://kunugi-runner.com/2020/10/21/4283/" rel="prev"><span class="meta-nav">&larr;</span> 00.FCSS環境設定 E&#038;Eシステム Freedom Computer セッティングマニュアル</a></div>
+	<div class="nav-next"><a href="https://kunugi-runner.com/2020/10/21/4305/" rel="next">01B.係数4～6 E&#038;Eシステム Freedom Computer セッティングマニュアル <span class="meta-nav">&rarr;</span></a></div>
+</div><!-- #nav-below -->
+</div>
+<!-- [ /#post- ] -->
+
+
+<div id="comments">
+
+
+<h3 id="comments-title">コメント</h3>
+
+			<ol class="commentlist">
+						<li class="comment even thread-even depth-1" id="li-comment-801">
+		<div id="comment-801" class="commentBox">
+		<div class="comment-author vcard">
+						<cite class="fn">まつざき＠ＭＢＷ流</cite>		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-meta commentmetadata">
+		2026年5月23日 at 10:02 		</div><!-- .comment-meta .commentmetadata -->
+
+		<div class="comment-body"><p>こんにちは。<br />
+最近になってフリーダムコンピューターを触る機会があり、こちらにたどり着きました。<br />
+丁寧な記述にとても助けられています。ありがとうございます。<br />
+なまし量ですが、手元に公式のマニュアルがあり、ヒステリシスのようです。1回前のデータをどれくらい今回のデータ処理に含ませるかで、「1-なまし量設定」が1回前のデータの反映割合です。なまし量＝1で1回前の値の反映無し。<br />
+違和感のある処理方法で、1＝オフでいいのではと思っています。</p>
+</div>
+		<div class="linkBtn linkBtnS">
+		<a rel='nofollow' class='comment-reply-link' href='https://kunugi-runner.com/2020/10/21/4297/?replytocom=801#respond' onclick='return addComment.moveForm( "comment-801", "801", "respond", "4297" )' aria-label='まつざき＠ＭＢＷ流 に返信'>返信する</a>		</div><!-- .reply -->
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+		<li class="comment byuser comment-author-kr_ad_yuusuke bypostauthor odd alt depth-2" id="li-comment-814">
+		<div id="comment-814" class="commentBox">
+		<div class="comment-author vcard">
+						<cite class="fn"><a href='https://kunugi-runner.com' rel='external nofollow' class='url'>ユースケ＠管理人</a></cite>		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-meta commentmetadata">
+		2026年9月27日 at 23:37 		</div><!-- .comment-meta .commentmetadata -->
+
+		<div class="comment-body"><p>情報提供ありがとうございます！<br />
+すいません。他の通知に埋もれて見落としておりました。。。</p>
+<p>鈍らせて滑らかにすると言う認識としては近そうですが、正確には平均を擦るのではなく前回処理値の反映割合を設定するものなのですね。<br />
+さっそく記事の方にも追記させていただきます！</p>
+</div>
+		<div class="linkBtn linkBtnS">
+		<a rel='nofollow' class='comment-reply-link' href='https://kunugi-runner.com/2020/10/21/4297/?replytocom=814#respond' onclick='return addComment.moveForm( "comment-814", "814", "respond", "4297" )' aria-label='ユースケ＠管理人 に返信'>返信する</a>		</div><!-- .reply -->
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2020/10/21/4297/#respond" style="display:none;">コメントをキャンセル</a></small></h3>			<form action="https://kunugi-runner.com/wp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-form-comment"><label for="comment">コメント</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">名前</label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" /></p>
+
+
+<div class="anr_captcha_field"><div id="anr_captcha_field_1" class="anr_captcha_field_div"></div></div><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='4297' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+
+
+</div>
+<!-- [ /#content ] -->
+
+<!-- [ #sideTower ] -->
+<div id="sideTower" class="sideTower">
+<div class="widget_text sideWidget widget widget_custom_html" id="custom_html-18"><h3 class="localHead">ＰＲ</h3><div class="textwidget custom-html-widget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 自動サイズ１ -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="9770436281"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div><div class="sideWidget widget widget_categories" id="categories-3"><h3 class="localHead">カテゴリー</h3>		<ul>
+	<li class="cat-item cat-item-79"><a href="https://kunugi-runner.com/category/kr/" >クヌギランナー</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="https://kunugi-runner.com/category/ad_blog/" >ブログ</a>
+</li>
+		</ul>
+</div><div class="sideWidget widget widget_nav_menu" id="nav_menu-16"><h3 class="localHead">サイトマップ</h3><div class="menu-%e3%82%b5%e3%82%a4%e3%83%89%e3%83%90%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc-container"><ul id="menu-%e3%82%b5%e3%82%a4%e3%83%89%e3%83%90%e3%83%bc%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc" class="menu"><li id="menu-item-366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-366"><a href="https://kunugi-runner.com/course/">コース紹介</a></li>
+<li id="menu-item-367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-367"><a href="https://kunugi-runner.com/event/">イベント案内</a></li>
+<li id="menu-item-368" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-368"><a href="https://kunugi-runner.com/rank/">ランキング</a></li>
+<li id="menu-item-369" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-369"><a href="https://kunugi-runner.com/blog/">イベントレポート</a></li>
+<li id="menu-item-370" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-370"><a href="https://kunugi-runner.com/tech/">テクニカルアドバイス</a></li>
+<li id="menu-item-365" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-365"><a href="https://kunugi-runner.com/category/ad_blog/">ブログ一覧</a></li>
+<li id="menu-item-371" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-371"><a href="https://kunugi-runner.com/inquiry/">お問い合わせ</a></li>
+<li id="menu-item-372" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-372"><a href="https://kunugi-runner.com/privacy_policy/">プライバシーポリシー</a></li>
+</ul></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-29"><h3 class="localHead">スポンサー様・関連サイト</h3><div class="textwidget custom-html-widget"><a href="https://ipponkunugi.com" target="_blank" rel="noopener"><img src="https://kunugi-runner.com/wp/wp-content/uploads/2018/11/is_banner.jpg"></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-30"><div class="textwidget custom-html-widget"><a href="https://www.google.co.jp/maps/place/%EF%BC%88%E6%9C%89%EF%BC%89%E6%9C%A8%E4%B8%8B%E9%83%A8%E5%93%81/@33.245352,131.6128913,17z/data=!4m5!3m4!1s0x35469f9c392b1c93:0xebac4b5f5875fa98!8m2!3d33.245352!4d131.61508" target="_blank" rel="noopener"><center><img src="https://kunugi-runner.com/data/kinoshita.jpg"></center></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-31"><div class="textwidget custom-html-widget"><a href="http://www.elan-de.net/sk/" target="_blank" rel="noopener"><img src="https://kunugi-runner.com/wp/wp-content/uploads/2018/11/elande1.gif"></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-32"><div class="textwidget custom-html-widget"><a href="https://twitter.com/KUNUGI_RUNNER" target="_blank" rel="noopener"><img src="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/images/bnr_twitter.png"></a></div></div><div class="widget_text sideWidget widget widget_custom_html" id="custom_html-34"><h3 class="localHead">ＰＲ</h3><div class="textwidget custom-html-widget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 自動サイズ１ -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4038633114881679"
+     data-ad-slot="9770436281"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div></div>
+<!-- [ /#sideTower ] -->
+</div>
+<!-- [ /#container ] -->
+
+</div><!-- #main -->
+
+<div id="back-top">
+<a href="#wrap">
+	<img id="pagetop" src="https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/js/res-vektor/images/footer_pagetop.png" alt="PAGETOP" />
+</a>
+</div>
+
+<!-- [ #footerSection ] -->
+<div id="footerSection">
+
+	<div id="pagetop">
+	<div id="pagetopInner" class="innerBox">
+	<a href="#wrap">PAGETOP</a>
+	</div>
+	</div>
+
+	<div id="footMenu">
+	<div id="footMenuInner" class="innerBox">
+		</div>
+	</div>
+
+	<!-- [ #footer ] -->
+	<div id="footer">
+	<!-- [ #footerInner ] -->
+	<div id="footerInner" class="innerBox">
+		<dl id="footerOutline">
+		<dt><img src="https://kunugi-runner.com/wp/wp-content/uploads/2018/11/f_img.png" alt="KUNUGI RUNNER" /></dt>
+		<dd>
+				</dd>
+		</dl>
+		<!-- [ #footerSiteMap ] -->
+		<div id="footerSiteMap">
+</div>
+		<!-- [ /#footerSiteMap ] -->
+	</div>
+	<!-- [ /#footerInner ] -->
+	</div>
+	<!-- [ /#footer ] -->
+
+	<!-- [ #siteBottom ] -->
+	<div id="siteBottom">
+	<div id="siteBottomInner" class="innerBox">
+	<div id="copy">Copyright &copy; <a href="https://kunugi-runner.com/" rel="home">KUNUGI RUNNER</a> All Rights Reserved.</div>	</div>
+	</div>
+	<!-- [ /#siteBottom ] -->
+</div>
+<!-- [ /#footerSection ] -->
+</div>
+<!-- [ /#wrap ] -->
+			<script type="text/javascript">
+				var anr_onloadCallback = function() {
+					for ( var i = 0; i < document.forms.length; i++ ) {
+						var form = document.forms[i];
+						var captcha_div = form.querySelector( '.anr_captcha_field_div' );
+
+						if ( null === captcha_div )
+							continue;
+						captcha_div.innerHTML = '';
+						( function( form ) {	
+							var anr_captcha = grecaptcha.render( captcha_div,{
+								'sitekey' : '6LdEC60UAAAAADNa6jaXAboOZTgZbgmot2EBkGb0',
+								'size'  : 'normal',
+								'theme' : 'light'
+							});
+							if ( typeof wc_checkout_params !== 'undefined' ) {
+								jQuery( document.body ).on( 'checkout_error', function(){
+									grecaptcha.reset(anr_captcha);
+								});
+							}
+							if ( typeof wpcf7 !== 'undefined' ) {
+								document.addEventListener( 'wpcf7submit', function() {
+									grecaptcha.reset(anr_captcha);
+								}, false );
+							}
+						})(form);
+					}
+				};
+			</script>
+						<script src="https://www.google.com/recaptcha/api.js?onload=anr_onloadCallback&#038;render=explicit"
+			async defer>
+			</script>
+			<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/comment-reply.min.js?ver=4.9.26'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var gdbbPressAttachmentsInit = {"max_files":"4","are_you_sure":"This operation is not reversible. Are you sure?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-content/plugins/gd-bbpress-attachments/js/front.min.js?ver=4.1_b2410_free'></script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-includes/js/wp-embed.min.js?ver=4.9.26'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var bv_sliderParams = {"slideshowSpeed":"3000","animation":"fade"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kunugi-runner.com/wp/wp-content/themes/biz-vektor/js/biz-vektor-min.js?ver=1.11.5' defer='defer'></script>
+</body>
+</html>

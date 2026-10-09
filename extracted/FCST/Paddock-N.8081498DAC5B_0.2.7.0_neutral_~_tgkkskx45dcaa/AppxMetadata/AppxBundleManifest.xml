@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Bundle SchemaVersion="5.0" IgnorableNamespaces="b4 b5" xmlns="http://schemas.microsoft.com/appx/2013/bundle" xmlns:b4="http://schemas.microsoft.com/appx/2018/bundle" xmlns:b5="http://schemas.microsoft.com/appx/2019/bundle">
+	<Identity Name="Paddock-N.8081498DAC5B" Publisher="CN=72321973-353A-4374-B569-9936B0D0C038" Version="0.2.7.0"/>
+	<Packages>
+		<Package Type="application" Version="0.2.7.0" Architecture="neutral" FileName="Setup_0.2.7.0_AnyCPU.appx" Offset="55" Size="342750">
+			<Resources>
+				<Resource Language="JA-JP"/>
+				<Resource Scale="200"/>
+			</Resources>
+			<b4:Dependencies>
+				<b4:TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+				<b4:TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+			</b4:Dependencies>
+		</Package>
+		<Package Type="resource" Version="0.2.7.0" ResourceId="split.scale-100" FileName="Setup_0.2.7.0_scale-100.appx" Offset="342887" Size="23361">
+			<Resources>
+				<Resource Scale="100"/>
+			</Resources>
+			<b4:Dependencies>
+				<b4:TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+				<b4:TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+			</b4:Dependencies>
+		</Package>
+		<Package Type="resource" Version="0.2.7.0" ResourceId="split.scale-125" FileName="Setup_0.2.7.0_scale-125.appx" Offset="366330" Size="26531">
+			<Resources>
+				<Resource Scale="125"/>
+			</Resources>
+			<b4:Dependencies>
+				<b4:TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+				<b4:TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+			</b4:Dependencies>
+		</Package>
+		<Package Type="resource" Version="0.2.7.0" ResourceId="split.scale-150" FileName="Setup_0.2.7.0_scale-150.appx" Offset="392943" Size="30555">
+			<Resources>
+				<Resource Scale="150"/>
+			</Resources>
+			<b4:Dependencies>
+				<b4:TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+				<b4:TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+			</b4:Dependencies>
+		</Package>
+		<Package Type="resource" Version="0.2.7.0" ResourceId="split.scale-400" FileName="Setup_0.2.7.0_scale-400.appx" Offset="423580" Size="88906">
+			<Resources>
+				<Resource Scale="400"/>
+			</Resources>
+			<b4:Dependencies>
+				<b4:TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+				<b4:TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.22621.0"/>
+			</b4:Dependencies>
+		</Package>
+	</Packages>
+</Bundle>
