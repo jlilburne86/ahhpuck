@@ -1,0 +1,158 @@
+{
+  "baseline": {
+    "battery_v": {
+      "count": 4,
+      "max": 13.8,
+      "mean": 13.75,
+      "min": 13.7,
+      "stdev": 0.057735
+    },
+    "coolant_c": {
+      "count": 4,
+      "max": 85.3,
+      "mean": 85.15,
+      "min": 85.0,
+      "stdev": 0.129099
+    },
+    "frame_count": 4,
+    "fuel_pressure": {
+      "count": 4,
+      "max": 3.0,
+      "mean": 3.0,
+      "min": 3.0,
+      "stdev": 0.0
+    },
+    "iat_c": {
+      "count": 4,
+      "max": 32.3,
+      "mean": 32.15,
+      "min": 32.0,
+      "stdev": 0.129099
+    },
+    "knock_events": 0,
+    "lambda": {
+      "count": 4,
+      "max": 1.0,
+      "mean": 0.9925,
+      "min": 0.98,
+      "stdev": 0.009574
+    },
+    "lambda_error": {
+      "count": 4,
+      "max": 0.1,
+      "mean": 0.0925,
+      "min": 0.08,
+      "stdev": 0.009574
+    },
+    "load": {
+      "count": 4,
+      "max": 50.0,
+      "mean": 50.0,
+      "min": 50.0,
+      "stdev": 0.0
+    },
+    "map_coverage": 0.01,
+    "oil_pressure": {
+      "count": 4,
+      "max": 3.8,
+      "mean": 3.75,
+      "min": 3.7,
+      "stdev": 0.057735
+    },
+    "rpm": {
+      "count": 4,
+      "max": 3300.0,
+      "mean": 3150.0,
+      "min": 3000.0,
+      "stdev": 129.099445
+    },
+    "telemetry": {
+      "complete": true,
+      "dropped_frames": 0,
+      "out_of_order": 0,
+      "score": 1.0
+    }
+  },
+  "candidate": {
+    "battery_v": {
+      "count": 4,
+      "max": 13.8,
+      "mean": 13.75,
+      "min": 13.7,
+      "stdev": 0.057735
+    },
+    "coolant_c": {
+      "count": 4,
+      "max": 85.5,
+      "mean": 85.35,
+      "min": 85.2,
+      "stdev": 0.129099
+    },
+    "frame_count": 4,
+    "fuel_pressure": {
+      "count": 4,
+      "max": 3.0,
+      "mean": 3.0,
+      "min": 3.0,
+      "stdev": 0.0
+    },
+    "iat_c": {
+      "count": 4,
+      "max": 32.7,
+      "mean": 32.55,
+      "min": 32.4,
+      "stdev": 0.129099
+    },
+    "knock_events": 0,
+    "lambda": {
+      "count": 4,
+      "max": 0.93,
+      "mean": 0.915,
+      "min": 0.9,
+      "stdev": 0.01291
+    },
+    "lambda_error": {
+      "count": 4,
+      "max": 0.03,
+      "mean": 0.015,
+      "min": 0.0,
+      "stdev": 0.01291
+    },
+    "load": {
+      "count": 4,
+      "max": 50.0,
+      "mean": 50.0,
+      "min": 50.0,
+      "stdev": 0.0
+    },
+    "map_coverage": 0.01,
+    "oil_pressure": {
+      "count": 4,
+      "max": 3.8,
+      "mean": 3.75,
+      "min": 3.7,
+      "stdev": 0.057735
+    },
+    "rpm": {
+      "count": 4,
+      "max": 3300.0,
+      "mean": 3150.0,
+      "min": 3000.0,
+      "stdev": 129.099445
+    },
+    "telemetry": {
+      "complete": true,
+      "dropped_frames": 0,
+      "out_of_order": 0,
+      "score": 1.0
+    }
+  },
+  "candidate_clean": true,
+  "lambda_error_improvement": 0.8378,
+  "repeatability": {
+    "mean_absolute_difference": 0.005,
+    "overlap_cells": 1,
+    "repeatable": true,
+    "tolerance": 0.03
+  }
+}

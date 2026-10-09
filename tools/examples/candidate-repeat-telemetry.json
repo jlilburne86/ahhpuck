@@ -1,0 +1,6 @@
+[
+  {"sequence": 1, "decoded": {"rpm": 3000, "load": 50, "lambda": 0.925, "coolant_c": 85.1, "iat_c": 32.3, "oil_pressure": 3.8, "fuel_pressure": 3.0, "battery_v": 13.8, "knock": false}},
+  {"sequence": 2, "decoded": {"rpm": 3100, "load": 50, "lambda": 0.915, "coolant_c": 85.2, "iat_c": 32.4, "oil_pressure": 3.8, "fuel_pressure": 3.0, "battery_v": 13.8, "knock": false}},
+  {"sequence": 3, "decoded": {"rpm": 3200, "load": 50, "lambda": 0.905, "coolant_c": 85.3, "iat_c": 32.5, "oil_pressure": 3.7, "fuel_pressure": 3.0, "battery_v": 13.7, "knock": false}},
+  {"sequence": 4, "decoded": {"rpm": 3300, "load": 50, "lambda": 0.895, "coolant_c": 85.4, "iat_c": 32.6, "oil_pressure": 3.7, "fuel_pressure": 3.0, "battery_v": 13.7, "knock": false}}
+]

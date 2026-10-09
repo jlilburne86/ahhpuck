@@ -1,0 +1,43 @@
+{
+  "fuel_proposals": [],
+  "mode": "offline_concept_test",
+  "protection_faults": [
+    "coolant_high",
+    "knock_detected",
+    "lean_under_load",
+    "oil_pressure_low_under_load"
+  ],
+  "purpose": "drift",
+  "quality_gate": {
+    "components": {
+      "map_coverage": 0.0,
+      "objective": 0.6774,
+      "repeatability": 0.0,
+      "safety_pass_fraction": 0.75,
+      "sensor_confidence": 0.0
+    },
+    "meaning": "evidence-weighted readiness score, not a guarantee of power, reliability, or perfection",
+    "quality_percent": 31.94,
+    "target_met": false,
+    "target_percent": 96.0
+  },
+  "required_before_live_use": [
+    "verify FC-03 axes, units, checksums, and serial protocol",
+    "verify fuel pressure, injector data, wideband calibration, and ignition timing with a timing light",
+    "add calibrated oil-pressure, fuel-pressure, coolant, IAT, voltage, and knock logging",
+    "validate one bounded change at a time on a dyno or controlled test session",
+    "human approval and original-map backup before any ECU write feature exists"
+  ],
+  "score": {
+    "acceleration": 0.75,
+    "high_rpm_load": 0.6026,
+    "overall": 0.6774,
+    "safety": 0.2583,
+    "sustained_load": 0.94,
+    "thermal_margin": 0.2583,
+    "throttle_response": 0.86,
+    "torque_smoothness": 0.91,
+    "usable_samples": 3
+  },
+  "write_authorization": "never"
+}

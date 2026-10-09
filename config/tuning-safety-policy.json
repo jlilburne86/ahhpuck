@@ -1,0 +1,37 @@
+{
+  "policy_version": "0.1-provisional",
+  "purpose": "offline and read-only review gates for FC-03 calibration experiments",
+  "hard_limits": {
+    "max_fuel_cell_change_fraction": 0.02,
+    "max_ignition_cell_change_deg": 1.0,
+    "max_rpm": 7800,
+    "max_coolant_c": 105,
+    "max_iat_c": 65,
+    "min_voltage_v": 12.0,
+    "max_knock_level": 0.15,
+    "min_oil_pressure_kpa_under_load": 180
+  },
+  "required_evidence": [
+    "original_map_backup",
+    "engine_profile_verified",
+    "injector_data_verified",
+    "fuel_pressure_verified",
+    "wideband_calibrated",
+    "ignition_offset_verified",
+    "sensor_plausibility_passed",
+    "repeatable_log_evidence"
+  ],
+  "write_blockers": [
+    "fc03_semantics_verified",
+    "fc03_checksum_verified",
+    "fc03_write_protocol_verified",
+    "human_approval"
+  ],
+  "rules": [
+    "never learn from a protection fault",
+    "never combine fuel and ignition changes in one experiment",
+    "never extrapolate unknown cells without an explicit review flag",
+    "never permit an LLM to authorize an ECU write",
+    "always retain immutable source map, candidate diff, and rollback copy"
+  ]
+}

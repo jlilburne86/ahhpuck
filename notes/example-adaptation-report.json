@@ -1,0 +1,50 @@
+{
+  "confidence": "red",
+  "conversion_status": "comparison_only",
+  "mismatches": [
+    {
+      "field": "chassis",
+      "source": "AE111",
+      "target": "AE86"
+    },
+    {
+      "field": "injectors",
+      "source": "UNKNOWN",
+      "target": "VERIFY_ON_CAR"
+    },
+    {
+      "field": "fuel",
+      "source": "UNKNOWN",
+      "target": "VERIFY_ON_CAR"
+    },
+    {
+      "field": "map_units",
+      "source": "UNKNOWN",
+      "target": "VERIFY_FREEDOM"
+    }
+  ],
+  "next_steps": [
+    "preserve the original source file",
+    "verify injector data, fuel pressure, fuel type, and ignition offset",
+    "decode Freedom axes and scaling before resampling",
+    "review fuel and ignition differences before any write candidate is created"
+  ],
+  "source": "example provider tune, metadata incomplete",
+  "target": {
+    "chassis": "AE86",
+    "engine": "4AGE_20V_BLACKTOP",
+    "fuel": "VERIFY_ON_CAR",
+    "ignition": "DIRECT_IGNITION",
+    "ignition_offset_verified": "false",
+    "injection": "SEQUENTIAL",
+    "injectors": "VERIFY_ON_CAR",
+    "load_strategy": "MAP_DJETRONIC",
+    "map_units": "VERIFY_FREEDOM",
+    "vvt": "20V_INLET"
+  },
+  "warnings": [
+    "fuel table is not verified VE; Freedom conversion is blocked",
+    "ignition table units or trigger reference are not verified",
+    "source tune has no confirmed engine validation record"
+  ]
+}

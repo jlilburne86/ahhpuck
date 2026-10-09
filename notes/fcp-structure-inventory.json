@@ -1,0 +1,637 @@
+{
+  "file_count": 18,
+  "files": [
+    {
+      "bytes": 16179,
+      "name": "4TH-SD.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/4TH-SD.FCP",
+      "scalar_count": 511,
+      "sha256": "5bccb5af954c36f3d8808be82508cfbb73707b2af8dff056716389fd2bb4c6ae",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16179,
+      "name": "4TH-TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/4TH-TS.FCP",
+      "scalar_count": 511,
+      "sha256": "567836d052c0ff6ffc15d1d7e2be1fdad0c6ae23142995fc5bfe33fa66d06f9d",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 5723,
+      "name": "4V-TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/4V-TS.FCP",
+      "scalar_count": 125,
+      "sha256": "afd5490c8a7ffbfbe666ae29204b83ac157cfd031873c2bb0455cf290de75964",
+      "tables": {
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16180,
+      "name": "AE86-A.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP",
+      "scalar_count": 511,
+      "sha256": "8fb971ab29a1f6a8afc6b145c05700aef34b837ba5e2a110b53d9db126ca2f1d",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16180,
+      "name": "AE86-B.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-B.FCP",
+      "scalar_count": 511,
+      "sha256": "4dc916aa81213e2af55a574c4805749ccd118a1affd128324b63361182f9cfeb",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16180,
+      "name": "AE86-C.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-C.FCP",
+      "scalar_count": 511,
+      "sha256": "da89272ce9b043d99bb594e4790166bec95c31269d1f989d5e02131630dd0e24",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16180,
+      "name": "AE86-D.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-D.FCP",
+      "scalar_count": 511,
+      "sha256": "17e17877e93f2ad86045ad8708658fae7876232434839802b6b4eda90e2c3cae",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16179,
+      "name": "AE86-TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-TS.FCP",
+      "scalar_count": 511,
+      "sha256": "4db8f275b55f1ead6346776862592c902e4f39fa6f7f9c83283d5db49dbdc45f",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16179,
+      "name": "B6-4SD.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/B6-4SD.FCP",
+      "scalar_count": 511,
+      "sha256": "872c7fbac01b76313af6bb74bb2835d8c3266ce18e3be4ac7ffe6bd8852ff7f5",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16179,
+      "name": "B6-4TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/B6-4TS.FCP",
+      "scalar_count": 511,
+      "sha256": "b029889511642f1beb069adb328d1f61a2cca8c65b12012b21ad0dbff42a184b",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 16179,
+      "name": "B6-4TSN.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/B6-4TSN.FCP",
+      "scalar_count": 511,
+      "sha256": "a8b46b2d01e089807266e720610c45d30aef9a91b03e01f53a0ce2110b5dcca8",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 15955,
+      "name": "BP-TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/BP-TS.FCP",
+      "scalar_count": 495,
+      "sha256": "1647fb56f35a29ffd3c452a8f723b4f5377150c150b7762c25c91b96cd060cbd",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 1938,
+      "name": "MIXCONT.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/MIXCONT.FCP",
+      "scalar_count": 12,
+      "sha256": "10410ed59a9f1e93d1a8a4564864e1e0d2955c3c12f25b006ade69dd3be29786",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 19764,
+      "name": "NA6C-4SD.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/NA6C-4SD.FCP",
+      "scalar_count": 767,
+      "sha256": "c817515fca425dbd16df748567f3dd9eb02136e854f390a51e67fc629887f1d7",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 19764,
+      "name": "NA6C-4TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/NA6C-4TS.FCP",
+      "scalar_count": 767,
+      "sha256": "83a19d867f43c770d43a27acb129dc8b2c2696cf3363edf3ab53f8ca46ba0536",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 19764,
+      "name": "NA6C4TSN.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/NA6C4TSN.FCP",
+      "scalar_count": 767,
+      "sha256": "121f7cfa51649f0edb27e961594d9cdc60e8460c5743bce892ebbc9dcd91cd94",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 19763,
+      "name": "NA8C-TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/NA8C-TS.FCP",
+      "scalar_count": 767,
+      "sha256": "52a05156956022ca3132b7320c294b63f248cf4d8dabc9ea83cdbafb0291545c",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    },
+    {
+      "bytes": 19763,
+      "name": "NB8C-TS.FCP",
+      "path": "extracted/base_maps/BASE MAPS - FC OE DATA/NB8C-TS.FCP",
+      "scalar_count": 767,
+      "sha256": "c2ce22201a65ba7f0b52ff134f4aa64b6024830dad561de52017b24c7e9c3fed",
+      "tables": {
+        "ECM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IGT": {
+          "columns": [
+            16
+          ],
+          "rectangular": true,
+          "rows": 36
+        },
+        "IJM": {
+          "columns": [
+            8
+          ],
+          "rectangular": true,
+          "rows": 72
+        },
+        "THM": {
+          "columns": [
+            10
+          ],
+          "rectangular": true,
+          "rows": 36
+        }
+      }
+    }
+  ],
+  "root": "extracted/base_maps/BASE MAPS - FC OE DATA"
+}

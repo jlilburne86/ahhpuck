@@ -1,0 +1,23 @@
+{
+  "blocked": [
+    "missing evidence: fuel_pressure_verified",
+    "missing evidence: ignition_offset_verified",
+    "missing evidence: injector_data_verified",
+    "missing evidence: repeatable_log_evidence"
+  ],
+  "passed": [
+    "engine_profile_verified",
+    "original_map_backup",
+    "sensor_plausibility_passed",
+    "wideband_calibrated"
+  ],
+  "policy_version": "0.1-provisional",
+  "status": "blocked",
+  "warnings": [
+    "write unavailable: fc03_checksum_verified",
+    "write unavailable: fc03_semantics_verified",
+    "write unavailable: fc03_write_protocol_verified",
+    "write unavailable: human_approval"
+  ],
+  "write_authorization": "never"
+}

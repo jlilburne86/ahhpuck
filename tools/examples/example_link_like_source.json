@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "name": "example provider tune, metadata incomplete",
+    "provenance": "public example; not an importable tune",
+    "validated_on_engine": false
+  },
+  "profile": {
+    "chassis": "AE111",
+    "engine": "4AGE_20V_BLACKTOP",
+    "load_strategy": "MAP_DJETRONIC",
+    "injection": "SEQUENTIAL",
+    "ignition": "DIRECT_IGNITION",
+    "vvt": "20V_INLET",
+    "injectors": "UNKNOWN",
+    "fuel": "UNKNOWN",
+    "map_units": "UNKNOWN",
+    "ignition_offset_verified": "false"
+  },
+  "tables": {
+    "fuel": {"units": "unknown"},
+    "ignition": {"units": "unknown"}
+  }
+}

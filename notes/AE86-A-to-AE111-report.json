@@ -1,0 +1,50 @@
+{
+  "confidence": "red",
+  "conversion_status": "comparison_only",
+  "mismatches": [],
+  "next_steps": [
+    "preserve the original source file",
+    "verify injector data, fuel pressure, fuel type, and ignition offset",
+    "decode Freedom axes and scaling before resampling",
+    "review fuel and ignition differences before any write candidate is created"
+  ],
+  "source": "AE86-A.FCP",
+  "source_structure": {
+    "scalar_count": 511,
+    "table_count": 4,
+    "table_names": [
+      "ECM",
+      "IGT",
+      "IJM",
+      "THM"
+    ]
+  },
+  "target": {
+    "chassis": "AE86",
+    "engine": "4AGE_20V_BLACKTOP",
+    "fuel": "VERIFY_ON_CAR",
+    "ignition": "DIRECT_IGNITION",
+    "ignition_offset_verified": "false",
+    "injection": "SEQUENTIAL",
+    "injectors": "VERIFY_ON_CAR",
+    "load_strategy": "MAP_DJETRONIC",
+    "map_units": "VERIFY_FREEDOM",
+    "vvt": "20V_INLET"
+  },
+  "warnings": [
+    "chassis: unknown on source or target",
+    "engine: unknown on source or target",
+    "load_strategy: unknown on source or target",
+    "injection: unknown on source or target",
+    "ignition: unknown on source or target",
+    "vvt: unknown on source or target",
+    "injectors: unknown on source or target",
+    "fuel: unknown on source or target",
+    "map_units: unknown on source or target",
+    "ignition_offset_verified: unknown on source or target",
+    "fuel table is not verified VE; Freedom conversion is blocked",
+    "ignition table units or trigger reference are not verified",
+    "source tune has no confirmed engine validation record",
+    "FCP table semantics, axis mapping, scaling, checksum, and write protocol are not decoded"
+  ]
+}

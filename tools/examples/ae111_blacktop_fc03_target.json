@@ -1,0 +1,14 @@
+{
+  "profile": {
+    "chassis": "AE86",
+    "engine": "4AGE_20V_BLACKTOP",
+    "load_strategy": "MAP_DJETRONIC",
+    "injection": "SEQUENTIAL",
+    "ignition": "DIRECT_IGNITION",
+    "vvt": "20V_INLET",
+    "injectors": "VERIFY_ON_CAR",
+    "fuel": "VERIFY_ON_CAR",
+    "map_units": "VERIFY_FREEDOM",
+    "ignition_offset_verified": "false"
+  }
+}

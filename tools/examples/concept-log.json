@@ -1,0 +1,13 @@
+{
+  "limits": {
+    "max_rpm": 7800,
+    "max_coolant_c": 105,
+    "min_oil_pressure_kpa": 180
+  },
+  "samples": [
+    {"rpm": 4500, "load_kpa": 92, "lambda": 0.91, "lambda_target": 0.88, "coolant_c": 88, "iat_c": 35, "oil_pressure_kpa": 420, "voltage_v": 13.8, "knock_level": 0.02, "throttle_pct": 78, "torque_cv": 0.08, "accel_mps2": 6.5},
+    {"rpm": 5000, "load_kpa": 94, "lambda": 0.90, "lambda_target": 0.88, "coolant_c": 89, "iat_c": 36, "oil_pressure_kpa": 390, "voltage_v": 13.7, "knock_level": 0.03, "throttle_pct": 86, "torque_cv": 0.09, "accel_mps2": 7.0},
+    {"rpm": 5500, "load_kpa": 96, "lambda": 0.89, "lambda_target": 0.88, "coolant_c": 90, "iat_c": 37, "oil_pressure_kpa": 360, "voltage_v": 13.6, "knock_level": 0.04, "throttle_pct": 94, "torque_cv": 0.10, "accel_mps2": 7.5},
+    {"rpm": 6000, "load_kpa": 98, "lambda": 1.08, "lambda_target": 0.88, "coolant_c": 106, "iat_c": 38, "oil_pressure_kpa": 170, "voltage_v": 13.5, "knock_level": 0.20, "throttle_pct": 100, "torque_cv": 0.20, "accel_mps2": 8.0}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "iteration": 1,
+  "baseline_score": 0.64,
+  "candidate_score": 0.67,
+  "candidate": {
+    "family": "fuel",
+    "change_fraction": 0.01
+  },
+  "protection_faults": [],
+  "evidence": {
+    "telemetry_complete": true,
+    "sensor_plausibility": true,
+    "repeatable": true,
+    "map_coverage": 0.82
+  }
+}

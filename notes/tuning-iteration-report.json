@@ -1,0 +1,15 @@
+{
+  "decision": "accept_candidate_and_prepare_smaller_next_step",
+  "issues": [],
+  "iteration": 1,
+  "next_change_family": "fuel",
+  "next_change_fraction_limit": 0.005,
+  "reason": "candidate improved the objective with clean repeatable evidence",
+  "required_operator_actions": [
+    "preserve baseline, candidate, raw log, and assessment",
+    "do not continue load testing after a critical fault",
+    "verify mechanical and sensor causes before changing calibration",
+    "repeat the same test condition before accepting a change"
+  ],
+  "write_authorization": "never"
+}

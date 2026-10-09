@@ -1,0 +1,20 @@
+{
+  "evidence": {
+    "original_map_backup": true,
+    "engine_profile_verified": true,
+    "injector_data_verified": false,
+    "fuel_pressure_verified": false,
+    "wideband_calibrated": true,
+    "ignition_offset_verified": false,
+    "sensor_plausibility_passed": true,
+    "repeatable_log_evidence": false
+  },
+  "candidate": {
+    "fuel_cell_change_fraction": 0.01,
+    "ignition_cell_change_deg": 0,
+    "change_families": ["fuel"]
+  },
+  "protection_faults": [],
+  "samples": [],
+  "write_evidence": {}
+}
