@@ -27,7 +27,15 @@ The app currently includes native screens for:
 - supervised approval checklist;
 - vehicle and connection setup.
 
-The app can load a demo assessment so the complete approval flow can be tested before an ECU is connected.
+The app includes a complete local first-trial workflow so the product flow can be tested before an ECU is connected:
+
+1. Open **Live** and review the readiness gate.
+2. Load the first-trial fixture, or use **Run** to load it as a supervised local trial.
+3. Review baseline, candidate, and repeat-candidate evidence.
+4. Inspect the deterministic decision and concerns.
+5. Complete the four approval checks to create a local approval record.
+
+The fixture is illustrative and does not represent a real ECU capture. The backend state machine is in `Sources/FreedomMobileCore/MobileTrialSession.swift`; SwiftUI only presents the current state and next action.
 
 ## Command-line validation
 
@@ -43,6 +51,8 @@ The native core currently validates:
 - USB transport placeholder behaviour;
 - repeatable improvement acceptance;
 - knock-triggered experiment abort.
+- readiness gating and missing-evidence reporting;
+- complete first-trial capture, assessment, and approval flow.
 
 ## Safety boundary
 

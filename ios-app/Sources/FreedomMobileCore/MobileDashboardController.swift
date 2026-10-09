@@ -15,6 +15,11 @@ public actor MobileDashboardController {
         snapshot.writeAuthorization = "never"
     }
 
+    public func assessReadiness(_ evidence: MobileReadinessEvidence,
+                                criticalReasons: [String] = []) {
+        snapshot.readiness = MobileReadinessAssessor.assess(evidence, criticalReasons: criticalReasons)
+    }
+
     public func ingest(_ frame: MobileTelemetryFrame) {
         let alerts = monitor.evaluate(frame)
         snapshot.rpm = frame.rpm; snapshot.loadKPa = frame.loadKPa
@@ -25,6 +30,9 @@ public actor MobileDashboardController {
         snapshot.batteryV = frame.batteryV; snapshot.knockLevel = frame.knockLevel
         snapshot.telemetryAgeMs = 0
         snapshot.protectionState = alerts.isEmpty ? "healthy" : "aborted"
+        if !alerts.isEmpty {
+            snapshot.readiness = MobileReadinessAssessor.assess(.init(), criticalReasons: alerts)
+        }
     }
 }
 

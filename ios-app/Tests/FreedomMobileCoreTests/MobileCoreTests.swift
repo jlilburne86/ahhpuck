@@ -30,6 +30,43 @@ final class MobileCoreTests: XCTestCase {
         }
     }
 
+    func testReadinessPausesOnMissingFuelPressureAndIgnitionReference() {
+        var evidence = MobileReadinessEvidence()
+        evidence.ecuIdentityVerified = true
+        evidence.protocolVerified = true
+        evidence.originalMapBackup = true
+        evidence.engineProfileVerified = true
+        let result = MobileReadinessAssessor.assess(evidence)
+        XCTAssertEqual(result.state, .paused)
+        XCTAssertTrue(result.missingEvidence.contains("Fuel pressure"))
+        XCTAssertTrue(result.missingEvidence.contains("Ignition reference"))
+        XCTAssertFalse(result.canTest)
+        XCTAssertEqual(result.writeAuthorization, "never")
+    }
+
+    func testReadinessStopsOnCriticalFault() {
+        let result = MobileReadinessAssessor.assess(.init(), criticalReasons: ["knock"])
+        XCTAssertEqual(result.state, .stop)
+        XCTAssertEqual(result.criticalReasons, ["knock"])
+        XCTAssertFalse(result.canTest)
+    }
+
+    func testFirstTrialRunsEndToEndWithoutEnablingWrites() {
+        var trial = MobileTrialSession.demo()
+        XCTAssertEqual(trial.stage, .assessed)
+        XCTAssertEqual(trial.assessment?.decision, .acceptCandidate)
+        XCTAssertFalse(trial.approvalRecorded)
+        XCTAssertTrue(trial.recordApproval())
+        XCTAssertTrue(trial.approvalRecorded)
+        XCTAssertEqual(trial.assessment?.writeAuthorization, "never")
+    }
+
+    func testTrialCannotCaptureBeforeReadiness() {
+        var trial = MobileTrialSession()
+        XCTAssertFalse(trial.capture(.baseline, frames: [MobileTelemetryFrame(rpm: 2000, loadKPa: 30)]))
+        XCTAssertEqual(trial.stage, .blocked)
+    }
+
     func testExperimentAssessmentRequiresRepeatableImprovement() {
         let baseline = demoFrames(lambda: [1.00, 0.99, 1.00])
         let candidate = demoFrames(lambda: [0.93, 0.92, 0.91], start: 10)

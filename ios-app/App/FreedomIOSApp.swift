@@ -6,15 +6,15 @@ struct FreedomIOSApp: App { var body: some Scene { WindowGroup { FreedomRootView
 
 struct FreedomRootView: View {
     @State private var selection: AppTab = .live
-    @State private var assessment: MobileExperimentAssessment?
+    @State private var trial = MobileTrialSession()
     @State private var approvalChecks = Array(repeating: false, count: 4)
     @State private var toast: String?
 
     var body: some View {
         TabView(selection: $selection) {
-            LiveView().tabItem { Label("Live", systemImage: "waveform.path.ecg") }.tag(AppTab.live)
-            CaptureView(toast: $toast).tabItem { Label("Run", systemImage: "record.circle") }.tag(AppTab.run)
-            ReviewView(assessment: $assessment, approvalChecks: $approvalChecks, toast: $toast).tabItem { Label("Review", systemImage: "checkmark.seal") }.tag(AppTab.review)
+            LiveView(trial: $trial).tabItem { Label("Live", systemImage: "waveform.path.ecg") }.tag(AppTab.live)
+            CaptureView(trial: $trial, toast: $toast).tabItem { Label("Run", systemImage: "record.circle") }.tag(AppTab.run)
+            ReviewView(trial: $trial, approvalChecks: $approvalChecks, toast: $toast).tabItem { Label("Review", systemImage: "checkmark.seal") }.tag(AppTab.review)
             SetupView().tabItem { Label("Setup", systemImage: "gearshape") }.tag(AppTab.setup)
         }.tint(.orange).overlay(alignment: .top) { if let toast { Text(toast).font(.footnote.weight(.semibold)).padding(.horizontal, 14).padding(.vertical, 10).background(.thinMaterial, in: Capsule()).padding(.top, 8) } }
     }
@@ -23,10 +23,14 @@ struct FreedomRootView: View {
 private enum AppTab { case live, run, review, setup }
 
 struct LiveView: View {
+    @Binding var trial: MobileTrialSession
+
     var body: some View {
         NavigationStack { ScrollView { VStack(alignment: .leading, spacing: 16) {
             HStack { Label("FC-03 · 9600 8N1", systemImage: "lock.shield"); Spacer(); Text("READ-ONLY").font(.caption2.monospaced()).foregroundStyle(.orange) }.foregroundStyle(.secondary)
             Text("Live").font(.largeTitle.bold())
+            ReadinessCard(assessment: trial.readiness)
+            Button("Load first-trial fixture") { trial = .demo() }.buttonStyle(.borderedProminent)
             HStack(spacing: 10) { Metric(title: "RPM", value: "3,820"); Metric(title: "λ", value: "0.912"); Metric(title: "Coolant", value: "86°C") }
             GroupBox("Protection") { Label("Telemetry healthy", systemImage: "checkmark.circle.fill").foregroundStyle(.green) }
             GroupBox("Engine health") { VStack(alignment: .leading, spacing: 10) { KeyValue("Oil pressure", "3.8 bar"); KeyValue("Fuel pressure", "3.0 bar"); KeyValue("Battery", "13.8 V"); KeyValue("Knock", "0 events") } }
@@ -36,37 +40,74 @@ struct LiveView: View {
     }
 }
 
+struct ReadinessCard: View {
+    let assessment: MobileReadinessAssessment
+
+    var body: some View {
+        GroupBox {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Label(assessment.title, systemImage: assessment.state == .stop ? "stop.circle.fill" : "pause.circle.fill")
+                        .font(.headline)
+                    Spacer()
+                    Text(assessment.state == .stop ? "STOP" : "PAUSED")
+                        .font(.caption2.monospaced().bold())
+                        .foregroundStyle(assessment.state == .stop ? .red : .orange)
+                }
+                Text(assessment.explanation).font(.subheadline).foregroundStyle(.secondary)
+                Text("Next action").font(.caption.bold()).foregroundStyle(.secondary)
+                Text(assessment.nextAction).font(.subheadline)
+                if !assessment.missingEvidence.isEmpty {
+                    Text("Missing: \(assessment.missingEvidence.prefix(3).joined(separator: ", "))(assessment.missingEvidence.count > 3 ? "…" : "")")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+}
+
 struct CaptureView: View {
+    @Binding var trial: MobileTrialSession
     @Binding var toast: String?
     @State private var recording = false
     var body: some View {
         NavigationStack { VStack(alignment: .leading, spacing: 18) {
             Text("Run capture").font(.largeTitle.bold())
-            Text("Create a baseline, candidate, or repeat capture. ECU and phone data are stored together.").foregroundStyle(.secondary)
+            Text("First-trial mode uses local fixture data. Real ECU capture remains read-only until FC-03 protocol verification.").foregroundStyle(.secondary)
             Picker("Run type", selection: .constant("Candidate")) { Text("Baseline").tag("Baseline"); Text("Candidate").tag("Candidate"); Text("Repeat").tag("Repeat") }.pickerStyle(.segmented)
             GroupBox("Experiment") { VStack(alignment: .leading, spacing: 10) { KeyValue("Objective", "Drivability"); KeyValue("RPM range", "2,500–5,500"); KeyValue("Load range", "30–70%"); KeyValue("Context", "Route · test loop A") } }
             Spacer()
-            VStack(spacing: 12) { Text(recording ? "00:12.4" : "Ready").font(.title.monospacedDigit()); Button { recording.toggle(); toast = recording ? "Capture started" : "Capture stopped and preserved" } label: { Circle().fill(recording ? .red : .orange).frame(width: 82, height: 82).overlay(Circle().stroke(.primary.opacity(0.15), lineWidth: 4)) }.buttonStyle(.plain); Text(recording ? "Tap to stop" : "Tap to record candidate").foregroundStyle(.secondary) }.frame(maxWidth: .infinity)
+            VStack(spacing: 12) {
+                Text(recording ? "Capturing fixture" : "Ready").font(.title.monospacedDigit())
+                Button {
+                    recording.toggle()
+                    if !recording {
+                        if trial.stage == .setup { trial = .demo() }
+                        toast = "Trial capture preserved locally"
+                    } else { toast = "Read-only trial started" }
+                } label: { Circle().fill(recording ? .red : .orange).frame(width: 82, height: 82).overlay(Circle().stroke(.primary.opacity(0.15), lineWidth: 4)) }.buttonStyle(.plain)
+                Text(recording ? "Tap to stop" : "Tap to run first trial").foregroundStyle(.secondary)
+            }.frame(maxWidth: .infinity)
         }.padding().navigationTitle("Run") }
     }
 }
 
 struct ReviewView: View {
-    @Binding var assessment: MobileExperimentAssessment?
+    @Binding var trial: MobileTrialSession
     @Binding var approvalChecks: [Bool]
     @Binding var toast: String?
     var body: some View {
         NavigationStack { ScrollView { VStack(alignment: .leading, spacing: 16) {
-            HStack { Text("Review").font(.largeTitle.bold()); Spacer(); Text(decisionLabel).font(.caption2.monospaced().bold()).foregroundStyle(assessment?.hasCriticalConcern == true ? .red : .orange) }
-            if let assessment { assessmentView(assessment) } else { ContentUnavailableView("No assessment", systemImage: "doc.text.magnifyingglass", description: Text("Load three telemetry runs, or load the demo assessment.")); Button("Load demo assessment") { assessment = DemoAssessment.make(); toast = "Demo assessment loaded" }.buttonStyle(.borderedProminent) }
+            HStack { Text("Review").font(.largeTitle.bold()); Spacer(); Text(decisionLabel).font(.caption2.monospaced().bold()).foregroundStyle(trial.assessment?.hasCriticalConcern == true ? .red : .orange) }
+            if let assessment = trial.assessment { assessmentView(assessment) } else { ContentUnavailableView("No assessment", systemImage: "doc.text.magnifyingglass", description: Text("Run the first-trial fixture from Live or Run.")); Button("Load first-trial fixture") { trial = .demo(); toast = "First-trial assessment loaded" }.buttonStyle(.borderedProminent) }
         }.padding() }.navigationTitle("Experiment") }
     }
-    private var decisionLabel: String { guard let assessment else { return "UNASSESSED" }; switch assessment.decision { case .acceptCandidate: return "ACCEPT"; case .repeatExperiment: return "REPEAT"; case .rollbackAndInvestigate: return "ROLLBACK"; case .stopAndAbort: return "ABORT" } }
+    private var decisionLabel: String { guard let assessment = trial.assessment else { return "UNASSESSED" }; switch assessment.decision { case .acceptCandidate: return "ACCEPT"; case .repeatExperiment: return "REPEAT"; case .rollbackAndInvestigate: return "ROLLBACK"; case .stopAndAbort: return "ABORT" } }
     @ViewBuilder private func assessmentView(_ value: MobileExperimentAssessment) -> some View {
         DecisionCard(assessment: value)
         HStack(spacing: 10) { Metric(title: "Improvement", value: value.improvementFraction.map { "\(($0 * 100).formatted(.number.precision(.fractionLength(1))))%" } ?? "—"); Metric(title: "Repeat", value: value.repeatable == true ? "PASS" : "FAIL"); Metric(title: "Knock", value: "\(value.knockEvents)") }
         GroupBox("Concerns") { if value.concerns.isEmpty { Label("No automatic concerns", systemImage: "checkmark.circle").foregroundStyle(.green) } else { VStack(alignment: .leading, spacing: 12) { ForEach(value.concerns, id: \.code) { ConcernRow(concern: $0) } } } }
-        GroupBox("Approval") { VStack(alignment: .leading, spacing: 10) { ApprovalCheck("I reviewed the experiment", index: 0); ApprovalCheck("I verified the rollback path", index: 1); ApprovalCheck("I understand the warnings", index: 2); ApprovalCheck("I will supervise the test", index: 3); Button(value.decision == .acceptCandidate ? "Approve supervised experiment" : "Approval unavailable") { toast = "Approval record created. ECU writes remain locked." }.buttonStyle(.borderedProminent).disabled(value.decision != .acceptCandidate || !approvalChecks.allSatisfy { $0 }) } }
+            GroupBox("Approval") { VStack(alignment: .leading, spacing: 10) { ApprovalCheck("I reviewed the experiment", index: 0); ApprovalCheck("I verified the rollback path", index: 1); ApprovalCheck("I understand the warnings", index: 2); ApprovalCheck("I will supervise the test", index: 3); Button(value.decision == .acceptCandidate ? (trial.approvalRecorded ? "Approval recorded" : "Approve supervised experiment") : "Approval unavailable") { if trial.recordApproval() { toast = "Approval record created. ECU writes remain locked." } }.buttonStyle(.borderedProminent).disabled(value.decision != .acceptCandidate || trial.approvalRecorded || !approvalChecks.allSatisfy { $0 }) } }
     }
     private func ApprovalCheck(_ text: String, index: Int) -> some View { Toggle(text, isOn: Binding(get: { approvalChecks[index] }, set: { approvalChecks[index] = $0 })) }
 }

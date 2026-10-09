@@ -19,6 +19,7 @@ public struct MobileDashboardSnapshot: Sendable, Equatable {
     public var activeCell: String?
     public var protectionState: String = "unknown"
     public var writeAuthorization: String = "never"
+    public var readiness: MobileReadinessAssessment = MobileReadinessAssessor.assess(.init())
 
     public init() {}
 }
