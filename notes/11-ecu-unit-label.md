@@ -38,25 +38,20 @@ a transcription error and has been corrected throughout.
   before the option is not usable. So the stored map is a DI map, and the
   engine needs a DI-capable trigger (5-valve distributor or the crank pickup
   kit on an AE86 shell).
-- **The harness plug is a Toyota OEM ECU connector for the `Ab-1` vehicle
-  family, not a Freedom part.** Freedom units are coupler-on for their own
-  vehicle (Kunugi: swap for the stock ECU; other vehicles need rewiring), and an
-  AE111-coupler unit does plug straight into an AE111 loom: hiro0719jp runs an
-  "FC-03a for AE111" on an AE111 harness transplanted into an AE86, and the
-  Paddock-N owner did the same. **Whether `Ab-1` is the AE111 coupler is not
-  confirmed.** Two readings of the evidence:
-  - For AE111: the 5-valve, direct-ignition history and the AE111 Blacktop target.
-  - Against AE111: Kunugi lists sequential injection as *standard* on AE101 and
-    AE111 units and only conditional on the AE86/AW11/early-AE92 family, yet this
-    unit is labelled group injection with no `S` option. That fits an
-    AE86-family or AE92/AE101-era unit, which can still run direct ignition with
-    the DI option plus a 4A-GZ / late-AE92 distributor or the crank pickup kit.
+- **The harness plug is the AE111 factory ECU coupler: the unit plugs straight
+  into an AE111 engine loom.** Confirmed by the owner from the seller's
+  connector-side photos against an AE111 loom (observed). This matches how
+  Freedom units work (Kunugi: coupler-on for their own vehicle) and what two
+  AE86 owners in the research did: hiro0719jp runs an "FC-03a for AE111" on an
+  AE111 harness transplanted into an AE86, and the Paddock-N owner did the
+  same. Sourcing route: a donor AE111 engine loom, which also brings the
+  matching sensor connectors. The `Ab-1` row in Kunugi's code table would
+  add a documented confirmation but is no longer blocking.
+  - Open oddity: Kunugi lists sequential injection as standard on AE101/AE111
+    units, yet this unit is labelled group injection with no `S` option. The
+    identity capture and the read-back map will show which mode it actually
+    runs; until then the profile default stays batch fire.
 
-  Do not buy an AE111 loom on the AE111 assumption until one of these confirms
-  it: the seller names the car it came off, a photo of the connector face is
-  matched against an AE111 ECU, or the `Ab-1` row in Kunugi's code table
-  (`fc_code00.jpg` on kunugi-runner.com) is read. Whether AE101 and AE111
-  factory ECUs share a connector is also unverified here.
 - **Provenance stops at the listing.** The seller does not know the firmware
   revision, the donor engine or whether a map backup exists. Those come from
   the read-only identity capture, which is already release gate 3.
@@ -82,8 +77,10 @@ without needing the Kunugi table. Their lot is C04; ours is J01, a later build.
 
 ## Still to confirm
 
-1. `Ab-1` coupler mapping and the `E` / `U` option letters, from Kunugi's two
-   code-table images.
-2. The meaning of the `Z-` serial prefix (board version).
+1. The `E` / `U` option letters (and the `Ab-1` row, for the record) from
+   Kunugi's two code-table images.
+2. The meaning of the `Z-` serial prefix (board version); the FCSS identity
+   string will settle the model variant.
 3. Whether the AFR-link option (`M` in Kunugi's examples) is absent; the label
    suggests it is.
+4. Which injection mode the unit actually runs, from the read-back.
