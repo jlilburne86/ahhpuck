@@ -23,11 +23,36 @@
         <input type="search" name="q" placeholder="Search cars, wheels, parts…" aria-label="Search cars, wheels, parts">
       </form>
       <nav class="wh-nav" aria-label="Main">
-        <a class="wh-pill" href="https://wheelhave.com/marketplace">Browse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
-        <a class="wh-pill" href="https://wheelhave.com/puckit">PuckIt <i class="wh-dot" aria-hidden="true"></i></a>
+        <div class="wh-dd">
+          <a class="wh-pill" href="https://wheelhave.com/marketplace">Browse</a><button class="wh-dd-btn" type="button" aria-label="Browse menu" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="whm-panel" hidden>
+            <a href="https://wheelhave.com/marketplace">All</a>
+            <a href="https://wheelhave.com/marketplace?category=wheels">Wheels</a>
+            <a href="https://wheelhave.com/marketplace?category=tires">Tyres</a>
+            <span class="whm-group">Parts</span>
+            <a class="sub" href="https://wheelhave.com/marketplace?category=suspension">Suspension</a>
+            <a class="sub" href="https://wheelhave.com/marketplace?category=brakes">Brakes</a>
+            <a class="sub" href="https://wheelhave.com/marketplace?category=exhaust">Exhaust</a>
+            <a class="sub" href="https://wheelhave.com/marketplace?category=engine">Engine</a>
+            <a class="sub" href="https://wheelhave.com/marketplace?category=interior">Interior</a>
+            <a class="sub" href="https://wheelhave.com/marketplace?category=exterior">Exterior</a>
+            <a class="sub" href="https://wheelhave.com/marketplace?category=lighting">Lighting</a>
+            <a href="https://wheelhave.com/marketplace?intent=wtb">Wanted</a>
+            <a href="https://wheelhave.com/stores">Stores</a>
+          </div>
+        </div>
+        <a class="wh-pill" href="https://wheelhave.com/puckit" aria-current="page">PuckIt <i class="wh-dot" aria-hidden="true"></i></a>
         <a class="wh-pill" href="https://wheelhave.com/messages">Messages</a>
       </nav>
-      <a class="wh-sell" href="https://wheelhave.com/sell">+ Sell</a>
+      <div class="wh-sell wh-dd">
+        <a class="wh-sell-main" href="https://wheelhave.com/sell">+ Sell</a><span class="wh-sell-rule" aria-hidden="true"></span><button class="wh-sell-more wh-dd-btn" type="button" aria-label="Sell menu" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="whm-panel right" hidden>
+          <a href="https://wheelhave.com/sell">List an item</a>
+          <a href="https://wheelhave.com/wtb">Post a wanted ad</a>
+          <span class="whm-group">Store</span>
+          <a class="sub" href="https://wheelhave.com/store/create">Set up a store</a>
+        </div>
+      </div>
       <a class="wh-signin" href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a>
       <button class="wh-burger" id="whBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="wh-mobile">
         <svg class="ic-menu" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -37,17 +62,33 @@
     <div class="wh-mobile" id="wh-mobile" hidden>
       <nav aria-label="Menu">
         <ul>
-          <li><a href="https://wheelhave.com/marketplace">Browse</a></li>
-          <li><a href="https://wheelhave.com/sell">Sell</a></li>
-          <li><a href="https://wheelhave.com/puckit">PuckIt</a></li>
-          <li class="wh-mobile-group"><span>AhhPuck</span>
+          <li class="wh-mobile-group"><a href="https://wheelhave.com/marketplace">Browse</a>
             <ul>
-              <li><a href="#loop">How it works</a></li>
-              <li><a href="#app">The app</a></li>
-              <li><a href="#parameters">Safety</a></li>
-              <li><a href="#built">Status</a></li>
-              <li><a href="#mission">Mission</a></li>
-              <li><a class="strong" href="https://github.com/jlilburne86/ahhpuck">View on GitHub</a></li>
+              <li><a href="https://wheelhave.com/marketplace">All</a></li>
+              <li><a href="https://wheelhave.com/marketplace?category=wheels">Wheels</a></li>
+              <li><a href="https://wheelhave.com/marketplace?category=tires">Tyres</a></li>
+              <li><a href="https://wheelhave.com/marketplace?intent=wtb">Wanted</a></li>
+              <li><a href="https://wheelhave.com/stores">Stores</a></li>
+            </ul>
+          </li>
+          <li class="wh-mobile-group"><a href="https://wheelhave.com/sell">Sell</a>
+            <ul>
+              <li><a href="https://wheelhave.com/sell">List an item</a></li>
+              <li><a href="https://wheelhave.com/wtb">Post a wanted ad</a></li>
+              <li><a href="https://wheelhave.com/store/create">Set up a store</a></li>
+            </ul>
+          </li>
+          <li class="wh-mobile-group open"><a href="https://wheelhave.com/puckit">PuckIt</a>
+            <ul>
+              <li><a href="https://wheelhave.com/puckit">How it works</a></li>
+              <li><a href="https://wheelhave.com/puckit/howtobuild">Build</a></li>
+              <li><a href="https://wheelhave.com/puckit/shop">Parts and waitlist</a></li>
+              <li><a href="https://wheelhave.com/puckit/flasher">Flash</a></li>
+              <li><a href="https://wheelhave.com/puckit/guide">Guide</a></li>
+              <li><a href="https://wheelhave.com/puckit/events">Events</a></li>
+              <li><a href="https://wheelhave.com/puckit/network">Network</a></li>
+              <li><a href="#top" aria-current="page">AhhPuck</a></li>
+              <li><a class="strong" href="https://wheelhave.com/puckit/howtobuild">Build one</a></li>
             </ul>
           </li>
           <li><a href="https://wheelhave.com/messages">Messages</a></li>
@@ -62,16 +103,34 @@
   </header>
 
   <div class="pks">
-    <nav class="pks-bar" aria-label="AhhPuck">
-      <a class="pks-mark" href="#top" aria-label="AhhPuck, how it works"><span class="pks-wordmark">AhhPuck</span></a>
+    <nav class="pks-bar" aria-label="PuckIt">
+      <a class="pks-mark" href="https://wheelhave.com/puckit" aria-label="PuckIt, how it works"><img src="landing/img/puckit-wordmark.png" alt="PuckIt" height="18"></a>
       <span class="pks-sep" aria-hidden="true"></span>
       <div class="pks-links" id="pksLinks">
-        <a class="pks-chip" href="#loop" data-section="loop">How it works</a>
-        <a class="pks-chip" href="#app" data-section="app">The app</a>
-        <a class="pks-chip" href="#parameters" data-section="parameters learning">Safety</a>
-        <a class="pks-chip" href="#built" data-section="built testing">Status</a>
-        <a class="pks-chip" href="#mission" data-section="mission roadmap">Mission</a>
-        <a class="pks-cta" href="https://github.com/jlilburne86/ahhpuck">View on GitHub</a>
+        <a class="pks-chip" href="https://wheelhave.com/puckit">How it works</a>
+        <div class="pks-chip wh-dd">
+          <button class="pks-chip-btn wh-dd-btn" type="button" aria-expanded="false">Get a Puck <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="whm-panel" hidden>
+            <a href="https://wheelhave.com/puckit/howtobuild">Build</a>
+            <a href="https://wheelhave.com/puckit/shop">Parts and waitlist</a>
+            <a href="https://wheelhave.com/puckit/flasher">Flash</a>
+          </div>
+        </div>
+        <div class="pks-chip wh-dd">
+          <a class="pks-chip-main" href="https://wheelhave.com/puckit/guide">Guide</a><button class="pks-chip-more wh-dd-btn" type="button" aria-label="Guide menu" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="whm-panel" hidden>
+            <a href="https://wheelhave.com/puckit/support">Report a problem</a>
+          </div>
+        </div>
+        <div class="pks-chip wh-dd">
+          <a class="pks-chip-main" href="https://wheelhave.com/puckit/events">Events</a><button class="pks-chip-more wh-dd-btn" type="button" aria-label="Events menu" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="whm-panel" hidden>
+            <a href="https://wheelhave.com/puckit/organisers">For organisers</a>
+            <a href="https://wheelhave.com/puckit/provider">Organiser console</a>
+          </div>
+        </div>
+        <a class="pks-chip" href="https://wheelhave.com/puckit/network">Network</a>
+        <a class="pks-cta" href="https://wheelhave.com/puckit/howtobuild">Build one</a>
       </div>
       <span class="pks-fade" id="pksFade" aria-hidden="true"></span>
     </nav>
@@ -443,8 +502,8 @@ python3 tools/telemetry_stats.py \
   <footer class="pk-foot">
     <div class="pk-foot-grid">
       <div class="pk-foot-brand">
-        <div class="pk-foot-brandline"><a href="#top" aria-label="AhhPuck home"><span class="pks-wordmark">AhhPuck</span></a><span>by Wheel Have</span></div>
-        <p>Modern logging and evidence-based tuning for unsupported standalone ECUs. Read-only until proven, one small reversible step at a time.</p>
+        <div class="pk-foot-brandline"><a href="https://wheelhave.com/puckit" aria-label="PuckIt home"><img src="landing/img/puckit-wordmark.png" alt="PuckIt" height="22"></a><span>by Wheel Have</span></div>
+        <p>A button in your car that warns the drivers around you. Open hardware, official firmware, no phone or signal involved.</p>
       </div>
       <nav aria-label="Browse"><h2>Browse</h2><ul>
         <li><a href="https://wheelhave.com/marketplace">All</a></li>
@@ -458,20 +517,25 @@ python3 tools/telemetry_stats.py \
         <li><a href="https://wheelhave.com/wtb">Post a wanted ad</a></li>
         <li><a href="https://wheelhave.com/store/create">Set up a store</a></li>
         <li><a href="https://wheelhave.com/for-shops">For shops</a></li>
+        <li><a href="https://wheelhave.com/sell-wheels-online">Sell wheels</a></li>
+        <li><a href="https://wheelhave.com/sell-car-parts-online">Sell car parts</a></li>
       </ul></nav>
-      <nav aria-label="AhhPuck"><h2>AhhPuck</h2><ul>
-        <li><a href="#loop">How it works</a></li>
-        <li><a href="#app">The app</a></li>
-        <li><a href="#parameters">Safety</a></li>
-        <li><a href="#built">Status</a></li>
-        <li><a href="#mission">Mission</a></li>
-        <li><a href="https://github.com/jlilburne86/ahhpuck">GitHub</a></li>
+      <nav aria-label="PuckIt"><h2>PuckIt</h2><ul>
+        <li><a href="https://wheelhave.com/puckit">How it works</a></li>
+        <li><a href="https://wheelhave.com/puckit/howtobuild">Build</a></li>
+        <li><a href="https://wheelhave.com/puckit/shop">Get one</a></li>
+        <li><a href="https://wheelhave.com/puckit/flasher">Flash</a></li>
+        <li><a href="https://wheelhave.com/puckit/guide">Guide</a></li>
+        <li><a href="https://wheelhave.com/puckit/organisers">For organisers</a></li>
+        <li><a href="https://wheelhave.com/puckit/network">Network</a></li>
+        <li><a href="#top" aria-current="page">AhhPuck</a></li>
       </ul></nav>
       <nav aria-label="You"><h2>You</h2><ul>
         <li><a href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a></li>
         <li><a href="https://wheelhave.com/account">You</a></li>
         <li><a href="https://wheelhave.com/messages">Messages</a></li>
         <li><a href="https://wheelhave.com/saved">Saved</a></li>
+        <li><a href="https://wheelhave.com/account/purchases">Purchases</a></li>
         <li><a href="https://wheelhave.com/puckit/pucks">Pucks</a></li>
       </ul></nav>
       <nav aria-label="Help &amp; legal"><h2>Help &amp; legal</h2><ul>
@@ -479,12 +543,16 @@ python3 tools/telemetry_stats.py \
         <li><a href="https://wheelhave.com/about">About</a></li>
         <li><a href="https://wheelhave.com/contact">Contact</a></li>
         <li><a href="https://wheelhave.com/privacy">Privacy</a></li>
+        <li><a href="https://wheelhave.com/privacy#cookie-settings">Cookie settings</a></li>
         <li><a href="https://wheelhave.com/terms">Terms</a></li>
+        <li><a href="https://wheelhave.com/puckit/legal/terms">PuckIt terms</a></li>
+        <li><a href="https://wheelhave.com/puckit/legal/disclaimer">Disclaimer</a></li>
+        <li><a href="https://wheelhave.com/puckit/legal/licence">Licence</a></li>
       </ul></nav>
     </div>
     <div class="pk-foot-legal"><div>
-      <span>AhhPuck is a read-only research tool. It never writes to an ECU on its own, and nothing on this page is a claim of a safe tune. Freedom and FC-03 are trademarks of their respective owners.</span>
-      <span>By Wheel Have · Open research</span>
+      <span>PuckIt is an experimental driver-awareness aid, not a safety device. It doesn't replace marshals, flags or judgement. AhhPuck is read-only research and never writes to an ECU on its own.</span>
+      <span>By Wheel Have · Open hardware, official firmware</span>
     </div></div>
   </footer>
 

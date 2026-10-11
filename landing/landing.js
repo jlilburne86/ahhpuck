@@ -15,24 +15,33 @@
     });
   }
 
-  // AhhPuck sub-bar: mark the chip for the section in view, fade the right edge while more chips hide.
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.pks-chip[data-section]'));
-  var links = document.getElementById('pksLinks');
-  var fade = document.getElementById('pksFade');
-  function setCurrent(id) {
-    chips.forEach(function (c) {
-      var on = c.getAttribute('data-section').split(' ').indexOf(id) !== -1;
-      if (on) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+  // Dropdown menus: click to open, click outside or Esc to close, one open at a time.
+  var dds = Array.prototype.slice.call(document.querySelectorAll('.wh-dd'));
+  function closeAll(except) {
+    dds.forEach(function (d) {
+      if (d === except) return;
+      var p = d.querySelector('.whm-panel'), b = d.querySelector('.wh-dd-btn');
+      if (p) p.setAttribute('hidden', '');
+      if (b) b.setAttribute('aria-expanded', 'false');
     });
   }
-  if (chips.length && 'IntersectionObserver' in window) {
-    var ids = [];
-    chips.forEach(function (c) { ids = ids.concat(c.getAttribute('data-section').split(' ')); });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) setCurrent(en.target.id); });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
-  }
+  dds.forEach(function (d) {
+    var btn = d.querySelector('.wh-dd-btn'), panel = d.querySelector('.whm-panel');
+    if (!btn || !panel) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = panel.hasAttribute('hidden');
+      closeAll(d);
+      if (open) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function () { closeAll(null); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(null); });
+
+  // Sub-bar: fade the right edge while more chips hide (phones).
+  var links = document.getElementById('pksLinks');
+  var fade = document.getElementById('pksFade');
   if (links && fade) {
     var update = function () { fade.setAttribute('data-on', links.scrollLeft + links.clientWidth < links.scrollWidth - 2 ? 'true' : 'false'); };
     update();

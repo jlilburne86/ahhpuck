@@ -248,10 +248,10 @@ code { font-family: var(--mono); font-size: .9em; }
 .wh-mobile { border-top: 1px solid #1F2224; background: #0B0C0D; }
 .wh-mobile nav { max-width: 1440px; margin: 0 auto; padding: 12px 16px 18px; }
 .wh-mobile ul { display: flex; flex-direction: column; gap: 2px; }
-.wh-mobile a, .wh-mobile-group > span { display: flex; align-items: center; min-height: 46px; padding: 0 16px; border-radius: 23px; font: 600 15px/1.2 var(--sans); color: #F2F1EB; }
+.wh-mobile a { display: flex; align-items: center; min-height: 46px; padding: 0 16px; border-radius: 23px; font: 600 15px/1.2 var(--sans); color: #F2F1EB; }
 .wh-mobile a:hover { background: #1A1C1E; }
-.wh-mobile-group > span { color: #9A9FA2; }
-.wh-mobile-group ul a { padding-left: 32px; }
+.wh-mobile a[aria-current="page"] { background: #1A1C1E; }
+.wh-mobile-group ul a { padding-left: 32px; font-weight: 500; }
 .wh-mobile a.strong { font-weight: 700; }
 .wh-mobile-rule { height: 1px; background: #1F2224; margin: 10px 0 0; }
 .wh-mobile-label { padding: 14px 16px 6px; font: 700 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #9A9FA2; }
@@ -271,6 +271,31 @@ code { font-family: var(--mono); font-size: .9em; }
 .pks-cta { margin-left: auto; background: #F2F1EB; color: #0A0A0B; font-weight: 700; }
 .pks-cta:hover { background: #FFFFFF; }
 .pks-fade { display: none; }
+
+/* Dropdown menus (Browse ▾, Sell ▾, Get a Puck ▾, Guide ▾, Events ▾), the Wheel Have menu frame */
+.wh-dd { position: relative; display: flex; align-items: stretch; }
+.wh-dd-btn { border: 0; background: transparent; color: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; font: inherit; }
+.wh-dd > .wh-pill { padding-right: 8px; border-radius: 20px 0 0 20px; }
+.wh-dd > .wh-pill + .wh-dd-btn { width: 30px; height: 40px; border-radius: 0 20px 20px 0; color: #F2F1EB; }
+.wh-dd > .wh-pill + .wh-dd-btn:hover, .wh-dd > .wh-pill:hover { background: #1A1C1E; }
+.wh-dd-btn svg { transition: transform .15s; }
+.wh-dd-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.whm-panel { position: absolute; top: calc(100% + 8px); left: 0; z-index: 60; min-width: 220px; display: flex; flex-direction: column; gap: 2px; padding: 8px; border-radius: 22px; background: #141617; color: #F2F1EB; border: 1px solid #1F2224; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+.whm-panel.right { left: auto; right: 0; }
+.whm-panel[hidden] { display: none; }
+.whm-panel a { display: flex; align-items: center; height: 40px; padding: 0 12px; border-radius: 14px; font: 600 14px/1 var(--sans); color: #F2F1EB; white-space: nowrap; }
+.whm-panel a.sub { padding-left: 24px; font-weight: 500; }
+.whm-panel a:hover { background: #1A1C1E; }
+.whm-group { padding: 10px 12px 4px; font: 700 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #9A9FA2; }
+.wh-sell { padding: 0; align-items: stretch; }
+.wh-sell-main { display: flex; align-items: center; padding: 0 10px 0 18px; color: #0A0A0B; font: 700 14px/1 var(--sans); white-space: nowrap; }
+.wh-sell-rule { width: 1px; margin: 10px 0; background: rgba(10,10,11,.25); }
+.wh-sell-more { width: 36px; color: #0A0A0B; border-radius: 0 21px 21px 0; }
+.pks-chip.wh-dd { padding: 0; }
+.pks-chip-btn, .pks-chip-main { display: flex; align-items: center; gap: 6px; height: 100%; padding: 0 14px; border-radius: 18px; font: 600 14px/1 var(--sans); color: #F2F1EB; white-space: nowrap; }
+.pks-chip-main { padding-right: 6px; border-radius: 18px 0 0 18px; }
+.pks-chip-more { width: 28px; height: 100%; border-radius: 0 18px 18px 0; color: #F2F1EB; }
+.pks-chip-btn:hover, .pks-chip-main:hover, .pks-chip-more:hover { background: #1A1C1E; }
 
 /* ── Footer (the Wheel Have footer frame, dark tone) ───────────────────── */
 .pk-foot { background: #0B0C0D; border-top: 1px solid #1F2224; color: #F2F1EB; font-family: var(--sans); line-height: normal; }
@@ -293,7 +318,8 @@ code { font-family: var(--mono); font-size: .9em; }
   .pk-foot nav a { min-height: 44px; }
 }
 @media (max-width: 899px) {
-  .wh-nav, .wh-signin { display: none; }
+  .wh-nav, .wh-signin, .wh-sell-rule, .wh-sell-more { display: none; }
+  .wh-sell-main { padding: 0 16px; }
   .wh-sell { margin-left: auto; }
   .wh-burger { display: flex; }
   .wh-bar { padding: 12px 16px; gap: 12px; }
