@@ -8,6 +8,14 @@
       var e = dict[el.getAttribute('data-i18n')];
       if (e && e[lang] != null) el.innerHTML = e[lang];
     });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      var e = dict[el.getAttribute('data-i18n-alt')];
+      if (e && e[lang] != null) el.setAttribute('alt', e[lang]);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var e = dict[el.getAttribute('data-i18n-aria')];
+      if (e && e[lang] != null) el.setAttribute('aria-label', e[lang]);
+    });
     document.documentElement.lang = lang;
     document.documentElement.setAttribute('data-lang', lang);
     document.querySelectorAll('.lang button').forEach(function (b) {
@@ -19,7 +27,8 @@
   try { want = new URLSearchParams(location.search).get('lang'); } catch (e) {}
   if (want !== 'ja' && want !== 'en') { try { want = localStorage.getItem(KEY); } catch (e) { want = null; } }
   if (want !== 'ja' && want !== 'en') want = (navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en';
-  if (want === 'ja') apply('ja');
+  // Apply either language: ?lang=en must also persist, or a saved 'ja' would return next visit.
+  apply(want);
   document.querySelectorAll('.lang button').forEach(function (b) {
     b.addEventListener('click', function () { apply(b.getAttribute('data-lang')); });
   });

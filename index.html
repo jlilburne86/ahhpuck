@@ -155,7 +155,7 @@
             <a class="button primary" href="#loop" data-i18n="hero.cta1">See how it works</a>
             <a class="button ghost" href="#built" data-i18n="hero.cta2">What is built</a>
           </div>
-          <ul class="hero-facts" aria-label="Why it matters">
+          <ul class="hero-facts" aria-label="Why it matters" data-i18n-aria="aria.facts">
             <li data-i18n="hero.fact1"><b>Lower cost</b> · second-hand ECU, modern tools</li>
             <li data-i18n="hero.fact2"><b>Better logging</b> · more than the original software ever gave</li>
             <li data-i18n="hero.fact3"><b>Safer tuning</b> · one small, reversible step at a time</li>
@@ -163,7 +163,7 @@
         </div>
         <div class="hero-visual">
           <figure class="phone">
-            <img src="landing/img/app-live.png" width="402" height="874" alt="AhhPuck mobile app, Live screen" loading="eager">
+            <img src="landing/img/app-live.png" width="402" height="874" alt="AhhPuck mobile app, Live screen: RPM, lambda against target, coolant, oil pressure, battery and knock, all read-only." data-i18n-alt="alt.live" loading="eager">
             <figcaption data-i18n="hero.caption">Live screen of the AhhPuck mobile app, as built. Read-only FC-03 session.</figcaption>
           </figure>
           <div class="glow"></div>
@@ -189,12 +189,12 @@
           <h2 data-i18n="app.h2">Five screens. One read-only session.</h2>
           <p class="sub" data-i18n="app.sub">These are real captures of the AhhPuck mobile build, not drawings. The numbers come from the local test fixture.</p>
         </div>
-        <div class="screens" role="list">
-          <figure role="listitem"><img src="landing/img/app-live.png" width="402" height="874" alt="AhhPuck live screen" loading="lazy"><figcaption><b data-i18n="app.live.t">Live</b><span data-i18n="app.live.d">Is the data healthy? Then the numbers that matter.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-run.png" width="402" height="874" alt="AhhPuck run screen" loading="lazy"><figcaption><b data-i18n="app.run.t">Run</b><span data-i18n="app.run.d">Record a baseline, a candidate or a repeat run.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-review.png" width="402" height="874" alt="AhhPuck review screen" loading="lazy"><figcaption><b data-i18n="app.review.t">Review</b><span data-i18n="app.review.d">A clear decision, explained in plain words.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-ledger.png" width="402" height="874" alt="AhhPuck ledger screen" loading="lazy"><figcaption><b data-i18n="app.ledger.t">Ledger</b><span data-i18n="app.ledger.d">Every experiment and its result, kept forever.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-setup.png" width="402" height="874" alt="AhhPuck setup screen" loading="lazy"><figcaption><b data-i18n="app.setup.t">Setup</b><span data-i18n="app.setup.d">Car profile, connection, pre-flight checks.</span></figcaption></figure>
+        <div class="screens" role="list" aria-label="App screens" data-i18n-aria="aria.screens">
+          <figure role="listitem"><img src="landing/img/app-live.png" width="402" height="874" alt="AhhPuck mobile app, Live screen: RPM, lambda against target, coolant, oil pressure, battery and knock, all read-only." data-i18n-alt="alt.live" loading="lazy"><figcaption><b data-i18n="app.live.t">Live</b><span data-i18n="app.live.d">Is the data healthy? Then the numbers that matter.</span></figcaption></figure>
+          <figure role="listitem"><img src="landing/img/app-run.png" width="402" height="874" alt="Run screen for recording a baseline, candidate or repeat run, with pre-flight checks." data-i18n-alt="alt.run" loading="lazy"><figcaption><b data-i18n="app.run.t">Run</b><span data-i18n="app.run.d">Record a baseline, a candidate or a repeat run.</span></figcaption></figure>
+          <figure role="listitem"><img src="landing/img/app-review.png" width="402" height="874" alt="Review screen showing a clear decision: accept the candidate and prepare a smaller next step." data-i18n-alt="alt.review" loading="lazy"><figcaption><b data-i18n="app.review.t">Review</b><span data-i18n="app.review.d">A clear decision, explained in plain words.</span></figcaption></figure>
+          <figure role="listitem"><img src="landing/img/app-ledger.png" width="402" height="874" alt="Ledger screen listing past experiments and their results." data-i18n-alt="alt.ledger" loading="lazy"><figcaption><b data-i18n="app.ledger.t">Ledger</b><span data-i18n="app.ledger.d">Every experiment and its result, kept forever.</span></figcaption></figure>
+          <figure role="listitem"><img src="landing/img/app-setup.png" width="402" height="874" alt="Setup screen with the car profile, connection and identity, and pre-flight checks." data-i18n-alt="alt.setup" loading="lazy"><figcaption><b data-i18n="app.setup.t">Setup</b><span data-i18n="app.setup.d">Car profile, connection, pre-flight checks.</span></figcaption></figure>
         </div>
         <div class="workbench">
           <div class="workbench-copy">
@@ -203,9 +203,9 @@
             <p class="sub" data-i18n="wb.sub">Works in Chrome or Edge over USB serial. Live trace, run status, serial monitor and experiment review. ECU writes are locked.</p>
             <a class="text-link" href="web-ui/index.html" data-i18n="wb.link">Open the workbench →</a>
           </div>
-          <figure class="shot main"><img src="landing/img/workbench-live.png" width="1440" height="900" alt="Workbench live dashboard" loading="lazy"><figcaption data-i18n="wb.cap1">Live dashboard with the demo run loaded</figcaption></figure>
-          <figure class="shot"><img src="landing/img/workbench-experiment.png" width="1440" height="900" alt="Workbench review experiment" loading="lazy"><figcaption data-i18n="wb.cap2">Review experiment</figcaption></figure>
-          <figure class="shot"><img src="landing/img/workbench-setup.png" width="1440" height="900" alt="Workbench engine profile and safety" loading="lazy"><figcaption data-i18n="wb.cap3">Engine profile, connection and safety</figcaption></figure>
+          <figure class="shot main"><img src="landing/img/workbench-live.png" width="1440" height="900" alt="Workbench live dashboard with a demo runtime trace, run status panel and serial monitor." data-i18n-alt="alt.wb1" loading="lazy"><figcaption data-i18n="wb.cap1">Live dashboard with the demo run loaded</figcaption></figure>
+          <figure class="shot"><img src="landing/img/workbench-experiment.png" width="1440" height="900" alt="Workbench review experiment view." data-i18n-alt="alt.wb2" loading="lazy"><figcaption data-i18n="wb.cap2">Review experiment</figcaption></figure>
+          <figure class="shot"><img src="landing/img/workbench-setup.png" width="1440" height="900" alt="Workbench engine profile and connection and safety settings." data-i18n-alt="alt.wb3" loading="lazy"><figcaption data-i18n="wb.cap3">Engine profile, connection and safety</figcaption></figure>
         </div>
       </div>
     </section>
@@ -218,7 +218,7 @@
           <h2 data-i18n="loop.h2">One loop, from plug-in to a proven improvement.</h2>
           <p class="sub" data-i18n="loop.sub">The app, the workbench and the command-line tools all follow this loop. Every step leaves a file on disk, so nothing is lost.</p>
         </div>
-        <div class="flow" role="img" aria-label="Flow: connect, identify, profile and limits, baseline, propose, approve, test, assess, then learn and loop back.">
+        <div class="flow" role="img" aria-label="Flow: connect, identify, profile and limits, baseline, propose, approve, test, assess, then learn and loop back." data-i18n-aria="aria.flow">
           <div class="flow-row"><div class="node"><span class="k">1</span><b data-i18n="step1.t">Connect</b><small data-i18n="step1.d">USB, serial, bridge or replay</small></div><div class="node"><span class="k">2</span><b data-i18n="step2.t">Identify</b><small data-i18n="step2.d">which ECU, which firmware, which channels</small></div><div class="node param"><span class="k">3</span><b data-i18n="step3.t">Profile &amp; limits</b><small data-i18n="step3.d">engine, sensors, goal, hard limits</small></div><div class="node"><span class="k">4</span><b data-i18n="step4.t">Baseline</b><small data-i18n="step4.d">saved, hashed, repeated</small></div></div>
           <div class="flow-row loop-row"><div class="node"><span class="k">5</span><b data-i18n="step5.t">Propose</b><small data-i18n="step5.d">one small change</small></div><div class="node gate"><span class="k">6</span><b data-i18n="step6.t">Approve</b><small data-i18n="step6.d">a person checks and says yes</small></div><div class="node"><span class="k">7</span><b data-i18n="step7.t">Test</b><small data-i18n="step7.d">a controlled run with stop rules</small></div><div class="node"><span class="k">8</span><b data-i18n="step8.t">Assess</b><small data-i18n="step8.d">did it help, and did it repeat?</small></div></div>
           <div class="flow-return" data-i18n="loop.learn"><b>9 · LEARN</b>write it to the ledger. The next step is smaller, or the loop stops.</div>
@@ -341,7 +341,7 @@ cd mac-app &amp;&amp; swift test</code></pre>
           <h2 data-i18n="mis.h2">One process. Many unsupported ECUs.</h2>
           <p class="sub" data-i18n="mis.sub">The Freedom FC-03 is the proving ground. Once the loop is proven on a real car, the same parts become adapters for other good ECUs that lost their software, not their value.</p>
         </div>
-        <div class="hub" role="img" aria-label="Many ECU adapters feed one shared core.">
+        <div class="hub" role="img" aria-label="Many ECU adapters feed one shared core." data-i18n-aria="aria.hub">
           <div class="hub-left"><span>Freedom FC-03</span><span>MoTeC M4 / M48 / M800</span><span>Autronic SM2 / SM4</span><span>Emerald K3 / K6</span><span>Haltech Platinum</span><span>AEM Infinity / Series 2</span><span>Link G1 – G4+</span><span>DTA S-series</span><span>VEMS V3</span><span>MegaSquirt MS2 / MS3</span><span>rusEFI / Speeduino</span></div>
           <div class="hub-arrow" aria-hidden="true"></div>
           <div class="hub-core">
