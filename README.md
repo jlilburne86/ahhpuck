@@ -6,6 +6,10 @@ Purpose: understand the E&E Systems Freedom FC-03/FCSS ecosystem before connecti
 
 The first engineering milestone is read-only documentation, file analysis, ECU identification, and serial logging. No ECU write, map modification, or engine-load test is authorized until the original ECU state is backed up and the electrical/sensor configuration is verified.
 
+## Landing page
+
+The project landing page is `index.html` at the repository root, with its assets in `landing/`. It is a static page, so any local server pointed at the repository (or its parent folder) will serve it, for example `python3 -m http.server 3000`. The telemetry shown on the page is illustrative demo data, not an ECU capture.
+
 ## Workspace layout
 
 - `source_files/` — original user-supplied archives, preserved unchanged.
