@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ahhpuck — Unsupported is not obsolete</title>
+  <meta name="description" content="Ahhpuck brings modern logging and evidence-based, repeatable tuning to unsupported standalone ECUs. Freedom FC-03 first, the same process for the rest. Read-only until proven.">
+  <meta name="theme-color" content="#14181f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8b451'/%3E%3Cpath d='M9 22l4-12h6l4 12h-3.4l-.9-3h-5.4l-.9 3zm5.1-5.6h3.8L16 10.5z' fill='%231d1b14'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="landing/landing.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Ahhpuck home">
+        <span class="mark" aria-hidden="true">A</span>
+        <span class="brand-text"><strong>Ahhpuck</strong><small>Freedom ECU</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#loop">How it works</a>
+        <a href="#parameters">Parameters</a>
+        <a href="#learning">Learning</a>
+        <a href="#built">Built</a>
+        <a href="#testing">Testing</a>
+        <a href="#mission">Mission</a>
+        <a class="button primary small" href="#get-started">Get started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">GRASSROOTS ENGINE MANAGEMENT · FREEDOM FC-03 FIRST</p>
+          <h1>Unsupported is <em>not obsolete.</em></h1>
+          <p class="lede">Thousands of capable standalone ECUs sit in secondhand boxes because their software stopped at Windows XP. Ahhpuck gives them modern logging, evidence-based tuning and a safe, repeatable process. Starting with the Freedom FC-03 on a 4A-GE 20V, then the same loop for the rest.</p>
+          <div class="cta-row">
+            <a class="button primary" href="#loop">See how it works</a>
+            <a class="button ghost" href="#built">What is built</a>
+          </div>
+          <ul class="hero-facts" aria-label="Key facts">
+            <li><b>Lower entry price</b> secondhand hardware, modern tooling</li>
+            <li><b>Greater logging</b> than the original software ever offered</li>
+            <li><b>Improved tuning</b> one evidence-backed step at a time</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="device">
+            <div class="device-top">
+              <span class="pill live"><i></i>LIVE · 20 Hz</span>
+              <span class="pill">AE111 BLACKTOP</span>
+            </div>
+            <div class="gauges">
+              <div class="gauge big">
+                <small>RPM</small>
+                <strong data-tick="rpm">4 850</strong>
+                <div class="bar"><i data-bar="rpm" style="width:58%"></i></div>
+              </div>
+              <div class="gauge">
+                <small>LAMBDA</small>
+                <strong data-tick="lambda">0.92</strong>
+                <span class="ok">target 0.90</span>
+              </div>
+              <div class="gauge">
+                <small>LOAD</small>
+                <strong data-tick="load">72<span class="unit">%</span></strong>
+                <span>cell 11 × 7</span>
+              </div>
+              <div class="gauge">
+                <small>IGNITION</small>
+                <strong data-tick="ign">24<span class="unit">°</span></strong>
+                <span>not auto-advanced</span>
+              </div>
+              <div class="gauge">
+                <small>COOLANT</small>
+                <strong data-tick="clt">84<span class="unit">°C</span></strong>
+                <span class="ok">in window</span>
+              </div>
+              <div class="gauge">
+                <small>KNOCK</small>
+                <strong>0</strong>
+                <span class="ok">clear</span>
+              </div>
+              <div class="gauge">
+                <small>BATTERY</small>
+                <strong>13.8<span class="unit">V</span></strong>
+                <span class="ok">min 12.0</span>
+              </div>
+            </div>
+            <svg class="trace" viewBox="0 0 320 90" preserveAspectRatio="none">
+              <path class="grid" d="M0 22h320M0 45h320M0 68h320"/>
+              <path class="afr" d="M0 50 C30 40 45 62 70 48 S120 36 150 52 S200 70 230 46 S290 30 320 44"/>
+              <path class="rpm" d="M0 78 C40 72 60 40 95 36 S150 20 190 28 S250 16 320 10"/>
+            </svg>
+            <div class="proposal">
+              <div class="proposal-head"><span class="tag">NEXT EXPERIMENT</span><span class="tag safe">BOUNDED</span></div>
+              <p>Fuel cell 11×7 <b>−1.5 %</b>. Expected λ 0.92 → 0.90. Stop on knock, lean &gt; 1.05 or coolant &gt; 98 °C. Rollback: baseline <code>b7e2…</code>.</p>
+              <div class="proposal-actions"><span class="button tiny primary">Approve &amp; run</span><span class="button tiny ghost">Reject</span></div>
+            </div>
+          </div>
+          <div class="glow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Status strip -->
+    <section class="strip">
+      <div class="wrap strip-inner stats">
+        <div><strong>8</strong><span>offline analysis tools built</span></div>
+        <div><strong>21</strong><span>automated tests, Python and Swift</span></div>
+        <div><strong>9</strong><span>release gates before any write</span></div>
+        <div><strong>10</strong><span>unsupported ECU families on the register</span></div>
+      </div>
+    </section>
+
+    <!-- The loop -->
+    <section class="section" id="loop">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">HOW IT SHOULD WORK</p>
+          <h2>One closed loop, from first plug-in to a learned improvement.</h2>
+          <p class="sub">This is the flow the app, the workbench and the command-line tools all implement. Every arrow is a file on disk: raw capture, normalized telemetry, proposal, approval record, assessment, ledger entry.</p>
+        </div>
+
+        <div class="flow" role="img" aria-label="Flow: connect, identify, profile and parameters, baseline, propose, approve, test, assess, then learn and loop back to propose.">
+          <div class="flow-row">
+            <div class="node"><span class="k">1</span><b>Connect</b><small>USB / serial, bridge or replay</small></div>
+            <div class="node"><span class="k">2</span><b>Identify</b><small>ECU, firmware, channels</small></div>
+            <div class="node param"><span class="k">3</span><b>Profile &amp; parameters</b><small>engine, sensors, purpose, limits</small></div>
+            <div class="node"><span class="k">4</span><b>Baseline</b><small>immutable, hashed, repeated</small></div>
+          </div>
+          <div class="flow-row loop-row">
+            <div class="node"><span class="k">5</span><b>Propose</b><small>one bounded change</small></div>
+            <div class="node gate"><span class="k">6</span><b>Approve</b><small>human, checklist, no override of criticals</small></div>
+            <div class="node"><span class="k">7</span><b>Test</b><small>controlled run, stop conditions live</small></div>
+            <div class="node"><span class="k">8</span><b>Assess</b><small>λ error, repeatability, coverage</small></div>
+          </div>
+          <div class="flow-return"><span>9 · Learn</span> ledger entry → next proposal is smaller, or stop</div>
+        </div>
+
+        <div class="flow-notes">
+          <div><b>Monitor mode</b> covers steps 1–4 and is the first vehicle-capable release.</div>
+          <div><b>Engineer mode</b> adds 5 and 8 as reports. Nothing is sent to the ECU.</div>
+          <div><b>Optimize mode</b> closes the loop with fuel-only proposals behind every gate.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parameters -->
+    <section class="section alt" id="parameters">
+      <div class="wrap two-col">
+        <div>
+          <p class="eyebrow">SETTING THE PARAMETERS</p>
+          <h2>Limits are set before the engine starts, and they are the real ones.</h2>
+          <p class="sub">The values below are read from <code>config/tuning-safety-policy.json</code>, the same file the safety gate enforces. They are provisional and must be validated for your engine and sensors, but they are never invented at run time.</p>
+          <ul class="rule-list">
+            <li>never learn from a protection fault</li>
+            <li>never combine fuel and ignition changes in one experiment</li>
+            <li>never extrapolate unknown cells without a review flag</li>
+            <li>never let an LLM authorize an ECU write</li>
+            <li>always retain source map, candidate diff and rollback copy</li>
+          </ul>
+        </div>
+        <div class="policy">
+          <div class="policy-head"><span class="tag">HARD LIMITS</span><span class="tag">policy 0.1-provisional</span></div>
+          <ul class="limits">
+            <li><span>Max fuel cell change</span><i><b style="width:20%"></b></i><code>2.0 %</code></li>
+            <li><span>Max ignition cell change</span><i><b style="width:10%"></b></i><code>1.0 °</code></li>
+            <li><span>Max RPM</span><i><b style="width:78%"></b></i><code>7 800</code></li>
+            <li><span>Max coolant</span><i><b style="width:84%"></b></i><code>105 °C</code></li>
+            <li><span>Max intake air temp</span><i><b style="width:52%"></b></i><code>65 °C</code></li>
+            <li><span>Min battery voltage</span><i><b style="width:75%"></b></i><code>12.0 V</code></li>
+            <li><span>Max knock level</span><i><b style="width:15%"></b></i><code>0.15</code></li>
+            <li><span>Min oil pressure under load</span><i><b style="width:45%"></b></i><code>180 kPa</code></li>
+          </ul>
+          <div class="policy-head"><span class="tag safe">REQUIRED EVIDENCE</span></div>
+          <ul class="checks">
+            <li>original map backup</li><li>engine profile verified</li><li>injector data verified</li><li>fuel pressure verified</li>
+            <li>wideband calibrated</li><li>ignition offset verified</li><li>sensor plausibility passed</li><li>repeatable log evidence</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning -->
+    <section class="section" id="learning">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">LEARNING FROM EVIDENCE</p>
+          <h2>An improvement only counts when it repeats.</h2>
+          <p class="sub">Every iteration compares a baseline, a candidate and a repeat of the candidate. The result goes into an append-only local ledger. Critical reports cannot be reused, and a candidate without a repeat run stays <em>not assessed</em>.</p>
+        </div>
+        <div class="learn-grid">
+          <div class="card chart-card">
+            <div class="card-top"><h3>Lambda error by run</h3><span class="tag">tools/telemetry_stats.py</span></div>
+            <svg viewBox="0 0 360 170" class="bars" role="img" aria-label="Bar chart: baseline lambda error is highest, candidate lower, repeat matches candidate.">
+              <g class="axis"><path d="M40 20v120h300"/><text x="34" y="26">.06</text><text x="34" y="82">.03</text><text x="34" y="142">0</text></g>
+              <g class="bar-base"><rect x="80" y="36" width="54" height="104"/><text x="107" y="158">baseline</text><text class="v" x="107" y="30">0.052</text></g>
+              <g class="bar-cand"><rect x="170" y="88" width="54" height="52"/><text x="197" y="158">candidate</text><text class="v" x="197" y="82">0.026</text></g>
+              <g class="bar-rep"><rect x="260" y="92" width="54" height="48"/><text x="287" y="158">repeat</text><text class="v" x="287" y="86">0.024</text></g>
+            </svg>
+            <p class="caption">Illustrative numbers from the example captures in <code>tools/examples/</code>. Repeatability is reported separately and must pass on its own.</p>
+          </div>
+          <div class="card">
+            <div class="card-top"><h3>Quality gate</h3><span class="tag safe">target 96 %</span></div>
+            <ul class="stack">
+              <li><span>Objective score</span><i><b style="width:88%"></b></i></li>
+              <li><span>Safety-pass fraction</span><i><b style="width:100%"></b></i></li>
+              <li><span>Map coverage</span><i><b style="width:61%"></b></i></li>
+              <li><span>Repeatability</span><i><b style="width:93%"></b></i></li>
+              <li><span>Sensor confidence</span><i><b style="width:70%" class="low"></b></i></li>
+            </ul>
+            <p class="caption">Evidence-weighted. Missing evidence counts as zero, so a few good dyno pulls or an AI opinion cannot reach the target alone.</p>
+          </div>
+          <div class="card ledger-card">
+            <div class="card-top"><h3>Learning ledger</h3><span class="tag">append-only · sqlite</span></div>
+            <ol class="ledger">
+              <li><code>#01</code><span>baseline captured</span><em class="ok">clean</em></li>
+              <li><code>#02</code><span>fuel 11×7 −1.5 %</span><em class="ok">improved · repeated</em></li>
+              <li><code>#03</code><span>fuel 11×8 −1.5 %</span><em class="warn">not repeatable</em></li>
+              <li><code>#04</code><span>fuel 11×8 −0.8 %</span><em class="ok">improved · repeated</em></li>
+              <li><code>#05</code><span>knock event in run</span><em class="bad">aborted · not reusable</em></li>
+            </ol>
+            <p class="caption">When a step fails to repeat, the next proposal is smaller. When protection fires, nothing is learned from that run.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is built -->
+    <section class="section alt" id="built">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">WHAT WE HAVE BUILT, DEFINED AND ARE IMPLEMENTING</p>
+          <h2>Honest status, straight from the repository.</h2>
+        </div>
+        <div class="board">
+          <div class="col">
+            <h3><i class="dot good"></i>Built</h3>
+            <ul>
+              <li><b>FCP map parser &amp; inventory</b><span>structure of every supplied Freedom base map preserved as JSON</span></li>
+              <li><b>Telemetry statistics</b><span>λ error, improvement, repeatability, coverage, knock events</span></li>
+              <li><b>Tuning iteration assessor</b><span>baseline → candidate → repeat decision</span></li>
+              <li><b>Safety gate</b><span>enforces the hard limits and required evidence</span></li>
+              <li><b>Concept optimizer</b><span>drift / grip / 0–100 / top-speed scoring, bounded fuel-only proposals</span></li>
+              <li><b>Learning ledger service</b><span>deterministic, offline, append-only</span></li>
+              <li><b>iOS core</b><span>readiness, trial session state machine, assessment, dashboard controller</span></li>
+              <li><b>Mac core</b><span>live safety monitor with watchdog, protocol recorder, serial port</span></li>
+              <li><b>Browser workbench</b><span>Web Serial read-only capture and experiment review</span></li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3><i class="dot info"></i>Defined</h3>
+            <ul>
+              <li><b>Closed-loop tuning workflow</b><span>baseline, proposal, controlled run, assessment, rollback</span></li>
+              <li><b>Safety policy</b><span>hard limits, required evidence, write blockers, rules</span></li>
+              <li><b>Normalized telemetry model</b><span>units, timestamps, gaps, plausibility</span></li>
+              <li><b>Shared core contract</b><span>TransportAdapter, FrameDecoder, Normalizer, SafetyMonitor, Recorder, ProfileEngine, OptimizerGate, WriteController</span></li>
+              <li><b>User stories &amp; release gates</b><span>owner, tuner and developer journeys</span></li>
+              <li><b>Evidence labels</b><span>documented · observed · inferred · unverified</span></li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3><i class="dot accent"></i>Implementing</h3>
+            <ul>
+              <li><b>FC-03 identity capture</b><span>read-only serial at 9600 bps, FCSS traffic confirmed first</span></li>
+              <li><b>Frame decoder</b><span>version and profile aware, read-only</span></li>
+              <li><b>iOS USB transport</b><span>placeholder today, bridge mode as fallback</span></li>
+              <li><b>SwiftUI screens</b><span>live, run, review, approval, setup</span></li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3><i class="dot faint"></i>Not yet</h3>
+            <ul>
+              <li><b>Any ECU write</b><span>blocked until semantics, checksum, protocol and human approval</span></li>
+              <li><b>Ignition proposals</b><span>need verified timing offset and knock evidence</span></li>
+              <li><b>Second ECU adapter</b><span>promoted only after the FC-03 trial produces real results</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testing -->
+    <section class="section" id="testing">
+      <div class="wrap two-col">
+        <div>
+          <p class="eyebrow">TESTING</p>
+          <h2>The safety claims are tests, not slogans.</h2>
+          <p class="sub">Python unit tests cover the analysis tools. Swift tests cover the iOS trial workflow and the Mac live monitor. Each test below is a real test name in the repository.</p>
+          <pre class="code"><code><span class="c"># run them</span>
+python3 -m unittest discover -s tools -p "test_*.py"
+cd ios-app &amp;&amp; swift test
+cd mac-app &amp;&amp; swift test</code></pre>
+        </div>
+        <div class="tests">
+          <div class="test-group"><h3>Python · tools</h3>
+            <ul>
+              <li>test_no_table_is_assigned_a_guess</li>
+              <li>test_common_base_map_structure</li>
+              <li>test_compare_requires_repeat_run</li>
+              <li>test_compare_reports_improvement</li>
+              <li>test_repeatability</li>
+              <li>test_summary_and_completeness</li>
+              <li>test_record_is_append_only_and_queryable</li>
+              <li>test_critical_report_is_not_reusable</li>
+            </ul>
+          </div>
+          <div class="test-group"><h3>Swift · iOS core</h3>
+            <ul>
+              <li>testDashboardIsAlwaysReadOnly</li>
+              <li>testCriticalFrameIsMarkedAborted</li>
+              <li>testUSBTransportDoesNotPretendToWork</li>
+              <li>testReadinessStopsOnCriticalFault</li>
+              <li>testReadinessPausesOnMissingFuelPressureAndIgnitionReference</li>
+              <li>testTrialCannotCaptureBeforeReadiness</li>
+              <li>testFirstTrialRunsEndToEndWithoutEnablingWrites</li>
+              <li>testExperimentAssessmentRequiresRepeatableImprovement</li>
+              <li>testExperimentAssessmentAbortsOnKnock</li>
+            </ul>
+          </div>
+          <div class="test-group"><h3>Swift · Mac core</h3>
+            <ul>
+              <li>testWriteIsBlockedInReadOnlyMode</li>
+              <li>testLiveMonitorAbortsOnKnock</li>
+              <li>testLiveMonitorWatchdogAborts</li>
+              <li>testRecoveredSettings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="section alt" id="mission">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">THE GREATER GOAL</p>
+          <h2>One process. Many unsupported ECUs.</h2>
+          <p class="sub">The Freedom FC-03 is the proving ground. Once the loop is verified on real vehicle evidence, the same transport, normalized telemetry, safety gates and learning ledger become adapters for other capable ECUs that lost their software, not their value.</p>
+        </div>
+
+        <div class="hub" role="img" aria-label="Diagram: many ECU adapters feed one normalized telemetry contract, which feeds the shared safety, assessment and learning core.">
+          <div class="hub-left">
+            <span>Freedom FC-03</span><span>MoTeC M4 / M48 / M800</span><span>Autronic SM2 / SM4</span><span>Emerald K3 / K6</span><span>Haltech Platinum</span><span>AEM Infinity / Series 2</span><span>Link G1 – G4+</span><span>DTA S-series</span><span>VEMS V3</span><span>MegaSquirt MS2 / MS3</span><span>rusEFI / Speeduino</span>
+          </div>
+          <div class="hub-arrow" aria-hidden="true"></div>
+          <div class="hub-core">
+            <b>Normalized telemetry contract</b>
+            <ul>
+              <li>Transport adapter</li><li>Frame decoder</li><li>Live safety monitor</li><li>Session recorder</li><li>Optimizer gate</li><li>Learning ledger</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-points">
+          <div><b>Lower entry price</b><span>A secondhand standalone plus a serial adapter instead of a new ECU, harness and licence.</span></div>
+          <div><b>Greater logging</b><span>Modern sample rates, phone dynamics, hashes and exports the original software never had.</span></div>
+          <div><b>Improved tuning</b><span>Evidence-weighted, repeatable, reversible. The same loop whatever the box says on the lid.</span></div>
+          <div><b>Sky is the limit</b><span>Every adapter starts at log import or read-only telemetry. Writes need separate proof, every time.</span></div>
+        </div>
+        <p class="caption center">Candidate ECUs are documented in <code>notes/10-future-platform-candidates.md</code>. None is promoted into development until the FC-03 trial passes its promotion gates.</p>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="section alt" id="roadmap">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">RELEASE GATES · FC-03 TRIAL</p>
+          <h2>Nine gates before a single write.</h2>
+          <p class="sub">Each gate must pass before the next is considered. No release may claim a safe tune because the dashboard works.</p>
+        </div>
+        <ol class="gates">
+          <li class="done"><span>1</span>Replay and simulated telemetry</li>
+          <li class="done"><span>2</span>USB enumeration without ECU commands</li>
+          <li class="now"><span>3</span>Read-only ECU identity capture</li>
+          <li><span>4</span>Read-only live monitor and logging</li>
+          <li><span>5</span>Fault injection: disconnect, stale frames, bad sensors, power loss</li>
+          <li><span>6</span>Vehicle validation at idle and light load</li>
+          <li><span>7</span>Controlled load testing with independent instrumentation</li>
+          <li><span>8</span>Human-reviewed proposal generation</li>
+          <li><span>9</span>Only then, a restricted write experiment</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Get started -->
+    <section class="section cta" id="get-started">
+      <div class="wrap cta-inner">
+        <div>
+          <p class="eyebrow">GET STARTED</p>
+          <h2>Begin with a baseline you can trust.</h2>
+          <p class="sub">Clone the repository, open the workbench, and try the full first-trial workflow against the included fixture before an ECU is ever connected.</p>
+          <div class="cta-row">
+            <a class="button primary" href="https://github.com/jlilburne86/ahhpuck">View on GitHub</a>
+            <a class="button ghost" href="web-ui/index.html">Open the workbench</a>
+          </div>
+        </div>
+        <pre class="code"><code><span class="c"># compare two local captures, no AI service required</span>
+python3 tools/telemetry_stats.py \
+  tools/examples/baseline-telemetry.json \
+  tools/examples/candidate-telemetry.json \
+  --candidate-repeat tools/examples/candidate-repeat-telemetry.json \
+  --output notes/telemetry-comparison.json</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="brand">
+        <span class="mark" aria-hidden="true">A</span>
+        <span class="brand-text"><strong>Ahhpuck</strong><small>Freedom ECU research workspace</small></span>
+      </div>
+      <p>Read-only by default. No automatic ECU writes. Demo telemetry on this page is illustrative only. Freedom and FC-03 are trademarks of their respective owners; this is an independent research project.</p>
+      <nav aria-label="Footer">
+        <a href="#loop">How it works</a>
+        <a href="#built">Status</a>
+        <a href="#mission">Mission</a>
+        <a href="web-ui/index.html">Workbench</a>
+        <a href="https://github.com/jlilburne86/ahhpuck">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="landing/landing.js"></script>
+</body>
+</html>
