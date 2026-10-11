@@ -61,6 +61,25 @@ a transcription error and has been corrected throughout.
   revision, the donor engine or whether a map backup exists. Those come from
   the read-only identity capture, which is already release gate 3.
 
+## Seller's further photos (11 October 2026)
+
+- **Harness side:** one grey moulded header with three cavities, all male blade
+  pins, Toyota factory-ECU style. A three-cavity header is normal for Toyota
+  ECUs of the era, so the shape alone does not separate AE86-family from
+  AE111; the pin count per cavity would. The photo is angled, so no count yet.
+  A straight-on photo has been requested.
+- **Label side:** a 10-pin white Molex-style socket (2 × 5), a small rotary
+  dial marked OFF, 0, 1, 2, 3, 4, 5…, a small indicator hole, four screws. The
+  socket is where the FCSS serial cable or an option harness attaches, not
+  part of the loom question.
+- **Mounting:** a bracket on the connector end with a slotted tab.
+
+Lead from hiro0719jp's screenshots: on connection FCSS prints the model and
+serial itself ("Internal Ver 6.51, S/N FC-03a-C04041" for their AE111-coupler
+unit). The read-only identity capture (release gate 3) will therefore report
+whether this unit is an FC-03, FC-03a or FC-03K and its internal version
+without needing the Kunugi table. Their lot is C04; ours is J01, a later build.
+
 ## Still to confirm
 
 1. `Ab-1` coupler mapping and the `E` / `U` option letters, from Kunugi's two
