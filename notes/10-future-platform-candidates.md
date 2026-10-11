@@ -4,7 +4,7 @@
 
 These platforms are documented as future candidates only. They are not part of the current product target, transport implementation, safety approval, or tuning workflow.
 
-The active target remains the user's Freedom Computer FC-03, option Ab-1ESU, controlling an AE111 4A-GE 20V Blacktop installed in an AE86.
+The active target remains the user's Freedom Computer FC-03, option Ab-1EU, controlling an AE111 4A-GE 20V Blacktop installed in an AE86.
 
 No additional ECU is promoted into development until the Freedom FC-03 trial has been connected, captured, assessed, and reviewed against real vehicle evidence.
 

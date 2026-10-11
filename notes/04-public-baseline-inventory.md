@@ -54,7 +54,7 @@ Local capture: `downloads/public_baselines/hiro0719jp_fcst_map_editor.html`
 
 ## Important negative finding
 
-No public, provenance-complete AE111 Blacktop FC-03/Ab-1ESU FCP tune was found in this pass. Public material mostly provides screenshots, setup reports, base-map families, or owner-specific adjustments. Therefore the initial AE111 baseline must be built from the car’s verified hardware plus read-back data, not copied from a screenshot or generic AE86 map.
+No public, provenance-complete AE111 Blacktop FC-03/Ab-1EU FCP tune was found in this pass. Public material mostly provides screenshots, setup reports, base-map families, or owner-specific adjustments. Therefore the initial AE111 baseline must be built from the car’s verified hardware plus read-back data, not copied from a screenshot or generic AE86 map.
 
 ## Baseline ranking for our optimizer
 
