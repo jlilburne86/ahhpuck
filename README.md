@@ -8,7 +8,7 @@ The first engineering milestone is read-only documentation, file analysis, ECU i
 
 ## Landing page
 
-The project landing page is `index.html` at the repository root, with its assets in `landing/`. It is a static page, so any local server pointed at the repository (or its parent folder) will serve it, for example `python3 -m http.server 3000`. The telemetry shown on the page is illustrative demo data, not an ECU capture.
+The AhhPuck landing page is `index.html` at the repository root, with its assets in `landing/`. It is a static page, so any local server pointed at the repository (or its parent folder) will serve it, for example `python3 -m http.server 3000`. The app screenshots in `landing/img/` are captures of the local mobile prototype and browser workbench running the demo fixture, not ECU data.
 
 ## Workspace layout
 
