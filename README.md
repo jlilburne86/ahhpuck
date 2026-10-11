@@ -8,7 +8,7 @@ The first engineering milestone is read-only documentation, file analysis, ECU i
 
 ## Landing page
 
-The AhhPuck landing page is `index.html` at the repository root, with its assets in `landing/`. It is a sub-URL of wheelhave.com, so it carries the Wheel Have site header, an AhhPuck sub-bar in the same frame as the PuckIt one, and the shared footer groups; those links point at wheelhave.com. It is a static page, so any local server pointed at the repository (or its parent folder) will serve it, for example `python3 -m http.server 3000`. The app screenshots in `landing/img/` are captures of the local mobile prototype and browser workbench running the demo fixture, not ECU data.
+The AhhPuck landing page is `index.html` at the repository root, with its assets in `landing/`. It is a sub-URL of wheelhave.com, so it carries the Wheel Have site header, an AhhPuck sub-bar in the same frame as the PuckIt one, and the shared footer groups; those links point at wheelhave.com. The page is bilingual: all copy lives in `landing/i18n.js` in English and Japanese, the English/日本語 switch remembers the choice under the same key the PuckIt pages use, and `?lang=ja` opens it in Japanese. It is a static page, so any local server pointed at the repository (or its parent folder) will serve it, for example `python3 -m http.server 3000`. The app screenshots in `landing/img/` are captures of the local mobile prototype and browser workbench running the demo fixture, not ECU data.
 
 ## Workspace layout
 
