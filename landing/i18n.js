@@ -824,6 +824,54 @@ window.AHHPUCK_I18N = {
   "en": "# compare two local captures, no AI service needed",
   "ja": "# ローカルの 2 つの記録を比較。AI サービス不要"
  },
+ "alt.live": {
+  "en": "AhhPuck mobile app, Live screen: RPM, lambda against target, coolant, oil pressure, battery and knock, all read-only.",
+  "ja": "AhhPuck モバイルアプリの Live 画面：回転数、目標に対するラムダ、水温、油圧、バッテリー、ノック。すべて読み取り専用。"
+ },
+ "alt.run": {
+  "en": "Run screen for recording a baseline, candidate or repeat run, with pre-flight checks.",
+  "ja": "ベースライン、候補、再現走行を記録する Run 画面。事前チェックつき。"
+ },
+ "alt.review": {
+  "en": "Review screen showing a clear decision: accept the candidate and prepare a smaller next step.",
+  "ja": "明確な判定を示す Review 画面：候補を採用し、より小さな次の一歩を準備。"
+ },
+ "alt.ledger": {
+  "en": "Ledger screen listing past experiments and their results.",
+  "ja": "過去の実験と結果を一覧する Ledger 画面。"
+ },
+ "alt.setup": {
+  "en": "Setup screen with the car profile, connection and identity, and pre-flight checks.",
+  "ja": "車両プロファイル、接続と識別、事前チェックのある Setup 画面。"
+ },
+ "alt.wb1": {
+  "en": "Workbench live dashboard with a demo runtime trace, run status panel and serial monitor.",
+  "ja": "デモ走行の波形、走行状態パネル、シリアルモニターを表示したワークベンチのライブダッシュボード。"
+ },
+ "alt.wb2": {
+  "en": "Workbench review experiment view.",
+  "ja": "ワークベンチの実験評価画面。"
+ },
+ "alt.wb3": {
+  "en": "Workbench engine profile and connection and safety settings.",
+  "ja": "ワークベンチのエンジンプロファイルと接続・安全設定。"
+ },
+ "aria.facts": {
+  "en": "Why it matters",
+  "ja": "なぜ重要か"
+ },
+ "aria.flow": {
+  "en": "Flow: connect, identify, profile and limits, baseline, propose, approve, test, assess, then learn and loop back.",
+  "ja": "流れ：接続、識別、プロファイルと制限、ベースライン、提案、承認、試験、評価、そして学習してループに戻る。"
+ },
+ "aria.hub": {
+  "en": "Many ECU adapters feed one shared core.",
+  "ja": "多くの ECU アダプターがひとつの共通コアにつながる。"
+ },
+ "aria.screens": {
+  "en": "App screens",
+  "ja": "アプリの画面"
+ },
  "lang.label": {
   "en": "Language / 言語",
   "ja": "Language / 言語"
