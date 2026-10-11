@@ -3,36 +3,79 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AhhPuck — Unsupported is not obsolete</title>
+  <title>AhhPuck by Wheel Have — Unsupported is not obsolete</title>
   <meta name="description" content="AhhPuck brings modern logging and evidence-based, repeatable tuning to unsupported standalone ECUs. Freedom FC-03 first, the same process for the rest. Read-only until proven.">
   <meta name="theme-color" content="#14181f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8b451'/%3E%3Cpath d='M9 22l4-12h6l4 12h-3.4l-.9-3h-5.4l-.9 3zm5.1-5.6h3.8L16 10.5z' fill='%231d1b14'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="landing/landing.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="nav" id="top">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="AhhPuck home">
-        <span class="mark" aria-hidden="true">A</span>
-        <span class="brand-text"><strong>AhhPuck</strong><small>Freedom ECU</small></span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
+  <header class="wh-hdr" id="top">
+    <div class="wh-bar">
+      <a class="wh-logo" href="https://wheelhave.com/" aria-label="Wheel Have home"><img src="landing/img/wheelhave-mark.webp" alt="Wheel Have" width="32" height="32"></a>
+      <form class="wh-search" role="search" action="https://wheelhave.com/marketplace" method="get">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="5.2"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg>
+        <input type="search" name="q" placeholder="Search cars, wheels, parts…" aria-label="Search cars, wheels, parts">
+      </form>
+      <nav class="wh-nav" aria-label="Main">
+        <a class="wh-pill" href="https://wheelhave.com/marketplace">Browse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a class="wh-pill" href="https://wheelhave.com/puckit">PuckIt <i class="wh-dot" aria-hidden="true"></i></a>
+        <a class="wh-pill" href="https://wheelhave.com/messages">Messages</a>
+      </nav>
+      <a class="wh-sell" href="https://wheelhave.com/sell">+ Sell</a>
+      <a class="wh-signin" href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a>
+      <button class="wh-burger" id="whBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="wh-mobile">
+        <svg class="ic-menu" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
       </button>
-      <nav class="nav-links" id="navLinks">
-        <a href="#app">The app</a>
-        <a href="#loop">How it works</a>
-        <a href="#parameters">Parameters</a>
-        <a href="#learning">Learning</a>
-        <a href="#built">Built</a>
-        <a href="#testing">Testing</a>
-        <a href="#mission">Mission</a>
-        <a class="button primary small" href="#get-started">Get started</a>
+    </div>
+    <div class="wh-mobile" id="wh-mobile" hidden>
+      <nav aria-label="Menu">
+        <ul>
+          <li><a href="https://wheelhave.com/marketplace">Browse</a></li>
+          <li><a href="https://wheelhave.com/sell">Sell</a></li>
+          <li><a href="https://wheelhave.com/puckit">PuckIt</a></li>
+          <li class="wh-mobile-group"><span>AhhPuck</span>
+            <ul>
+              <li><a href="#loop">How it works</a></li>
+              <li><a href="#app">The app</a></li>
+              <li><a href="#parameters">Safety</a></li>
+              <li><a href="#built">Status</a></li>
+              <li><a href="#mission">Mission</a></li>
+              <li><a class="strong" href="https://github.com/jlilburne86/ahhpuck">View on GitHub</a></li>
+            </ul>
+          </li>
+          <li><a href="https://wheelhave.com/messages">Messages</a></li>
+        </ul>
+        <div class="wh-mobile-rule"></div>
+        <ul>
+          <li class="wh-mobile-label">You</li>
+          <li><a href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a></li>
+        </ul>
       </nav>
     </div>
   </header>
+
+  <div class="pks">
+    <nav class="pks-bar" aria-label="AhhPuck">
+      <a class="pks-mark" href="#top" aria-label="AhhPuck, how it works"><span class="pks-wordmark">AhhPuck</span></a>
+      <span class="pks-sep" aria-hidden="true"></span>
+      <div class="pks-links" id="pksLinks">
+        <a class="pks-chip" href="#loop" data-section="loop">How it works</a>
+        <a class="pks-chip" href="#app" data-section="app">The app</a>
+        <a class="pks-chip" href="#parameters" data-section="parameters learning">Safety</a>
+        <a class="pks-chip" href="#built" data-section="built testing">Status</a>
+        <a class="pks-chip" href="#mission" data-section="mission roadmap">Mission</a>
+        <a class="pks-cta" href="https://github.com/jlilburne86/ahhpuck">View on GitHub</a>
+      </div>
+      <span class="pks-fade" id="pksFade" aria-hidden="true"></span>
+    </nav>
+  </div>
 
   <main id="main">
     <!-- Hero -->
@@ -397,21 +440,52 @@ python3 tools/telemetry_stats.py \
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div class="brand">
-        <span class="mark" aria-hidden="true">A</span>
-        <span class="brand-text"><strong>AhhPuck</strong><small>Freedom ECU research workspace</small></span>
+  <footer class="pk-foot">
+    <div class="pk-foot-grid">
+      <div class="pk-foot-brand">
+        <div class="pk-foot-brandline"><a href="#top" aria-label="AhhPuck home"><span class="pks-wordmark">AhhPuck</span></a><span>by Wheel Have</span></div>
+        <p>Modern logging and evidence-based tuning for unsupported standalone ECUs. Read-only until proven, one small reversible step at a time.</p>
       </div>
-      <p>Read-only by default. No automatic ECU writes. Demo telemetry on this page is illustrative only. Freedom and FC-03 are trademarks of their respective owners; this is an independent research project.</p>
-      <nav aria-label="Footer">
-        <a href="#loop">How it works</a>
-        <a href="#built">Status</a>
-        <a href="#mission">Mission</a>
-        <a href="web-ui/index.html">Workbench</a>
-        <a href="https://github.com/jlilburne86/ahhpuck">GitHub</a>
-      </nav>
+      <nav aria-label="Browse"><h2>Browse</h2><ul>
+        <li><a href="https://wheelhave.com/marketplace">All</a></li>
+        <li><a href="https://wheelhave.com/marketplace?category=wheels">Wheels</a></li>
+        <li><a href="https://wheelhave.com/marketplace?category=tires">Tyres</a></li>
+        <li><a href="https://wheelhave.com/marketplace?intent=wtb">Wanted</a></li>
+        <li><a href="https://wheelhave.com/stores">Stores</a></li>
+      </ul></nav>
+      <nav aria-label="Sell"><h2>Sell</h2><ul>
+        <li><a href="https://wheelhave.com/sell">List an item</a></li>
+        <li><a href="https://wheelhave.com/wtb">Post a wanted ad</a></li>
+        <li><a href="https://wheelhave.com/store/create">Set up a store</a></li>
+        <li><a href="https://wheelhave.com/for-shops">For shops</a></li>
+      </ul></nav>
+      <nav aria-label="AhhPuck"><h2>AhhPuck</h2><ul>
+        <li><a href="#loop">How it works</a></li>
+        <li><a href="#app">The app</a></li>
+        <li><a href="#parameters">Safety</a></li>
+        <li><a href="#built">Status</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="https://github.com/jlilburne86/ahhpuck">GitHub</a></li>
+      </ul></nav>
+      <nav aria-label="You"><h2>You</h2><ul>
+        <li><a href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a></li>
+        <li><a href="https://wheelhave.com/account">You</a></li>
+        <li><a href="https://wheelhave.com/messages">Messages</a></li>
+        <li><a href="https://wheelhave.com/saved">Saved</a></li>
+        <li><a href="https://wheelhave.com/puckit/pucks">Pucks</a></li>
+      </ul></nav>
+      <nav aria-label="Help &amp; legal"><h2>Help &amp; legal</h2><ul>
+        <li><a href="https://wheelhave.com/help">Help</a></li>
+        <li><a href="https://wheelhave.com/about">About</a></li>
+        <li><a href="https://wheelhave.com/contact">Contact</a></li>
+        <li><a href="https://wheelhave.com/privacy">Privacy</a></li>
+        <li><a href="https://wheelhave.com/terms">Terms</a></li>
+      </ul></nav>
     </div>
+    <div class="pk-foot-legal"><div>
+      <span>AhhPuck is a read-only research tool. It never writes to an ECU on its own, and nothing on this page is a claim of a safe tune. Freedom and FC-03 are trademarks of their respective owners.</span>
+      <span>By Wheel Have · Open research</span>
+    </div></div>
   </footer>
 
   <script src="landing/landing.js"></script>

@@ -1,18 +1,43 @@
 // Ahhpuck landing page: mobile nav + illustrative hero telemetry.
 (function () {
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  if (toggle && links) {
-    toggle.addEventListener('click', function () {
-      var open = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  // Site header burger (the Wheel Have header's mobile menu).
+  var burger = document.getElementById('whBurger');
+  var mobile = document.getElementById('wh-mobile');
+  if (burger && mobile) {
+    burger.addEventListener('click', function () {
+      var open = mobile.hasAttribute('hidden');
+      if (open) mobile.removeAttribute('hidden'); else mobile.setAttribute('hidden', '');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
-    links.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
-        links.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
+    mobile.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { mobile.setAttribute('hidden', ''); burger.setAttribute('aria-expanded', 'false'); }
     });
+  }
+
+  // AhhPuck sub-bar: mark the chip for the section in view, fade the right edge while more chips hide.
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.pks-chip[data-section]'));
+  var links = document.getElementById('pksLinks');
+  var fade = document.getElementById('pksFade');
+  function setCurrent(id) {
+    chips.forEach(function (c) {
+      var on = c.getAttribute('data-section').split(' ').indexOf(id) !== -1;
+      if (on) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+    });
+  }
+  if (chips.length && 'IntersectionObserver' in window) {
+    var ids = [];
+    chips.forEach(function (c) { ids = ids.concat(c.getAttribute('data-section').split(' ')); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) setCurrent(en.target.id); });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+  if (links && fade) {
+    var update = function () { fade.setAttribute('data-on', links.scrollLeft + links.clientWidth < links.scrollWidth - 2 ? 'true' : 'false'); };
+    update();
+    links.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
   }
 
   // Demo values only. They are not ECU data.
