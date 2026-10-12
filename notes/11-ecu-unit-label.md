@@ -122,7 +122,8 @@ Freedom follows the same coupler, so the same body signals are involved, but
 check which pins the Freedom actually uses on the FCSS wiring sheet):
 
 - early AE86 has an `FS` wire the AE111 ECU has no terminal for — ground it;
-- A/C request (`AC1`) logic is inverted and at a different voltage;
+- A/C request (`AC1`) logic is inverted and at a different voltage — **not
+  applicable to the project car, which has no A/C**; leave the pin unconnected;
 - the speed signal (`SPD`) type differs, so speed may read zero as wired;
 - the AE111 loom is short for the AE86's left cowl-side ECU position; one
   owner extended by about 60 cm.
