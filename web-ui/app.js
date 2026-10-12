@@ -45,11 +45,14 @@ async function connect() {
   }
   try {
     state.port = await navigator.serial.requestPort();
-    await state.port.open({ baudRate: Number($("baudRate").value), dataBits: 8, stopBits: 1, parity: "none" });
+    // Freedom/FCSS link is 9600 bps, 7 data bits, even parity, 1 stop bit.
+    // Evidence: documented (hiro0719jp FCSS article, device-manager settings for FCSS).
+    // Opening at 8N1 garbles every byte, so 7E1 is fixed here rather than user-selectable.
+    await state.port.open({ baudRate: Number($("baudRate").value), dataBits: 7, stopBits: 1, parity: "even" });
     setStatus("Connected", true);
     $("connectButton").disabled = true;
     $("disconnectButton").disabled = false;
-    $("monitorSubtitle") && ($("monitorSubtitle").textContent = `Read-only capture at ${$("baudRate").value} baud`);
+    $("monitorSubtitle") && ($("monitorSubtitle").textContent = `Read-only capture at ${$("baudRate").value} baud, 7E1`);
     addLine("serial port opened", "system");
     readLoop();
   } catch (error) {
