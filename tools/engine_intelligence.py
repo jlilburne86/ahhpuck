@@ -14,7 +14,7 @@ import sys
 TOOLS = Path(__file__).parent
 sys.path.insert(0, str(TOOLS))
 
-from ahhpuck_intelligence import adapter, experiment, explanation, passport, session
+from ahhpuck_intelligence import adapter, capture, experiment, explanation, passport, session
 from ahhpuck_intelligence.contracts import write_json
 from ahhpuck_intelligence.knowledge import load_registry
 from telemetry_stats import load_frames, summarize
@@ -43,6 +43,11 @@ def main() -> None:
     d.add_argument("telemetry", type=Path)
     d.add_argument("--root", type=Path, default=Path("."))
     d.add_argument("--output", type=Path)
+    c = sub.add_parser("capture-bundle")
+    c.add_argument("output", type=Path)
+    c.add_argument("passport", type=Path)
+    c.add_argument("raw_capture", type=Path)
+    c.add_argument("--baud", type=int, default=9600)
     e = sub.add_parser("experiment")
     e.add_argument("output", type=Path)
     e.add_argument("--id", required=True)
@@ -68,12 +73,18 @@ def main() -> None:
             findings.append({"severity": "critical", "code": "telemetry_incomplete", "message": summary["telemetry"]["reason"]})
         if summary["frame_count"] == 0:
             findings.append({"severity": "critical", "code": "no_samples", "message": "No samples were supplied."})
+        if frames and not any("rpm" in (frame.get("decoded", frame) if isinstance(frame, dict) else {}) for frame in frames):
+            findings.append({"severity": "critical", "code": "decoder_required", "message": "Raw serial frames are present, but no verified Freedom decoder has produced canonical telemetry."})
         if summary["map_coverage"] < 0.6:
             findings.append({"severity": "warning", "code": "sparse_coverage", "message": "Insufficient repeated RPM/load cell coverage for a calibration proposal."})
         result = {"summary": summary, "explanation": explanation.build(args.root, "Telemetry baseline inspection", findings, ["ecu.learning.state.known"]), "proposal_status": "blocked" if findings else "review_required", "write_authorization": "never"}
         if args.output:
             write_json(args.output, result)
             return
+    elif args.command == "capture-bundle":
+        result = capture.bundle(args.output, args.passport, args.raw_capture, baud=args.baud)
+        print(json.dumps(result, indent=2, sort_keys=True))
+        return
     else:
         result = experiment.new(args.id, json.loads(args.proposal))
     write_json(args.output, result) if hasattr(args, "output") and args.output else print(json.dumps(result, indent=2, sort_keys=True))

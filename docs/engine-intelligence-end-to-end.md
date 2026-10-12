@@ -42,6 +42,7 @@ From the repository root:
 ```sh
 python3 tools/engine_intelligence.py knowledge-check
 python3 tools/engine_intelligence.py diagnose tools/examples/baseline-telemetry.json
+python3 tools/engine_intelligence.py capture-bundle /tmp/ahhpuck-session /tmp/ahhpuck-passport.json tools/examples/raw-freedom-capture.json
 python3 tools/fcp_parser.py "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP"
 python3 -m unittest discover -s tools -p 'test_*.py'
 ```
@@ -61,3 +62,16 @@ These are gates for a later release, not missing safety shortcuts:
 
 Until those exist, the correct product behavior is read-only inspection and a clear
 request for the next measurement or human review.
+
+## What makes the full path possible
+
+The first complete path does not require an ECU write or an invented decoder:
+
+1. Chrome/Edge or the Mac app opens the documented 9600/7E1 link.
+2. Every received byte chunk is timestamped, sequenced and exported with the transport settings.
+3. The local bundle command copies the raw capture and passport, hashes both, and records that telemetry is not decoded.
+4. A verified adapter is the only component allowed to turn frames into canonical channels such as RPM, lambda, load, temperature and pressure.
+5. The existing deterministic statistics, safety gate and experiment ledger can then analyse canonical frames.
+
+This makes a real cable session useful immediately, while making the missing
+protocol knowledge visible instead of silently turning bytes into unsafe advice.
