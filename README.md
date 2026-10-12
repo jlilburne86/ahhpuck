@@ -76,6 +76,14 @@ The native SwiftUI/Xcode implementation is in [ios-app](ios-app/README.md). It i
 
 The first-trial state machine runs profile/readiness → baseline → candidate → repeat → assessment → supervised approval locally. It is deliberately fixture-backed and read-only until the FC-03 protocol is verified.
 
+The complete standalone handoff is [docs/engine-intelligence-end-to-end.md](docs/engine-intelligence-end-to-end.md). The local orchestration CLI connects the source registry, engine passport, hashed session bundle, telemetry diagnosis, evidence-linked explanation, and human-only experiment state machine. It remains read-only by design and reports `write_authorization: never`.
+
+```sh
+python3 tools/engine_intelligence.py knowledge-check
+python3 tools/engine_intelligence.py diagnose tools/examples/baseline-telemetry.json
+python3 tools/engine_intelligence.py capture-bundle /tmp/ahhpuck-session /tmp/ahhpuck-passport.json tools/examples/raw-freedom-capture.json
+```
+
 Record and explain an iteration in the local learning ledger:
 
 ```sh
