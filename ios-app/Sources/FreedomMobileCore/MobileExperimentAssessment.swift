@@ -39,7 +39,7 @@ public struct MobileExperimentAssessment: Codable, Equatable, Sendable {
 /// Deterministic assessment used by the native UI and future local AI explanations.
 /// It cannot authorize ECU writes and requires a repeat run before accepting an improvement.
 public enum MobileExperimentAssessor {
-    public static func assess(baseline: [MobileTelemetryFrame], candidate: [MobileTelemetryFrame], repeatRun: [MobileTelemetryFrame], targetLambda: Double = 0.90, previousChangeFraction: Double = 0.01) -> MobileExperimentAssessment {
+    public static func assess(baseline: [MobileTelemetryFrame], candidate: [MobileTelemetryFrame], repeatRun: [MobileTelemetryFrame], targetLambda: Double = 0.90, previousChangeFraction: Double = 0.01, remainingErrorFraction: Double? = nil) -> MobileExperimentAssessment {
         let baselineError = meanError(baseline, target: targetLambda)
         let candidateError = meanError(candidate, target: targetLambda)
         let repeatError = meanError(repeatRun, target: targetLambda)
@@ -57,7 +57,16 @@ public enum MobileExperimentAssessor {
         let critical = concerns.contains { $0.severity == .critical }
         let accepted = !critical && improvement.map { $0 > 0 } == true && repeatable == true
         let decision: MobileExperimentDecision = critical ? .stopAndAbort : accepted ? .acceptCandidate : (improvement.map { $0 < 0 } == true ? .rollbackAndInvestigate : .repeatExperiment)
-        let nextLimit = accepted ? min(abs(previousChangeFraction) / 2, 0.02) : 0
+        // Mirrors tools/tuning_iteration.py next_step_limit. Halving on every accept capped
+        // total progress at ~2x the first step; with a known remaining error, step by it (capped).
+        let nextLimit: Double
+        if !accepted {
+            nextLimit = 0
+        } else if let remaining = remainingErrorFraction.map(abs) {
+            nextLimit = min(remaining, 0.02)
+        } else {
+            nextLimit = min(abs(previousChangeFraction) / 2, 0.02)
+        }
         return .init(decision: decision, baselineLambdaError: baselineError, candidateLambdaError: candidateError, improvementFraction: improvement, repeatDifference: repeatDifference, repeatable: repeatable, telemetryComplete: telemetryComplete, knockEvents: knockEvents, nextChangeFractionLimit: nextLimit, concerns: concerns)
     }
 

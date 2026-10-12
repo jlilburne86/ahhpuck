@@ -13,6 +13,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from freedom_grid import cell_label, default_target, region
+
 
 PURPOSES = {
     "drift": {"sustained_load": 0.35, "throttle_response": 0.30, "thermal_margin": 0.35},
@@ -84,30 +86,94 @@ def score(samples: list[dict[str, Any]], purpose: str, limits: Limits) -> dict[s
     return {**{key: round(value, 4) for key, value in metrics.items()}, "overall": round(overall, 4), "usable_samples": count, "safety": round(thermal, 4)}
 
 
-def proposals(samples: list[dict[str, Any]], limits: Limits) -> list[dict[str, Any]]:
+WARM_COOLANT_C = 75
+MIN_SAMPLES_PER_CELL = 3
+REGION_ORDER = {"idle": 0, "cruise": 1, "high_load": 2}
+
+
+def proposals(samples: list[dict[str, Any]], limits: Limits, allow_high_load: bool = False) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Bounded per-cell fuel corrections on the shared Freedom grid.
+
+    Changes from the first concept:
+    - every load region is tuned, idle and cruise first (previously only >= 80 kPa);
+    - high-load cells need an explicit `allow_high_load` (dyno or closed venue confirmed);
+    - each cell uses its own lambda target (sample value, else a labelled default);
+    - samples from a cold engine or flagged transients are excluded;
+    - every skipped sample is counted by reason, so "no proposals" is explained.
+    """
+    skipped: dict[str, int] = {}
+
+    def skip(reason: str) -> None:
+        skipped[reason] = skipped.get(reason, 0) + 1
+
     grouped: dict[str, list[dict[str, Any]]] = {}
     for sample in samples:
-        if protection(sample, limits):
+        faults = protection(sample, limits)
+        if faults:
+            for fault in faults:
+                skip(f"protection:{fault}")
             continue
-        cell = f"{int(num(sample, 'rpm') // 500) * 500}:{int(num(sample, 'load_kpa') // 10) * 10}"
-        grouped.setdefault(cell, []).append(sample)
+        if num(sample, "lambda", 0) <= 0:
+            skip("no_lambda")
+            continue
+        if num(sample, "coolant_c", 0) < WARM_COOLANT_C:
+            skip("engine_not_warm")
+            continue
+        if sample.get("transient") is True:
+            skip("transient")
+            continue
+        load = num(sample, "load_kpa")
+        if region(load, num(sample, "rpm")) == "high_load" and not allow_high_load:
+            skip("high_load_not_allowed")
+            continue
+        grouped.setdefault(cell_label(num(sample, "rpm"), load), []).append(sample)
+
     result = []
-    for cell, group in sorted(grouped.items()):
-        loaded = [s for s in group if num(s, "load_kpa") >= 80 and num(s, "lambda", 0) > 0]
-        if len(loaded) < 3:
+    for cell, group in grouped.items():
+        if len(group) < MIN_SAMPLES_PER_CELL:
+            skip("too_few_samples_in_cell")
             continue
-        measured = sum(num(s, "lambda") for s in loaded) / len(loaded)
-        target = sum(num(s, "lambda_target", 0.88) for s in loaded) / len(loaded)
+        measured = sum(num(s, "lambda") for s in group) / len(group)
+        targets = [num(s, "lambda_target", 0) or default_target(num(s, "load_kpa")) for s in group]
+        target = sum(targets) / len(targets)
+        target_source = "logged" if all(num(s, "lambda_target", 0) > 0 for s in group) else "default_by_region"
         raw = (measured / target) - 1
         correction = max(-limits.max_cell_change, min(limits.max_cell_change, raw))
+        first = group[0]
         result.append({
             "cell": cell,
+            "region": region(num(first, "load_kpa"), num(first, "rpm")),
+            "measured_lambda": round(measured, 4),
+            "target_lambda": round(target, 4),
+            "target_source": target_source,
+            "remaining_error_fraction": round(raw, 4),
             "fuel_change_fraction": round(correction, 4),
-            "samples": len(loaded),
+            "capped": correction != raw,
+            "samples": len(group),
             "reason": "bounded lambda correction; review fuel pressure and sensor calibration first",
             "ignition_change": "none",
         })
-    return result
+    result.sort(key=lambda item: (REGION_ORDER[item["region"]], item["cell"]))
+    return result, dict(sorted(skipped.items()))
+
+
+def tune_objective(samples: list[dict[str, Any]], limits: Limits) -> dict[str, Any]:
+    """Tune-side goal: lambda error against target by region.
+
+    The purpose scores above mostly measure how the car was driven (more throttle and
+    load score higher). This measures the calibration itself, so it can show progress.
+    """
+    errors: dict[str, list[float]] = {}
+    for sample in samples:
+        if protection(sample, limits) or num(sample, "lambda", 0) <= 0:
+            continue
+        load = num(sample, "load_kpa")
+        target = num(sample, "lambda_target", 0) or default_target(load)
+        errors.setdefault(region(load, num(sample, "rpm")), []).append(abs(num(sample, "lambda") - target))
+    return {
+        name: {"mean_abs_lambda_error": round(sum(values) / len(values), 4), "samples": len(values)}
+        for name, values in sorted(errors.items(), key=lambda item: REGION_ORDER[item[0]])
+    }
 
 
 def quality_gate(data: dict[str, Any], samples: list[dict[str, Any]], result: dict[str, Any]) -> dict[str, Any]:
@@ -149,12 +215,16 @@ def run(data: dict[str, Any], purpose: str) -> dict[str, Any]:
     if not isinstance(samples, list):
         raise ValueError("samples must be an array")
     faults = sorted({fault for sample in samples for fault in protection(sample, limits)})
+    fuel, skipped = proposals(samples, limits, allow_high_load=data.get("allow_high_load") is True)
     result = {
         "mode": "offline_concept_test",
         "purpose": purpose,
         "score": score(samples, purpose, limits),
         "protection_faults": faults,
-        "fuel_proposals": proposals(samples, limits),
+        "fuel_proposals": fuel,
+        "skipped_samples": skipped,
+        "tune_objective": tune_objective(samples, limits),
+        "score_note": "purpose scores reflect driving style as much as calibration; use tune_objective to judge the tune",
         "write_authorization": "never",
         "required_before_live_use": [
             "verify FC-03 axes, units, checksums, and serial protocol",

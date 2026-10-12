@@ -153,7 +153,12 @@ python3 -m unittest tools/test_fcp_parser.py
 
 The experimental optimizer accepts normalized logs and supports `drift`,
 `grip`, `0-100`, and `top-speed` scoring. It only proposes bounded fuel-cell
-changes; ignition is never advanced automatically and ECU writes are disabled:
+changes on the shared Freedom grid (`tools/freedom_grid.py`, 500 rpm × 50 mmHg),
+idle and cruise first. High-load cells need `"allow_high_load": true` in the input
+(dyno or closed venue confirmed). Every skipped sample is counted by reason in
+`skipped_samples`, and `tune_objective` reports lambda error by region — use it,
+not the purpose score, to judge the tune. Ignition is never advanced automatically
+and ECU writes are disabled:
 
 ```sh
 python3 tools/concept_optimizer.py tools/examples/concept-log.json \
