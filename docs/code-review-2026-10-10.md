@@ -46,6 +46,12 @@ Swift changes were written without a Swift toolchain; run `swift test` in `mac-a
 `ios-app/` before merging. Two existing parser tests need the git-ignored base maps in
 `extracted/`.
 
+## Knowledge base
+
+The tuning goal is now defined in [`docs/knowledge-base.md`](knowledge-base.md): vetted sources by
+teaching layer, the documented 10-step process as gates, and starter rule cards that each cite
+a source in `knowledge/source-manifest.json`.
+
 ## Next open items
 
 1. Commit a scrubbed bench capture so decoding can be tested from the repo.
