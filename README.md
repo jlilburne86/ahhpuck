@@ -81,6 +81,7 @@ The complete standalone handoff is [docs/engine-intelligence-end-to-end.md](docs
 ```sh
 python3 tools/engine_intelligence.py knowledge-check
 python3 tools/engine_intelligence.py diagnose tools/examples/baseline-telemetry.json
+python3 tools/engine_intelligence.py capture-bundle /tmp/ahhpuck-session /tmp/ahhpuck-passport.json tools/examples/raw-freedom-capture.json
 ```
 
 Record and explain an iteration in the local learning ledger:

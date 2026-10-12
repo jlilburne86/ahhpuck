@@ -20,6 +20,8 @@ def load_json(path: Path) -> AdapterResult:
     frames = value.get("frames", value) if isinstance(value, dict) else value
     if not isinstance(frames, list) or not all(isinstance(frame, dict) for frame in frames):
         return AdapterResult(adapter="json", supported=False, frames=[], reason="expected a JSON array or {frames: []}", source_hash=sha256_file(path))
+    if frames and not any(isinstance(frame.get("decoded", frame), dict) and "rpm" in frame.get("decoded", frame) for frame in frames):
+        return AdapterResult(adapter="raw-serial-json", supported=False, frames=frames, reason="raw serial capture is preserved; a verified Freedom decoder is required before telemetry analysis", source_hash=sha256_file(path))
     return AdapterResult(adapter="canonical-json", supported=True, frames=frames, reason="canonical fixture/log format", source_hash=sha256_file(path))
 
 
