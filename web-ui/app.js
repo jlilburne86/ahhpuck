@@ -1,4 +1,4 @@
-const state = { port: null, reader: null, frames: [], reading: false };
+const state = { port: null, reader: null, frames: [], reading: false, sequence: 0, captureStartedAt: null };
 const $ = (id) => document.getElementById(id);
 
 function setStatus(label, connected = false) {
@@ -27,7 +27,8 @@ async function readLoop() {
         const { value, done } = await state.reader.read();
         if (done) break;
         if (value?.length) {
-          state.frames.push({ timestamp: new Date().toISOString(), direction: "rx", bytes: [...value] });
+          state.captureStartedAt ||= new Date().toISOString();
+          state.frames.push({ timestamp: new Date().toISOString(), sequence: state.sequence++, direction: "rx", bytes: [...value] });
           $("frameCount").textContent = state.frames.length;
           $("downloadButton").disabled = false;
           addLine(bytesToHex(value));
@@ -76,7 +77,16 @@ $("connectButton").addEventListener("click", connect);
 $("disconnectButton").addEventListener("click", disconnect);
 $("clearButton").addEventListener("click", () => { $("terminal").innerHTML = '<div class="terminal-empty">Capture cleared.</div>'; });
 $("downloadButton").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(state.frames, null, 2)], { type: "application/json" });
+  const capture = {
+    schema: "ahhpuck.raw-capture/0.1",
+    captured_at: state.captureStartedAt || new Date().toISOString(),
+    ecu: { identity: "unknown", status: "declared_unverified" },
+    transport: { baud: Number($("baudRate").value), data_bits: 7, parity: "even", stop_bits: 1, flow_control: "none" },
+    decoded_telemetry: false,
+    frames: state.frames,
+    write_authorization: "never"
+  };
+  const blob = new Blob([JSON.stringify(capture, null, 2)], { type: "application/json" });
   const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = "freedom-capture.json"; link.click(); URL.revokeObjectURL(link.href);
 });
 
