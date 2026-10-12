@@ -68,6 +68,8 @@ See [docs/user-stories.md](docs/user-stories.md) for the owner, tuner, and devel
 
 See [docs/product-design-overview.md](docs/product-design-overview.md) for the engineering product design, application surfaces, collected and displayed data, normalized telemetry model, processing pipeline, assessment states, safety boundaries, storage, and implementation phases.
 
+See [notes/11-ecu-unit-label.md](notes/11-ecu-unit-label.md) for the decoded label of the purchased FC-03 unit (`Ab-1EU`, `Z-J01030`, group injection, direct ignition) and what it changes for the harness plug and engine profile.
+
 See [notes/10-future-platform-candidates.md](notes/10-future-platform-candidates.md) for separately documented ECU and tuner candidates. These remain out of scope until the Freedom FC-03 trial is connected, tested, and reviewed against real vehicle evidence.
 
 The native SwiftUI/Xcode implementation is in [ios-app](ios-app/README.md). It includes the imported mobile flow, deterministic experiment assessment, read-only safety boundary, and a fixture-backed first-trial workflow.

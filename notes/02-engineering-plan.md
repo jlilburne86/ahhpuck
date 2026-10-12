@@ -53,7 +53,7 @@ Study FCST as a reference implementation before writing a new protocol layer. It
 
 ## Phase 5 — AE86 20V calibration research
 
-- Compare supplied AE86 base maps against the seller’s `Ab-1ESU` application.
+- Compare supplied AE86 base maps against the seller’s `Ab-1EU` application.
 - Find or obtain AE101/AE111-specific base data.
 - Separate Blacktop and Silvertop assumptions.
 - Validate injector, sensor, ignition and sequential-injection settings before using any map as a starting point.

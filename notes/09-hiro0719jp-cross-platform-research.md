@@ -40,7 +40,7 @@ Evidence: `entry-11412525148`.
 Engineering consequence: capture the same operations with direction, timestamp,
 baud/framing, ECU identity, FCSS version, and cable/adapter details. Do not
 generalize a command from one FC-03a/internal-version combination to the user's
-Ab-1ESU unit.
+Ab-1EU unit.
 
 ### 3. A published timing estimate supports live monitoring
 
@@ -66,7 +66,7 @@ other versions.
 Evidence: `entry-11548558605`.
 
 Engineering consequence: store these as unverified research vectors only. Do not
-send them to the user's FC-03/Ab-1ESU. First identify the ECU, internal version,
+send them to the user's FC-03/Ab-1EU. First identify the ECU, internal version,
 option flags, response shape, and rollback behavior in a read-only session.
 
 ### 5. MacBook/Boot Camp was a compatibility workaround
@@ -142,4 +142,4 @@ and read-only protocol layer. Write commands remain disabled.
 - `observed local capture`: article content and image assets preserved here;
 - `inferred`: likely portable transport and sampling architecture;
 - `unverified`: compatibility of any command, adapter, framing, or write path
-  with the user's FC-03 Ab-1ESU.
+  with the user's FC-03 Ab-1EU.
