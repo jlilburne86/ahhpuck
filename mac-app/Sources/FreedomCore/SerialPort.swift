@@ -31,10 +31,28 @@ public final class DarwinSerialTransport: SerialTransport, @unchecked Sendable {
         guard tcgetattr(descriptor, &options) == 0 else { throw POSIXError(.EIO) }
         cfmakeraw(&options)
         options.c_cflag |= tcflag_t(CLOCAL | CREAD)
+        // Previously hard-coded to 8N1, ignoring the configuration. The Freedom link is 7E1,
+        // so honour dataBits, parity and stopBits from SerialConfiguration.
         options.c_cflag &= ~tcflag_t(CSIZE)
-        options.c_cflag |= tcflag_t(CS8)
-        options.c_cflag &= ~tcflag_t(PARENB)
-        options.c_cflag &= ~tcflag_t(CSTOPB)
+        switch configuration.dataBits {
+        case 7: options.c_cflag |= tcflag_t(CS7)
+        case 8: options.c_cflag |= tcflag_t(CS8)
+        default: throw FreedomError.invalidConfiguration("Unsupported data bits: \(configuration.dataBits)")
+        }
+        switch configuration.parity {
+        case .none:
+            options.c_cflag &= ~tcflag_t(PARENB)
+        case .even:
+            options.c_cflag |= tcflag_t(PARENB)
+            options.c_cflag &= ~tcflag_t(PARODD)
+        case .odd:
+            options.c_cflag |= tcflag_t(PARENB | PARODD)
+        }
+        if configuration.stopBits == 2 {
+            options.c_cflag |= tcflag_t(CSTOPB)
+        } else {
+            options.c_cflag &= ~tcflag_t(CSTOPB)
+        }
 
         let speed = try Self.speed(configuration.baud)
         cfsetispeed(&options, speed)
