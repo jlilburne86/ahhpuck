@@ -1,0 +1,64 @@
+{
+  "rule_cards_version": "0.1",
+  "note": "Starter rule cards. Each cites a source id from source-manifest.json. Evidence labels follow the README: documented | observed | inferred | unsafe/unverified. Cards are not enforced by code yet.",
+  "cards": [
+    {
+      "id": "wideband.accuracy.lsu49",
+      "applies_when": {"wideband_sensor": "Bosch LSU 4.9"},
+      "rule": "Ignore fuel corrections smaller than the sensor's stated accuracy at that lambda.",
+      "limits": {"lambda_0_8": 0.01, "lambda_1_0": 0.007, "lambda_1_7": 0.05},
+      "action": "suppress_proposal",
+      "evidence": "documented",
+      "source": {"id": "bosch-lsu49", "location": "Technical specifications"}
+    },
+    {
+      "id": "wideband.installation",
+      "applies_when": {"wideband_sensor": "Bosch LSU 4.9"},
+      "rule": "Trust lambda only when the sensor is mounted near vertical with the wire up, with no exhaust leak upstream, away from the tailpipe, and below 2.5 bar exhaust pressure.",
+      "action": "block_fuel_tuning_until_confirmed",
+      "evidence": "documented",
+      "source": {"id": "bosch-lsu49", "location": "Installation instructions"}
+    },
+    {
+      "id": "injector.data.before.light-load",
+      "applies_when": {"calibration_region": ["idle", "cruise"]},
+      "rule": "Know injector flow at a stated pressure and dead time against battery voltage before tuning idle and cruise; otherwise dead-time error is baked into the base map.",
+      "action": "block_fuel_tuning_until_confirmed",
+      "evidence": "documented",
+      "source": {"id": "hpa-407-injectors", "location": "Dead time section"}
+    },
+    {
+      "id": "timing.reference.verified",
+      "applies_when": {"change_family": "ignition"},
+      "rule": "Confirm commanded ignition timing with a timing light before any ignition change.",
+      "action": "block_ignition_change",
+      "evidence": "documented",
+      "source": {"id": "hpa-10-step", "location": "Step: set base ignition timing and fuel pressure"}
+    },
+    {
+      "id": "ecu.learning.state.known",
+      "applies_when": {"ecu": "Freedom Computer"},
+      "rule": "Read whether the ECU's own learning correction is active before comparing runs or proposing fuel changes.",
+      "action": "block_comparison_until_known",
+      "evidence": "inferred",
+      "source": {"id": "asahara-1995", "location": "Part 2, software: learning correction"},
+      "notes": "The book describes learning correction in the creator's design; how FC-03 exposes it must be observed on the unit."
+    },
+    {
+      "id": "runs.comparable",
+      "applies_when": {"comparison": "power"},
+      "rule": "Correct measured power to reference conditions before comparing runs on different days.",
+      "action": "flag_uncorrected_comparison",
+      "evidence": "documented",
+      "source": {"id": "sae-j1349", "location": "Scope"}
+    },
+    {
+      "id": "map.meaning.defined",
+      "applies_when": {"action": "edit_table"},
+      "rule": "Never propose a change to a table whose axes, units and scaling are not defined in the map description.",
+      "action": "block_proposal",
+      "evidence": "documented",
+      "source": {"id": "asam-mcd-2-mc", "location": "Characteristics, axes and conversion methods"}
+    }
+  ]
+}
