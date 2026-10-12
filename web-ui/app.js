@@ -120,7 +120,10 @@ function mean(list) { return list.length ? list.reduce((sum, value) => sum + val
 function frameStats(frames, target) {
   const lambda = values(frames, "lambda"); const errors = lambda.map((value) => Math.abs(value - target));
   const sequences = frames.map((frame) => frame.sequence).filter(Number.isInteger); const dropped = sequences.length > 1 ? Math.max(0, Math.max(...sequences) - Math.min(...sequences) + 1 - new Set(sequences).size) : 0;
-  return { frames: frames.length, lambdaError: mean(errors), lambda, telemetry: dropped === 0, dropped, knock: frames.filter((frame) => frameData(frame).knock === true).length, rpm: values(frames, "rpm"), coolant: values(frames, "coolant_c") };
+  const ordered = sequences.every((value, index) => index === 0 || value > sequences[index - 1]);
+  // Fail closed: every frame needs a sequence number and there must be at least two.
+  const complete = frames.length > 1 && sequences.length === frames.length && dropped === 0 && ordered;
+  return { frames: frames.length, lambdaError: mean(errors), lambda, telemetry: complete, dropped, knock: frames.filter((frame) => frameData(frame).knock === true).length, rpm: values(frames, "rpm"), coolant: values(frames, "coolant_c") };
 }
 function drawExperimentChart(results) {
   const canvas = $("compareChart"), empty = $("compareChartEmpty"); if (!canvas) return; const context = canvas.getContext("2d"); const ratio = devicePixelRatio || 1; const box = canvas.getBoundingClientRect(); canvas.width = box.width * ratio; canvas.height = box.height * ratio; context.setTransform(ratio, 0, 0, ratio, 0, 0); const width = box.width, height = box.height; context.clearRect(0, 0, width, height); empty.style.display = "none"; context.strokeStyle = "rgba(255,255,255,.09)"; for (let y = 30; y < height; y += 48) { context.beginPath(); context.moveTo(0, y); context.lineTo(width, y); context.stroke(); }

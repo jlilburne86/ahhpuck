@@ -87,6 +87,15 @@ final class MobileCoreTests: XCTestCase {
         XCTAssertTrue(result.hasCriticalConcern)
     }
 
+    func testExperimentAssessmentTreatsGapsAsIncomplete() {
+        let baseline = demoFrames(lambda: [1.00, 0.99, 1.00])
+        let gapped = [demoFrames(lambda: [0.93], start: 10)[0], demoFrames(lambda: [0.92], start: 14)[0]]
+        let repeatRun = demoFrames(lambda: [0.925, 0.915], start: 20)
+        let result = MobileExperimentAssessor.assess(baseline: baseline, candidate: gapped, repeatRun: repeatRun)
+        XCTAssertFalse(result.telemetryComplete)
+        XCTAssertEqual(result.decision, .stopAndAbort)
+    }
+
     private func demoFrames(lambda: [Double], start: Int = 0) -> [MobileTelemetryFrame] {
         lambda.enumerated().map { index, value in
             MobileTelemetryFrame(sequence: start + index, rpm: 3000 + Double(index * 100), loadKPa: 50, lambda: value, coolantC: 85, intakeAirC: 32, oilPressureKPa: 380, fuelPressureKPa: 300, batteryV: 13.8)

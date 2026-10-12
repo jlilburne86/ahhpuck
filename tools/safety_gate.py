@@ -8,6 +8,34 @@ from pathlib import Path
 from typing import Any
 
 
+ALWAYS_REQUIRED = ("rpm", "load_kpa", "coolant_c", "iat_c", "voltage_v")
+LOAD_THRESHOLD_KPA = 80
+
+
+def _value(sample: dict[str, Any], key: str) -> float | None:
+    value = sample.get(key)
+    return float(value) if isinstance(value, (int, float)) and not isinstance(value, bool) else None
+
+
+def _has(sample: dict[str, Any], key: str) -> bool:
+    return _value(sample, key) is not None
+
+
+def _over(sample: dict[str, Any], key: str, limit: float) -> bool:
+    value = _value(sample, key)
+    return value is not None and value > limit
+
+
+def _at_or_over(sample: dict[str, Any], key: str, limit: float) -> bool:
+    value = _value(sample, key)
+    return value is not None and value >= limit
+
+
+def _under(sample: dict[str, Any], key: str, limit: float) -> bool:
+    value = _value(sample, key)
+    return value is not None and value < limit
+
+
 def evaluate(data: dict[str, Any], policy: dict[str, Any]) -> dict[str, Any]:
     hard = policy["hard_limits"]
     passed: list[str] = []
@@ -29,20 +57,45 @@ def evaluate(data: dict[str, Any], policy: dict[str, Any]) -> dict[str, Any]:
     if candidate.get("change_families", []) and len(candidate["change_families"]) > 1:
         blocked.append("more than one calibration family changed")
 
+    ignition_change = abs(float(candidate.get("ignition_cell_change_deg", 0))) > 0
+    if ignition_change and evidence.get("knock_sensing_verified") is not True:
+        # Policy rule: ignition stays locked until knock sensing is proven.
+        blocked.append("ignition change requires verified knock sensing")
+
     faults = data.get("protection_faults", [])
     if faults:
         blocked.append("protection faults present: " + ", ".join(sorted(set(faults))))
 
-    for sample in data.get("samples", []):
+    samples = data.get("samples", [])
+    if not samples:
+        # Fail closed: a gate with nothing to inspect cannot pass the experiment.
+        blocked.append("no telemetry samples supplied")
+
+    for sample in samples:
+        # Missing channels are reported as missing, never defaulted to a safe value.
+        for key in ALWAYS_REQUIRED:
+            if not _has(sample, key):
+                blocked.append(f"missing channel: {key}")
+        load = _value(sample, "load_kpa")
+        under_load = load is not None and load >= LOAD_THRESHOLD_KPA
         checks = [
-            (float(sample.get("rpm", 0)) > hard["max_rpm"], "RPM limit exceeded"),
-            (float(sample.get("coolant_c", 0)) >= hard["max_coolant_c"], "coolant limit exceeded"),
-            (float(sample.get("iat_c", 0)) >= hard["max_iat_c"], "IAT limit exceeded"),
-            (float(sample.get("voltage_v", 99)) < hard["min_voltage_v"], "voltage limit exceeded"),
-            (float(sample.get("knock_level", 0)) > hard["max_knock_level"], "knock detected"),
+            (_over(sample, "rpm", hard["max_rpm"]), "RPM limit exceeded"),
+            (_at_or_over(sample, "coolant_c", hard["max_coolant_c"]), "coolant limit exceeded"),
+            (_at_or_over(sample, "iat_c", hard["max_iat_c"]), "IAT limit exceeded"),
+            (_under(sample, "voltage_v", hard["min_voltage_v"]), "voltage limit exceeded"),
+            (_over(sample, "knock_level", hard["max_knock_level"]), "knock detected"),
         ]
-        if float(sample.get("load_kpa", 0)) >= 80:
-            checks.append((float(sample.get("oil_pressure_kpa", 0)) < hard["min_oil_pressure_kpa_under_load"], "oil pressure low under load"))
+        if ignition_change and not _has(sample, "knock_level"):
+            blocked.append("missing channel: knock_level (required for ignition changes)")
+        if under_load:
+            if _has(sample, "oil_pressure_kpa"):
+                checks.append((_under(sample, "oil_pressure_kpa", hard["min_oil_pressure_kpa_under_load"]), "oil pressure low under load"))
+            else:
+                blocked.append("missing channel under load: oil_pressure_kpa")
+            if _has(sample, "lambda"):
+                checks.append((_over(sample, "lambda", hard["max_lambda_under_load"]), "lean under load"))
+            else:
+                blocked.append("missing channel under load: lambda")
         for failed, message in checks:
             if failed:
                 blocked.append(message)

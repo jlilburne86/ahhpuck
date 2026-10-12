@@ -72,6 +72,10 @@ public final class LiveSafetyMonitor: @unchecked Sendable {
     public private(set) var state: LiveTestState = .idle
     public private(set) var lastTelemetry: LiveTelemetry?
     public private(set) var alerts: [LiveSafetyAlert] = []
+    /// When the test started; lets the watchdog fire even if no frame ever arrives.
+    public private(set) var startedAt: Date?
+    /// Channels already reported as unmonitored this test, so each is noted once.
+    private var notedMissing: Set<String> = []
 
     public init(limits: LiveSafetyLimits = .init()) { self.limits = limits }
 
@@ -80,12 +84,16 @@ public final class LiveSafetyMonitor: @unchecked Sendable {
         guard state == .idle || state == .completed else { return }
         state = .armed
         alerts.removeAll(keepingCapacity: true)
+        notedMissing.removeAll()
+        startedAt = nil
+        lastTelemetry = nil
     }
 
-    public func start() -> Bool {
+    public func start(now: Date = Date()) -> Bool {
         lock.lock(); defer { lock.unlock() }
         guard state == .armed else { return false }
         state = .running
+        startedAt = now
         return true
     }
 
@@ -103,8 +111,11 @@ public final class LiveSafetyMonitor: @unchecked Sendable {
     @discardableResult
     public func watchdog(now: Date = Date()) -> LiveSafetyAlert? {
         lock.lock(); defer { lock.unlock() }
-        guard state == .running, let lastTelemetry else { return nil }
-        guard now.timeIntervalSince(lastTelemetry.timestamp) > limits.watchdogSeconds else { return nil }
+        guard state == .running else { return nil }
+        // Previously the watchdog needed one frame first, so a test started with a dead
+        // link never timed out. Fall back to the start time when nothing has arrived.
+        guard let reference = lastTelemetry?.timestamp ?? startedAt else { return nil }
+        guard now.timeIntervalSince(reference) > limits.watchdogSeconds else { return nil }
         let alert = LiveSafetyAlert(timestamp: now, code: "telemetry_timeout",
                                     message: "Telemetry stream stopped; abort test and remove load.", severity: .critical)
         alerts.append(alert)
@@ -133,6 +144,21 @@ public final class LiveSafetyMonitor: @unchecked Sendable {
         if sample.loadKPa >= 80, let value = sample.lambda, value > limits.maxLambdaUnderLoad {
             add("lambda_lean", "Lambda is lean under load; abort test.")
         }
+        // Unknown is not safe. A missing channel was previously skipped silently.
+        // Lambda under load is required to continue; other gaps are named once as warnings
+        // so the operator knows what is NOT being watched.
+        if sample.loadKPa >= 80, sample.lambda == nil {
+            add("lambda_unavailable_under_load", "No lambda reading under load; abort test until a wideband is logged.")
+        }
+        func noteMissing(_ code: String, _ message: String) {
+            guard !notedMissing.contains(code) else { return }
+            notedMissing.insert(code)
+            result.append(.init(code: code, message: message, severity: .warning))
+        }
+        if sample.knockLevel == nil { noteMissing("knock_not_monitored", "Knock is not being monitored on this setup.") }
+        if sample.oilPressureKPa == nil { noteMissing("oil_pressure_not_monitored", "Oil pressure is not being monitored on this setup.") }
+        if sample.coolantC == nil { noteMissing("coolant_not_monitored", "Coolant temperature is not being monitored.") }
+        if sample.voltageV == nil { noteMissing("voltage_not_monitored", "System voltage is not being monitored.") }
         return result
     }
 }
