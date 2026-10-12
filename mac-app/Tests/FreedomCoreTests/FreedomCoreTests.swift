@@ -38,4 +38,35 @@ final class FreedomCoreTests: XCTestCase {
         _ = monitor.ingest(.init(timestamp: old, rpm: 1000, loadKPa: 20))
         XCTAssertEqual(monitor.watchdog()?.code, "telemetry_timeout")
     }
+
+    func testWatchdogFiresWhenNoFrameEverArrives() {
+        var limits = LiveSafetyLimits()
+        limits.watchdogSeconds = 0.1
+        let monitor = LiveSafetyMonitor(limits: limits)
+        monitor.arm()
+        XCTAssertTrue(monitor.start(now: Date(timeIntervalSinceNow: -1)))
+        XCTAssertEqual(monitor.watchdog()?.code, "telemetry_timeout")
+        XCTAssertEqual(monitor.state, .aborted)
+    }
+
+    func testMissingChannelsAreNamedOnce() {
+        let monitor = LiveSafetyMonitor()
+        monitor.arm()
+        XCTAssertTrue(monitor.start())
+        let first = monitor.ingest(.init(rpm: 2000, loadKPa: 40, lambda: 1.0, coolantC: 85, voltageV: 13.8))
+        XCTAssertTrue(first.contains { $0.code == "knock_not_monitored" && $0.severity == .warning })
+        XCTAssertTrue(first.contains { $0.code == "oil_pressure_not_monitored" })
+        let second = monitor.ingest(.init(rpm: 2100, loadKPa: 40, lambda: 1.0, coolantC: 85, voltageV: 13.8))
+        XCTAssertFalse(second.contains { $0.code == "knock_not_monitored" })
+        XCTAssertEqual(monitor.state, .running)
+    }
+
+    func testNoLambdaUnderLoadAborts() {
+        let monitor = LiveSafetyMonitor()
+        monitor.arm()
+        XCTAssertTrue(monitor.start())
+        let alerts = monitor.ingest(.init(rpm: 5000, loadKPa: 95, coolantC: 85, oilPressureKPa: 350, voltageV: 13.8, knockLevel: 0))
+        XCTAssertTrue(alerts.contains { $0.code == "lambda_unavailable_under_load" })
+        XCTAssertEqual(monitor.state, .aborted)
+    }
 }
