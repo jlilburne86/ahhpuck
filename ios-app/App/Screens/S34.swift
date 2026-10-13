@@ -14,7 +14,7 @@ struct S34View: View {
 
     var body: some View {
         let hs = H[app.hiw]
-        PhoneScreen(tab: nil, status: "", statusStyle: .dim) {
+        PhoneScreen(tab: nil) {
             AHeader(title: "How it works", sub: [app.tr("STEP "), String(app.hiw + 1), app.tr(" OF 4")].joined())
 
             AStepPills(labels: ["Connect", "Baseline", "Change", "Decide"], cur: app.hiw) { app.hiw = $0 }

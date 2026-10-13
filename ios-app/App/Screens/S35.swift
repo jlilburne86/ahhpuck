@@ -12,15 +12,12 @@ struct S35View: View {
     ]
 
     var body: some View {
-        PhoneScreen(tab: nil, status: "", statusStyle: .dim) {
+        PhoneScreen(tab: nil) {
             AHeader(title: "Permissions", sub: app.tr("ALL OPTIONAL FOR READING THE ECU"))
 
-            VStack(spacing: 0) {
+            AList {
                 ForEach(P, id: \.k) { p in row(p) }
             }
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding(1)
-            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(AP.border, lineWidth: 1))
             .block(top: 12)
 
             VStack(alignment: .leading, spacing: 8) {
@@ -66,7 +63,6 @@ struct S35View: View {
                 .onTapGesture { app.perm[p.k] = !on }
         }
         .padding(12)
-        .padding(.bottom, 1)
-        .overlay(alignment: .bottom) { Rectangle().fill(AP.divider).frame(height: 1) }
+        .aRowDivider()
     }
 }
