@@ -13,8 +13,8 @@ struct S40View: View {
         Mark(t: 166, l: 14, w: 362, h: 108, tip: 288, title: "Lambda vs target", body: "The big number is the ECU's reading; the cyan number is the target. The colour shows how far off it is."),
         Mark(t: 276, l: 14, w: 362, h: 148, tip: 436, title: "Bands, not just numbers", body: "Each tile shows OK, caution and stop bands from your thresholds. The marker is where the value is now."),
     ]
-    /// Top of the positioned area: 56 status bar + 55 header.
-    private let areaTop: CGFloat = 111
+    /// Header height (padding 10 + Barlow 24 + 2 + mono 11) below the status-bar band.
+    private let headerH: CGFloat = 55
 
     var body: some View {
         let cmI = min(2, app.cm)
@@ -72,6 +72,9 @@ struct S40View: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .overlay(alignment: .topLeading) {
+          GeometryReader { geo in
+            // Same band height PhoneScreen reserves: max(50, the device's status bar).
+            let areaTop = max(Metrics.statusBar, geo.safeAreaInsets.top) + headerH
             ZStack(alignment: .topLeading) {
                 // Scrim with a rounded hole (box-shadow 0 0 0 999px), then the 2 pt white ring.
                 let hole = CGRect(x: cm.l, y: areaTop + cm.t, width: cm.w + 4, height: cm.h + 4)
@@ -88,8 +91,9 @@ struct S40View: View {
                     .offset(y: areaTop + cm.tip)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+          }
+          .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 
     private func tooltip(cmI: Int, cm: Mark) -> some View {
