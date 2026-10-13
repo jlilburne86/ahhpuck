@@ -1,276 +1,534 @@
-// AhhPuck page strings, English and Japanese. Keys match data-i18n attributes in index.html.
+// AhhPuck page strings, English and Japanese. Keys match data-i18n, data-i18n-alt and
+// data-i18n-aria attributes in index.html; the vote.* strings are filled in by landing.js.
+// Japanese copy comes from the "AhhPuck Landing JA" design file.
 window.AHHPUCK_I18N = {
+ "skip": {
+  "en": "Skip to content",
+  "ja": "本文へ移動"
+ },
+ "nav.roadmap": {
+  "en": "Roadmap",
+  "ja": "ロードマップ"
+ },
+ "nav.loop": {
+  "en": "How it works",
+  "ja": "しくみ"
+ },
+ "nav.community": {
+  "en": "Community",
+  "ja": "コミュニティ"
+ },
+ "nav.safety": {
+  "en": "Safety",
+  "ja": "安全"
+ },
+ "nav.status": {
+  "en": "Status",
+  "ja": "進捗"
+ },
+ "nav.faq": {
+  "en": "FAQ",
+  "ja": "よくある質問"
+ },
+ "nav.cta": {
+  "en": "Get involved",
+  "ja": "参加する"
+ },
  "hero.eyebrow": {
-  "en": "GRASSROOTS ENGINE MANAGEMENT · FREEDOM FC-03 FIRST",
-  "ja": "草の根のエンジン管理 · まずは FREEDOM FC-03 から"
+  "en": "OPEN COMMUNITY PROJECT · FREEDOM FC-03 FIRST",
+  "ja": "オープンなコミュニティプロジェクト · まずはFREEDOM FC-03から"
  },
  "hero.h1": {
-  "en": "Unsupported is <em>not obsolete.</em>",
-  "ja": "サポート終了は、<br><em>時代遅れではない。</em>"
+  "en": "Unsupported is not obsolete.",
+  "ja": "サポート終了は、時代遅れじゃない。"
  },
  "hero.lede": {
-  "en": "Many good standalone ECUs sit unused because their software stopped years ago. AhhPuck gives them modern logging and safe, step-by-step tuning. We start with the Freedom FC-03 on a 4A-GE 20V. The same process will then work for other ECUs.",
-  "ja": "優れたスタンドアロン ECU の多くが、ソフトの更新が止まったまま眠っています。AhhPuck はそれらに最新のロギングと、安全な一歩ずつのチューニングを与えます。まずは 4A-GE 20V に載せた Freedom FC-03 から。同じ仕組みを、他の ECU にも広げていきます。"
+  "en": "Many good standalone ECUs sit unused because their software stopped years ago. AhhPuck is a community project to bring them back with modern logging and safe, step-by-step tuning. We start with the Freedom FC-03, then adapt the same process to every unsupported ECU like it.",
+  "ja": "ソフトウェアの更新が止まったせいで、まだ使える単体ECUが眠っています。AhhPuckは、最新のロギングと安全で段階的なチューニングでそれらを蘇らせるコミュニティプロジェクトです。まずはFreedom FC-03から始め、同じプロセスをサポートの終わった同様のECUすべてに広げていきます。"
+ },
+ "path1.t": {
+  "en": "Open the build",
+  "ja": "ビルドを開く"
+ },
+ "path1.d": {
+  "en": "Code, tests and evidence on GitHub",
+  "ja": "コード・テスト・根拠をGitHubで公開"
+ },
+ "path2.t": {
+  "en": "Solve it together",
+  "ja": "みんなで解く"
+ },
+ "path2.d": {
+  "en": "Decode, verify, test on real cars",
+  "ja": "解析し、検証し、実車でテスト"
+ },
+ "path3.t": {
+  "en": "Bring back support",
+  "ja": "サポートを取り戻す"
+ },
+ "path3.d": {
+  "en": "Freedom first, then every ECU like it",
+  "ja": "まずはFreedom、そして同様のECUへ"
  },
  "hero.cta1": {
-  "en": "See how it works",
-  "ja": "仕組みを見る"
+  "en": "Join the community",
+  "ja": "コミュニティに参加"
  },
  "hero.cta2": {
-  "en": "What is built",
-  "ja": "できていること"
+  "en": "Open the build →",
+  "ja": "ビルドを開く →"
  },
- "hero.fact1": {
-  "en": "<b>Lower cost</b> · second-hand ECU, modern tools",
-  "ja": "<b>低コスト</b> · 中古 ECU と最新ツール"
+ "badge.ro": {
+  "en": "READ-ONLY",
+  "ja": "読み取り専用"
  },
- "hero.fact2": {
-  "en": "<b>Better logging</b> · more than the original software ever gave",
-  "ja": "<b>より良いロギング</b> · 純正ソフト以上のデータ"
+ "badge.locked": {
+  "en": "ECU WRITES LOCKED",
+  "ja": "ECU書き込みロック"
  },
- "hero.fact3": {
-  "en": "<b>Safer tuning</b> · one small, reversible step at a time",
-  "ja": "<b>より安全なチューニング</b> · 小さく戻せる一歩ずつ"
+ "badge.policy": {
+  "en": "SAFETY POLICY 0.2",
+  "ja": "安全ポリシー 0.2"
  },
- "hero.caption": {
-  "en": "Live screen of the AhhPuck mobile app, as built. Read-only FC-03 session.",
-  "ja": "AhhPuck モバイルアプリの Live 画面（実際のビルド）。FC-03 読み取り専用セッション。"
+ "badge.tests": {
+  "en": "47 TESTS PASSING",
+  "ja": "47件のテストに合格"
  },
- "stat1": {
-  "en": "analysis tools built",
-  "ja": "解析ツールを実装"
+ "val1.t": {
+  "en": "Lower cost",
+  "ja": "低コスト"
  },
- "stat2": {
-  "en": "automated tests",
-  "ja": "自動テスト"
+ "val1.d": {
+  "en": "A second-hand ECU and a serial cable, instead of a new ECU, harness and licence.",
+  "ja": "新品のECU、ハーネス、ライセンスの代わりに、中古ECUとシリアルケーブルだけ。"
  },
- "stat3": {
-  "en": "gates before any ECU write",
-  "ja": "ECU 書き込み前のゲート"
+ "val2.t": {
+  "en": "Better logging",
+  "ja": "より良いロギング"
  },
- "stat4": {
-  "en": "unsupported ECU families on the list",
-  "ja": "リスト上のサポート終了 ECU"
+ "val2.d": {
+  "en": "Modern sample rates, phone sensors, hashes and exports the old software never had.",
+  "ja": "当時のソフトにはなかった、高いサンプリングレート、スマホのセンサー、ハッシュ、書き出し。"
  },
- "app.eyebrow": {
-  "en": "THE APP, AS BUILT",
-  "ja": "アプリの現状"
+ "val3.t": {
+  "en": "Safer tuning",
+  "ja": "より安全なチューニング"
  },
- "app.h2": {
-  "en": "Five screens. One read-only session.",
-  "ja": "5 つの画面。読み取り専用の 1 セッション。"
+ "val3.d": {
+  "en": "One small, reversible step at a time. A gain counts only when it repeats.",
+  "ja": "小さく、元に戻せる一歩ずつ。改善は再現して初めてカウントされます。"
  },
- "app.sub": {
-  "en": "These are real captures of the AhhPuck mobile build, not drawings. The numbers come from the local test fixture.",
-  "ja": "これは AhhPuck モバイル版の実際の画面です。描いたものではありません。数値はローカルのテスト用データです。"
+ "rm.eyebrow": {
+  "en": "THE ROADMAP",
+  "ja": "ロードマップ"
  },
- "app.live.t": {
-  "en": "Live",
-  "ja": "Live（ライブ）"
+ "rm.h2": {
+  "en": "Freedom first. Then every unsupported ECU like it.",
+  "ja": "まずはFreedom。そして、同じように見放されたすべてのECUへ。"
  },
- "app.live.d": {
-  "en": "Is the data healthy? Then the numbers that matter.",
-  "ja": "データは正常か。それから重要な数値。"
+ "rm.sub": {
+  "en": "The FC-03 is the proving ground. Once the loop works on a real car, the same shared core becomes adapters for other good ECUs that lost their software, not their value.",
+  "ja": "FC-03が実証の場です。実車でループが機能したら、同じ共通コアを、価値ではなくソフトウェアを失った他の優れたECU向けのアダプターにしていきます。"
  },
- "app.run.t": {
-  "en": "Run",
-  "ja": "Run（走行）"
+ "rm1.n": {
+  "en": "01 · NOW",
+  "ja": "01 · 現在"
  },
- "app.run.d": {
-  "en": "Record a baseline, a candidate or a repeat run.",
-  "ja": "ベースライン、候補、再現走行を記録。"
+ "rm.inprogress": {
+  "en": "! IN PROGRESS",
+  "ja": "! 進行中"
  },
- "app.review.t": {
-  "en": "Review",
-  "ja": "Review（評価）"
+ "rm1.d": {
+  "en": "Read-only capture on a 4A-GE 20V. Verified decoding, real logs, the full loop on one car.",
+  "ja": "4A-GE 20Vでの読み取り専用キャプチャ。検証済みのデコード、実際のログ、1台の車でループ全体を実証。"
  },
- "app.review.d": {
-  "en": "A clear decision, explained in plain words.",
-  "ja": "明確な判定を、わかりやすい言葉で。"
+ "rm2.n": {
+  "en": "02 · NEXT",
+  "ja": "02 · 次"
  },
- "app.ledger.t": {
-  "en": "Ledger",
-  "ja": "Ledger（台帳）"
+ "rm.planned": {
+  "en": "– PLANNED",
+  "ja": "– 予定"
  },
- "app.ledger.d": {
-  "en": "Every experiment and its result, kept forever.",
-  "ja": "すべての実験と結果を、消さずに残す。"
+ "rm2.t": {
+  "en": "Shared core",
+  "ja": "共通コア"
  },
- "app.setup.t": {
-  "en": "Setup",
-  "ja": "Setup（設定）"
+ "rm2.d": {
+  "en": "Transport, decoder, safety monitor, recorder, gate and ledger, separated from anything Freedom-specific.",
+  "ja": "通信、デコーダー、安全モニター、レコーダー、ゲート、台帳を、Freedom固有の部分から切り離します。"
  },
- "app.setup.d": {
-  "en": "Car profile, connection, pre-flight checks.",
-  "ja": "車両プロファイル、接続、事前チェック。"
+ "rm3.n": {
+  "en": "03 · THEN",
+  "ja": "03 · その後"
  },
- "wb.eyebrow": {
-  "en": "MAC WORKBENCH",
-  "ja": "MAC ワークベンチ"
+ "rm3.t": {
+  "en": "Community adapters",
+  "ja": "コミュニティアダプター"
  },
- "wb.h3": {
-  "en": "The bench view, in a browser.",
-  "ja": "ブラウザで使うベンチ画面。"
+ "rm3.d": {
+  "en": "Owners and developers add one ECU family at a time. Every adapter starts read-only and earns its way forward.",
+  "ja": "オーナーと開発者が、ECUファミリーをひとつずつ追加します。どのアダプターも読み取り専用から始め、実証を重ねて前に進みます。"
  },
- "wb.sub": {
-  "en": "Works in Chrome or Edge over USB serial. Live trace, run status, serial monitor and experiment review. ECU writes are locked.",
-  "ja": "Chrome または Edge で USB シリアル接続。ライブ波形、走行状態、シリアルモニター、実験評価。ECU への書き込みはロック。"
+ "rm4.n": {
+  "en": "04 · GOAL",
+  "ja": "04 · 目標"
  },
- "wb.link": {
-  "en": "Open the workbench →",
-  "ja": "ワークベンチを開く →"
+ "rm4.tag": {
+  "en": "◎ GOAL",
+  "ja": "◎ 目標"
  },
- "wb.cap1": {
-  "en": "Live dashboard with the demo run loaded",
-  "ja": "デモ走行を読み込んだライブダッシュボード"
+ "rm4.t": {
+  "en": "Any unsupported ECU",
+  "ja": "サポート終了のすべてのECUへ"
  },
- "wb.cap2": {
-  "en": "Review experiment",
-  "ja": "実験の評価"
+ "rm4.d": {
+  "en": "Older doesn't mean broken. Every working ECU gets a path back to support before it's replaced.",
+  "ja": "古いことは、壊れていることではありません。動くECUには、交換される前にサポートへ戻る道を。"
  },
- "wb.cap3": {
-  "en": "Engine profile, connection and safety",
-  "ja": "エンジンプロファイル、接続と安全"
+ "vote.t": {
+  "en": "Which ECU should be next?",
+  "ja": "次はどのECU？"
+ },
+ "vote.hint": {
+  "en": "TAP ALL THAT YOU RUN OR WANT",
+  "ja": "使っている・使いたいものをすべてタップ"
+ },
+ "vote.other": {
+  "en": "Other",
+  "ja": "その他"
+ },
+ "vote.note": {
+  "en": "No second ECU starts until the FC-03 trial passes its gates. Requests help decide the order.",
+  "ja": "FC-03の試験が完了するまで、2台目のECUには着手しません。リクエストは優先順位の参考にします。"
+ },
+ "fr.eyebrow": {
+  "en": "EVERY FREEDOM UNIT",
+  "ja": "すべてのFREEDOMユニットへ"
+ },
+ "fr.h2": {
+  "en": "The limits come from your ECU, not from the app.",
+  "ja": "制限を決めるのはアプリではなく、あなたのECU。"
+ },
+ "fr.sub": {
+  "en": "Freedom units differ by coupler, load type, firmware and inputs. AhhPuck reads the label, builds a profile, and shows exactly what your unit can give: what's verified, what's not in this ECU, and what the community still has to decode.",
+  "ja": "Freedomはカプラー、負荷方式、ファームウェア、入力によって異なります。AhhPuckはラベルを読んでプロファイルを作り、そのユニットが出せるものを正確に示します。検証済みのもの、このECUにないもの、コミュニティがまだ解析すべきもの。"
+ },
+ "cap1.t": {
+  "en": "✓ READ · VERIFIED",
+  "ja": "✓ 読取 · 検証済"
+ },
+ "cap1.d": {
+  "en": "Decoded and confirmed against a real capture.",
+  "ja": "実データで解析・確認済み。"
+ },
+ "cap2.t": {
+  "en": "◐ READ · NOT VERIFIED",
+  "ja": "◐ 読取 · 未検証"
+ },
+ "cap2.d": {
+  "en": "Visible in the data, but scaling isn't proven yet.",
+  "ja": "データに見えるが、スケーリングは未証明。"
+ },
+ "cap3.t": {
+  "en": "⌀ NOT IN THIS ECU",
+  "ja": "⌀ このECUにはない"
+ },
+ "cap3.d": {
+  "en": "Your unit doesn't have it. The app won't pretend otherwise.",
+  "ja": "このユニットにはありません。アプリがあるふりをすることはありません。"
+ },
+ "cap4.t": {
+  "en": "… NOT DECODED YET",
+  "ja": "… 未解析"
+ },
+ "cap4.d": {
+  "en": "The ECU sends it; the community still has to decode it.",
+  "ja": "ECUは送っているが、コミュニティでの解析が必要。"
+ },
+ "fr.note": {
+  "en": "Example: ignition proposals stay off on a unit with unverified ignition scaling and no confirmed knock signal, and ECU self-learning must be off during tests.",
+  "ja": "例: 点火スケーリングが未検証でノック信号が確認できないユニットでは点火提案はオフのまま。テスト中はECUの自己学習もオフにする必要があります。"
  },
  "loop.eyebrow": {
   "en": "HOW IT WORKS",
-  "ja": "仕組み"
+  "ja": "しくみ"
  },
  "loop.h2": {
   "en": "One loop, from plug-in to a proven improvement.",
-  "ja": "接続から、証明された改善まで。ひとつのループ。"
+  "ja": "接続から、実証された改善まで。ひとつのループで。"
  },
  "loop.sub": {
-  "en": "The app, the workbench and the command-line tools all follow this loop. Every step leaves a file on disk, so nothing is lost.",
-  "ja": "アプリ、ワークベンチ、コマンドラインツールはすべてこのループに従います。各ステップはファイルとして残り、何も失われません。"
+  "en": "The app, the workbench and the command-line tools all follow it. Every step leaves a file on disk, so nothing is lost.",
+  "ja": "アプリもワークベンチもコマンドラインツールも、同じループに従います。各ステップはファイルとして残り、何も失われません。"
  },
- "step1.t": {
+ "mode0": {
+  "en": "Monitor mode · 1–4",
+  "ja": "モニターモード · 1–4"
+ },
+ "mode1": {
+  "en": "Engineer mode · + 5, 8",
+  "ja": "エンジニアモード · + 5, 8"
+ },
+ "mode2": {
+  "en": "Optimize mode · 1–9",
+  "ja": "最適化モード · 1–9"
+ },
+ "mode0.d": {
+  "en": "The first release that can go in a car. Connect, identify, set limits, record a trusted baseline.",
+  "ja": "車に載せられる最初のリリース。接続し、識別し、限界を設定し、信頼できるベースラインを記録します。"
+ },
+ "mode1.d": {
+  "en": "Adds proposals and assessments as reports. Nothing is sent to the ECU.",
+  "ja": "提案と評価をレポートとして追加。ECUには何も送りません。"
+ },
+ "mode2.d": {
+  "en": "Closes the loop, fuel only, behind every safety gate and a person's approval.",
+  "ja": "燃料のみ、すべての安全ゲートと人の承認のもとでループを完結させます。"
+ },
+ "s1.t": {
   "en": "Connect",
   "ja": "接続"
  },
- "step1.d": {
-  "en": "USB, serial, bridge or replay",
-  "ja": "USB・シリアル・ブリッジ・再生"
+ "s1.d": {
+  "en": "USB serial, bridge or replay",
+  "ja": "USBシリアル、ブリッジ、またはリプレイ"
  },
- "step2.t": {
+ "s2.t": {
   "en": "Identify",
   "ja": "識別"
  },
- "step2.d": {
-  "en": "which ECU, which firmware, which channels",
-  "ja": "どの ECU、どのファーム、どのチャンネルか"
+ "s2.d": {
+  "en": "Which ECU, firmware and channels",
+  "ja": "ECU、ファームウェア、チャンネルを特定"
  },
- "step3.t": {
+ "s3.t": {
   "en": "Profile &amp; limits",
-  "ja": "プロファイルと制限"
+  "ja": "プロファイルと限界"
  },
- "step3.d": {
-  "en": "engine, sensors, goal, hard limits",
-  "ja": "エンジン、センサー、目的、ハードリミット"
+ "s3.d": {
+  "en": "Engine, sensors, goal, hard limits",
+  "ja": "エンジン、センサー、目標、絶対限界"
  },
- "step4.t": {
+ "s4.t": {
   "en": "Baseline",
   "ja": "ベースライン"
  },
- "step4.d": {
-  "en": "saved, hashed, repeated",
-  "ja": "保存・ハッシュ・再現"
+ "s4.d": {
+  "en": "Saved, hashed, repeated",
+  "ja": "保存、ハッシュ化、再現"
  },
- "step5.t": {
+ "s5.t": {
   "en": "Propose",
   "ja": "提案"
  },
- "step5.d": {
-  "en": "one small change",
-  "ja": "小さな変更をひとつ"
+ "s5.d": {
+  "en": "One small, bounded fuel change",
+  "ja": "小さく上限付きの燃料変更をひとつ"
  },
- "step6.t": {
+ "s6.t": {
   "en": "Approve",
   "ja": "承認"
  },
- "step6.d": {
-  "en": "a person checks and says yes",
-  "ja": "人が確認して OK を出す"
+ "s6.d": {
+  "en": "A person checks and says yes",
+  "ja": "人が確認して承認"
  },
- "step7.t": {
+ "s7.t": {
   "en": "Test",
-  "ja": "試験"
+  "ja": "テスト"
  },
- "step7.d": {
-  "en": "a controlled run with stop rules",
-  "ja": "停止条件つきの管理された走行"
+ "s7.d": {
+  "en": "A controlled run with stop rules",
+  "ja": "停止ルール付きの管理された走行"
  },
- "step8.t": {
+ "s8.t": {
   "en": "Assess",
   "ja": "評価"
  },
- "step8.d": {
-  "en": "did it help, and did it repeat?",
-  "ja": "効いたか、再現したか"
+ "s8.d": {
+  "en": "Did it help, and did it repeat?",
+  "ja": "効果はあったか、再現したか"
  },
- "loop.learn": {
-  "en": "<b>9 · LEARN</b>write it to the ledger. The next step is smaller, or the loop stops.",
-  "ja": "<b>9 · 学習</b>台帳に記録。次の一歩はさらに小さく、または停止。"
+ "s9.t": {
+  "en": "Learn",
+  "ja": "学習"
  },
- "loop.n1": {
-  "en": "<b>Monitor mode</b> is steps 1 to 4. It is the first release that can go in a car.",
-  "ja": "<b>モニターモード</b>はステップ 1〜4。最初に実車で使えるリリース。"
+ "s9.d": {
+  "en": "Write it to the ledger. The next step is smaller, or the loop stops.",
+  "ja": "台帳に記録。次の一歩はより小さく、さもなくばループは止まります。"
  },
- "loop.n2": {
-  "en": "<b>Engineer mode</b> adds 5 and 8 as reports. Nothing is sent to the ECU.",
-  "ja": "<b>エンジニアモード</b>は 5 と 8 をレポートとして追加。ECU には何も送らない。"
+ "ev.eyebrow": {
+  "en": "LEARNING FROM EVIDENCE",
+  "ja": "根拠から学ぶ"
  },
- "loop.n3": {
-  "en": "<b>Optimize mode</b> closes the loop, fuel only, behind every safety gate.",
-  "ja": "<b>最適化モード</b>はループを閉じる。燃料のみ、すべての安全ゲートの先で。"
+ "ev.h2": {
+  "en": "An improvement only counts when it repeats.",
+  "ja": "改善は、再現して初めて認められる。"
  },
- "par.eyebrow": {
+ "ev.sub": {
+  "en": "Each round compares a baseline, a candidate and a repeat of the candidate. Every prediction is shown as a range against run-to-run noise, so you can see whether a gain is real.",
+  "ja": "各ラウンドでベースライン、候補、候補のリピートを比較します。予測はすべて走行ごとのばらつきに対する範囲として表示され、改善が本物かどうかがわかります。"
+ },
+ "ev.chart": {
+  "en": "LAMBDA ERROR BY RUN",
+  "ja": "走行別ラムダ誤差"
+ },
+ "ev.base": {
+  "en": "Baseline",
+  "ja": "ベースライン"
+ },
+ "ev.cand": {
+  "en": "Candidate",
+  "ja": "候補"
+ },
+ "ev.rep": {
+  "en": "Repeat",
+  "ja": "リピート"
+ },
+ "ev.note": {
+  "en": "Example numbers from the sample captures. Repeatability is checked separately.",
+  "ja": "サンプルデータからの例です。再現性は別途チェックします。"
+ },
+ "led1": {
+  "en": "baseline captured",
+  "ja": "ベースライン取得"
+ },
+ "led1.s": {
+  "en": "clean",
+  "ja": "正常"
+ },
+ "led.ok": {
+  "en": "✓ improved · repeated",
+  "ja": "✓ 改善 · 再現"
+ },
+ "led3.s": {
+  "en": "! not repeatable",
+  "ja": "! 再現せず"
+ },
+ "led5": {
+  "en": "knock in run",
+  "ja": "走行中にノック"
+ },
+ "led5.s": {
+  "en": "✕ aborted · not reused",
+  "ja": "✕ 中止 · 再利用しない"
+ },
+ "data.eyebrow": {
+  "en": "ECU FIRST",
+  "ja": "ECUが基本"
+ },
+ "data.h2": {
+  "en": "The engine data comes from the ECU. The phone fills in the rest.",
+  "ja": "エンジンデータはECUから。残りはスマホが補う。"
+ },
+ "data.sub": {
+  "en": "Every value shows where it came from and how sure we are about it. The safety gate only uses the ECU and add-on sensors, never the phone.",
+  "ja": "すべての値に出どころと確かさが表示されます。安全ゲートが使うのはECUと追加センサーだけで、スマホのデータは使いません。"
+ },
+ "src1.t": {
+  "en": "Engine data",
+  "ja": "エンジンデータ"
+ },
+ "src1.d": {
+  "en": "RPM, load, lambda, temperatures, battery, knock, speed. The only data used to make decisions.",
+  "ja": "回転数、負荷、ラムダ、温度、バッテリー、ノック、速度。判断に使う唯一のデータです。"
+ },
+ "src2.k": {
+  "en": "PHONE",
+  "ja": "スマホ"
+ },
+ "src2.t": {
+  "en": "Speed and g-force",
+  "ja": "速度とG値"
+ },
+ "src2.d": {
+  "en": "GPS and motion sensors cross-check ECU speed and confirm runs were driven the same way. They're never used to decide.",
+  "ja": "GPSとモーションセンサーでECUの速度を照合し、同じように走ったかを確認します。判断には使いません。"
+ },
+ "src3.k": {
+  "en": "ADD-ON",
+  "ja": "追加"
+ },
+ "src3.t": {
+  "en": "The sensors the ECU doesn't have",
+  "ja": "ECUにないセンサー"
+ },
+ "src3.d": {
+  "en": "Wideband lambda, fuel pressure and oil pressure, used by the gate when they're fitted.",
+  "ja": "ワイドバンドラムダ、燃圧、油圧。装着時は安全ゲートで使用します。"
+ },
+ "lvl.doc": {
+  "en": "DOCUMENTED",
+  "ja": "文書確認済"
+ },
+ "lvl.obs": {
+  "en": "OBSERVED",
+  "ja": "観測"
+ },
+ "lvl.inf": {
+  "en": "INFERRED",
+  "ja": "推定"
+ },
+ "lvl.unv": {
+  "en": "UNVERIFIED",
+  "ja": "未検証"
+ },
+ "sf.eyebrow": {
   "en": "SAFETY LIMITS",
-  "ja": "安全の制限値"
+  "ja": "安全限界"
  },
- "par.h2": {
+ "sf.h2": {
   "en": "Limits are set before the engine starts.",
-  "ja": "制限値は、エンジンをかける前に決める。"
+  "ja": "限界は、エンジンをかける前に決める。"
  },
- "par.sub": {
-  "en": "These values come from the safety policy file the tools enforce. They are provisional and must be checked for your engine, but they are never invented on the spot.",
-  "ja": "これらの値はツールが適用する安全ポリシーファイルから読み込みます。暫定値であり、あなたのエンジンに合わせて確認が必要ですが、その場で作られることはありません。"
+ "sf.sub": {
+  "en": "These values come from the safety policy file the tools enforce. They're provisional and must be checked for your engine, but they're never invented on the spot.",
+  "ja": "これらの値は、ツールが適用する安全ポリシーファイルからのものです。暫定値のためエンジンごとに確認が必要ですが、その場で作られることはありません。"
+ },
+ "sf.rules": {
+  "en": "ALWAYS · NEVER",
+  "ja": "必ず · 絶対にしない"
  },
  "rule1": {
-  "en": "never learn from a run with a protection fault",
-  "ja": "保護が作動した走行からは学習しない"
+  "en": "✕ Never learn from a run with a protection fault",
+  "ja": "✕ 保護異常のあった走行からは学習しない"
  },
  "rule2": {
-  "en": "never change fuel and ignition in the same experiment",
-  "ja": "燃料と点火を同じ実験で変えない"
+  "en": "✕ Never change fuel and ignition in the same experiment",
+  "ja": "✕ 同じ実験で燃料と点火時期を同時に変えない"
  },
  "rule3": {
-  "en": "never guess unknown cells without a review flag",
-  "ja": "未知のセルをレビューなしで推定しない"
+  "en": "✕ Never let an AI authorise an ECU write",
+  "ja": "✕ AIにECU書き込みを許可させない"
  },
  "rule4": {
-  "en": "never let an AI authorize an ECU write",
-  "ja": "AI に ECU 書き込みを許可させない"
+  "en": "✕ Never change ignition without verified knock sensing",
+  "ja": "✕ ノック検知が検証されるまで点火時期を変えない"
  },
  "rule5": {
-  "en": "always keep the source map, the diff and a rollback copy",
-  "ja": "元マップ、差分、戻し用コピーを必ず保持"
+  "en": "✕ Treat a missing safety channel as a failed check, never a pass",
+  "ja": "✕ 安全チャンネルの欠落は合格ではなく不合格として扱う"
  },
- "par.hard": {
+ "rule6": {
+  "en": "✓ Always keep the source map, the diff and a rollback copy",
+  "ja": "✓ 元のマップ、差分、ロールバック用コピーを必ず保持"
+ },
+ "sf.limits": {
   "en": "HARD LIMITS",
-  "ja": "ハードリミット"
+  "ja": "絶対限界"
  },
- "par.policy": {
-  "en": "policy 0.1-provisional",
-  "ja": "ポリシー 0.1-暫定"
+ "sf.policy": {
+  "en": "policy 0.2-provisional",
+  "ja": "ポリシー 0.2 暫定"
  },
  "lim1": {
   "en": "Max fuel change per cell",
-  "ja": "セルあたり燃料の最大変更"
+  "ja": "セルごとの最大燃料変更"
  },
  "lim2": {
   "en": "Max ignition change per cell",
-  "ja": "セルあたり点火の最大変更"
+  "ja": "セルごとの最大点火変更"
  },
  "lim3": {
   "en": "Max RPM",
@@ -296,584 +554,344 @@ window.AHHPUCK_I18N = {
   "en": "Min oil pressure under load",
   "ja": "負荷時の最低油圧"
  },
- "par.ev": {
-  "en": "REQUIRED EVIDENCE",
-  "ja": "必要な証拠"
+ "lim9": {
+  "en": "Max lambda under load",
+  "ja": "負荷時の最大ラムダ"
  },
- "ev1": {
-  "en": "original map backed up",
-  "ja": "元マップのバックアップ"
+ "sf.where": {
+  "en": "WHERE TO TEST",
+  "ja": "テストの場所"
  },
- "ev2": {
-  "en": "engine profile checked",
-  "ja": "エンジンプロファイル確認済み"
+ "where1.t": {
+  "en": "Dyno",
+  "ja": "ダイナモ"
  },
- "ev3": {
-  "en": "injector data checked",
-  "ja": "インジェクターデータ確認済み"
+ "where1.d": {
+  "en": "Controlled load. Best for map work.",
+  "ja": "負荷を管理できる。マップ作業に最適。"
  },
- "ev4": {
-  "en": "fuel pressure checked",
-  "ja": "燃圧確認済み"
+ "where2.t": {
+  "en": "Closed course",
+  "ja": "クローズドコース"
  },
- "ev5": {
-  "en": "wideband calibrated",
-  "ja": "ワイドバンド校正済み"
+ "where2.d": {
+  "en": "Real motion. Log without touching the phone, review later.",
+  "ja": "実際の走行。スマホに触れずに記録し、後で確認。"
  },
- "ev6": {
-  "en": "ignition offset checked",
-  "ja": "点火オフセット確認済み"
+ "sf.roads": {
+  "en": "! Public roads are not a tuning mode. AhhPuck records data for later review. It never tunes a moving car.",
+  "ja": "! 公道はチューニングの場ではありません。AhhPuckは後で確認するためにデータを記録するだけで、走行中の車をチューニングすることはありません。"
  },
- "ev7": {
-  "en": "sensors plausible",
-  "ja": "センサー値が妥当"
+ "gl.t": {
+  "en": "Built to glance at, not to touch.",
+  "ja": "触れずに、一目で。"
  },
- "ev8": {
-  "en": "logs repeatable",
-  "ja": "ログが再現可能"
- },
- "lrn.eyebrow": {
-  "en": "LEARNING FROM EVIDENCE",
-  "ja": "証拠から学ぶ"
- },
- "lrn.h2": {
-  "en": "An improvement only counts when it repeats.",
-  "ja": "改善は、再現して初めて認められる。"
- },
- "lrn.sub": {
-  "en": "Each round compares a baseline, a candidate and a repeat of the candidate. The result goes into a ledger that only grows. A run with a fault is never reused.",
-  "ja": "毎回、ベースライン、候補、候補の再現走行を比較します。結果は追記専用の台帳に記録されます。異常が出た走行は二度と使いません。"
- },
- "lrn.c1": {
-  "en": "Lambda error by run",
-  "ja": "走行ごとのラムダ誤差"
- },
- "lrn.c1.cap": {
-  "en": "Example numbers from the sample captures. Repeatability is checked separately.",
-  "ja": "サンプルデータによる例。再現性は別途チェックします。"
- },
- "lrn.base": {
-  "en": "baseline",
-  "ja": "ベース"
- },
- "lrn.cand": {
-  "en": "candidate",
-  "ja": "候補"
- },
- "lrn.rep": {
-  "en": "repeat",
-  "ja": "再現"
- },
- "lrn.c2": {
-  "en": "Quality gate",
-  "ja": "品質ゲート"
- },
- "lrn.c2.tag": {
-  "en": "target 96 %",
-  "ja": "目標 96 %"
- },
- "q1": {
-  "en": "Objective score",
-  "ja": "目的スコア"
- },
- "q2": {
-  "en": "Safety-pass fraction",
-  "ja": "安全通過率"
- },
- "q3": {
-  "en": "Map coverage",
-  "ja": "マップ網羅率"
- },
- "q4": {
-  "en": "Repeatability",
-  "ja": "再現性"
- },
- "q5": {
-  "en": "Sensor confidence",
-  "ja": "センサー信頼度"
- },
- "lrn.c2.cap": {
-  "en": "Missing evidence counts as zero. A few good dyno pulls, or an AI opinion, can never reach the target alone.",
-  "ja": "証拠がなければゼロ扱い。数回の良いダイノ結果や AI の意見だけでは、目標に届きません。"
- },
- "lrn.c3": {
-  "en": "Learning ledger",
-  "ja": "学習台帳"
- },
- "lrn.c3.tag": {
-  "en": "append-only",
-  "ja": "追記のみ"
- },
- "led1": {
-  "en": "baseline captured",
-  "ja": "ベースライン取得"
- },
- "led1.s": {
-  "en": "clean",
-  "ja": "正常"
- },
- "led2": {
-  "en": "fuel 11×7 −1.5 %",
-  "ja": "燃料 11×7 −1.5 %"
- },
- "led2.s": {
-  "en": "improved · repeated",
-  "ja": "改善 · 再現"
- },
- "led3": {
-  "en": "fuel 11×8 −1.5 %",
-  "ja": "燃料 11×8 −1.5 %"
- },
- "led3.s": {
-  "en": "not repeatable",
-  "ja": "再現せず"
- },
- "led4": {
-  "en": "fuel 11×8 −0.8 %",
-  "ja": "燃料 11×8 −0.8 %"
- },
- "led4.s": {
-  "en": "improved · repeated",
-  "ja": "改善 · 再現"
- },
- "led5": {
-  "en": "knock in run",
-  "ja": "走行中にノック"
- },
- "led5.s": {
-  "en": "aborted · not reused",
-  "ja": "中止 · 再利用なし"
- },
- "lrn.c3.cap": {
-  "en": "If a step does not repeat, the next one is smaller. If protection fires, nothing is learned from that run.",
-  "ja": "再現しなければ、次の一歩はさらに小さく。保護が作動したら、その走行からは何も学びません。"
+ "gl.d": {
+  "en": "While recording, the screen shows three numbers and one big stop button. Alerts come by sound and haptics, run on fixed rules, and work offline. A critical alert can't be dismissed while the condition lasts.",
+  "ja": "記録中の画面には3つの数字と大きな停止ボタンだけ。アラートは音と振動で知らせ、固定ルールで動作し、オフラインでも有効です。重大アラートは状態が続く限り閉じられません。"
  },
  "st.eyebrow": {
-  "en": "WHAT IS BUILT, DEFINED AND IN PROGRESS",
-  "ja": "できていること、決めたこと、進行中のこと"
+  "en": "HONEST STATUS",
+  "ja": "正直な進捗"
  },
  "st.h2": {
-  "en": "Honest status, straight from the repository.",
-  "ja": "リポジトリそのままの、正直な進捗。"
+  "en": "Read-only first. Writes stay outside the trial.",
+  "ja": "まずは読み取り専用。書き込みは試験の対象外。"
  },
  "st.built": {
-  "en": "Built",
-  "ja": "完成"
+  "en": "✓ BUILT",
+  "ja": "✓ 完成"
  },
- "st.defined": {
-  "en": "Defined",
-  "ja": "定義済み"
+ "st.built.d": {
+  "en": "Freedom map parser · telemetry statistics · iteration assessor · fail-closed safety gate · local learning ledger · iOS and Mac core · tuning knowledge base (22 sources, 7 rule cards)",
+  "ja": "Freedomマップパーサー · テレメトリー統計 · 反復評価 · フェイルクローズの安全ゲート · ローカル学習台帳 · iOS/Macコア · チューニング知識ベース（22ソース、7ルールカード）"
  },
- "st.impl": {
-  "en": "In progress",
-  "ja": "進行中"
+ "st.prog.d": {
+  "en": "Verified Freedom export adapter · first live read (?DAT poll, 55-byte reply) · real capture corpus · bench recovery tests · trial FC-03 on the bench",
+  "ja": "検証済みFreedomエクスポートアダプター · 初のライブ読み取り（?DATポーリング、55バイト応答） · 実データコーパス · ベンチ復旧テスト · 試験用FC-03をベンチで検証中"
  },
  "st.notyet": {
-  "en": "Not yet",
-  "ja": "未着手"
- },
- "b1": {
-  "en": "Map parser",
-  "ja": "マップパーサー"
- },
- "b1.d": {
-  "en": "reads every Freedom base map into JSON",
-  "ja": "Freedom のベースマップを JSON に読み込む"
- },
- "b2": {
-  "en": "Telemetry statistics",
-  "ja": "テレメトリ統計"
- },
- "b2.d": {
-  "en": "lambda error, improvement, repeatability, coverage, knock",
-  "ja": "ラムダ誤差、改善、再現性、網羅率、ノック"
- },
- "b3": {
-  "en": "Iteration assessor",
-  "ja": "反復評価"
- },
- "b3.d": {
-  "en": "baseline → candidate → repeat decision",
-  "ja": "ベース → 候補 → 再現の判定"
- },
- "b4": {
-  "en": "Safety gate",
-  "ja": "安全ゲート"
- },
- "b4.d": {
-  "en": "enforces the limits and required evidence",
-  "ja": "制限値と必要な証拠を適用"
- },
- "b5": {
-  "en": "Concept optimizer",
-  "ja": "コンセプト最適化"
- },
- "b5.d": {
-  "en": "drift, grip, 0–100 or top-speed goals, fuel only",
-  "ja": "ドリフト、グリップ、0–100、最高速。燃料のみ"
- },
- "b6": {
-  "en": "Learning ledger",
-  "ja": "学習台帳"
- },
- "b6.d": {
-  "en": "offline, deterministic, append-only",
-  "ja": "オフライン、決定論的、追記のみ"
- },
- "b7": {
-  "en": "iOS core",
-  "ja": "iOS コア"
- },
- "b7.d": {
-  "en": "readiness, trial state machine, assessment, dashboard",
-  "ja": "準備確認、試行ステートマシン、評価、ダッシュボード"
- },
- "b8": {
-  "en": "Mac core",
-  "ja": "Mac コア"
- },
- "b8.d": {
-  "en": "live safety monitor with watchdog, recorder, serial port",
-  "ja": "ウォッチドッグ付き安全監視、レコーダー、シリアル"
- },
- "b9": {
-  "en": "Browser workbench",
-  "ja": "ブラウザワークベンチ"
- },
- "b9.d": {
-  "en": "read-only capture and experiment review",
-  "ja": "読み取り専用の取得と実験評価"
- },
- "d1": {
-  "en": "Tuning workflow",
-  "ja": "チューニング手順"
- },
- "d1.d": {
-  "en": "baseline, proposal, controlled run, assessment, rollback",
-  "ja": "ベース、提案、管理走行、評価、ロールバック"
- },
- "d2": {
-  "en": "Safety policy",
-  "ja": "安全ポリシー"
- },
- "d2.d": {
-  "en": "hard limits, required evidence, write blockers, rules",
-  "ja": "ハードリミット、必要な証拠、書き込み阻止、ルール"
- },
- "d3": {
-  "en": "Telemetry model",
-  "ja": "テレメトリモデル"
- },
- "d3.d": {
-  "en": "units, timestamps, gaps, plausibility",
-  "ja": "単位、タイムスタンプ、欠損、妥当性"
- },
- "d4": {
-  "en": "Shared core contract",
-  "ja": "共通コア契約"
- },
- "d4.d": {
-  "en": "transport, decoder, safety monitor, recorder, optimizer gate, write controller",
-  "ja": "転送、デコーダー、安全監視、レコーダー、最適化ゲート、書き込み制御"
- },
- "d5": {
-  "en": "User stories and release gates",
-  "ja": "ユーザーストーリーとリリースゲート"
- },
- "d5.d": {
-  "en": "owner, tuner and developer journeys",
-  "ja": "オーナー、チューナー、開発者の流れ"
- },
- "d6": {
-  "en": "Evidence labels",
-  "ja": "証拠ラベル"
- },
- "d6.d": {
-  "en": "documented · observed · inferred · unverified",
-  "ja": "文書化 · 観測 · 推定 · 未検証"
- },
- "i1": {
-  "en": "FC-03 identity capture",
-  "ja": "FC-03 の識別取得"
- },
- "i1.d": {
-  "en": "read-only serial at 9600 bps",
-  "ja": "9600 bps の読み取り専用シリアル"
- },
- "i2": {
-  "en": "Frame decoder",
-  "ja": "フレームデコーダー"
- },
- "i2.d": {
-  "en": "version and profile aware, read-only",
-  "ja": "バージョンとプロファイル対応、読み取り専用"
- },
- "i3": {
-  "en": "iOS USB transport",
-  "ja": "iOS USB 転送"
- },
- "i3.d": {
-  "en": "placeholder today, Wi-Fi bridge as fallback",
-  "ja": "現在はプレースホルダー、Wi-Fi ブリッジで代替"
- },
- "i4": {
-  "en": "SwiftUI screens",
-  "ja": "SwiftUI 画面"
- },
- "i4.d": {
-  "en": "live, run, review, approval, setup",
-  "ja": "ライブ、走行、評価、承認、設定"
- },
- "n1": {
-  "en": "Any ECU write",
-  "ja": "ECU への書き込み"
- },
- "n1.d": {
-  "en": "blocked until protocol, checksum and human approval are proven",
-  "ja": "プロトコル、チェックサム、人の承認が証明されるまで禁止"
- },
- "n2": {
-  "en": "Ignition proposals",
-  "ja": "点火の提案"
- },
- "n2.d": {
-  "en": "need a verified timing offset and knock evidence",
-  "ja": "検証済み点火オフセットとノックの証拠が必要"
- },
- "n3": {
-  "en": "A second ECU",
-  "ja": "2 つ目の ECU"
- },
- "n3.d": {
-  "en": "only after the FC-03 trial produces real results",
-  "ja": "FC-03 の試行で実結果が出てから"
- },
- "tst.eyebrow": {
-  "en": "TESTING",
-  "ja": "テスト"
- },
- "tst.h2": {
-  "en": "The safety claims are tests, not slogans.",
-  "ja": "安全性の主張は、スローガンではなくテスト。"
- },
- "tst.sub": {
-  "en": "Python tests cover the analysis tools. Swift tests cover the iOS workflow and the Mac live monitor. Every name on the right is a real test in the repository.",
-  "ja": "Python テストが解析ツールを、Swift テストが iOS の流れと Mac のライブ監視をカバーします。右の名前はすべてリポジトリ内の実在するテストです。"
- },
- "tst.run": {
-  "en": "# run them",
-  "ja": "# 実行方法"
- },
- "tst.g1": {
-  "en": "Python · tools",
-  "ja": "Python · ツール"
- },
- "tst.g2": {
-  "en": "Swift · iOS core",
-  "ja": "Swift · iOS コア"
- },
- "tst.g3": {
-  "en": "Swift · Mac core",
-  "ja": "Swift · Mac コア"
- },
- "mis.eyebrow": {
-  "en": "THE BIGGER GOAL",
-  "ja": "より大きな目標"
- },
- "mis.h2": {
-  "en": "One process. Many unsupported ECUs.",
-  "ja": "ひとつの仕組みで、多くのサポート終了 ECU を。"
- },
- "mis.sub": {
-  "en": "The Freedom FC-03 is the proving ground. Once the loop is proven on a real car, the same parts become adapters for other good ECUs that lost their software, not their value.",
-  "ja": "Freedom FC-03 は実証の場です。実車でループが証明できたら、同じ部品が他の ECU のアダプターになります。ソフトは失っても、価値は失っていない ECU たちのために。"
- },
- "mis.core": {
-  "en": "Shared core",
-  "ja": "共通コア"
- },
- "core1": {
-  "en": "Transport adapter",
-  "ja": "転送アダプター"
- },
- "core2": {
-  "en": "Frame decoder",
-  "ja": "フレームデコーダー"
- },
- "core3": {
-  "en": "Live safety monitor",
-  "ja": "ライブ安全監視"
- },
- "core4": {
-  "en": "Session recorder",
-  "ja": "セッション記録"
- },
- "core5": {
-  "en": "Optimizer gate",
-  "ja": "最適化ゲート"
- },
- "core6": {
-  "en": "Learning ledger",
-  "ja": "学習台帳"
- },
- "mis.p1": {
-  "en": "Lower cost",
-  "ja": "低コスト"
- },
- "mis.p1.d": {
-  "en": "A second-hand ECU and a serial cable, instead of a new ECU, harness and licence.",
-  "ja": "新品の ECU、ハーネス、ライセンスの代わりに、中古 ECU とシリアルケーブル。"
- },
- "mis.p2": {
-  "en": "Better logging",
-  "ja": "より良いロギング"
- },
- "mis.p2.d": {
-  "en": "Modern sample rates, phone sensors, hashes and exports the old software never had.",
-  "ja": "最新のサンプリング、スマホのセンサー、ハッシュ、エクスポート。昔のソフトにはなかったもの。"
- },
- "mis.p3": {
-  "en": "Safer tuning",
-  "ja": "より安全なチューニング"
- },
- "mis.p3.d": {
-  "en": "Evidence-based, repeatable, reversible. The same loop, whatever the box says on the lid.",
-  "ja": "証拠に基づき、再現でき、戻せる。箱のラベルが何であれ、同じループ。"
- },
- "mis.p4": {
-  "en": "Sky is the limit",
-  "ja": "可能性は無限"
- },
- "mis.p4.d": {
-  "en": "Every adapter starts read-only. Writing needs its own proof, every time.",
-  "ja": "すべてのアダプターは読み取り専用から始まる。書き込みには毎回、独自の証明が必要。"
- },
- "mis.cap": {
-  "en": "Candidate ECUs are listed in the repository. None starts development until the FC-03 trial passes its gates.",
-  "ja": "候補 ECU はリポジトリに記載。FC-03 の試行がゲートを通過するまで、どれも開発を始めません。"
- },
- "gat.eyebrow": {
-  "en": "RELEASE GATES · FC-03 TRIAL",
-  "ja": "リリースゲート · FC-03 試行"
- },
- "gat.h2": {
-  "en": "Nine gates before a single write.",
-  "ja": "1 回の書き込みの前に、9 つのゲート。"
- },
- "gat.sub": {
-  "en": "Each gate must pass before the next is considered. A working dashboard is never proof of a safe tune.",
-  "ja": "各ゲートを通過してから次へ進みます。ダッシュボードが動くことは、安全なチューニングの証明にはなりません。"
- },
- "g1": {
-  "en": "Replay and simulated data",
-  "ja": "再生とシミュレーションデータ"
- },
- "g2": {
-  "en": "USB detection without ECU commands",
-  "ja": "ECU コマンドなしの USB 検出"
- },
- "g3": {
-  "en": "Read-only ECU identity",
-  "ja": "読み取り専用の ECU 識別"
- },
- "g4": {
-  "en": "Read-only live monitor and logging",
-  "ja": "読み取り専用のライブ監視とログ"
- },
- "g5": {
-  "en": "Fault tests: disconnect, stale data, bad sensors, power loss",
-  "ja": "異常テスト：切断、古いデータ、センサー異常、電源断"
- },
- "g6": {
-  "en": "Car check at idle and light load",
-  "ja": "アイドルと低負荷での実車確認"
- },
- "g7": {
-  "en": "Load testing with independent instruments",
-  "ja": "独立計測器での負荷テスト"
- },
- "g8": {
-  "en": "Human-reviewed proposals",
-  "ja": "人がレビューした提案"
- },
- "g9": {
-  "en": "Only then, one restricted write experiment",
-  "ja": "それからようやく、制限付きの書き込み実験 1 回"
- },
- "cta.eyebrow": {
-  "en": "GET STARTED",
-  "ja": "はじめる"
- },
- "cta.h2": {
-  "en": "Begin with a baseline you can trust.",
-  "ja": "信頼できるベースラインから始めよう。"
- },
- "cta.sub": {
-  "en": "Clone the repository, open the workbench, and try the full first-trial flow with the included sample data before any ECU is connected.",
-  "ja": "リポジトリをクローンし、ワークベンチを開き、ECU を接続する前に同梱のサンプルデータで最初の試行の流れを試してください。"
- },
- "cta.b1": {
-  "en": "View on GitHub",
-  "ja": "GitHub で見る"
- },
- "cta.b2": {
-  "en": "Open the workbench",
-  "ja": "ワークベンチを開く"
- },
- "cta.code": {
-  "en": "# compare two local captures, no AI service needed",
-  "ja": "# ローカルの 2 つの記録を比較。AI サービス不要"
+  "en": "– NOT YET",
+  "ja": "– 未着手"
+ },
+ "st.notyet.d": {
+  "en": "Any ECU write · ignition proposals · a second ECU, only after the FC-03 trial produces real results",
+  "ja": "ECUへの書き込み · 点火時期の提案 · 2台目のECU（FC-03の試験で実績が出てから）"
+ },
+ "stat1": {
+  "en": "Python tests passing",
+  "ja": "Pythonテスト合格"
+ },
+ "stat2": {
+  "en": "Swift tests passing",
+  "ja": "Swiftテスト合格"
+ },
+ "stat3": {
+  "en": "source-backed rule cards",
+  "ja": "出典付きルールカード"
+ },
+ "stat4": {
+  "en": "ECU writes authorised",
+  "ja": "許可されたECU書き込み"
+ },
+ "cm.eyebrow": {
+  "en": "OPEN COMMUNITY BUILD",
+  "ja": "オープンなコミュニティ開発"
+ },
+ "cm.h2": {
+  "en": "Built by the people who still run these ECUs.",
+  "ja": "今もこれらのECUを使う人たちの手で。"
+ },
+ "cm.sub": {
+  "en": "AhhPuck isn't trying to replace a tuner or make an old ECU pretend to be new. It's a shared path to bring back useful support for hardware that still works.",
+  "ja": "AhhPuckはチューナーの代わりになることも、古いECUを新品に見せかけることも目指していません。まだ動くハードウェアに、役立つサポートを取り戻すための共同の道です。"
+ },
+ "role1.t": {
+  "en": "Owners",
+  "ja": "オーナー"
+ },
+ "role1.d": {
+  "en": "Share baseline tunes, logs and your car profile.",
+  "ja": "ベースのセッティング、ログ、車両プロファイルを共有。"
+ },
+ "role1.a": {
+  "en": "→ RECORD A BASELINE · SEND A SESSION BUNDLE",
+  "ja": "→ ベースラインを記録 · セッションデータを送る"
+ },
+ "role2.t": {
+  "en": "Tuners",
+  "ja": "チューナー"
+ },
+ "role2.d": {
+  "en": "Review proposals, write rule cards and check the limits for each engine.",
+  "ja": "提案のレビュー、ルールカードの作成、エンジンごとの限界の確認。"
+ },
+ "role2.a": {
+  "en": "→ REVIEW EXPERIMENTS · ADD RULE CARDS",
+  "ja": "→ 実験をレビュー · ルールカードを追加"
+ },
+ "role3.t": {
+  "en": "Developers",
+  "ja": "開発者"
+ },
+ "role3.d": {
+  "en": "Build decoders and adapters. Everything is tested, and read-only first.",
+  "ja": "デコーダーとアダプターを開発。すべてテスト済み、まずは読み取り専用で。"
+ },
+ "role3.a": {
+  "en": "→ OPEN AN ADAPTER · RUN THE TEST SUITE",
+  "ja": "→ アダプターを作る · テストを実行"
+ },
+ "role4.t": {
+  "en": "Keepers of knowledge",
+  "ja": "知識の継承者"
+ },
+ "role4.d": {
+  "en": "Manuals, schematics, old software and cables, before they disappear.",
+  "ja": "マニュアル、回路図、古いソフトやケーブルを、失われる前に。"
+ },
+ "role4.a": {
+  "en": "→ SHARE A SOURCE · WE HASH AND CITE IT",
+  "ja": "→ 資料を共有 · ハッシュ化して出典を記録"
+ },
+ "flow1": {
+  "en": "Owner data",
+  "ja": "オーナーのデータ"
+ },
+ "flow2": {
+  "en": "Tuner experience",
+  "ja": "チューナーの経験"
+ },
+ "flow3": {
+  "en": "Developer tools",
+  "ja": "開発者のツール"
+ },
+ "flow4": {
+  "en": "Shared evidence core",
+  "ja": "共有の根拠コア"
+ },
+ "flow5": {
+  "en": "Support that lasts",
+  "ja": "続いていくサポート"
+ },
+ "bel1.t": {
+  "en": "Open by default",
+  "ja": "オープンが基本"
+ },
+ "bel1.d": {
+  "en": "The process and evidence should be understandable by the people using it.",
+  "ja": "プロセスと根拠は、使う人が理解できるものであるべきです。"
+ },
+ "bel2.t": {
+  "en": "Older doesn't mean broken",
+  "ja": "古い ≠ 壊れている"
+ },
+ "bel2.d": {
+  "en": "A working ECU deserves a path back to support before it is replaced.",
+  "ja": "動くECUには、交換される前にサポートへ戻る道があるべきです。"
+ },
+ "bel3.t": {
+  "en": "Proof before confidence",
+  "ja": "自信より実証"
+ },
+ "bel3.d": {
+  "en": "A result enters the shared record only when the data is repeatable.",
+  "ja": "データが再現したときだけ、結果は共有記録に入ります。"
+ },
+ "faq.eyebrow": {
+  "en": "FAQ",
+  "ja": "よくある質問"
+ },
+ "faq.h2": {
+  "en": "Questions owners ask first.",
+  "ja": "オーナーがまず聞く質問。"
+ },
+ "faq.q1": {
+  "en": "Does AhhPuck write to my ECU?",
+  "ja": "AhhPuckはECUに書き込みますか？"
+ },
+ "faq.a1": {
+  "en": "No. Every build so far is read-only, and ECU writes are locked in code. Writing would need its own bench proof of the protocol, scaling, checksums and recovery, plus a person's sign-off.",
+  "ja": "いいえ。これまでのビルドはすべて読み取り専用で、ECUへの書き込みはコードでロックされています。書き込みには、プロトコル、スケーリング、チェックサム、復旧のベンチでの実証と、人の承認が別途必要です。"
+ },
+ "faq.q2": {
+  "en": "Which ECUs does it support?",
+  "ja": "どのECUに対応していますか？"
+ },
+ "faq.a2": {
+  "en": "The Freedom FC-03 on a 4A-GE 20V comes first. Other families are on a candidate list, and none starts until the FC-03 trial passes its gates.",
+  "ja": "まずは4A-GE 20VのFreedom FC-03です。他のECUは候補リストにあり、FC-03の試験が完了するまで着手しません。"
+ },
+ "faq.q3": {
+  "en": "What do I need to connect a car?",
+  "ja": "車をつなぐには何が必要ですか？"
+ },
+ "faq.a3": {
+  "en": "The FCSS serial cable and a USB-to-serial adapter. The Freedom talks at 9600 bps, 7E1. Until live reads are finished, the tools work offline on recorded captures.",
+  "ja": "FCSSシリアルケーブルとUSB-シリアルアダプターです。Freedomは9600 bps、7E1で通信します。ライブ読み取りが完成するまでは、記録データを使ってオフラインで動作します。"
+ },
+ "faq.q4": {
+  "en": "Will a second-hand Freedom unit plug into my car?",
+  "ja": "中古のFreedomは自分の車に付きますか？"
+ },
+ "faq.a4": {
+  "en": "Only if it was built for your car's ECU plug. Freedom units are coupler-on for one vehicle family, and the code on the silver label tells you which. Our trial unit is an AE111-coupler FC-03, so it needs an AE111 engine loom.",
+  "ja": "あなたの車のECUカプラー用に作られたものだけです。Freedomは車種ごとのカプラーオンで、銀色のラベルのコードでわかります。私たちの試験機はAE111カプラーのFC-03なので、AE111のエンジンハーネスが必要です。"
+ },
+ "faq.q5": {
+  "en": "Can it tune my car on the road?",
+  "ja": "公道でチューニングできますか？"
+ },
+ "faq.a5": {
+  "en": "No. Public roads are not a tuning mode. Changes are tested on a dyno or a closed course, one bounded step at a time.",
+  "ja": "いいえ。公道はチューニングの場ではありません。変更はダイナモかクローズドコースで、上限付きの一歩ずつテストします。"
+ },
+ "faq.q6": {
+  "en": "Does the AI decide the tune?",
+  "ja": "AIがセッティングを決めるのですか？"
+ },
+ "faq.a6": {
+  "en": "No. It proposes the smallest testable option from measured data and documented rules. A safety gate checks it, and a person decides whether to test it.",
+  "ja": "いいえ。計測データと文書化されたルールから、テスト可能な最小の選択肢を提案するだけです。安全ゲートが確認し、テストするかどうかは人が決めます。"
+ },
+ "faq.q7": {
+  "en": "Does the app work in Japanese?",
+  "ja": "アプリは日本語に対応していますか？"
+ },
+ "faq.a7": {
+  "en": "Yes. The app ships in English and Japanese, with consistent tuning terms in both.",
+  "ja": "はい。アプリは英語と日本語に対応し、チューニング用語も統一しています。"
+ },
+ "help.eyebrow": {
+  "en": "HELP THE COMMUNITY",
+  "ja": "コミュニティに協力する"
+ },
+ "help.h2": {
+  "en": "Have a baseline tune or Freedom ECU knowledge?",
+  "ja": "ベースのセッティングやFreedom ECUの知識はありますか？"
+ },
+ "help.p": {
+  "en": "Help test the read-only build, share a baseline tune or logs, or contribute what you know about the Freedom ECU. Every useful reference helps bring support back to hardware that still works.",
+  "ja": "読み取り専用ビルドのテスト、ベースのセッティングやログの共有、Freedom ECUについての知識の提供にご協力ください。あらゆる情報が、まだ動くハードウェアにサポートを取り戻す力になります。"
+ },
+ "help.email": {
+  "en": "Email the AhhPuck team",
+  "ja": "AhhPuckチームにメール"
+ },
+ "help.msg": {
+  "en": "Message us on Wheel Have",
+  "ja": "Wheel Haveでメッセージ"
+ },
+ "help.repo": {
+  "en": "View the repository",
+  "ja": "リポジトリを見る"
+ },
+ "foot.line": {
+  "en": "AhhPuck by Wheel Have · read-only · ECU writes locked",
+  "ja": "AhhPuck by Wheel Have · 読み取り専用 · ECU書き込みロック"
+ },
+ "foot.privacy": {
+  "en": "Privacy",
+  "ja": "プライバシー"
+ },
+ "foot.terms": {
+  "en": "Terms",
+  "ja": "利用規約"
+ },
+ "aria.values": {
+  "en": "Why it matters",
+  "ja": "AhhPuck の価値"
+ },
+ "aria.modes": {
+  "en": "Release modes",
+  "ja": "リリースモード"
+ },
+ "vote.empty": {
+  "en": "Pick at least one ECU",
+  "ja": "ECUを選んでください"
+ },
+ "vote.req1": {
+  "en": "Request support for {n} ECU",
+  "ja": "{n}件のECUをリクエスト"
+ },
+ "vote.reqN": {
+  "en": "Request support for {n} ECUs",
+  "ja": "{n}件のECUをリクエスト"
+ },
+ "vote.sent": {
+  "en": "✓ Request noted, thank you",
+  "ja": "✓ リクエストを受け付けました"
+ },
+ "vote.mail": {
+  "en": "Please add support for these ECUs next:",
+  "ja": "次に対応してほしいECU:"
  },
  "alt.live": {
-  "en": "AhhPuck mobile app, Live screen: RPM, lambda against target, coolant, oil pressure, battery and knock, all read-only.",
-  "ja": "AhhPuck モバイルアプリの Live 画面：回転数、目標に対するラムダ、水温、油圧、バッテリー、ノック。すべて読み取り専用。"
+  "en": "AhhPuck Live screen: RPM, lambda against target and six gauge tiles, read-only",
+  "ja": "AhhPuckのライブ画面"
  },
- "alt.run": {
-  "en": "Run screen for recording a baseline, candidate or repeat run, with pre-flight checks.",
-  "ja": "ベースライン、候補、再現走行を記録する Run 画面。事前チェックつき。"
+ "alt.caps": {
+  "en": "ECU capabilities screen",
+  "ja": "ECUの機能画面"
  },
  "alt.review": {
-  "en": "Review screen showing a clear decision: accept the candidate and prepare a smaller next step.",
-  "ja": "明確な判定を示す Review 画面：候補を採用し、より小さな次の一歩を準備。"
+  "en": "AhhPuck Review screen: the safety gate's decision",
+  "ja": "AhhPuckのレビュー画面: 安全ゲートの判定"
  },
- "alt.ledger": {
-  "en": "Ledger screen listing past experiments and their results.",
-  "ja": "過去の実験と結果を一覧する Ledger 画面。"
+ "alt.expected": {
+  "en": "Expected vs actual: predicted ranges with the actual result for each metric",
+  "ja": "予測と実績: 各指標の予測範囲と実際の結果"
  },
- "alt.setup": {
-  "en": "Setup screen with the car profile, connection and identity, and pre-flight checks.",
-  "ja": "車両プロファイル、接続と識別、事前チェックのある Setup 画面。"
+ "alt.map": {
+  "en": "Map before and after: drag to compare lambda error per cell",
+  "ja": "マップの変更前後: ドラッグしてセルごとのラムダ誤差を比較"
  },
- "alt.wb1": {
-  "en": "Workbench live dashboard with a demo runtime trace, run status panel and serial monitor.",
-  "ja": "デモ走行の波形、走行状態パネル、シリアルモニターを表示したワークベンチのライブダッシュボード。"
+ "alt.rec": {
+  "en": "Recording screen: large RPM, lambda error, coverage and a big stop button",
+  "ja": "記録画面: 大きな回転数、ラムダ誤差、カバレッジ、大きな停止ボタン"
  },
- "alt.wb2": {
-  "en": "Workbench review experiment view.",
-  "ja": "ワークベンチの実験評価画面。"
- },
- "alt.wb3": {
-  "en": "Workbench engine profile and connection and safety settings.",
-  "ja": "ワークベンチのエンジンプロファイルと接続・安全設定。"
- },
- "aria.facts": {
-  "en": "Why it matters",
-  "ja": "なぜ重要か"
- },
- "aria.flow": {
-  "en": "Flow: connect, identify, profile and limits, baseline, propose, approve, test, assess, then learn and loop back.",
-  "ja": "流れ：接続、識別、プロファイルと制限、ベースライン、提案、承認、試験、評価、そして学習してループに戻る。"
- },
- "aria.hub": {
-  "en": "Many ECU adapters feed one shared core.",
-  "ja": "多くの ECU アダプターがひとつの共通コアにつながる。"
- },
- "aria.screens": {
-  "en": "App screens",
-  "ja": "アプリの画面"
- },
- "lang.label": {
-  "en": "Language / 言語",
-  "ja": "Language / 言語"
+ "alt.sources": {
+  "en": "Data sources screen: ECU, phone GPS and motion, and add-on sensors with cross-checks",
+  "ja": "データソース画面: ECU、スマホのGPSとモーション、追加センサーと照合"
  }
 };

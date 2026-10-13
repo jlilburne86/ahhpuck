@@ -4,453 +4,303 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AhhPuck by Wheel Have — Unsupported is not obsolete</title>
-  <meta name="description" content="AhhPuck brings modern logging and evidence-based, repeatable tuning to unsupported standalone ECUs. Freedom FC-03 first, the same process for the rest. Read-only until proven.">
-  <meta name="theme-color" content="#14181f">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8b451'/%3E%3Cpath d='M9 22l4-12h6l4 12h-3.4l-.9-3h-5.4l-.9 3zm5.1-5.6h3.8L16 10.5z' fill='%231d1b14'/%3E%3C/svg%3E">
+  <meta name="description" content="AhhPuck is an open community project bringing modern logging and safe, step-by-step tuning to unsupported standalone ECUs. Freedom FC-03 first, then every ECU like it. Read-only until proven.">
+  <meta name="theme-color" content="#0d0e0f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8e6e1'/%3E%3Cpath d='M9 22l4-12h6l4 12h-3.4l-.9-3h-5.4l-.9 3zm5.1-5.6h3.8L16 10.5z' fill='%23111'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="landing/landing.css">
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+<!-- ahp:start (the port script copies from here to ahp:end into wheelhave.com/ahhpuck) -->
+<div class="ahp" id="ahp" data-lang="en">
+  <a class="ap-skip" href="#main" data-i18n="skip">Skip to content</a>
 
-  <header class="wh-hdr" id="top">
-    <div class="wh-bar">
-      <a class="wh-logo" href="https://wheelhave.com/" aria-label="Wheel Have home"><img src="landing/img/wheelhave-mark.webp" alt="Wheel Have" width="32" height="32"></a>
-      <form class="wh-search" role="search" action="https://wheelhave.com/marketplace" method="get">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="5.2"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg>
-        <input type="search" name="q" placeholder="Search cars, wheels, parts…" aria-label="Search cars, wheels, parts">
-      </form>
-      <nav class="wh-nav" aria-label="Main">
-        <div class="wh-dd">
-          <a class="wh-pill" href="https://wheelhave.com/marketplace">Browse</a><button class="wh-dd-btn" type="button" aria-label="Browse menu" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="whm-panel" hidden>
-            <a href="https://wheelhave.com/marketplace">All</a>
-            <a href="https://wheelhave.com/marketplace?category=wheels">Wheels</a>
-            <a href="https://wheelhave.com/marketplace?category=tires">Tyres</a>
-            <span class="whm-group">Parts</span>
-            <a class="sub" href="https://wheelhave.com/marketplace?category=suspension">Suspension</a>
-            <a class="sub" href="https://wheelhave.com/marketplace?category=brakes">Brakes</a>
-            <a class="sub" href="https://wheelhave.com/marketplace?category=exhaust">Exhaust</a>
-            <a class="sub" href="https://wheelhave.com/marketplace?category=engine">Engine</a>
-            <a class="sub" href="https://wheelhave.com/marketplace?category=interior">Interior</a>
-            <a class="sub" href="https://wheelhave.com/marketplace?category=exterior">Exterior</a>
-            <a class="sub" href="https://wheelhave.com/marketplace?category=lighting">Lighting</a>
-            <a href="https://wheelhave.com/marketplace?intent=wtb">Wanted</a>
-            <a href="https://wheelhave.com/stores">Stores</a>
-          </div>
-        </div>
-        <a class="wh-pill" href="https://wheelhave.com/puckit" aria-current="page">PuckIt <i class="wh-dot" aria-hidden="true"></i></a>
-        <a class="wh-pill" href="https://wheelhave.com/messages">Messages</a>
-      </nav>
-      <div class="wh-sell wh-dd">
-        <a class="wh-sell-main" href="https://wheelhave.com/sell">+ Sell</a><span class="wh-sell-rule" aria-hidden="true"></span><button class="wh-sell-more wh-dd-btn" type="button" aria-label="Sell menu" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="whm-panel right" hidden>
-          <a href="https://wheelhave.com/sell">List an item</a>
-          <a href="https://wheelhave.com/wtb">Post a wanted ad</a>
-          <span class="whm-group">Store</span>
-          <a class="sub" href="https://wheelhave.com/store/create">Set up a store</a>
-        </div>
+  <nav class="ap-nav" aria-label="AhhPuck">
+    <div class="ap-nav-in">
+      <a class="ap-brand" href="#top"><span class="ap-brand-name">AhhPuck</span><span class="ap-brand-by">by Wheel Have</span></a>
+      <div class="ap-nav-links">
+        <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a><a href="#loop" data-i18n="nav.loop">How it works</a><a href="#community" data-i18n="nav.community">Community</a><a href="#safety" data-i18n="nav.safety">Safety</a><a href="#status" data-i18n="nav.status">Status</a><a href="#faq" data-i18n="nav.faq">FAQ</a>
       </div>
-      <a class="wh-signin" href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a>
-      <button class="wh-burger" id="whBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="wh-mobile">
-        <svg class="ic-menu" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <svg class="ic-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-      </button>
+      <div class="ap-lang" role="group" aria-label="Language / 言語">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+      </div>
+      <a class="ap-nav-cta" href="#help" data-i18n="nav.cta">Get involved</a>
     </div>
-    <div class="wh-mobile" id="wh-mobile" hidden>
-      <nav aria-label="Menu">
-        <ul>
-          <li class="wh-mobile-group"><a href="https://wheelhave.com/marketplace">Browse</a>
-            <ul>
-              <li><a href="https://wheelhave.com/marketplace">All</a></li>
-              <li><a href="https://wheelhave.com/marketplace?category=wheels">Wheels</a></li>
-              <li><a href="https://wheelhave.com/marketplace?category=tires">Tyres</a></li>
-              <li><a href="https://wheelhave.com/marketplace?intent=wtb">Wanted</a></li>
-              <li><a href="https://wheelhave.com/stores">Stores</a></li>
-            </ul>
-          </li>
-          <li class="wh-mobile-group"><a href="https://wheelhave.com/sell">Sell</a>
-            <ul>
-              <li><a href="https://wheelhave.com/sell">List an item</a></li>
-              <li><a href="https://wheelhave.com/wtb">Post a wanted ad</a></li>
-              <li><a href="https://wheelhave.com/store/create">Set up a store</a></li>
-            </ul>
-          </li>
-          <li class="wh-mobile-group open"><a href="https://wheelhave.com/puckit">PuckIt</a>
-            <ul>
-              <li><a href="https://wheelhave.com/puckit">How it works</a></li>
-              <li><a href="https://wheelhave.com/puckit/howtobuild">Build</a></li>
-              <li><a href="https://wheelhave.com/puckit/shop">Parts and waitlist</a></li>
-              <li><a href="https://wheelhave.com/puckit/flasher">Flash</a></li>
-              <li><a href="https://wheelhave.com/puckit/guide">Guide</a></li>
-              <li><a href="https://wheelhave.com/puckit/events">Events</a></li>
-              <li><a href="https://wheelhave.com/puckit/network">Network</a></li>
-              <li><a href="#top" aria-current="page">AhhPuck</a></li>
-              <li><a class="strong" href="https://wheelhave.com/puckit/howtobuild">Build one</a></li>
-            </ul>
-          </li>
-          <li><a href="https://wheelhave.com/messages">Messages</a></li>
-        </ul>
-        <div class="wh-mobile-rule"></div>
-        <ul>
-          <li class="wh-mobile-label">You</li>
-          <li><a href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a></li>
-        </ul>
-      </nav>
+  </nav>
+
+  <main id="main">
+  <header class="ap-hero" id="top">
+    <div class="ap-hero-copy">
+      <span class="ap-eyebrow" data-i18n="hero.eyebrow">OPEN COMMUNITY PROJECT · FREEDOM FC-03 FIRST</span>
+      <h1 class="ap-h1" data-i18n="hero.h1">Unsupported is not obsolete.</h1>
+      <p class="ap-lede" data-i18n="hero.lede">Many good standalone ECUs sit unused because their software stopped years ago. AhhPuck is a community project to bring them back with modern logging and safe, step-by-step tuning. We start with the Freedom FC-03, then adapt the same process to every unsupported ECU like it.</p>
+      <div class="ap-paths">
+        <a class="ap-path" href="https://github.com/jlilburne86/ahhpuck"><span class="ap-path-n">01</span><span class="ap-path-t" data-i18n="path1.t">Open the build</span><span class="ap-path-d" data-i18n="path1.d">Code, tests and evidence on GitHub</span></a>
+        <a class="ap-path" href="#community"><span class="ap-path-n">02</span><span class="ap-path-t" data-i18n="path2.t">Solve it together</span><span class="ap-path-d" data-i18n="path2.d">Decode, verify, test on real cars</span></a>
+        <a class="ap-path" href="#roadmap"><span class="ap-path-n">03</span><span class="ap-path-t" data-i18n="path3.t">Bring back support</span><span class="ap-path-d" data-i18n="path3.d">Freedom first, then every ECU like it</span></a>
+      </div>
+      <div class="ap-ctas">
+        <a class="ap-btn ap-btn-solid" href="#community" data-i18n="hero.cta1">Join the community</a><a class="ap-btn ap-btn-line" href="https://github.com/jlilburne86/ahhpuck"><span class="ap-btn-tag">GITHUB</span><span data-i18n="hero.cta2">Open the build →</span></a>
+      </div>
+      <div class="ap-badges">
+        <span class="ap-badge"><span class="ap-dot" aria-hidden="true"></span><span data-i18n="badge.ro">READ-ONLY</span></span>
+        <span class="ap-badge ap-badge-soft" data-i18n="badge.locked">ECU WRITES LOCKED</span>
+        <span class="ap-badge ap-badge-soft" data-i18n="badge.policy">SAFETY POLICY 0.2</span>
+        <span class="ap-badge ap-badge-soft" data-i18n="badge.tests">47 TESTS PASSING</span>
+      </div>
+    </div>
+    <div class="ap-hero-phones">
+      <div class="ap-phone-back"><img src="landing/img/s22-review.png" width="784" height="1692" alt="AhhPuck Review screen: the safety gate's decision" data-i18n-alt="alt.review"></div>
+      <div class="ap-phone ap-phone-front"><img src="landing/img/s06-live.png" width="784" height="1692" alt="AhhPuck Live screen: RPM, lambda against target and six gauge tiles, read-only" data-i18n-alt="alt.live"></div>
     </div>
   </header>
 
-  <div class="pks">
-    <nav class="pks-bar" aria-label="PuckIt">
-      <a class="pks-mark" href="https://wheelhave.com/puckit" aria-label="PuckIt, how it works"><img src="landing/img/puckit-wordmark.png" alt="PuckIt" height="18"></a>
-      <span class="pks-sep" aria-hidden="true"></span>
-      <div class="pks-links" id="pksLinks">
-        <a class="pks-chip" href="https://wheelhave.com/puckit">How it works</a>
-        <div class="pks-chip wh-dd">
-          <button class="pks-chip-btn wh-dd-btn" type="button" aria-expanded="false">Get a Puck <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="whm-panel" hidden>
-            <a href="https://wheelhave.com/puckit/howtobuild">Build</a>
-            <a href="https://wheelhave.com/puckit/shop">Parts and waitlist</a>
-            <a href="https://wheelhave.com/puckit/flasher">Flash</a>
-          </div>
-        </div>
-        <div class="pks-chip wh-dd">
-          <a class="pks-chip-main" href="https://wheelhave.com/puckit/guide">Guide</a><button class="pks-chip-more wh-dd-btn" type="button" aria-label="Guide menu" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="whm-panel" hidden>
-            <a href="https://wheelhave.com/puckit/support">Report a problem</a>
-          </div>
-        </div>
-        <div class="pks-chip wh-dd">
-          <a class="pks-chip-main" href="https://wheelhave.com/puckit/events">Events</a><button class="pks-chip-more wh-dd-btn" type="button" aria-label="Events menu" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="whm-panel" hidden>
-            <a href="https://wheelhave.com/puckit/organisers">For organisers</a>
-            <a href="https://wheelhave.com/puckit/provider">Organiser console</a>
-          </div>
-        </div>
-        <a class="pks-chip" href="https://wheelhave.com/puckit/network">Network</a>
-        <a class="pks-cta" href="https://wheelhave.com/puckit/howtobuild">Build one</a>
-      </div>
-      <span class="pks-fade" id="pksFade" aria-hidden="true"></span>
-    </nav>
-  </div>
+  <section class="ap-values" aria-label="Why it matters" data-i18n-aria="aria.values">
+    <div class="ap-values-in">
+      <div class="ap-value"><span class="ap-value-t" data-i18n="val1.t">Lower cost</span><span class="ap-value-d" data-i18n="val1.d">A second-hand ECU and a serial cable, instead of a new ECU, harness and licence.</span></div>
+      <div class="ap-value"><span class="ap-value-t" data-i18n="val2.t">Better logging</span><span class="ap-value-d" data-i18n="val2.d">Modern sample rates, phone sensors, hashes and exports the old software never had.</span></div>
+      <div class="ap-value"><span class="ap-value-t" data-i18n="val3.t">Safer tuning</span><span class="ap-value-d" data-i18n="val3.d">One small, reversible step at a time. A gain counts only when it repeats.</span></div>
+    </div>
+  </section>
 
-  <main id="main">
-    <div class="wrap lang-row">
-      <div class="lang" role="group" aria-label="Language / 言語">
-        <button type="button" data-lang="en" aria-pressed="true">English</button>
-        <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+  <section class="ap-sec ap-roadmap" id="roadmap">
+    <div class="ap-head ap-head-wide"><span class="ap-eyebrow" data-i18n="rm.eyebrow">THE ROADMAP</span><h2 class="ap-h2" data-i18n="rm.h2">Freedom first. Then every unsupported ECU like it.</h2><p class="ap-sub" data-i18n="rm.sub">The FC-03 is the proving ground. Once the loop works on a real car, the same shared core becomes adapters for other good ECUs that lost their software, not their value.</p></div>
+    <div class="ap-stages">
+      <div class="ap-stage ap-stage-now"><div class="ap-stage-top"><span class="ap-stage-n" data-i18n="rm1.n">01 · NOW</span><span class="ap-tag ap-tag-amber" data-i18n="rm.inprogress">! IN PROGRESS</span></div><span class="ap-stage-t">Freedom FC-03</span><span class="ap-stage-d" data-i18n="rm1.d">Read-only capture on a 4A-GE 20V. Verified decoding, real logs, the full loop on one car.</span></div>
+      <div class="ap-stage"><div class="ap-stage-top"><span class="ap-stage-n" data-i18n="rm2.n">02 · NEXT</span><span class="ap-tag ap-tag-grey" data-i18n="rm.planned">– PLANNED</span></div><span class="ap-stage-t" data-i18n="rm2.t">Shared core</span><span class="ap-stage-d" data-i18n="rm2.d">Transport, decoder, safety monitor, recorder, gate and ledger, separated from anything Freedom-specific.</span></div>
+      <div class="ap-stage"><div class="ap-stage-top"><span class="ap-stage-n" data-i18n="rm3.n">03 · THEN</span><span class="ap-tag ap-tag-grey" data-i18n="rm.planned">– PLANNED</span></div><span class="ap-stage-t" data-i18n="rm3.t">Community adapters</span><span class="ap-stage-d" data-i18n="rm3.d">Owners and developers add one ECU family at a time. Every adapter starts read-only and earns its way forward.</span></div>
+      <div class="ap-stage"><div class="ap-stage-top"><span class="ap-stage-n" data-i18n="rm4.n">04 · GOAL</span><span class="ap-tag ap-tag-cyan" data-i18n="rm4.tag">◎ GOAL</span></div><span class="ap-stage-t" data-i18n="rm4.t">Any unsupported ECU</span><span class="ap-stage-d" data-i18n="rm4.d">Older doesn't mean broken. Every working ECU gets a path back to support before it's replaced.</span></div>
+    </div>
+    <div class="ap-vote">
+      <div class="ap-vote-top"><span class="ap-vote-t" data-i18n="vote.t">Which ECU should be next?</span><span class="ap-vote-hint" data-i18n="vote.hint">TAP ALL THAT YOU RUN OR WANT</span></div>
+      <div class="ap-chips" id="apEcus">
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="MoTeC M4 / M48 / M800">MoTeC M4 / M48 / M800</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="Autronic SM2 / SM4">Autronic SM2 / SM4</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="Emerald K3 / K6">Emerald K3 / K6</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="Haltech Platinum">Haltech Platinum</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="AEM Infinity / Series 2">AEM Infinity / Series 2</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="Link G1 – G4+">Link G1 – G4+</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="DTA S-series">DTA S-series</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="VEMS V3">VEMS V3</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="MegaSquirt MS2 / MS3">MegaSquirt MS2 / MS3</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="rusEFI / Speeduino">rusEFI / Speeduino</button>
+        <button type="button" class="ap-chip" aria-pressed="false" data-ecu="Other" data-i18n="vote.other">Other</button>
+      </div>
+      <div class="ap-vote-foot"><button type="button" class="ap-send" id="apSend" data-state="empty" aria-live="polite">Pick at least one ECU</button><span class="ap-note" data-i18n="vote.note">No second ECU starts until the FC-03 trial passes its gates. Requests help decide the order.</span></div>
+    </div>
+  </section>
+
+  <section class="ap-band" id="freedom">
+    <div class="ap-band-in ap-split">
+      <div class="ap-col">
+        <span class="ap-eyebrow" data-i18n="fr.eyebrow">EVERY FREEDOM UNIT</span>
+        <h2 class="ap-h2" data-i18n="fr.h2">The limits come from your ECU, not from the app.</h2>
+        <p class="ap-sub ap-pretty" data-i18n="fr.sub">Freedom units differ by coupler, load type, firmware and inputs. AhhPuck reads the label, builds a profile, and shows exactly what your unit can give: what's verified, what's not in this ECU, and what the community still has to decode.</p>
+        <div class="ap-caps">
+          <div class="ap-cap"><span class="ap-tag ap-cap-ok" data-i18n="cap1.t">✓ READ · VERIFIED</span><span class="ap-cap-d" data-i18n="cap1.d">Decoded and confirmed against a real capture.</span></div>
+          <div class="ap-cap"><span class="ap-tag ap-cap-warn" data-i18n="cap2.t">◐ READ · NOT VERIFIED</span><span class="ap-cap-d" data-i18n="cap2.d">Visible in the data, but scaling isn't proven yet.</span></div>
+          <div class="ap-cap"><span class="ap-tag ap-cap-none" data-i18n="cap3.t">⌀ NOT IN THIS ECU</span><span class="ap-cap-d" data-i18n="cap3.d">Your unit doesn't have it. The app won't pretend otherwise.</span></div>
+          <div class="ap-cap"><span class="ap-tag ap-cap-todo" data-i18n="cap4.t">… NOT DECODED YET</span><span class="ap-cap-d" data-i18n="cap4.d">The ECU sends it; the community still has to decode it.</span></div>
+        </div>
+        <span class="ap-note" data-i18n="fr.note">Example: ignition proposals stay off on a unit with unverified ignition scaling and no confirmed knock signal, and ECU self-learning must be off during tests.</span>
+      </div>
+      <div class="ap-center"><div class="ap-phone"><img src="landing/img/s43-capabilities.png" width="784" height="1692" loading="lazy" alt="ECU capabilities screen" data-i18n-alt="alt.caps"></div></div>
+    </div>
+  </section>
+
+  <section class="ap-sec ap-loop" id="loop">
+    <div class="ap-head"><span class="ap-eyebrow" data-i18n="loop.eyebrow">HOW IT WORKS</span><h2 class="ap-h2" data-i18n="loop.h2">One loop, from plug-in to a proven improvement.</h2><p class="ap-sub" data-i18n="loop.sub">The app, the workbench and the command-line tools all follow it. Every step leaves a file on disk, so nothing is lost.</p></div>
+    <div class="ap-modes" role="group" aria-label="Release modes" data-i18n-aria="aria.modes">
+      <button type="button" class="ap-mode" data-mode="0" aria-pressed="false" data-i18n="mode0">Monitor mode · 1–4</button>
+      <button type="button" class="ap-mode" data-mode="1" aria-pressed="false" data-i18n="mode1">Engineer mode · + 5, 8</button>
+      <button type="button" class="ap-mode" data-mode="2" aria-pressed="true" data-i18n="mode2">Optimize mode · 1–9</button>
+    </div>
+    <div class="ap-mode-desc" aria-live="polite">
+      <span data-mode-desc="0" hidden data-i18n="mode0.d">The first release that can go in a car. Connect, identify, set limits, record a trusted baseline.</span>
+      <span data-mode-desc="1" hidden data-i18n="mode1.d">Adds proposals and assessments as reports. Nothing is sent to the ECU.</span>
+      <span data-mode-desc="2" data-i18n="mode2.d">Closes the loop, fuel only, behind every safety gate and a person's approval.</span>
+    </div>
+    <ol class="ap-steps">
+      <li class="ap-step" data-step="1"><span class="ap-step-n">01</span><span class="ap-step-t" data-i18n="s1.t">Connect</span><span class="ap-step-d" data-i18n="s1.d">USB serial, bridge or replay</span></li>
+      <li class="ap-step" data-step="2"><span class="ap-step-n">02</span><span class="ap-step-t" data-i18n="s2.t">Identify</span><span class="ap-step-d" data-i18n="s2.d">Which ECU, firmware and channels</span></li>
+      <li class="ap-step" data-step="3"><span class="ap-step-n">03</span><span class="ap-step-t" data-i18n="s3.t">Profile &amp; limits</span><span class="ap-step-d" data-i18n="s3.d">Engine, sensors, goal, hard limits</span></li>
+      <li class="ap-step" data-step="4"><span class="ap-step-n">04</span><span class="ap-step-t" data-i18n="s4.t">Baseline</span><span class="ap-step-d" data-i18n="s4.d">Saved, hashed, repeated</span></li>
+      <li class="ap-step" data-step="5"><span class="ap-step-n">05</span><span class="ap-step-t" data-i18n="s5.t">Propose</span><span class="ap-step-d" data-i18n="s5.d">One small, bounded fuel change</span></li>
+      <li class="ap-step" data-step="6"><span class="ap-step-n">06</span><span class="ap-step-t" data-i18n="s6.t">Approve</span><span class="ap-step-d" data-i18n="s6.d">A person checks and says yes</span></li>
+      <li class="ap-step" data-step="7"><span class="ap-step-n">07</span><span class="ap-step-t" data-i18n="s7.t">Test</span><span class="ap-step-d" data-i18n="s7.d">A controlled run with stop rules</span></li>
+      <li class="ap-step" data-step="8"><span class="ap-step-n">08</span><span class="ap-step-t" data-i18n="s8.t">Assess</span><span class="ap-step-d" data-i18n="s8.d">Did it help, and did it repeat?</span></li>
+      <li class="ap-step ap-step-last" data-step="9"><span class="ap-step-n">09</span><span class="ap-step-t" data-i18n="s9.t">Learn</span><span class="ap-step-d" data-i18n="s9.d">Write it to the ledger. The next step is smaller, or the loop stops.</span></li>
+    </ol>
+  </section>
+
+  <section class="ap-evidence">
+    <div class="ap-evidence-phones">
+      <div class="ap-phone ap-phone-sm"><img src="landing/img/s23-expected.png" width="784" height="1692" loading="lazy" alt="Expected vs actual: predicted ranges with the actual result for each metric" data-i18n-alt="alt.expected"></div>
+      <div class="ap-phone ap-phone-sm ap-phone-drop"><img src="landing/img/s21-map.png" width="784" height="1692" loading="lazy" alt="Map before and after: drag to compare lambda error per cell" data-i18n-alt="alt.map"></div>
+    </div>
+    <div class="ap-col">
+      <span class="ap-eyebrow" data-i18n="ev.eyebrow">LEARNING FROM EVIDENCE</span>
+      <h2 class="ap-h2" data-i18n="ev.h2">An improvement only counts when it repeats.</h2>
+      <p class="ap-sub ap-pretty" data-i18n="ev.sub">Each round compares a baseline, a candidate and a repeat of the candidate. Every prediction is shown as a range against run-to-run noise, so you can see whether a gain is real.</p>
+      <div class="ap-chart">
+        <div class="ap-chart-top"><span class="ap-mono-muted" data-i18n="ev.chart">LAMBDA ERROR BY RUN</span><span class="ap-mono-dim">telemetry_stats.py</span></div>
+        <div class="ap-bars">
+          <span class="ap-bar-l" data-i18n="ev.base">Baseline</span><div class="ap-bar"><div style="width:100%;background:#7d8287"></div></div><span class="ap-bar-v">0.052</span>
+          <span class="ap-bar-l" data-i18n="ev.cand">Candidate</span><div class="ap-bar"><div style="width:50%;background:oklch(0.72 0.17 305)"></div></div><span class="ap-bar-v">0.026</span>
+          <span class="ap-bar-l" data-i18n="ev.rep">Repeat</span><div class="ap-bar"><div style="width:46%;background:oklch(0.82 0.08 285)"></div></div><span class="ap-bar-v">0.024</span>
+        </div>
+        <span class="ap-chart-note" data-i18n="ev.note">Example numbers from the sample captures. Repeatability is checked separately.</span>
+      </div>
+      <div class="ap-ledger">
+        <div><span class="ap-led-n">#01</span><span class="ap-led-t" data-i18n="led1">baseline captured</span><span class="ap-led-s" data-i18n="led1.s">clean</span></div>
+        <div><span class="ap-led-n">#02</span><span class="ap-led-t">fuel 11×7 −1.5 %</span><span class="ap-led-s ap-ok" data-i18n="led.ok">✓ improved · repeated</span></div>
+        <div><span class="ap-led-n">#03</span><span class="ap-led-t">fuel 11×8 −1.5 %</span><span class="ap-led-s ap-warn" data-i18n="led3.s">! not repeatable</span></div>
+        <div><span class="ap-led-n">#04</span><span class="ap-led-t">fuel 11×8 −0.8 %</span><span class="ap-led-s ap-ok" data-i18n="led.ok">✓ improved · repeated</span></div>
+        <div><span class="ap-led-n">#05</span><span class="ap-led-t" data-i18n="led5">knock in run</span><span class="ap-led-s ap-bad" data-i18n="led5.s">✕ aborted · not reused</span></div>
       </div>
     </div>
+  </section>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow" data-i18n="hero.eyebrow">GRASSROOTS ENGINE MANAGEMENT · FREEDOM FC-03 FIRST</p>
-          <h1 data-i18n="hero.h1">Unsupported is <em>not obsolete.</em></h1>
-          <p class="lede" data-i18n="hero.lede">Many good standalone ECUs sit unused because their software stopped years ago. AhhPuck gives them modern logging and safe, step-by-step tuning. We start with the Freedom FC-03 on a 4A-GE 20V. The same process will then work for other ECUs.</p>
-          <div class="cta-row">
-            <a class="button primary" href="#loop" data-i18n="hero.cta1">See how it works</a>
-            <a class="button ghost" href="#built" data-i18n="hero.cta2">What is built</a>
-          </div>
-          <ul class="hero-facts" aria-label="Why it matters" data-i18n-aria="aria.facts">
-            <li data-i18n="hero.fact1"><b>Lower cost</b> · second-hand ECU, modern tools</li>
-            <li data-i18n="hero.fact2"><b>Better logging</b> · more than the original software ever gave</li>
-            <li data-i18n="hero.fact3"><b>Safer tuning</b> · one small, reversible step at a time</li>
-          </ul>
+  <section class="ap-band" id="data">
+    <div class="ap-band-in ap-split">
+      <div class="ap-col">
+        <span class="ap-eyebrow" data-i18n="data.eyebrow">ECU FIRST</span>
+        <h2 class="ap-h2" data-i18n="data.h2">The engine data comes from the ECU. The phone fills in the rest.</h2>
+        <p class="ap-sub ap-pretty" data-i18n="data.sub">Every value shows where it came from and how sure we are about it. The safety gate only uses the ECU and add-on sensors, never the phone.</p>
+        <div class="ap-sources">
+          <div class="ap-source"><span class="ap-src ap-src-ecu">ECU</span><div class="ap-source-txt"><span class="ap-source-t" data-i18n="src1.t">Engine data</span><span class="ap-source-d" data-i18n="src1.d">RPM, load, lambda, temperatures, battery, knock, speed. The only data used to make decisions.</span></div></div>
+          <div class="ap-source"><span class="ap-src ap-src-phone" data-i18n="src2.k">PHONE</span><div class="ap-source-txt"><span class="ap-source-t" data-i18n="src2.t">Speed and g-force</span><span class="ap-source-d" data-i18n="src2.d">GPS and motion sensors cross-check ECU speed and confirm runs were driven the same way. They're never used to decide.</span></div></div>
+          <div class="ap-source"><span class="ap-src ap-src-addon" data-i18n="src3.k">ADD-ON</span><div class="ap-source-txt"><span class="ap-source-t" data-i18n="src3.t">The sensors the ECU doesn't have</span><span class="ap-source-d" data-i18n="src3.d">Wideband lambda, fuel pressure and oil pressure, used by the gate when they're fitted.</span></div></div>
         </div>
-        <div class="hero-visual">
-          <figure class="phone">
-            <img src="landing/img/app-live.png" width="402" height="874" alt="AhhPuck mobile app, Live screen: RPM, lambda against target, coolant, oil pressure, battery and knock, all read-only." data-i18n-alt="alt.live" loading="eager">
-            <figcaption data-i18n="hero.caption">Live screen of the AhhPuck mobile app, as built. Read-only FC-03 session.</figcaption>
-          </figure>
-          <div class="glow"></div>
+        <div class="ap-levels"><span style="color:#e8e6e1" data-i18n="lvl.doc">DOCUMENTED</span><span style="color:#cfd2d4" data-i18n="lvl.obs">OBSERVED</span><span style="color:#a9adb1" data-i18n="lvl.inf">INFERRED</span><span style="color:#8b8f93" data-i18n="lvl.unv">UNVERIFIED</span></div>
+      </div>
+      <div class="ap-center"><div class="ap-phone"><img src="landing/img/s38-sources.png" width="784" height="1692" loading="lazy" alt="Data sources screen: ECU, phone GPS and motion, and add-on sensors with cross-checks" data-i18n-alt="alt.sources"></div></div>
+    </div>
+  </section>
+
+  <section class="ap-sec ap-safety" id="safety">
+    <div class="ap-head"><span class="ap-eyebrow" data-i18n="sf.eyebrow">SAFETY LIMITS</span><h2 class="ap-h2" data-i18n="sf.h2">Limits are set before the engine starts.</h2><p class="ap-sub" data-i18n="sf.sub">These values come from the safety policy file the tools enforce. They're provisional and must be checked for your engine, but they're never invented on the spot.</p></div>
+    <div class="ap-safety-grid">
+      <div class="ap-card ap-card-rules">
+        <span class="ap-mono-muted" data-i18n="sf.rules">ALWAYS · NEVER</span>
+        <div class="ap-rules">
+          <span data-i18n="rule1">✕ Never learn from a run with a protection fault</span>
+          <span data-i18n="rule2">✕ Never change fuel and ignition in the same experiment</span>
+          <span data-i18n="rule3">✕ Never let an AI authorise an ECU write</span>
+          <span data-i18n="rule4">✕ Never change ignition without verified knock sensing</span>
+          <span data-i18n="rule5">✕ Treat a missing safety channel as a failed check, never a pass</span>
+          <span data-i18n="rule6">✓ Always keep the source map, the diff and a rollback copy</span>
         </div>
       </div>
-    </section>
-
-    <!-- Status strip -->
-    <section class="strip">
-      <div class="wrap strip-inner stats">
-        <div><strong>8</strong><span data-i18n="stat1">analysis tools built</span></div>
-        <div><strong>21</strong><span data-i18n="stat2">automated tests</span></div>
-        <div><strong>9</strong><span data-i18n="stat3">gates before any ECU write</span></div>
-        <div><strong>10</strong><span data-i18n="stat4">unsupported ECU families on the list</span></div>
-      </div>
-    </section>
-
-    <!-- The app as built -->
-    <section class="section" id="app">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-i18n="app.eyebrow">THE APP, AS BUILT</p>
-          <h2 data-i18n="app.h2">Five screens. One read-only session.</h2>
-          <p class="sub" data-i18n="app.sub">These are real captures of the AhhPuck mobile build, not drawings. The numbers come from the local test fixture.</p>
-        </div>
-        <div class="screens" role="list" aria-label="App screens" data-i18n-aria="aria.screens">
-          <figure role="listitem"><img src="landing/img/app-live.png" width="402" height="874" alt="AhhPuck mobile app, Live screen: RPM, lambda against target, coolant, oil pressure, battery and knock, all read-only." data-i18n-alt="alt.live" loading="lazy"><figcaption><b data-i18n="app.live.t">Live</b><span data-i18n="app.live.d">Is the data healthy? Then the numbers that matter.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-run.png" width="402" height="874" alt="Run screen for recording a baseline, candidate or repeat run, with pre-flight checks." data-i18n-alt="alt.run" loading="lazy"><figcaption><b data-i18n="app.run.t">Run</b><span data-i18n="app.run.d">Record a baseline, a candidate or a repeat run.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-review.png" width="402" height="874" alt="Review screen showing a clear decision: accept the candidate and prepare a smaller next step." data-i18n-alt="alt.review" loading="lazy"><figcaption><b data-i18n="app.review.t">Review</b><span data-i18n="app.review.d">A clear decision, explained in plain words.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-ledger.png" width="402" height="874" alt="Ledger screen listing past experiments and their results." data-i18n-alt="alt.ledger" loading="lazy"><figcaption><b data-i18n="app.ledger.t">Ledger</b><span data-i18n="app.ledger.d">Every experiment and its result, kept forever.</span></figcaption></figure>
-          <figure role="listitem"><img src="landing/img/app-setup.png" width="402" height="874" alt="Setup screen with the car profile, connection and identity, and pre-flight checks." data-i18n-alt="alt.setup" loading="lazy"><figcaption><b data-i18n="app.setup.t">Setup</b><span data-i18n="app.setup.d">Car profile, connection, pre-flight checks.</span></figcaption></figure>
-        </div>
-        <div class="workbench">
-          <div class="workbench-copy">
-            <p class="eyebrow" data-i18n="wb.eyebrow">MAC WORKBENCH</p>
-            <h3 data-i18n="wb.h3">The bench view, in a browser.</h3>
-            <p class="sub" data-i18n="wb.sub">Works in Chrome or Edge over USB serial. Live trace, run status, serial monitor and experiment review. ECU writes are locked.</p>
-            <a class="text-link" href="web-ui/index.html" data-i18n="wb.link">Open the workbench →</a>
-          </div>
-          <figure class="shot main"><img src="landing/img/workbench-live.png" width="1440" height="900" alt="Workbench live dashboard with a demo runtime trace, run status panel and serial monitor." data-i18n-alt="alt.wb1" loading="lazy"><figcaption data-i18n="wb.cap1">Live dashboard with the demo run loaded</figcaption></figure>
-          <figure class="shot"><img src="landing/img/workbench-experiment.png" width="1440" height="900" alt="Workbench review experiment view." data-i18n-alt="alt.wb2" loading="lazy"><figcaption data-i18n="wb.cap2">Review experiment</figcaption></figure>
-          <figure class="shot"><img src="landing/img/workbench-setup.png" width="1440" height="900" alt="Workbench engine profile and connection and safety settings." data-i18n-alt="alt.wb3" loading="lazy"><figcaption data-i18n="wb.cap3">Engine profile, connection and safety</figcaption></figure>
+      <div class="ap-card ap-card-limits">
+        <div class="ap-chart-top"><span class="ap-mono-muted" data-i18n="sf.limits">HARD LIMITS</span><span class="ap-mono-dim" data-i18n="sf.policy">policy 0.2-provisional</span></div>
+        <div class="ap-limits">
+          <span data-i18n="lim1">Max fuel change per cell</span><span>2.0 %</span>
+          <span data-i18n="lim2">Max ignition change per cell</span><span>1.0 °</span>
+          <span data-i18n="lim3">Max RPM</span><span>7 800</span>
+          <span data-i18n="lim4">Max coolant</span><span>105 °C</span>
+          <span data-i18n="lim5">Max intake air temp</span><span>65 °C</span>
+          <span data-i18n="lim6">Min battery voltage</span><span>12.0 V</span>
+          <span data-i18n="lim7">Max knock level</span><span>0.15</span>
+          <span data-i18n="lim8">Min oil pressure under load</span><span>180 kPa</span>
+          <span data-i18n="lim9">Max lambda under load</span><span>1.05 λ</span>
         </div>
       </div>
-    </section>
-
-    <!-- The loop -->
-    <section class="section alt" id="loop">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-i18n="loop.eyebrow">HOW IT WORKS</p>
-          <h2 data-i18n="loop.h2">One loop, from plug-in to a proven improvement.</h2>
-          <p class="sub" data-i18n="loop.sub">The app, the workbench and the command-line tools all follow this loop. Every step leaves a file on disk, so nothing is lost.</p>
-        </div>
-        <div class="flow" role="img" aria-label="Flow: connect, identify, profile and limits, baseline, propose, approve, test, assess, then learn and loop back." data-i18n-aria="aria.flow">
-          <div class="flow-row"><div class="node"><span class="k">1</span><b data-i18n="step1.t">Connect</b><small data-i18n="step1.d">USB, serial, bridge or replay</small></div><div class="node"><span class="k">2</span><b data-i18n="step2.t">Identify</b><small data-i18n="step2.d">which ECU, which firmware, which channels</small></div><div class="node param"><span class="k">3</span><b data-i18n="step3.t">Profile &amp; limits</b><small data-i18n="step3.d">engine, sensors, goal, hard limits</small></div><div class="node"><span class="k">4</span><b data-i18n="step4.t">Baseline</b><small data-i18n="step4.d">saved, hashed, repeated</small></div></div>
-          <div class="flow-row loop-row"><div class="node"><span class="k">5</span><b data-i18n="step5.t">Propose</b><small data-i18n="step5.d">one small change</small></div><div class="node gate"><span class="k">6</span><b data-i18n="step6.t">Approve</b><small data-i18n="step6.d">a person checks and says yes</small></div><div class="node"><span class="k">7</span><b data-i18n="step7.t">Test</b><small data-i18n="step7.d">a controlled run with stop rules</small></div><div class="node"><span class="k">8</span><b data-i18n="step8.t">Assess</b><small data-i18n="step8.d">did it help, and did it repeat?</small></div></div>
-          <div class="flow-return" data-i18n="loop.learn"><b>9 · LEARN</b>write it to the ledger. The next step is smaller, or the loop stops.</div>
-        </div>
-        <div class="flow-notes">
-          <div data-i18n="loop.n1"><b>Monitor mode</b> is steps 1 to 4. It is the first release that can go in a car.</div>
-          <div data-i18n="loop.n2"><b>Engineer mode</b> adds 5 and 8 as reports. Nothing is sent to the ECU.</div>
-          <div data-i18n="loop.n3"><b>Optimize mode</b> closes the loop, fuel only, behind every safety gate.</div>
-        </div>
+      <div class="ap-card ap-card-where">
+        <span class="ap-mono-muted" data-i18n="sf.where">WHERE TO TEST</span>
+        <div class="ap-where"><span class="ap-where-t" data-i18n="where1.t">Dyno</span><span class="ap-where-d" data-i18n="where1.d">Controlled load. Best for map work.</span></div>
+        <div class="ap-where"><span class="ap-where-t" data-i18n="where2.t">Closed course</span><span class="ap-where-d" data-i18n="where2.d">Real motion. Log without touching the phone, review later.</span></div>
+        <div class="ap-roads" data-i18n="sf.roads">! Public roads are not a tuning mode. AhhPuck records data for later review. It never tunes a moving car.</div>
       </div>
-    </section>
-
-    <!-- Parameters -->
-    <section class="section" id="parameters">
-      <div class="wrap two-col">
-        <div>
-          <p class="eyebrow" data-i18n="par.eyebrow">SAFETY LIMITS</p>
-          <h2 data-i18n="par.h2">Limits are set before the engine starts.</h2>
-          <p class="sub" data-i18n="par.sub">These values come from the safety policy file the tools enforce. They are provisional and must be checked for your engine, but they are never invented on the spot.</p>
-          <ul class="rule-list"><li data-i18n="rule1">never learn from a run with a protection fault</li><li data-i18n="rule2">never change fuel and ignition in the same experiment</li><li data-i18n="rule3">never guess unknown cells without a review flag</li><li data-i18n="rule4">never let an AI authorize an ECU write</li><li data-i18n="rule5">always keep the source map, the diff and a rollback copy</li></ul>
-        </div>
-        <div class="policy">
-          <div class="policy-head"><span class="tag" data-i18n="par.hard">HARD LIMITS</span><span class="tag" data-i18n="par.policy">policy 0.1-provisional</span></div>
-          <ul class="limits">
-            <li><span data-i18n="lim1">Max fuel change per cell</span><i><b style="width:20%"></b></i><code>2.0 %</code></li><li><span data-i18n="lim2">Max ignition change per cell</span><i><b style="width:10%"></b></i><code>1.0 °</code></li><li><span data-i18n="lim3">Max RPM</span><i><b style="width:78%"></b></i><code>7 800</code></li><li><span data-i18n="lim4">Max coolant</span><i><b style="width:84%"></b></i><code>105 °C</code></li>
-            <li><span data-i18n="lim5">Max intake air temp</span><i><b style="width:52%"></b></i><code>65 °C</code></li><li><span data-i18n="lim6">Min battery voltage</span><i><b style="width:75%"></b></i><code>12.0 V</code></li><li><span data-i18n="lim7">Max knock level</span><i><b style="width:15%"></b></i><code>0.15</code></li><li><span data-i18n="lim8">Min oil pressure under load</span><i><b style="width:45%"></b></i><code>180 kPa</code></li>
-          </ul>
-          <div class="policy-head"><span class="tag safe" data-i18n="par.ev">REQUIRED EVIDENCE</span></div>
-          <ul class="checks"><li data-i18n="ev1">original map backed up</li><li data-i18n="ev2">engine profile checked</li><li data-i18n="ev3">injector data checked</li><li data-i18n="ev4">fuel pressure checked</li><li data-i18n="ev5">wideband calibrated</li><li data-i18n="ev6">ignition offset checked</li><li data-i18n="ev7">sensors plausible</li><li data-i18n="ev8">logs repeatable</li></ul>
-        </div>
+    </div>
+    <div class="ap-glance">
+      <div class="ap-center"><div class="ap-phone ap-phone-sm"><img src="landing/img/s11-rec.png" width="784" height="1692" loading="lazy" alt="Recording screen: large RPM, lambda error, coverage and a big stop button" data-i18n-alt="alt.rec"></div></div>
+      <div class="ap-glance-txt">
+        <span class="ap-glance-t" data-i18n="gl.t">Built to glance at, not to touch.</span>
+        <span class="ap-glance-d" data-i18n="gl.d">While recording, the screen shows three numbers and one big stop button. Alerts come by sound and haptics, run on fixed rules, and work offline. A critical alert can't be dismissed while the condition lasts.</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Learning -->
-    <section class="section alt" id="learning">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-i18n="lrn.eyebrow">LEARNING FROM EVIDENCE</p>
-          <h2 data-i18n="lrn.h2">An improvement only counts when it repeats.</h2>
-          <p class="sub" data-i18n="lrn.sub">Each round compares a baseline, a candidate and a repeat of the candidate. The result goes into a ledger that only grows. A run with a fault is never reused.</p>
-        </div>
-        <div class="learn-grid">
-          <div class="card chart-card">
-            <div class="card-top"><h3 data-i18n="lrn.c1">Lambda error by run</h3><span class="tag">telemetry_stats.py</span></div>
-            <div class="bars-wrap">
-              <div class="bar-col" style="height:100%"><b>0.052</b><i class="base"></i></div>
-              <div class="bar-col" style="height:52%"><b>0.026</b><i class="cand"></i></div>
-              <div class="bar-col" style="height:48%"><b>0.024</b><i class="rep"></i></div>
-            </div>
-            <div class="bars-labels"><span data-i18n="lrn.base">baseline</span><span data-i18n="lrn.cand">candidate</span><span data-i18n="lrn.rep">repeat</span></div>
-            <p class="caption" data-i18n="lrn.c1.cap">Example numbers from the sample captures. Repeatability is checked separately.</p>
-          </div>
-          <div class="card">
-            <div class="card-top"><h3 data-i18n="lrn.c2">Quality gate</h3><span class="tag safe" data-i18n="lrn.c2.tag">target 96 %</span></div>
-            <ul class="stack">
-              <li><span data-i18n="q1">Objective score</span><i><b style="width:88%"></b></i></li>
-              <li><span data-i18n="q2">Safety-pass fraction</span><i><b style="width:100%"></b></i></li>
-              <li><span data-i18n="q3">Map coverage</span><i><b style="width:61%"></b></i></li>
-              <li><span data-i18n="q4">Repeatability</span><i><b style="width:93%"></b></i></li>
-              <li><span data-i18n="q5">Sensor confidence</span><i><b style="width:70%" class="low"></b></i></li>
-            </ul>
-            <p class="caption" data-i18n="lrn.c2.cap">Missing evidence counts as zero. A few good dyno pulls, or an AI opinion, can never reach the target alone.</p>
-          </div>
-          <div class="card ledger-card">
-            <div class="card-top"><h3 data-i18n="lrn.c3">Learning ledger</h3><span class="tag" data-i18n="lrn.c3.tag">append-only</span></div>
-            <ol class="ledger">
-              <li><code>#01</code><span data-i18n="led1">baseline captured</span><em class="ok" data-i18n="led1.s">clean</em></li>
-              <li><code>#02</code><span data-i18n="led2">fuel 11×7 −1.5 %</span><em class="ok" data-i18n="led2.s">improved · repeated</em></li>
-              <li><code>#03</code><span data-i18n="led3">fuel 11×8 −1.5 %</span><em class="warn" data-i18n="led3.s">not repeatable</em></li>
-              <li><code>#04</code><span data-i18n="led4">fuel 11×8 −0.8 %</span><em class="ok" data-i18n="led4.s">improved · repeated</em></li>
-              <li><code>#05</code><span data-i18n="led5">knock in run</span><em class="bad" data-i18n="led5.s">aborted · not reused</em></li>
-            </ol>
-            <p class="caption" data-i18n="lrn.c3.cap">If a step does not repeat, the next one is smaller. If protection fires, nothing is learned from that run.</p>
-          </div>
-        </div>
+  <section class="ap-band" id="status">
+    <div class="ap-band-in ap-stack">
+      <div class="ap-head"><span class="ap-eyebrow" data-i18n="st.eyebrow">HONEST STATUS</span><h2 class="ap-h2 ap-nobal" data-i18n="st.h2">Read-only first. Writes stay outside the trial.</h2></div>
+      <div class="ap-status">
+        <div class="ap-status-card"><span class="ap-status-k ap-ok" data-i18n="st.built">✓ BUILT</span><span class="ap-status-d" data-i18n="st.built.d">Freedom map parser · telemetry statistics · iteration assessor · fail-closed safety gate · local learning ledger · iOS and Mac core · tuning knowledge base (22 sources, 7 rule cards)</span></div>
+        <div class="ap-status-card"><span class="ap-status-k ap-warn" data-i18n="rm.inprogress">! IN PROGRESS</span><span class="ap-status-d" data-i18n="st.prog.d">Verified Freedom export adapter · first live read (?DAT poll, 55-byte reply) · real capture corpus · bench recovery tests · trial FC-03 on the bench</span></div>
+        <div class="ap-status-card"><span class="ap-status-k" style="color:#8b8f93" data-i18n="st.notyet">– NOT YET</span><span class="ap-status-d" data-i18n="st.notyet.d">Any ECU write · ignition proposals · a second ECU, only after the FC-03 trial produces real results</span></div>
       </div>
-    </section>
+      <div class="ap-stats">
+        <div><span class="ap-stat-n">30</span><span class="ap-stat-l" data-i18n="stat1">Python tests passing</span></div>
+        <div><span class="ap-stat-n">17</span><span class="ap-stat-l" data-i18n="stat2">Swift tests passing</span></div>
+        <div><span class="ap-stat-n">7</span><span class="ap-stat-l" data-i18n="stat3">source-backed rule cards</span></div>
+        <div><span class="ap-stat-n">0</span><span class="ap-stat-l" data-i18n="stat4">ECU writes authorised</span></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- What is built -->
-    <section class="section" id="built">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-i18n="st.eyebrow">WHAT IS BUILT, DEFINED AND IN PROGRESS</p>
-          <h2 data-i18n="st.h2">Honest status, straight from the repository.</h2>
-        </div>
-        <div class="board">
-          <div class="col"><h3><i class="dot good"></i><span data-i18n="st.built">Built</span></h3><ul><li><b data-i18n="b1">Map parser</b><span data-i18n="b1.d">reads every Freedom base map into JSON</span></li><li><b data-i18n="b2">Telemetry statistics</b><span data-i18n="b2.d">lambda error, improvement, repeatability, coverage, knock</span></li><li><b data-i18n="b3">Iteration assessor</b><span data-i18n="b3.d">baseline → candidate → repeat decision</span></li><li><b data-i18n="b4">Safety gate</b><span data-i18n="b4.d">enforces the limits and required evidence</span></li><li><b data-i18n="b5">Concept optimizer</b><span data-i18n="b5.d">drift, grip, 0–100 or top-speed goals, fuel only</span></li><li><b data-i18n="b6">Learning ledger</b><span data-i18n="b6.d">offline, deterministic, append-only</span></li><li><b data-i18n="b7">iOS core</b><span data-i18n="b7.d">readiness, trial state machine, assessment, dashboard</span></li><li><b data-i18n="b8">Mac core</b><span data-i18n="b8.d">live safety monitor with watchdog, recorder, serial port</span></li><li><b data-i18n="b9">Browser workbench</b><span data-i18n="b9.d">read-only capture and experiment review</span></li></ul></div>
-          <div class="col"><h3><i class="dot info"></i><span data-i18n="st.defined">Defined</span></h3><ul><li><b data-i18n="d1">Tuning workflow</b><span data-i18n="d1.d">baseline, proposal, controlled run, assessment, rollback</span></li><li><b data-i18n="d2">Safety policy</b><span data-i18n="d2.d">hard limits, required evidence, write blockers, rules</span></li><li><b data-i18n="d3">Telemetry model</b><span data-i18n="d3.d">units, timestamps, gaps, plausibility</span></li><li><b data-i18n="d4">Shared core contract</b><span data-i18n="d4.d">transport, decoder, safety monitor, recorder, optimizer gate, write controller</span></li><li><b data-i18n="d5">User stories and release gates</b><span data-i18n="d5.d">owner, tuner and developer journeys</span></li><li><b data-i18n="d6">Evidence labels</b><span data-i18n="d6.d">documented · observed · inferred · unverified</span></li></ul></div>
-          <div class="col"><h3><i class="dot accent"></i><span data-i18n="st.impl">In progress</span></h3><ul><li><b data-i18n="i1">FC-03 identity capture</b><span data-i18n="i1.d">read-only serial at 9600 bps</span></li><li><b data-i18n="i2">Frame decoder</b><span data-i18n="i2.d">version and profile aware, read-only</span></li><li><b data-i18n="i3">iOS USB transport</b><span data-i18n="i3.d">placeholder today, Wi-Fi bridge as fallback</span></li><li><b data-i18n="i4">SwiftUI screens</b><span data-i18n="i4.d">live, run, review, approval, setup</span></li></ul></div>
-          <div class="col"><h3><i class="dot faint"></i><span data-i18n="st.notyet">Not yet</span></h3><ul><li><b data-i18n="n1">Any ECU write</b><span data-i18n="n1.d">blocked until protocol, checksum and human approval are proven</span></li><li><b data-i18n="n2">Ignition proposals</b><span data-i18n="n2.d">need a verified timing offset and knock evidence</span></li><li><b data-i18n="n3">A second ECU</b><span data-i18n="n3.d">only after the FC-03 trial produces real results</span></li></ul></div>
-        </div>
+  <section class="ap-band" id="community">
+    <div class="ap-band-in ap-stack">
+      <div class="ap-head ap-head-wide"><span class="ap-eyebrow" data-i18n="cm.eyebrow">OPEN COMMUNITY BUILD</span><h2 class="ap-h2" data-i18n="cm.h2">Built by the people who still run these ECUs.</h2><p class="ap-sub ap-pretty" data-i18n="cm.sub">AhhPuck isn't trying to replace a tuner or make an old ECU pretend to be new. It's a shared path to bring back useful support for hardware that still works.</p></div>
+      <div class="ap-roles">
+        <div class="ap-role"><span class="ap-role-n">01</span><span class="ap-role-t" data-i18n="role1.t">Owners</span><span class="ap-role-d" data-i18n="role1.d">Share baseline tunes, logs and your car profile.</span><span class="ap-role-a" data-i18n="role1.a">→ RECORD A BASELINE · SEND A SESSION BUNDLE</span></div>
+        <div class="ap-role"><span class="ap-role-n">02</span><span class="ap-role-t" data-i18n="role2.t">Tuners</span><span class="ap-role-d" data-i18n="role2.d">Review proposals, write rule cards and check the limits for each engine.</span><span class="ap-role-a" data-i18n="role2.a">→ REVIEW EXPERIMENTS · ADD RULE CARDS</span></div>
+        <div class="ap-role"><span class="ap-role-n">03</span><span class="ap-role-t" data-i18n="role3.t">Developers</span><span class="ap-role-d" data-i18n="role3.d">Build decoders and adapters. Everything is tested, and read-only first.</span><span class="ap-role-a" data-i18n="role3.a">→ OPEN AN ADAPTER · RUN THE TEST SUITE</span></div>
+        <div class="ap-role"><span class="ap-role-n">04</span><span class="ap-role-t" data-i18n="role4.t">Keepers of knowledge</span><span class="ap-role-d" data-i18n="role4.d">Manuals, schematics, old software and cables, before they disappear.</span><span class="ap-role-a" data-i18n="role4.a">→ SHARE A SOURCE · WE HASH AND CITE IT</span></div>
       </div>
-    </section>
+      <div class="ap-flow">
+        <span class="ap-flow-box" data-i18n="flow1">Owner data</span><span class="ap-flow-op">+</span><span class="ap-flow-box" data-i18n="flow2">Tuner experience</span><span class="ap-flow-op">+</span><span class="ap-flow-box" data-i18n="flow3">Developer tools</span><span class="ap-flow-op">→</span><span class="ap-flow-box ap-flow-core" data-i18n="flow4">Shared evidence core</span><span class="ap-flow-op">→</span><span class="ap-flow-box ap-flow-end" data-i18n="flow5">Support that lasts</span>
+      </div>
+      <div class="ap-beliefs">
+        <div><span class="ap-belief-t" data-i18n="bel1.t">Open by default</span><span class="ap-belief-d" data-i18n="bel1.d">The process and evidence should be understandable by the people using it.</span></div>
+        <div><span class="ap-belief-t" data-i18n="bel2.t">Older doesn't mean broken</span><span class="ap-belief-d" data-i18n="bel2.d">A working ECU deserves a path back to support before it is replaced.</span></div>
+        <div><span class="ap-belief-t" data-i18n="bel3.t">Proof before confidence</span><span class="ap-belief-d" data-i18n="bel3.d">A result enters the shared record only when the data is repeatable.</span></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Testing -->
-    <section class="section alt" id="testing">
-      <div class="wrap two-col">
-        <div>
-          <p class="eyebrow" data-i18n="tst.eyebrow">TESTING</p>
-          <h2 data-i18n="tst.h2">The safety claims are tests, not slogans.</h2>
-          <p class="sub" data-i18n="tst.sub">Python tests cover the analysis tools. Swift tests cover the iOS workflow and the Mac live monitor. Every name on the right is a real test in the repository.</p>
-          <pre class="code"><code><span class="c" data-i18n="tst.run"># run them</span>
-python3 -m unittest discover -s tools -p "test_*.py"
-cd ios-app &amp;&amp; swift test
-cd mac-app &amp;&amp; swift test</code></pre>
-        </div>
-        <div class="tests">
-          <div class="test-group"><h3><span data-i18n="tst.g1">Python · tools</span></h3><ul><li>test_no_table_is_assigned_a_guess</li><li>test_common_base_map_structure</li><li>test_compare_requires_repeat_run</li><li>test_compare_reports_improvement</li><li>test_repeatability</li><li>test_summary_and_completeness</li><li>test_record_is_append_only_and_queryable</li><li>test_critical_report_is_not_reusable</li></ul></div>
-          <div class="test-group"><h3><span data-i18n="tst.g2">Swift · iOS core</span></h3><ul><li>testDashboardIsAlwaysReadOnly</li><li>testCriticalFrameIsMarkedAborted</li><li>testUSBTransportDoesNotPretendToWork</li><li>testReadinessStopsOnCriticalFault</li><li>testReadinessPausesOnMissingFuelPressureAndIgnitionReference</li><li>testTrialCannotCaptureBeforeReadiness</li><li>testFirstTrialRunsEndToEndWithoutEnablingWrites</li><li>testExperimentAssessmentRequiresRepeatableImprovement</li><li>testExperimentAssessmentAbortsOnKnock</li></ul></div>
-          <div class="test-group"><h3><span data-i18n="tst.g3">Swift · Mac core</span></h3><ul><li>testWriteIsBlockedInReadOnlyMode</li><li>testLiveMonitorAbortsOnKnock</li><li>testLiveMonitorWatchdogAborts</li><li>testRecoveredSettings</li></ul></div>
-        </div>
-      </div>
-    </section>
+  <section class="ap-sec ap-faq" id="faq">
+    <div class="ap-head"><span class="ap-eyebrow" data-i18n="faq.eyebrow">FAQ</span><h2 class="ap-h2 ap-nobal" data-i18n="faq.h2">Questions owners ask first.</h2></div>
+    <div class="ap-faq-list">
+      <div class="ap-faq-item" data-open="true"><button type="button" class="ap-faq-q" aria-expanded="true" aria-controls="apFaq0"><span data-i18n="faq.q1">Does AhhPuck write to my ECU?</span><span class="ap-faq-sign" aria-hidden="true">−</span></button><p class="ap-faq-a" id="apFaq0" data-i18n="faq.a1">No. Every build so far is read-only, and ECU writes are locked in code. Writing would need its own bench proof of the protocol, scaling, checksums and recovery, plus a person's sign-off.</p></div>
+      <div class="ap-faq-item"><button type="button" class="ap-faq-q" aria-expanded="false" aria-controls="apFaq1"><span data-i18n="faq.q2">Which ECUs does it support?</span><span class="ap-faq-sign" aria-hidden="true">+</span></button><p class="ap-faq-a" id="apFaq1" hidden data-i18n="faq.a2">The Freedom FC-03 on a 4A-GE 20V comes first. Other families are on a candidate list, and none starts until the FC-03 trial passes its gates.</p></div>
+      <div class="ap-faq-item"><button type="button" class="ap-faq-q" aria-expanded="false" aria-controls="apFaq2"><span data-i18n="faq.q3">What do I need to connect a car?</span><span class="ap-faq-sign" aria-hidden="true">+</span></button><p class="ap-faq-a" id="apFaq2" hidden data-i18n="faq.a3">The FCSS serial cable and a USB-to-serial adapter. The Freedom talks at 9600 bps, 7E1. Until live reads are finished, the tools work offline on recorded captures.</p></div>
+      <div class="ap-faq-item"><button type="button" class="ap-faq-q" aria-expanded="false" aria-controls="apFaq3"><span data-i18n="faq.q4">Will a second-hand Freedom unit plug into my car?</span><span class="ap-faq-sign" aria-hidden="true">+</span></button><p class="ap-faq-a" id="apFaq3" hidden data-i18n="faq.a4">Only if it was built for your car's ECU plug. Freedom units are coupler-on for one vehicle family, and the code on the silver label tells you which. Our trial unit is an AE111-coupler FC-03, so it needs an AE111 engine loom.</p></div>
+      <div class="ap-faq-item"><button type="button" class="ap-faq-q" aria-expanded="false" aria-controls="apFaq4"><span data-i18n="faq.q5">Can it tune my car on the road?</span><span class="ap-faq-sign" aria-hidden="true">+</span></button><p class="ap-faq-a" id="apFaq4" hidden data-i18n="faq.a5">No. Public roads are not a tuning mode. Changes are tested on a dyno or a closed course, one bounded step at a time.</p></div>
+      <div class="ap-faq-item"><button type="button" class="ap-faq-q" aria-expanded="false" aria-controls="apFaq5"><span data-i18n="faq.q6">Does the AI decide the tune?</span><span class="ap-faq-sign" aria-hidden="true">+</span></button><p class="ap-faq-a" id="apFaq5" hidden data-i18n="faq.a6">No. It proposes the smallest testable option from measured data and documented rules. A safety gate checks it, and a person decides whether to test it.</p></div>
+      <div class="ap-faq-item"><button type="button" class="ap-faq-q" aria-expanded="false" aria-controls="apFaq6"><span data-i18n="faq.q7">Does the app work in Japanese?</span><span class="ap-faq-sign" aria-hidden="true">+</span></button><p class="ap-faq-a" id="apFaq6" hidden data-i18n="faq.a7">Yes. The app ships in English and Japanese, with consistent tuning terms in both.</p></div>
+    </div>
+  </section>
 
-    <!-- Mission -->
-    <section class="section" id="mission">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-i18n="mis.eyebrow">THE BIGGER GOAL</p>
-          <h2 data-i18n="mis.h2">One process. Many unsupported ECUs.</h2>
-          <p class="sub" data-i18n="mis.sub">The Freedom FC-03 is the proving ground. Once the loop is proven on a real car, the same parts become adapters for other good ECUs that lost their software, not their value.</p>
-        </div>
-        <div class="hub" role="img" aria-label="Many ECU adapters feed one shared core." data-i18n-aria="aria.hub">
-          <div class="hub-left"><span>Freedom FC-03</span><span>MoTeC M4 / M48 / M800</span><span>Autronic SM2 / SM4</span><span>Emerald K3 / K6</span><span>Haltech Platinum</span><span>AEM Infinity / Series 2</span><span>Link G1 – G4+</span><span>DTA S-series</span><span>VEMS V3</span><span>MegaSquirt MS2 / MS3</span><span>rusEFI / Speeduino</span></div>
-          <div class="hub-arrow" aria-hidden="true"></div>
-          <div class="hub-core">
-            <b data-i18n="mis.core">Shared core</b>
-            <ul><li data-i18n="core1">Transport adapter</li><li data-i18n="core2">Frame decoder</li><li data-i18n="core3">Live safety monitor</li><li data-i18n="core4">Session recorder</li><li data-i18n="core5">Optimizer gate</li><li data-i18n="core6">Learning ledger</li></ul>
-          </div>
-        </div>
-        <div class="mission-points">
-          <div><b data-i18n="mis.p1">Lower cost</b><span data-i18n="mis.p1.d">A second-hand ECU and a serial cable, instead of a new ECU, harness and licence.</span></div>
-          <div><b data-i18n="mis.p2">Better logging</b><span data-i18n="mis.p2.d">Modern sample rates, phone sensors, hashes and exports the old software never had.</span></div>
-          <div><b data-i18n="mis.p3">Safer tuning</b><span data-i18n="mis.p3.d">Evidence-based, repeatable, reversible. The same loop, whatever the box says on the lid.</span></div>
-          <div><b data-i18n="mis.p4">Sky is the limit</b><span data-i18n="mis.p4.d">Every adapter starts read-only. Writing needs its own proof, every time.</span></div>
-        </div>
-        <p class="caption center" data-i18n="mis.cap">Candidate ECUs are listed in the repository. None starts development until the FC-03 trial passes its gates.</p>
+  <section class="ap-help" id="help">
+    <div class="ap-help-in">
+      <div class="ap-help-copy">
+        <span class="ap-eyebrow ap-eyebrow-dark" data-i18n="help.eyebrow">HELP THE COMMUNITY</span>
+        <h2 class="ap-h2 ap-h2-help" data-i18n="help.h2">Have a baseline tune or Freedom ECU knowledge?</h2>
+        <p class="ap-help-p" data-i18n="help.p">Help test the read-only build, share a baseline tune or logs, or contribute what you know about the Freedom ECU. Every useful reference helps bring support back to hardware that still works.</p>
       </div>
-    </section>
-
-    <!-- Roadmap -->
-    <section class="section alt" id="roadmap">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow" data-i18n="gat.eyebrow">RELEASE GATES · FC-03 TRIAL</p>
-          <h2 data-i18n="gat.h2">Nine gates before a single write.</h2>
-          <p class="sub" data-i18n="gat.sub">Each gate must pass before the next is considered. A working dashboard is never proof of a safe tune.</p>
-        </div>
-        <ol class="gates">
-          <li class="done"><span>1</span><span data-i18n="g1">Replay and simulated data</span></li><li class="done"><span>2</span><span data-i18n="g2">USB detection without ECU commands</span></li><li class="now"><span>3</span><span data-i18n="g3">Read-only ECU identity</span></li><li><span>4</span><span data-i18n="g4">Read-only live monitor and logging</span></li><li><span>5</span><span data-i18n="g5">Fault tests: disconnect, stale data, bad sensors, power loss</span></li><li><span>6</span><span data-i18n="g6">Car check at idle and light load</span></li><li><span>7</span><span data-i18n="g7">Load testing with independent instruments</span></li><li><span>8</span><span data-i18n="g8">Human-reviewed proposals</span></li><li><span>9</span><span data-i18n="g9">Only then, one restricted write experiment</span></li>
-        </ol>
+      <div class="ap-help-links">
+        <a class="ap-help-link ap-help-solid" href="mailto:contact@wheelhave.com?subject=AhhPuck"><span data-i18n="help.email">Email the AhhPuck team</span><span aria-hidden="true">→</span></a>
+        <a class="ap-help-link" href="https://wheelhave.com/messages"><span data-i18n="help.msg">Message us on Wheel Have</span><span aria-hidden="true">→</span></a>
+        <a class="ap-help-link" href="https://github.com/jlilburne86/ahhpuck"><span data-i18n="help.repo">View the repository</span><span aria-hidden="true">→</span></a>
       </div>
-    </section>
-
-    <!-- Get started -->
-    <section class="section cta" id="get-started">
-      <div class="wrap cta-inner">
-        <div>
-          <p class="eyebrow" data-i18n="cta.eyebrow">GET STARTED</p>
-          <h2 data-i18n="cta.h2">Begin with a baseline you can trust.</h2>
-          <p class="sub" data-i18n="cta.sub">Clone the repository, open the workbench, and try the full first-trial flow with the included sample data before any ECU is connected.</p>
-          <div class="cta-row">
-            <a class="button primary" href="https://github.com/jlilburne86/ahhpuck" data-i18n="cta.b1">View on GitHub</a>
-            <a class="button ghost" href="web-ui/index.html" data-i18n="cta.b2">Open the workbench</a>
-          </div>
-        </div>
-        <pre class="code"><code><span class="c" data-i18n="cta.code"># compare two local captures, no AI service needed</span>
-python3 tools/telemetry_stats.py \
-  tools/examples/baseline-telemetry.json \
-  tools/examples/candidate-telemetry.json \
-  --candidate-repeat tools/examples/candidate-repeat-telemetry.json \
-  --output notes/telemetry-comparison.json</code></pre>
-      </div>
-    </section>
+    </div>
+  </section>
   </main>
 
-  <footer class="pk-foot">
-    <div class="pk-foot-grid">
-      <div class="pk-foot-brand">
-        <div class="pk-foot-brandline"><a href="https://wheelhave.com/puckit" aria-label="PuckIt home"><img src="landing/img/puckit-wordmark.png" alt="PuckIt" height="22"></a><span>by Wheel Have</span></div>
-        <p>A button in your car that warns the drivers around you. Open hardware, official firmware, no phone or signal involved.</p>
-      </div>
-      <nav aria-label="Browse"><h2>Browse</h2><ul>
-        <li><a href="https://wheelhave.com/marketplace">All</a></li>
-        <li><a href="https://wheelhave.com/marketplace?category=wheels">Wheels</a></li>
-        <li><a href="https://wheelhave.com/marketplace?category=tires">Tyres</a></li>
-        <li><a href="https://wheelhave.com/marketplace?intent=wtb">Wanted</a></li>
-        <li><a href="https://wheelhave.com/stores">Stores</a></li>
-      </ul></nav>
-      <nav aria-label="Sell"><h2>Sell</h2><ul>
-        <li><a href="https://wheelhave.com/sell">List an item</a></li>
-        <li><a href="https://wheelhave.com/wtb">Post a wanted ad</a></li>
-        <li><a href="https://wheelhave.com/store/create">Set up a store</a></li>
-        <li><a href="https://wheelhave.com/for-shops">For shops</a></li>
-        <li><a href="https://wheelhave.com/sell-wheels-online">Sell wheels</a></li>
-        <li><a href="https://wheelhave.com/sell-car-parts-online">Sell car parts</a></li>
-      </ul></nav>
-      <nav aria-label="PuckIt"><h2>PuckIt</h2><ul>
-        <li><a href="https://wheelhave.com/puckit">How it works</a></li>
-        <li><a href="https://wheelhave.com/puckit/howtobuild">Build</a></li>
-        <li><a href="https://wheelhave.com/puckit/shop">Get one</a></li>
-        <li><a href="https://wheelhave.com/puckit/flasher">Flash</a></li>
-        <li><a href="https://wheelhave.com/puckit/guide">Guide</a></li>
-        <li><a href="https://wheelhave.com/puckit/organisers">For organisers</a></li>
-        <li><a href="https://wheelhave.com/puckit/network">Network</a></li>
-        <li><a href="#top" aria-current="page">AhhPuck</a></li>
-      </ul></nav>
-      <nav aria-label="You"><h2>You</h2><ul>
-        <li><a href="https://wheelhave.com/auth/signin?callbackUrl=%2Fahhpuck">Sign in</a></li>
-        <li><a href="https://wheelhave.com/account">You</a></li>
-        <li><a href="https://wheelhave.com/messages">Messages</a></li>
-        <li><a href="https://wheelhave.com/saved">Saved</a></li>
-        <li><a href="https://wheelhave.com/account/purchases">Purchases</a></li>
-        <li><a href="https://wheelhave.com/puckit/pucks">Pucks</a></li>
-      </ul></nav>
-      <nav aria-label="Help &amp; legal"><h2>Help &amp; legal</h2><ul>
-        <li><a href="https://wheelhave.com/help">Help</a></li>
-        <li><a href="https://wheelhave.com/about">About</a></li>
-        <li><a href="https://wheelhave.com/contact">Contact</a></li>
-        <li><a href="https://wheelhave.com/privacy">Privacy</a></li>
-        <li><a href="https://wheelhave.com/privacy#cookie-settings">Cookie settings</a></li>
-        <li><a href="https://wheelhave.com/terms">Terms</a></li>
-        <li><a href="https://wheelhave.com/puckit/legal/terms">PuckIt terms</a></li>
-        <li><a href="https://wheelhave.com/puckit/legal/disclaimer">Disclaimer</a></li>
-        <li><a href="https://wheelhave.com/puckit/legal/licence">Licence</a></li>
-      </ul></nav>
+  <!-- ahp:footer (left out of the wheelhave.com port, which has the site footer) -->
+  <footer class="ap-foot">
+    <div class="ap-foot-in">
+      <span data-i18n="foot.line">AhhPuck by Wheel Have · read-only · ECU writes locked</span>
+      <div class="ap-foot-links"><a href="https://wheelhave.com/privacy" data-i18n="foot.privacy">Privacy</a><a href="https://wheelhave.com/terms" data-i18n="foot.terms">Terms</a><a href="https://www.instagram.com/wheelhave">Instagram</a></div>
     </div>
-    <div class="pk-foot-legal"><div>
-      <span>PuckIt is an experimental driver-awareness aid, not a safety device. It doesn't replace marshals, flags or judgement. AhhPuck is read-only research and never writes to an ECU on its own.</span>
-      <span>By Wheel Have · Open hardware, official firmware</span>
-    </div></div>
   </footer>
+  <!-- /ahp:footer -->
+</div>
+<!-- ahp:end -->
 
   <script src="landing/i18n.js"></script>
   <script src="landing/landing.js"></script>
