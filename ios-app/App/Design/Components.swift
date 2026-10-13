@@ -6,18 +6,19 @@ import SwiftUI
 
 // MARK: - Screen scaffold
 
-/// Right side of the 50 pt status bar. Most screens show the transport in mono 12 #8b8f93;
-/// v1.2 screens use mono 12 at 70% opacity of the screen's text colour.
+/// Kept for source compatibility with screens written against the earlier design, whose status bar
+/// showed the transport ("USB-C · 9600"). The current design (F02 iOS chrome) uses the system status bar.
 enum StatusStyle { case label, dim }
 
-/// The 390×844 phone screen: 50 pt status bar, content, and the 82 pt tab bar when `tab` is set.
-/// The system status bar is hidden; this bar replaces it, exactly as the design draws it.
+/// The 390×844 phone screen (F02 iOS chrome): the 50 pt status-bar band, content, and the 83 pt tab bar
+/// when `tab` is set. iOS draws the status bar (time, signal, Wi-Fi, battery) and the home indicator
+/// itself, exactly as the design depicts them; the app only reserves their space.
 /// Content scrolls only when it is taller than the space between the bars; `Spacer()` inside
 /// content behaves like the design's `margin-top:auto`.
 struct PhoneScreen<Content: View>: View {
     @Environment(AppModel.self) private var app
     var tab: AppTab?
-    var status: String = "USB-C · 9600"
+    var status: String = ""
     var statusStyle: StatusStyle = .label
     var statusColor: Color? = nil
     var background: Color = AP.screen
@@ -26,68 +27,37 @@ struct PhoneScreen<Content: View>: View {
     @ViewBuilder var content: () -> Content
 
     var body: some View {
-        VStack(spacing: 0) {
-            StatusBar(right: status, style: statusStyle, color: statusColor, foreground: foreground)
-            GeometryReader { geo in
-                if scrolls {
-                    ScrollView(.vertical) {
+        GeometryReader { outer in
+            VStack(spacing: 0) {
+                // `height:50px; box-sizing:border-box` — never less than the device's real status bar.
+                Color.clear.frame(height: max(Metrics.statusBar, outer.safeAreaInsets.top))
+                GeometryReader { geo in
+                    if scrolls {
+                        ScrollView(.vertical) {
+                            VStack(alignment: .leading, spacing: 0) { content() }
+                                .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .topLeading)
+                        }
+                        .scrollBounceBehavior(.basedOnSize)
+                        .scrollIndicators(.hidden)
+                    } else {
                         VStack(alignment: .leading, spacing: 0) { content() }
-                            .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .topLeading)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     }
-                    .scrollBounceBehavior(.basedOnSize)
-                    .scrollIndicators(.hidden)
-                } else {
-                    VStack(alignment: .leading, spacing: 0) { content() }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 }
+                if let tab { TabBar(active: tab) }
+                else { Color.clear.frame(height: outer.safeAreaInsets.bottom) }
             }
-            if let tab { TabBar(active: tab) }
+            .ignoresSafeArea()
         }
         .foregroundStyle(foreground)
-        .background(background)
-        .ignoresSafeArea()
+        .background(background.ignoresSafeArea())
         .environment(\.locale, Locale(identifier: app.isJA ? "ja_JP" : "en_AU"))
     }
 }
 
-struct StatusBar: View {
-    @Environment(AppModel.self) private var app
-    var right: String
-    var style: StatusStyle = .label
-    var color: Color? = nil
-    var foreground: Color = AP.text
-
-    var body: some View {
-        HStack(alignment: .bottom) {
-            Clock().apFont(.sans, 15, 600)
-            Spacer()
-            T(app.tr(right), .mono, 12, 400)
-                .apFont(.mono, 12)
-                .foregroundStyle(color ?? (style == .label ? AP.label : foreground))
-                .opacity(style == .dim ? 0.7 : 1)
-                .contentShape(Rectangle())
-                .onTapGesture { app.router.go(.S04) }
-        }
-        .padding(.horizontal, 30)
-        .padding(.bottom, 6)
-        .frame(height: Metrics.statusBar, alignment: .bottom)
-    }
-}
-
-/// Real time in the app; `-demoClock` pins it to the design's 9:41 for screenshots.
-struct Clock: View {
-    var body: some View {
-        if ProcessInfo.processInfo.arguments.contains("-demoClock") {
-            Text(verbatim: "9:41")
-        } else {
-            TimelineView(.everyMinute) { ctx in
-                Text(verbatim: ctx.date.formatted(.dateTime.hour(.defaultDigits(amPM: .omitted)).minute()))
-            }
-        }
-    }
-}
-
-/// AppTab bar · h82 · active #fff 600 · inactive #6f7377, 11 px, top border #1f2225, padding-top 10.
+/// Tab bar (F02): 83 pt incl. the home-indicator area · border-top #1f2225 · padding-top 6 ·
+/// 49 pt items: 25 pt stroked icon, 2 pt gap, 10 pt label (+0.01em) · active #fff 600 (stroke 2.1),
+/// inactive #8b8f93 500 (stroke 1.7).
 struct TabBar: View {
     @Environment(AppModel.self) private var app
     var active: AppTab
@@ -95,18 +65,59 @@ struct TabBar: View {
     var body: some View {
         HStack(spacing: 0) {
             ForEach(AppTab.allCases) { t in
-                T(app.tr(t.title), .sans, 11, t == active ? 600 : 400)
-                    .apFont(.sans, 11, t == active ? 600 : 400)
-                    .foregroundStyle(t == active ? Color.white : AP.faint)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: Metrics.tabBar - 10, alignment: .top)
-                    .contentShape(Rectangle())
-                    .onTapGesture { app.router.select(t) }
+                let on = t == active
+                VStack(spacing: 2) {
+                    TabIcon(tab: t)
+                        .stroke(style: StrokeStyle(lineWidth: on ? 2.1 : 1.7, lineCap: .round, lineJoin: .round))
+                        .frame(width: 25, height: 25)
+                    T(app.tr(t.title), .sans, 10, on ? 600 : 500)
+                        .apFont(.sans, 10, on ? 600 : 500)
+                        .apTracking(0.01, size: 10)
+                        .lineLimit(1)
+                }
+                .foregroundStyle(on ? Color.white : AP.label)
+                .frame(maxWidth: .infinity)
+                .frame(height: 49)
+                .contentShape(Rectangle())
+                .onTapGesture { app.router.select(t) }
             }
         }
-        .padding(.top, 10)
+        .padding(.top, 6 + 1)
         .frame(height: Metrics.tabBar, alignment: .top)
+        .background(AP.screen)
         .overlay(alignment: .top) { Rectangle().fill(AP.track).frame(height: 1) }
+    }
+}
+
+/// The five tab glyphs from the design, in their 24×24 viewBox, scaled to the frame.
+struct TabIcon: Shape {
+    var tab: AppTab
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        switch tab {
+        case .live: // M4 16a8 8 0 1 1 16 0 · M12 16l4-5
+            p.addArc(center: CGPoint(x: 12, y: 16), radius: 8, startAngle: .degrees(180), endAngle: .degrees(0), clockwise: false)
+            p.move(to: CGPoint(x: 12, y: 16)); p.addLine(to: CGPoint(x: 16, y: 11))
+        case .map: // rect 4,4 16×16 r2 · M4 9.5h16 M4 14.5h16 M9.5 4v16 M14.5 4v16
+            p.addRoundedRect(in: CGRect(x: 4, y: 4, width: 16, height: 16), cornerSize: CGSize(width: 2, height: 2))
+            for y in [9.5, 14.5] { p.move(to: CGPoint(x: 4, y: y)); p.addLine(to: CGPoint(x: 20, y: y)) }
+            for x in [9.5, 14.5] { p.move(to: CGPoint(x: x, y: 4)); p.addLine(to: CGPoint(x: x, y: 20)) }
+        case .runs: // M6 21V4 · M6 4h11l-2.5 4.5L17 13H6
+            p.move(to: CGPoint(x: 6, y: 21)); p.addLine(to: CGPoint(x: 6, y: 4))
+            p.move(to: CGPoint(x: 6, y: 4)); p.addLine(to: CGPoint(x: 17, y: 4)); p.addLine(to: CGPoint(x: 14.5, y: 8.5))
+            p.addLine(to: CGPoint(x: 17, y: 13)); p.addLine(to: CGPoint(x: 6, y: 13))
+        case .review: // M12 3l7 3v6c0 4.2-3 7.4-7 9-4-1.6-7-4.8-7-9V6z · M9 12.2l2.2 2.2L15.2 10
+            p.move(to: CGPoint(x: 12, y: 3)); p.addLine(to: CGPoint(x: 19, y: 6)); p.addLine(to: CGPoint(x: 19, y: 12))
+            p.addCurve(to: CGPoint(x: 12, y: 21), control1: CGPoint(x: 19, y: 16.2), control2: CGPoint(x: 16, y: 19.4))
+            p.addCurve(to: CGPoint(x: 5, y: 12), control1: CGPoint(x: 8, y: 19.4), control2: CGPoint(x: 5, y: 16.2))
+            p.addLine(to: CGPoint(x: 5, y: 6)); p.closeSubpath()
+            p.move(to: CGPoint(x: 9, y: 12.2)); p.addLine(to: CGPoint(x: 11.2, y: 14.4)); p.addLine(to: CGPoint(x: 15.2, y: 10))
+        case .garage: // M3.5 11L12 4.5l8.5 6.5V20h-17z · M8.5 20v-5h7v5
+            p.move(to: CGPoint(x: 3.5, y: 11)); p.addLine(to: CGPoint(x: 12, y: 4.5)); p.addLine(to: CGPoint(x: 20.5, y: 11))
+            p.addLine(to: CGPoint(x: 20.5, y: 20)); p.addLine(to: CGPoint(x: 3.5, y: 20)); p.closeSubpath()
+            p.move(to: CGPoint(x: 8.5, y: 20)); p.addLine(to: CGPoint(x: 8.5, y: 15)); p.addLine(to: CGPoint(x: 15.5, y: 15)); p.addLine(to: CGPoint(x: 15.5, y: 20))
+        }
+        return p.applying(CGAffineTransform(scaleX: rect.width / 24, y: rect.height / 24).translatedBy(x: rect.minX, y: rect.minY))
     }
 }
 
@@ -356,5 +367,18 @@ struct ViewBox<Content: View>: View {
                 .scaleEffect(x: geo.size.width / width, y: geo.size.height / height, anchor: .topLeading)
         }
         .aspectRatio(width / height, contentMode: .fit)
+    }
+}
+
+/// Real time; `-demoClock` pins it to the design's 9:41 (for screens that draw a clock, e.g. S14).
+struct Clock: View {
+    var body: some View {
+        if ProcessInfo.processInfo.arguments.contains("-demoClock") {
+            Text(verbatim: "9:41")
+        } else {
+            TimelineView(.everyMinute) { ctx in
+                Text(verbatim: ctx.date.formatted(.dateTime.hour(.defaultDigits(amPM: .omitted)).minute()))
+            }
+        }
     }
 }

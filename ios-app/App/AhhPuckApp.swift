@@ -10,7 +10,6 @@ struct AhhPuckApp: App {
             RootView()
                 .environment(app)
                 .preferredColorScheme(.dark)
-                .statusBarHidden(true)
         }
     }
 }
