@@ -5,8 +5,22 @@ struct S06View: View {
     @Environment(AppModel.self) private var app
 
     var body: some View {
+        // Live tab root: coach marks on the first visit (S40), phone-only mode with no ECU (S39).
+        if app.router.coachMarksPending && !UserDefaults.standard.bool(forKey: "coachMarksDone") {
+            S40View(onFinish: {
+                UserDefaults.standard.set(true, forKey: "coachMarksDone")
+                app.router.coachMarksPending = false
+            })
+        } else if app.conn < 5 {
+            S39View()
+        } else {
+            dashboard
+        }
+    }
+
+    private var dashboard: some View {
         let b = app.base
-        PhoneScreen(tab: .live) {
+        return PhoneScreen(tab: .live) {
             ScreenHeader(title: "Live", subtitle: "BASELINE · RUN 03 · " + b.clock) { ReadOnlyPill() }
 
             // RPM hero with the 7k limit bar
@@ -72,7 +86,9 @@ struct S06View: View {
 
             // Gauge tiles
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)], spacing: 8) {
-                ForEach(b.gauges, id: \.label) { GaugeTile(g: $0) }
+                ForEach(b.gauges, id: \.label) { g in
+                    GaugeTile(g: g).contentShape(Rectangle()).onTapGesture { app.router.go(.S08) }
+                }
             }
             .block()
 
