@@ -33,6 +33,8 @@ struct S22View: View {
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(RoundedRectangle(cornerRadius: 14).fill(d.bg))
+            .contentShape(Rectangle())
+            .onTapGesture { app.router.go(.S26) }   // "why?" → the analyst's explanation
             .block()
 
             MList {

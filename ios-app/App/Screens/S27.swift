@@ -16,8 +16,9 @@ struct S27View: View {
                         .contentShape(Rectangle())
                         .onTapGesture { ring.replay() }
                     legend.padding(.top, 2).padding(.horizontal, Metrics.gutter)
-                    stepCard(ease).block()
-                    cellsCard.block()
+                    // Review root → the assessment screens (no buttons in the design).
+                    stepCard(ease).contentShape(Rectangle()).onTapGesture { app.router.go(.S22) }.block()
+                    cellsCard.contentShape(Rectangle()).onTapGesture { app.router.go(.S23) }.block()
                 }
             }
             Spacer(minLength: 0)

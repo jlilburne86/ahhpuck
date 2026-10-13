@@ -49,6 +49,8 @@ struct S35View: View {
                 ASans(text: p.d, size: 12, color: AP.text3, lineHeight: 1.4)
                     .fixedSize(horizontal: false, vertical: true)
                 AMono(text: p.used, size: 9, color: AP.faint)
+                    // "USED BY … S14" previews the notifications and Live Activity screen (not drawn as a link).
+                    .onTapGesture { if p.used.contains("S14") && !app.router.onboarding { app.router.go(.S14) } }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             T(app.tr(on ? "✓ Allowed" : "Allow"), .sans, 13, 600)
