@@ -8,6 +8,9 @@ sim=$1 dd=$2 screen=$3 out=$4; shift 4
 here=${0:a:h}/..
 build=1; [[ "$1" == "--no-build" ]] && { build=0; shift; }
 xcrun simctl boot "$sim" 2>/dev/null || true
+# The design's status bar (F02): 9:41, full signal, Wi-Fi, battery about 75%.
+xcrun simctl status_bar "$sim" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 \
+  --cellularMode active --cellularBars 4 --batteryState discharging --batteryLevel 75 2>/dev/null || true
 if (( build )); then
   xcodebuild -project "$here/FreedomIOSApp.xcodeproj" -scheme AhhPuck -destination "platform=iOS Simulator,id=$sim" \
     -derivedDataPath "$dd" build 2>&1 | grep -E "error:|BUILD (SUCCEEDED|FAILED)" | head -30

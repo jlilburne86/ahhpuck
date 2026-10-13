@@ -103,9 +103,8 @@ enum Status: Int {
 /// Frame metrics from F00 · Spacing.
 enum Metrics {
     static let frameWidth: CGFloat = 390
-    /// The design's bars are CSS content-box: `height:50px; padding-bottom:6px` renders 56 pt tall,
-    /// `height:82px; padding-top:10px` renders 92 pt. These are the rendered sizes.
-    static let statusBar: CGFloat = 56
-    static let tabBar: CGFloat = 92
+    /// F02 iOS chrome: status-bar band 50 pt (border-box), tab bar 83 pt = 49 pt items + home indicator.
+    static let statusBar: CGFloat = 50
+    static let tabBar: CGFloat = 83
     static let gutter: CGFloat = 18
 }
