@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#0d0e0f;color:#e8e6e1;font-family:'IBM Plex Sans','IBM Plex Sans JP',sans-serif;-webkit-font-smoothing:antialiased}a{color:#e8e6e1;text-decoration:underline;text-underline-offset:3px}a:hover{color:#fff}:lang(ja) body{line-break:strict}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column">
+
+<nav style="position:sticky;top:0;z-index:10;background:rgba(13,14,15,.86);backdrop-filter:blur(12px);border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:20px">
+    <a href="#top" style="text-decoration:none;display:flex;align-items:baseline;gap:10px;flex:none"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:26px;font-weight:700;letter-spacing:.01em">AhhPuck</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">by Wheel Have</span></a>
+    <div style="display:flex;gap:20px;font-size:14px;margin-left:auto;flex:1 1 0;min-width:0;justify-content:flex-end;overflow-x:auto;white-space:nowrap;scrollbar-width:none">
+      <a href="#roadmap" style="text-decoration:none;color:#cfd2d4">Roadmap</a><a href="#loop" style="text-decoration:none;color:#cfd2d4">How it works</a><a href="#community" style="text-decoration:none;color:#cfd2d4">Community</a>
+      
+      <a href="#safety" style="text-decoration:none;color:#cfd2d4">Safety</a>
+      <a href="#status" style="text-decoration:none;color:#cfd2d4">Status</a>
+      <a href="#faq" style="text-decoration:none;color:#cfd2d4">FAQ</a>
+    </div>
+    <div style="display:flex;gap:4px;padding:3px;border:1px solid #2f3336;border-radius:8px;flex:none">
+      <a href="{{ enHref }}" style="padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;background:{{ enBg }};color:{{ enFg }}">EN</a>
+      <a href="{{ jaHref }}" style="padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;background:{{ jaBg }};color:{{ jaFg }}">日本語</a>
+    </div>
+    <a href="#help" style="padding:10px 16px;border-radius:10px;background:#e8e6e1;color:#111;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;flex:none">Get involved</a>
+  </div>
+</nav>
+
+<header id="top" style="max-width:1200px;margin:0 auto;padding:72px 24px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:48px;align-items:center;width:100%;box-sizing:border-box">
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">OPEN COMMUNITY PROJECT · FREEDOM FC-03 FIRST</span>
+    <h1 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(56px,8vw,104px);font-weight:700;line-height:.9;letter-spacing:-.01em;text-wrap:balance">Unsupported is not obsolete.</h1>
+    <p style="margin:0;max-width:540px;font-size:18px;line-height:1.55;color:#a9adb1;text-wrap:pretty">Many good standalone ECUs sit unused because their software stopped years ago. AhhPuck is a community project to bring them back with modern logging and safe, step-by-step tuning. We start with the Freedom FC-03, then adapt the same process to every unsupported ECU like it.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a href="https://github.com/jlilburne86/ahhpuck" style="flex:1 1 150px;text-decoration:none;padding:14px 16px;border-radius:12px;border:1px solid #23262a;background:#151719;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">01</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:22px;font-weight:700;line-height:1;color:#e8e6e1">Open the build</span><span style="font-size:12px;line-height:1.4;color:#a9adb1">Code, tests and evidence on GitHub</span></a><a href="#community" style="flex:1 1 150px;text-decoration:none;padding:14px 16px;border-radius:12px;border:1px solid #23262a;background:#151719;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">02</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:22px;font-weight:700;line-height:1;color:#e8e6e1">Solve it together</span><span style="font-size:12px;line-height:1.4;color:#a9adb1">Decode, verify, test on real cars</span></a><a href="#roadmap" style="flex:1 1 150px;text-decoration:none;padding:14px 16px;border-radius:12px;border:1px solid #23262a;background:#151719;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">03</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:22px;font-weight:700;line-height:1;color:#e8e6e1">Bring back support</span><span style="font-size:12px;line-height:1.4;color:#a9adb1">Freedom first, then every ECU like it</span></a></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="#community" style="padding:14px 20px;border-radius:12px;background:#e8e6e1;color:#111;font-weight:600;text-decoration:none">Join the community</a><a href="https://github.com/jlilburne86/ahhpuck" style="padding:14px 20px;border-radius:12px;border:1px solid #2f3336;color:#e8e6e1;font-weight:600;text-decoration:none;display:flex;gap:8px;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">GITHUB</span>Open the build →</a>
+      
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px">
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;display:flex;gap:6px;align-items:center"><span style="width:7px;height:7px;border-radius:4px;background:oklch(0.78 0.14 150)"></span>READ-ONLY</span>
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;color:#cfd2d4">ECU WRITES LOCKED</span>
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;color:#cfd2d4">SAFETY POLICY 0.2</span>
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;color:#cfd2d4">47 TESTS PASSING</span>
+    </div>
+  </div>
+  <div style="position:relative;display:flex;justify-content:center;min-height:620px">
+    <sc-if value="{{ twoPhones }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;right:max(0px,calc(50% - 290px));top:60px;width:260px;border-radius:32px;overflow:hidden;opacity:.55;transform:rotate(4deg)"><img src="landing/s22-review.png" alt="AhhPuck Review screen: the safety gate's decision" style="display:block;width:100%"></div>
+    </sc-if>
+    <div style="position:relative;width:300px;border-radius:37px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6);margin-right:{{ heroShift }}"><img src="landing/s06-live.png" alt="AhhPuck Live screen: RPM, lambda against target and six gauge tiles, read-only" style="display:block;width:100%"></div>
+  </div>
+</header>
+
+<section style="border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+    <div style="padding:28px 24px 28px 0;display:flex;flex-direction:column;gap:6px;border-right:1px solid #1d2023"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">Lower cost</span><span style="font-size:15px;line-height:1.5;color:#a9adb1">A second-hand ECU and a serial cable, instead of a new ECU, harness and licence.</span></div>
+    <div style="padding:28px 24px;display:flex;flex-direction:column;gap:6px;border-right:1px solid #1d2023"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">Better logging</span><span style="font-size:15px;line-height:1.5;color:#a9adb1">Modern sample rates, phone sensors, hashes and exports the old software never had.</span></div>
+    <div style="padding:28px 0 28px 24px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">Safer tuning</span><span style="font-size:15px;line-height:1.5;color:#a9adb1">One small, reversible step at a time. A gain counts only when it repeats.</span></div>
+  </div>
+</section>
+
+
+<section id="roadmap" style="max-width:1200px;margin:0 auto;padding:96px 24px 24px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:820px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">THE ROADMAP</span><h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">Freedom first. Then every unsupported ECU like it.</h2><p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">The FC-03 is the proving ground. Once the loop works on a real car, the same shared core becomes adapters for other good ECUs that lost their software, not their value.</p></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px">
+    <div style="padding:22px;border-radius:16px;border:1px solid #e8e6e1;background:#e8e6e1;color:#111;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#4a4f54">01 · NOW</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:oklch(0.80 0.15 75);color:#111;white-space:nowrap">! IN PROGRESS</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">Freedom FC-03</span><span style="font-size:14px;line-height:1.5;color:#33373b">Read-only capture on a 4A-GE 20V. Verified decoding, real logs, the full loop on one car.</span></div>
+    <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#151719;color:#e8e6e1;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">02 · NEXT</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:#8b8f93;color:#111;white-space:nowrap">– PLANNED</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">Shared core</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">Transport, decoder, safety monitor, recorder, gate and ledger, separated from anything Freedom-specific.</span></div>
+    <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#151719;color:#e8e6e1;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">03 · THEN</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:#8b8f93;color:#111;white-space:nowrap">– PLANNED</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">Community adapters</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">Owners and developers add one ECU family at a time. Every adapter starts read-only and earns its way forward.</span></div>
+    <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#151719;color:#e8e6e1;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">04 · GOAL</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:oklch(0.80 0.10 210);color:#111;white-space:nowrap">◎ GOAL</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">Any unsupported ECU</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">Older doesn't mean broken. Every working ECU gets a path back to support before it's replaced.</span></div>
+  </div>
+  <div style="padding:24px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">Which ECU should be next?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">TAP ALL THAT YOU RUN OR WANT</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ ecus }}" as="e" hint-placeholder-count="10"><div style="padding:8px 12px;border-radius:8px;border:1px solid {{ e.bd }};background:{{ e.bg }};color:{{ e.fg }};font-size:14px;cursor:pointer;white-space:nowrap" onClick="{{ e.tap }}">{{ e.label }}</div></sc-for></div>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div style="padding:12px 18px;border-radius:10px;background:{{ reqBg }};color:{{ reqFg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ sendReq }}">{{ reqLabel }}</div><span style="font-size:13px;color:#8b8f93">No second ECU starts until the FC-03 trial passes its gates. Requests help decide the order.</span></div>
+  </div>
+</section>
+<section id="freedom" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+<div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:22px">
+<span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">EVERY FREEDOM UNIT</span>
+<h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">The limits come from your ECU, not from the app.</h2>
+<p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">Freedom units differ by coupler, load type, firmware and inputs. AhhPuck reads the label, builds a profile, and shows exactly what your unit can give: what's verified, what's not in this ECU, and what the community still has to decode.</p>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid oklch(0.78 0.14 150);background:oklch(0.78 0.14 150);color:#111;white-space:nowrap">✓ READ · VERIFIED</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">Decoded and confirmed against a real capture.</span></div>
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid oklch(0.80 0.15 75);background:transparent;color:oklch(0.80 0.15 75);white-space:nowrap">◐ READ · NOT VERIFIED</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">Visible in the data, but scaling isn't proven yet.</span></div>
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid #2f3336;background:repeating-linear-gradient(135deg,#3a3e42 0 4px,#24272a 4px 8px);color:#e8e6e1;white-space:nowrap">⌀ NOT IN THIS ECU</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">Your unit doesn't have it. The app won't pretend otherwise.</span></div>
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid #3a3e42;background:transparent;color:#cfd2d4;white-space:nowrap">… NOT DECODED YET</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">The ECU sends it; the community still has to decode it.</span></div>
+</div>
+<span style="font-size:13px;color:#8b8f93">Example: ignition proposals stay off on a unit with unverified ignition scaling and no confirmed knock signal, and ECU self-learning must be off during tests.</span>
+</div>
+<div style="display:flex;justify-content:center"><div style="width:300px;border-radius:37px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6)"><img src="landing/s43-capabilities.png" alt="ECU capabilities screen" style="display:block;width:100%"></div></div>
+</div></section>
+<section id="loop" style="max-width:1200px;margin:0 auto;padding:96px 24px 40px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:760px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">HOW IT WORKS</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">One loop, from plug-in to a proven improvement.</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1">The app, the workbench and the command-line tools all follow it. Every step leaves a file on disk, so nothing is lost.</p>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <div style="padding:10px 16px;border-radius:10px;border:1px solid {{ m0bd }};background:{{ m0bg }};color:{{ m0fg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ setM0 }}">Monitor mode · 1–4</div>
+    <div style="padding:10px 16px;border-radius:10px;border:1px solid {{ m1bd }};background:{{ m1bg }};color:{{ m1fg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ setM1 }}">Engineer mode · + 5, 8</div>
+    <div style="padding:10px 16px;border-radius:10px;border:1px solid {{ m2bd }};background:{{ m2bg }};color:{{ m2fg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ setM2 }}">Optimize mode · 1–9</div>
+  </div>
+  <div style="font-size:15px;line-height:1.5;color:#cfd2d4;min-height:24px">
+    <sc-if value="{{ isM0 }}" hint-placeholder-val="{{ true }}"><span>The first release that can go in a car. Connect, identify, set limits, record a trusted baseline.</span></sc-if>
+    <sc-if value="{{ isM1 }}" hint-placeholder-val="{{ false }}"><span>Adds proposals and assessments as reports. Nothing is sent to the ECU.</span></sc-if>
+    <sc-if value="{{ isM2 }}" hint-placeholder-val="{{ false }}"><span>Closes the loop, fuel only, behind every safety gate and a person's approval.</span></sc-if>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:8px">
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o1 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">01</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Connect</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">USB serial, bridge or replay</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o2 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">02</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Identify</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">Which ECU, firmware and channels</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o3 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">03</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Profile &amp; limits</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">Engine, sensors, goal, hard limits</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o4 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">04</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Baseline</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">Saved, hashed, repeated</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o5 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">05</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Propose</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">One small, bounded fuel change</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o6 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">06</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Approve</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">A person checks and says yes</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o7 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">07</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Test</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">A controlled run with stop rules</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o8 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">08</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Assess</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">Did it help, and did it repeat?</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #e8e6e1;background:#e8e6e1;color:#111;opacity:{{ o9 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px">09</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Learn</span><span style="font-size:13px;line-height:1.45">Write it to the ledger. The next step is smaller, or the loop stops.</span></div>
+  </div>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:56px 24px;width:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+  <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+    <div style="width:250px;border-radius:31px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)"><img src="landing/s23-expected.png" alt="Expected vs actual: predicted ranges with the actual result for each metric" style="display:block;width:100%"></div>
+    <div style="width:250px;border-radius:31px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5);margin-top:48px"><img src="landing/s21-map.png" alt="Map before and after: drag to compare lambda error per cell" style="display:block;width:100%"></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">LEARNING FROM EVIDENCE</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">An improvement only counts when it repeats.</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">Each round compares a baseline, a candidate and a repeat of the candidate. Every prediction is shown as a range against run-to-run noise, so you can see whether a gain is real.</p>
+    <div style="padding:20px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">LAMBDA ERROR BY RUN</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#6f7377">telemetry_stats.py</span></div>
+      <div style="display:grid;grid-template-columns:90px 1fr 56px;gap:10px;align-items:center;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px">
+        <span style="color:#a9adb1">Baseline</span><div style="height:16px;border-radius:4px;background:#1c1f22"><div style="height:16px;width:100%;border-radius:4px;background:#7d8287"></div></div><span style="text-align:right">0.052</span>
+        <span style="color:#a9adb1">Candidate</span><div style="height:16px;border-radius:4px;background:#1c1f22"><div style="height:16px;width:50%;border-radius:4px;background:oklch(0.72 0.17 305)"></div></div><span style="text-align:right">0.026</span>
+        <span style="color:#a9adb1">Repeat</span><div style="height:16px;border-radius:4px;background:#1c1f22"><div style="height:16px;width:46%;border-radius:4px;background:oklch(0.82 0.08 285)"></div></div><span style="text-align:right">0.024</span>
+      </div>
+      <span style="font-size:12px;color:#8b8f93">Example numbers from the sample captures. Repeatability is checked separately.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;border:1px solid #23262a;border-radius:14px;overflow:hidden;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px">
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#01</span><span style="flex:1">baseline captured</span><span style="color:#8b8f93">clean</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#02</span><span style="flex:1">fuel 11×7 −1.5 %</span><span style="color:oklch(0.78 0.14 150)">✓ improved · repeated</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#03</span><span style="flex:1">fuel 11×8 −1.5 %</span><span style="color:oklch(0.80 0.15 75)">! not repeatable</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#04</span><span style="flex:1">fuel 11×8 −0.8 %</span><span style="color:oklch(0.78 0.14 150)">✓ improved · repeated</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px"><span style="color:#6f7377">#05</span><span style="flex:1">knock in run</span><span style="color:oklch(0.68 0.19 25)">✕ aborted · not reused</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="data" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">ECU FIRST</span>
+      <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">The engine data comes from the ECU. The phone fills in the rest.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">Every value shows where it came from and how sure we are about it. The safety gate only uses the ECU and add-on sensors, never the phone.</p>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#23262a;border:1px solid #23262a;border-radius:14px;overflow:hidden">
+        <div style="display:flex;gap:14px;padding:16px;background:#0d0e0f;align-items:flex-start"><span style="flex:none;width:56px;text-align:center;padding:4px 0;border-radius:5px;background:#e8e6e1;color:#111;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600">ECU</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:600">Engine data</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">RPM, load, lambda, temperatures, battery, knock, speed. The only data used to make decisions.</span></div></div>
+        <div style="display:flex;gap:14px;padding:16px;background:#0d0e0f;align-items:flex-start"><span style="flex:none;width:56px;text-align:center;padding:4px 0;border-radius:5px;background:#2a2d30;color:#cfd2d4;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600">PHONE</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:600">Speed and g-force</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">GPS and motion sensors cross-check ECU speed and confirm runs were driven the same way. They're never used to decide.</span></div></div>
+        <div style="display:flex;gap:14px;padding:16px;background:#0d0e0f;align-items:flex-start"><span style="flex:none;width:56px;text-align:center;padding:4px 0;border-radius:5px;border:1px solid #3a3e42;color:#cfd2d4;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600">ADD-ON</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:600">The sensors the ECU doesn't have</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">Wideband lambda, fuel pressure and oil pressure, used by the gate when they're fitted.</span></div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px"><span style="color:#e8e6e1">DOCUMENTED</span><span style="color:#cfd2d4">OBSERVED</span><span style="color:#a9adb1">INFERRED</span><span style="color:#8b8f93">UNVERIFIED</span></div>
+    </div>
+    <div style="display:flex;justify-content:center"><div style="width:300px;border-radius:37px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6)"><img src="landing/s38-sources.png" alt="Data sources screen: ECU, phone GPS and motion, and add-on sensors with cross-checks" style="display:block;width:100%"></div></div>
+  </div>
+</section>
+
+<section id="safety" style="max-width:1200px;margin:0 auto;padding:96px 24px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:760px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">SAFETY LIMITS</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">Limits are set before the engine starts.</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1">These values come from the safety policy file the tools enforce. They're provisional and must be checked for your engine, but they're never invented on the spot.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+    <div style="padding:22px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">ALWAYS · NEVER</span>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.45">
+        <span>✕ Never learn from a run with a protection fault</span>
+        <span>✕ Never change fuel and ignition in the same experiment</span>
+        <span>✕ Never let an AI authorise an ECU write</span>
+        <span>✕ Never change ignition without verified knock sensing</span>
+        <span>✕ Treat a missing safety channel as a failed check, never a pass</span>
+        <span>✓ Always keep the source map, the diff and a rollback copy</span>
+      </div>
+    </div>
+    <div style="padding:22px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">HARD LIMITS</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#6f7377">policy 0.2-provisional</span></div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:14px">
+        <span style="color:#a9adb1">Max fuel change per cell</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">2.0 %</span>
+        <span style="color:#a9adb1">Max ignition change per cell</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">1.0 °</span>
+        <span style="color:#a9adb1">Max RPM</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">7 800</span>
+        <span style="color:#a9adb1">Max coolant</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">105 °C</span>
+        <span style="color:#a9adb1">Max intake air temp</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">65 °C</span>
+        <span style="color:#a9adb1">Min battery voltage</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">12.0 V</span>
+        <span style="color:#a9adb1">Max knock level</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">0.15</span>
+        <span style="color:#a9adb1">Min oil pressure under load</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">180 kPa</span>
+        <span style="color:#a9adb1">Max lambda under load</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">1.05 λ</span>
+      </div>
+    </div>
+    <div style="padding:22px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">WHERE TO TEST</span>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Dyno</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">Controlled load. Best for map work.</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">Closed course</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">Real motion. Log without touching the phone, review later.</span></div>
+      <div style="margin-top:auto;padding:12px 14px;border-radius:12px;background:oklch(0.80 0.15 75);color:#111;font-size:14px;font-weight:600;line-height:1.4">! Public roads are not a tuning mode. AhhPuck records data for later review. It never tunes a moving car.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center">
+    <div style="display:flex;justify-content:center"><div style="width:250px;border-radius:31px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)"><img src="landing/s11-rec.png" alt="Recording screen: large RPM, lambda error, coverage and a big stop button" style="display:block;width:100%"></div></div>
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:520px">
+      <span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:36px;font-weight:700;line-height:1">Built to glance at, not to touch.</span>
+      <span style="font-size:16px;line-height:1.55;color:#a9adb1">While recording, the screen shows three numbers and one big stop button. Alerts come by sound and haptics, run on fixed rules, and work offline. A critical alert can't be dismissed while the condition lasts.</span>
+    </div>
+  </div>
+</section>
+
+<section id="status" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:760px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">HONEST STATUS</span>
+      <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95">Read-only first. Writes stay outside the trial.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;font-weight:600;color:oklch(0.78 0.14 150)">✓ BUILT</span><span style="font-size:14px;line-height:1.6;color:#cfd2d4">Freedom map parser · telemetry statistics · iteration assessor · fail-closed safety gate · local learning ledger · iOS and Mac core · tuning knowledge base (22 sources, 7 rule cards)</span></div>
+      <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;font-weight:600;color:oklch(0.80 0.15 75)">! IN PROGRESS</span><span style="font-size:14px;line-height:1.6;color:#cfd2d4">Verified Freedom export adapter · first live read (?DAT poll, 55-byte reply) · real capture corpus · bench recovery tests · trial FC-03 on the bench</span></div>
+      <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;font-weight:600;color:#8b8f93">– NOT YET</span><span style="font-size:14px;line-height:1.6;color:#cfd2d4">Any ECU write · ignition proposals · a second ECU, only after the FC-03 trial produces real results</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:1px;background:#23262a;border:1px solid #23262a;border-radius:16px;overflow:hidden">
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">30</span><span style="font-size:13px;color:#a9adb1">Python tests passing</span></div>
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">17</span><span style="font-size:13px;color:#a9adb1">Swift tests passing</span></div>
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">7</span><span style="font-size:13px;color:#a9adb1">source-backed rule cards</span></div>
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">0</span><span style="font-size:13px;color:#a9adb1">ECU writes authorised</span></div>
+    </div>
+        </div>
+  </div>
+</section>
+
+
+<section id="community" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:820px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">OPEN COMMUNITY BUILD</span><h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">Built by the people who still run these ECUs.</h2><p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">AhhPuck isn't trying to replace a tuner or make an old ECU pretend to be new. It's a shared path to bring back useful support for hardware that still works.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px">
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">01</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">Owners</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">Share baseline tunes, logs and your car profile.</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ RECORD A BASELINE · SEND A SESSION BUNDLE</span></div>
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">02</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">Tuners</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">Review proposals, write rule cards and check the limits for each engine.</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ REVIEW EXPERIMENTS · ADD RULE CARDS</span></div>
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">03</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">Developers</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">Build decoders and adapters. Everything is tested, and read-only first.</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ OPEN AN ADAPTER · RUN THE TEST SUITE</span></div>
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">04</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">Keepers of knowledge</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">Manuals, schematics, old software and cables, before they disappear.</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ SHARE A SOURCE · WE HASH AND CITE IT</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px">
+      <span style="padding:8px 12px;border-radius:8px;border:1px solid #2f3336">Owner data</span><span style="color:#6f7377">+</span><span style="padding:8px 12px;border-radius:8px;border:1px solid #2f3336">Tuner experience</span><span style="color:#6f7377">+</span><span style="padding:8px 12px;border-radius:8px;border:1px solid #2f3336">Developer tools</span><span style="color:#6f7377">→</span><span style="padding:8px 12px;border-radius:8px;background:#e8e6e1;color:#111;font-weight:600">Shared evidence core</span><span style="color:#6f7377">→</span><span style="padding:8px 12px;border-radius:8px;border:1px solid oklch(0.80 0.10 210);color:oklch(0.80 0.10 210)">Support that lasts</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;padding-top:24px;border-top:1px solid #23262a">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-weight:600;font-size:16px">Open by default</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">The process and evidence should be understandable by the people using it.</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-weight:600;font-size:16px">Older doesn't mean broken</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">A working ECU deserves a path back to support before it is replaced.</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-weight:600;font-size:16px">Proof before confidence</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">A result enters the shared record only when the data is repeatable.</span></div>
+    </div>
+  </div>
+</section>
+<section id="faq" style="max-width:860px;margin:0 auto;padding:96px 24px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">FAQ</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95">Questions owners ask first.</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #23262a">
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f0t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">Does AhhPuck write to my ECU?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f0c }}</span></div><sc-if value="{{ f0 }}" hint-placeholder-val="{{ true }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">No. Every build so far is read-only, and ECU writes are locked in code. Writing would need its own bench proof of the protocol, scaling, checksums and recovery, plus a person's sign-off.</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f1t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">Which ECUs does it support?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f1c }}</span></div><sc-if value="{{ f1 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">The Freedom FC-03 on a 4A-GE 20V comes first. Other families are on a candidate list, and none starts until the FC-03 trial passes its gates.</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f2t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">What do I need to connect a car?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f2c }}</span></div><sc-if value="{{ f2 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">The FCSS serial cable and a USB-to-serial adapter. The Freedom talks at 9600 bps, 7E1. Until live reads are finished, the tools work offline on recorded captures.</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f3t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">Will a second-hand Freedom unit plug into my car?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f3c }}</span></div><sc-if value="{{ f3 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">Only if it was built for your car's ECU plug. Freedom units are coupler-on for one vehicle family, and the code on the silver label tells you which. Our trial unit is an AE111-coupler FC-03, so it needs an AE111 engine loom.</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f4t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">Can it tune my car on the road?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f4c }}</span></div><sc-if value="{{ f4 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">No. Public roads are not a tuning mode. Changes are tested on a dyno or a closed course, one bounded step at a time.</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f5t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">Does the AI decide the tune?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f5c }}</span></div><sc-if value="{{ f5 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">No. It proposes the smallest testable option from measured data and documented rules. A safety gate checks it, and a person decides whether to test it.</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f6t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">Does the app work in Japanese?</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f6c }}</span></div><sc-if value="{{ f6 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">Yes. The app ships in English and Japanese, with consistent tuning terms in both.</p></sc-if></div>
+  </div>
+</section>
+
+<section id="help" style="padding:0 24px 96px">
+  <div style="max-width:1152px;margin:0 auto;padding:56px;border-radius:24px;background:#e8e6e1;color:#111;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:32px;align-items:end;box-sizing:border-box">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#4a4f54">HELP THE COMMUNITY</span>
+      <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,60px);font-weight:700;line-height:.95;text-wrap:balance">Have a baseline tune or Freedom ECU knowledge?</h2>
+      <p style="margin:0;font-size:16px;line-height:1.55;color:#33373b">Help test the read-only build, share a baseline tune or logs, or contribute what you know about the Freedom ECU. Every useful reference helps bring support back to hardware that still works.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="mailto:contact@wheelhave.com?subject=AhhPuck" style="padding:16px 20px;border-radius:12px;background:#111;color:#fff;font-weight:600;text-decoration:none;display:flex;justify-content:space-between">Email the AhhPuck team<span>→</span></a>
+      <a href="https://wheelhave.com/messages" style="padding:16px 20px;border-radius:12px;border:1px solid #111;color:#111;font-weight:600;text-decoration:none;display:flex;justify-content:space-between">Message us on Wheel Have<span>→</span></a>
+      <a href="https://github.com/jlilburne86/ahhpuck" style="padding:16px 20px;border-radius:12px;border:1px solid #111;color:#111;font-weight:600;text-decoration:none;display:flex;justify-content:space-between">View the repository<span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#8b8f93">
+    <span>AhhPuck by Wheel Have · read-only · ECU writes locked</span>
+    <div style="display:flex;gap:16px"><a href="https://wheelhave.com/privacy" style="color:#8b8f93">Privacy</a><a href="https://wheelhave.com/terms" style="color:#8b8f93">Terms</a><a href="https://www.instagram.com/wheelhave" style="color:#8b8f93">Instagram</a></div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;hero&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Two phones&quot;,&quot;Single phone&quot;],&quot;default&quot;:&quot;Two phones&quot;,&quot;tsType&quot;:&quot;'Two phones'|'Single phone'&quot;}}">
+class Component extends DCLogic {
+  LANG = 'EN';
+  state = { mode: 2, faq: 0, req: {}, sent: false };
+  componentDidMount() { document.documentElement.lang = this.LANG === 'JA' ? 'ja' : 'en'; }
+  renderVals() {
+    const { mode, faq } = this.state, ja = this.LANG === 'JA';
+    const v = {
+      enHref: 'AhhPuck Landing.dc.html', jaHref: 'AhhPuck Landing JA.dc.html',
+      enBg: ja ? 'transparent' : '#e8e6e1', enFg: ja ? '#a9adb1' : '#111', jaBg: ja ? '#e8e6e1' : 'transparent', jaFg: ja ? '#111' : '#a9adb1',
+      twoPhones: (this.props.hero ?? 'Two phones') === 'Two phones',
+      isM0: mode === 0, isM1: mode === 1, isM2: mode === 2
+    };
+    v.heroShift = v.twoPhones ? '120px' : '0px';
+    [0, 1, 2].forEach(i => { const on = mode === i; v['m' + i + 'bg'] = on ? '#e8e6e1' : 'transparent'; v['m' + i + 'fg'] = on ? '#111' : '#cfd2d4'; v['m' + i + 'bd'] = on ? '#e8e6e1' : '#2f3336'; v['setM' + i] = () => this.setState({ mode: i }); });
+    const active = [[1, 2, 3, 4], [1, 2, 3, 4, 5, 8], [1, 2, 3, 4, 5, 6, 7, 8, 9]][mode];
+    for (let i = 1; i <= 9; i++) v['o' + i] = active.includes(i) ? 1 : 0.28;
+    for (let i = 0; i < 7; i++) { v['f' + i] = faq === i; v['f' + i + 'c'] = faq === i ? '−' : '+'; v['f' + i + 't'] = () => this.setState({ faq: faq === i ? -1 : i }); }
+        const ecuList = ['MoTeC M4 / M48 / M800', 'Autronic SM2 / SM4', 'Emerald K3 / K6', 'Haltech Platinum', 'AEM Infinity / Series 2', 'Link G1 – G4+', 'DTA S-series', 'VEMS V3', 'MegaSquirt MS2 / MS3', 'rusEFI / Speeduino', 'Other'];
+    const req = this.state.req || {}, n = ecuList.filter(e => req[e]).length;
+    v.ecus = ecuList.map(e => ({ label: e === 'Other' && ja ? 'その他' : e, bg: req[e] ? '#e8e6e1' : 'transparent', fg: req[e] ? '#111' : '#cfd2d4', bd: req[e] ? '#e8e6e1' : '#2f3336', tap: () => this.setState(s => ({ sent: false, req: Object.assign({}, s.req, { [e]: !(s.req || {})[e] }) })) }));
+    v.reqLabel = this.state.sent ? (ja ? '✓ リクエストを受け付けました' : '✓ Request noted, thank you') : n ? (ja ? n + '件のECUをリクエスト' : 'Request support for ' + n + ' ECU' + (n > 1 ? 's' : '')) : (ja ? 'ECUを選んでください' : 'Pick at least one ECU');
+    v.reqBg = this.state.sent ? 'oklch(0.78 0.14 150)' : n ? '#e8e6e1' : '#2a2d30'; v.reqFg = n || this.state.sent ? '#111' : '#6f7377';
+    v.sendReq = () => { if (n) this.setState({ sent: true }); };
+    return v;
+  }
+}
+</script>
+</body>
+</html>

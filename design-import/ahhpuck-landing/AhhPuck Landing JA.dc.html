@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#0d0e0f;color:#e8e6e1;font-family:'IBM Plex Sans','IBM Plex Sans JP',sans-serif;-webkit-font-smoothing:antialiased}a{color:#e8e6e1;text-decoration:underline;text-underline-offset:3px}a:hover{color:#fff}:lang(ja) body{line-break:strict}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column">
+
+<nav style="position:sticky;top:0;z-index:10;background:rgba(13,14,15,.86);backdrop-filter:blur(12px);border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:20px">
+    <a href="#top" style="text-decoration:none;display:flex;align-items:baseline;gap:10px;flex:none"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:26px;font-weight:700;letter-spacing:.01em">AhhPuck</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">by Wheel Have</span></a>
+    <div style="display:flex;gap:20px;font-size:14px;margin-left:auto;flex:1 1 0;min-width:0;justify-content:flex-end;overflow-x:auto;white-space:nowrap;scrollbar-width:none">
+      <a href="#roadmap" style="text-decoration:none;color:#cfd2d4">ロードマップ</a><a href="#loop" style="text-decoration:none;color:#cfd2d4">しくみ</a><a href="#community" style="text-decoration:none;color:#cfd2d4">コミュニティ</a>
+      
+      <a href="#safety" style="text-decoration:none;color:#cfd2d4">安全</a>
+      <a href="#status" style="text-decoration:none;color:#cfd2d4">進捗</a>
+      <a href="#faq" style="text-decoration:none;color:#cfd2d4">よくある質問</a>
+    </div>
+    <div style="display:flex;gap:4px;padding:3px;border:1px solid #2f3336;border-radius:8px;flex:none">
+      <a href="{{ enHref }}" style="padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;background:{{ enBg }};color:{{ enFg }}">EN</a>
+      <a href="{{ jaHref }}" style="padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;background:{{ jaBg }};color:{{ jaFg }}">日本語</a>
+    </div>
+    <a href="#help" style="padding:10px 16px;border-radius:10px;background:#e8e6e1;color:#111;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;flex:none">参加する</a>
+  </div>
+</nav>
+
+<header id="top" style="max-width:1200px;margin:0 auto;padding:72px 24px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:48px;align-items:center;width:100%;box-sizing:border-box">
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">オープンなコミュニティプロジェクト · まずはFREEDOM FC-03から</span>
+    <h1 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(56px,8vw,104px);font-weight:700;line-height:.9;letter-spacing:-.01em;text-wrap:balance">サポート終了は、時代遅れじゃない。</h1>
+    <p style="margin:0;max-width:540px;font-size:18px;line-height:1.55;color:#a9adb1;text-wrap:pretty">ソフトウェアの更新が止まったせいで、まだ使える単体ECUが眠っています。AhhPuckは、最新のロギングと安全で段階的なチューニングでそれらを蘇らせるコミュニティプロジェクトです。まずはFreedom FC-03から始め、同じプロセスをサポートの終わった同様のECUすべてに広げていきます。</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a href="https://github.com/jlilburne86/ahhpuck" style="flex:1 1 150px;text-decoration:none;padding:14px 16px;border-radius:12px;border:1px solid #23262a;background:#151719;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">01</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:22px;font-weight:700;line-height:1;color:#e8e6e1">ビルドを開く</span><span style="font-size:12px;line-height:1.4;color:#a9adb1">コード・テスト・根拠をGitHubで公開</span></a><a href="#community" style="flex:1 1 150px;text-decoration:none;padding:14px 16px;border-radius:12px;border:1px solid #23262a;background:#151719;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">02</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:22px;font-weight:700;line-height:1;color:#e8e6e1">みんなで解く</span><span style="font-size:12px;line-height:1.4;color:#a9adb1">解析し、検証し、実車でテスト</span></a><a href="#roadmap" style="flex:1 1 150px;text-decoration:none;padding:14px 16px;border-radius:12px;border:1px solid #23262a;background:#151719;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;color:#8b8f93">03</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:22px;font-weight:700;line-height:1;color:#e8e6e1">サポートを取り戻す</span><span style="font-size:12px;line-height:1.4;color:#a9adb1">まずはFreedom、そして同様のECUへ</span></a></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="#community" style="padding:14px 20px;border-radius:12px;background:#e8e6e1;color:#111;font-weight:600;text-decoration:none">コミュニティに参加</a><a href="https://github.com/jlilburne86/ahhpuck" style="padding:14px 20px;border-radius:12px;border:1px solid #2f3336;color:#e8e6e1;font-weight:600;text-decoration:none;display:flex;gap:8px;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">GITHUB</span>ビルドを開く →</a>
+      
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px">
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;display:flex;gap:6px;align-items:center"><span style="width:7px;height:7px;border-radius:4px;background:oklch(0.78 0.14 150)"></span>読み取り専用</span>
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;color:#cfd2d4">ECU書き込みロック</span>
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;color:#cfd2d4">安全ポリシー 0.2</span>
+      <span style="padding:5px 9px;border:1px solid #2f3336;border-radius:6px;color:#cfd2d4">47件のテストに合格</span>
+    </div>
+  </div>
+  <div style="position:relative;display:flex;justify-content:center;min-height:620px">
+    <sc-if value="{{ twoPhones }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;right:max(0px,calc(50% - 290px));top:60px;width:260px;border-radius:32px;overflow:hidden;opacity:.55;transform:rotate(4deg)"><img src="landing/s22-review.png" alt="AhhPuck Review screen: the safety gate's decision" style="display:block;width:100%"></div>
+    </sc-if>
+    <div style="position:relative;width:300px;border-radius:37px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6);margin-right:{{ heroShift }}"><img src="landing/s06-live.png" alt="AhhPuckのライブ画面" style="display:block;width:100%"></div>
+  </div>
+</header>
+
+<section style="border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+    <div style="padding:28px 24px 28px 0;display:flex;flex-direction:column;gap:6px;border-right:1px solid #1d2023"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">低コスト</span><span style="font-size:15px;line-height:1.5;color:#a9adb1">新品のECU、ハーネス、ライセンスの代わりに、中古ECUとシリアルケーブルだけ。</span></div>
+    <div style="padding:28px 24px;display:flex;flex-direction:column;gap:6px;border-right:1px solid #1d2023"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">より良いロギング</span><span style="font-size:15px;line-height:1.5;color:#a9adb1">当時のソフトにはなかった、高いサンプリングレート、スマホのセンサー、ハッシュ、書き出し。</span></div>
+    <div style="padding:28px 0 28px 24px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">より安全なチューニング</span><span style="font-size:15px;line-height:1.5;color:#a9adb1">小さく、元に戻せる一歩ずつ。改善は再現して初めてカウントされます。</span></div>
+  </div>
+</section>
+
+
+<section id="roadmap" style="max-width:1200px;margin:0 auto;padding:96px 24px 24px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:820px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">ロードマップ</span><h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">まずはFreedom。そして、同じように見放されたすべてのECUへ。</h2><p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">FC-03が実証の場です。実車でループが機能したら、同じ共通コアを、価値ではなくソフトウェアを失った他の優れたECU向けのアダプターにしていきます。</p></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px">
+    <div style="padding:22px;border-radius:16px;border:1px solid #e8e6e1;background:#e8e6e1;color:#111;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#4a4f54">01 · 現在</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:oklch(0.80 0.15 75);color:#111;white-space:nowrap">! 進行中</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">Freedom FC-03</span><span style="font-size:14px;line-height:1.5;color:#33373b">4A-GE 20Vでの読み取り専用キャプチャ。検証済みのデコード、実際のログ、1台の車でループ全体を実証。</span></div>
+    <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#151719;color:#e8e6e1;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">02 · 次</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:#8b8f93;color:#111;white-space:nowrap">– 予定</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">共通コア</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">通信、デコーダー、安全モニター、レコーダー、ゲート、台帳を、Freedom固有の部分から切り離します。</span></div>
+    <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#151719;color:#e8e6e1;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">03 · その後</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:#8b8f93;color:#111;white-space:nowrap">– 予定</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">コミュニティアダプター</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">オーナーと開発者が、ECUファミリーをひとつずつ追加します。どのアダプターも読み取り専用から始め、実証を重ねて前に進みます。</span></div>
+    <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#151719;color:#e8e6e1;display:flex;flex-direction:column;gap:10px;position:relative"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">04 · 目標</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;background:oklch(0.80 0.10 210);color:#111;white-space:nowrap">◎ 目標</span></div><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:30px;font-weight:700;line-height:1">サポート終了のすべてのECUへ</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">古いことは、壊れていることではありません。動くECUには、交換される前にサポートへ戻る道を。</span></div>
+  </div>
+  <div style="padding:24px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700">次はどのECU？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">使っている・使いたいものをすべてタップ</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ ecus }}" as="e" hint-placeholder-count="10"><div style="padding:8px 12px;border-radius:8px;border:1px solid {{ e.bd }};background:{{ e.bg }};color:{{ e.fg }};font-size:14px;cursor:pointer;white-space:nowrap" onClick="{{ e.tap }}">{{ e.label }}</div></sc-for></div>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div style="padding:12px 18px;border-radius:10px;background:{{ reqBg }};color:{{ reqFg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ sendReq }}">{{ reqLabel }}</div><span style="font-size:13px;color:#8b8f93">FC-03の試験が完了するまで、2台目のECUには着手しません。リクエストは優先順位の参考にします。</span></div>
+  </div>
+</section>
+<section id="freedom" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+<div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:22px">
+<span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">すべてのFREEDOMユニットへ</span>
+<h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">制限を決めるのはアプリではなく、あなたのECU。</h2>
+<p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">Freedomはカプラー、負荷方式、ファームウェア、入力によって異なります。AhhPuckはラベルを読んでプロファイルを作り、そのユニットが出せるものを正確に示します。検証済みのもの、このECUにないもの、コミュニティがまだ解析すべきもの。</p>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid oklch(0.78 0.14 150);background:oklch(0.78 0.14 150);color:#111;white-space:nowrap">✓ 読取 · 検証済</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">実データで解析・確認済み。</span></div>
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid oklch(0.80 0.15 75);background:transparent;color:oklch(0.80 0.15 75);white-space:nowrap">◐ 読取 · 未検証</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">データに見えるが、スケーリングは未証明。</span></div>
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid #2f3336;background:repeating-linear-gradient(135deg,#3a3e42 0 4px,#24272a 4px 8px);color:#e8e6e1;white-space:nowrap">⌀ このECUにはない</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">このユニットにはありません。アプリがあるふりをすることはありません。</span></div>
+<div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:8px"><span style="align-self:flex-start;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600;padding:3px 7px;border-radius:4px;border:1px solid #3a3e42;background:transparent;color:#cfd2d4;white-space:nowrap">… 未解析</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">ECUは送っているが、コミュニティでの解析が必要。</span></div>
+</div>
+<span style="font-size:13px;color:#8b8f93">例: 点火スケーリングが未検証でノック信号が確認できないユニットでは点火提案はオフのまま。テスト中はECUの自己学習もオフにする必要があります。</span>
+</div>
+<div style="display:flex;justify-content:center"><div style="width:300px;border-radius:37px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6)"><img src="landing/s43-capabilities.png" alt="ECUの機能画面" style="display:block;width:100%"></div></div>
+</div></section>
+<section id="loop" style="max-width:1200px;margin:0 auto;padding:96px 24px 40px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:760px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">しくみ</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">接続から、実証された改善まで。ひとつのループで。</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1">アプリもワークベンチもコマンドラインツールも、同じループに従います。各ステップはファイルとして残り、何も失われません。</p>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <div style="padding:10px 16px;border-radius:10px;border:1px solid {{ m0bd }};background:{{ m0bg }};color:{{ m0fg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ setM0 }}">モニターモード · 1–4</div>
+    <div style="padding:10px 16px;border-radius:10px;border:1px solid {{ m1bd }};background:{{ m1bg }};color:{{ m1fg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ setM1 }}">エンジニアモード · + 5, 8</div>
+    <div style="padding:10px 16px;border-radius:10px;border:1px solid {{ m2bd }};background:{{ m2bg }};color:{{ m2fg }};font-weight:600;font-size:14px;cursor:pointer" onClick="{{ setM2 }}">最適化モード · 1–9</div>
+  </div>
+  <div style="font-size:15px;line-height:1.5;color:#cfd2d4;min-height:24px">
+    <sc-if value="{{ isM0 }}" hint-placeholder-val="{{ true }}"><span>車に載せられる最初のリリース。接続し、識別し、限界を設定し、信頼できるベースラインを記録します。</span></sc-if>
+    <sc-if value="{{ isM1 }}" hint-placeholder-val="{{ false }}"><span>提案と評価をレポートとして追加。ECUには何も送りません。</span></sc-if>
+    <sc-if value="{{ isM2 }}" hint-placeholder-val="{{ false }}"><span>燃料のみ、すべての安全ゲートと人の承認のもとでループを完結させます。</span></sc-if>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:8px">
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o1 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">01</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">接続</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">USBシリアル、ブリッジ、またはリプレイ</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o2 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">02</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">識別</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">ECU、ファームウェア、チャンネルを特定</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o3 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">03</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">プロファイルと限界</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">エンジン、センサー、目標、絶対限界</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o4 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">04</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">ベースライン</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">保存、ハッシュ化、再現</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o5 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">05</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">提案</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">小さく上限付きの燃料変更をひとつ</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o6 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">06</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">承認</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">人が確認して承認</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o7 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">07</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">テスト</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">停止ルール付きの管理された走行</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #23262a;background:#151719;opacity:{{ o8 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">08</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">評価</span><span style="font-size:13px;line-height:1.45;color:#a9adb1">効果はあったか、再現したか</span></div>
+    <div style="padding:16px;border-radius:14px;border:1px solid #e8e6e1;background:#e8e6e1;color:#111;opacity:{{ o9 }};display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px">09</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">学習</span><span style="font-size:13px;line-height:1.45">台帳に記録。次の一歩はより小さく、さもなくばループは止まります。</span></div>
+  </div>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:56px 24px;width:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+  <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+    <div style="width:250px;border-radius:31px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)"><img src="landing/s23-expected.png" alt="Expected vs actual: predicted ranges with the actual result for each metric" style="display:block;width:100%"></div>
+    <div style="width:250px;border-radius:31px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5);margin-top:48px"><img src="landing/s21-map.png" alt="Map before and after: drag to compare lambda error per cell" style="display:block;width:100%"></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">根拠から学ぶ</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">改善は、再現して初めて認められる。</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">各ラウンドでベースライン、候補、候補のリピートを比較します。予測はすべて走行ごとのばらつきに対する範囲として表示され、改善が本物かどうかがわかります。</p>
+    <div style="padding:20px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">走行別ラムダ誤差</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#6f7377">telemetry_stats.py</span></div>
+      <div style="display:grid;grid-template-columns:90px 1fr 56px;gap:10px;align-items:center;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px">
+        <span style="color:#a9adb1">ベースライン</span><div style="height:16px;border-radius:4px;background:#1c1f22"><div style="height:16px;width:100%;border-radius:4px;background:#7d8287"></div></div><span style="text-align:right">0.052</span>
+        <span style="color:#a9adb1">候補</span><div style="height:16px;border-radius:4px;background:#1c1f22"><div style="height:16px;width:50%;border-radius:4px;background:oklch(0.72 0.17 305)"></div></div><span style="text-align:right">0.026</span>
+        <span style="color:#a9adb1">リピート</span><div style="height:16px;border-radius:4px;background:#1c1f22"><div style="height:16px;width:46%;border-radius:4px;background:oklch(0.82 0.08 285)"></div></div><span style="text-align:right">0.024</span>
+      </div>
+      <span style="font-size:12px;color:#8b8f93">サンプルデータからの例です。再現性は別途チェックします。</span>
+    </div>
+    <div style="display:flex;flex-direction:column;border:1px solid #23262a;border-radius:14px;overflow:hidden;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px">
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#01</span><span style="flex:1">ベースライン取得</span><span style="color:#8b8f93">正常</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#02</span><span style="flex:1">fuel 11×7 −1.5 %</span><span style="color:oklch(0.78 0.14 150)">✓ 改善 · 再現</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#03</span><span style="flex:1">fuel 11×8 −1.5 %</span><span style="color:oklch(0.80 0.15 75)">! 再現せず</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid #1d2023"><span style="color:#6f7377">#04</span><span style="flex:1">fuel 11×8 −0.8 %</span><span style="color:oklch(0.78 0.14 150)">✓ 改善 · 再現</span></div>
+      <div style="display:flex;gap:12px;padding:10px 14px"><span style="color:#6f7377">#05</span><span style="flex:1">走行中にノック</span><span style="color:oklch(0.68 0.19 25)">✕ 中止 · 再利用しない</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="data" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">ECUが基本</span>
+      <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">エンジンデータはECUから。残りはスマホが補う。</h2>
+      <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">すべての値に出どころと確かさが表示されます。安全ゲートが使うのはECUと追加センサーだけで、スマホのデータは使いません。</p>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#23262a;border:1px solid #23262a;border-radius:14px;overflow:hidden">
+        <div style="display:flex;gap:14px;padding:16px;background:#0d0e0f;align-items:flex-start"><span style="flex:none;width:56px;text-align:center;padding:4px 0;border-radius:5px;background:#e8e6e1;color:#111;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600">ECU</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:600">エンジンデータ</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">回転数、負荷、ラムダ、温度、バッテリー、ノック、速度。判断に使う唯一のデータです。</span></div></div>
+        <div style="display:flex;gap:14px;padding:16px;background:#0d0e0f;align-items:flex-start"><span style="flex:none;width:56px;text-align:center;padding:4px 0;border-radius:5px;background:#2a2d30;color:#cfd2d4;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600">スマホ</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:600">速度とG値</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">GPSとモーションセンサーでECUの速度を照合し、同じように走ったかを確認します。判断には使いません。</span></div></div>
+        <div style="display:flex;gap:14px;padding:16px;background:#0d0e0f;align-items:flex-start"><span style="flex:none;width:56px;text-align:center;padding:4px 0;border-radius:5px;border:1px solid #3a3e42;color:#cfd2d4;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:10px;font-weight:600">追加</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:600">ECUにないセンサー</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">ワイドバンドラムダ、燃圧、油圧。装着時は安全ゲートで使用します。</span></div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px"><span style="color:#e8e6e1">文書確認済</span><span style="color:#cfd2d4">観測</span><span style="color:#a9adb1">推定</span><span style="color:#8b8f93">未検証</span></div>
+    </div>
+    <div style="display:flex;justify-content:center"><div style="width:300px;border-radius:37px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6)"><img src="landing/s38-sources.png" alt="Data sources screen: ECU, phone GPS and motion, and add-on sensors with cross-checks" style="display:block;width:100%"></div></div>
+  </div>
+</section>
+
+<section id="safety" style="max-width:1200px;margin:0 auto;padding:96px 24px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:760px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">安全限界</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">限界は、エンジンをかける前に決める。</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1">これらの値は、ツールが適用する安全ポリシーファイルからのものです。暫定値のためエンジンごとに確認が必要ですが、その場で作られることはありません。</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+    <div style="padding:22px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">必ず · 絶対にしない</span>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.45">
+        <span>✕ 保護異常のあった走行からは学習しない</span>
+        <span>✕ 同じ実験で燃料と点火時期を同時に変えない</span>
+        <span>✕ AIにECU書き込みを許可させない</span>
+        <span>✕ ノック検知が検証されるまで点火時期を変えない</span>
+        <span>✕ 安全チャンネルの欠落は合格ではなく不合格として扱う</span>
+        <span>✓ 元のマップ、差分、ロールバック用コピーを必ず保持</span>
+      </div>
+    </div>
+    <div style="padding:22px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">絶対限界</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#6f7377">ポリシー 0.2 暫定</span></div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:14px">
+        <span style="color:#a9adb1">セルごとの最大燃料変更</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">2.0 %</span>
+        <span style="color:#a9adb1">セルごとの最大点火変更</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">1.0 °</span>
+        <span style="color:#a9adb1">最大回転数</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">7 800</span>
+        <span style="color:#a9adb1">最高水温</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">105 °C</span>
+        <span style="color:#a9adb1">最高吸気温</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">65 °C</span>
+        <span style="color:#a9adb1">最低バッテリー電圧</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">12.0 V</span>
+        <span style="color:#a9adb1">最大ノックレベル</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">0.15</span>
+        <span style="color:#a9adb1">負荷時の最低油圧</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">180 kPa</span>
+        <span style="color:#a9adb1">負荷時の最大ラムダ</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace">1.05 λ</span>
+      </div>
+    </div>
+    <div style="padding:22px;border-radius:16px;background:#151719;border:1px solid #23262a;display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">テストの場所</span>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">ダイナモ</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">負荷を管理できる。マップ作業に最適。</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:24px;font-weight:700">クローズドコース</span><span style="font-size:14px;line-height:1.45;color:#a9adb1">実際の走行。スマホに触れずに記録し、後で確認。</span></div>
+      <div style="margin-top:auto;padding:12px 14px;border-radius:12px;background:oklch(0.80 0.15 75);color:#111;font-size:14px;font-weight:600;line-height:1.4">! 公道はチューニングの場ではありません。AhhPuckは後で確認するためにデータを記録するだけで、走行中の車をチューニングすることはありません。</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center">
+    <div style="display:flex;justify-content:center"><div style="width:250px;border-radius:31px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)"><img src="landing/s11-rec.png" alt="Recording screen: large RPM, lambda error, coverage and a big stop button" style="display:block;width:100%"></div></div>
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:520px">
+      <span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:36px;font-weight:700;line-height:1">触れずに、一目で。</span>
+      <span style="font-size:16px;line-height:1.55;color:#a9adb1">記録中の画面には3つの数字と大きな停止ボタンだけ。アラートは音と振動で知らせ、固定ルールで動作し、オフラインでも有効です。重大アラートは状態が続く限り閉じられません。</span>
+    </div>
+  </div>
+</section>
+
+<section id="status" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:760px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">正直な進捗</span>
+      <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95">まずは読み取り専用。書き込みは試験の対象外。</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;font-weight:600;color:oklch(0.78 0.14 150)">✓ 完成</span><span style="font-size:14px;line-height:1.6;color:#cfd2d4">Freedomマップパーサー · テレメトリー統計 · 反復評価 · フェイルクローズの安全ゲート · ローカル学習台帳 · iOS/Macコア · チューニング知識ベース（22ソース、7ルールカード）</span></div>
+      <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;font-weight:600;color:oklch(0.80 0.15 75)">! 進行中</span><span style="font-size:14px;line-height:1.6;color:#cfd2d4">検証済みFreedomエクスポートアダプター · 初のライブ読み取り（?DATポーリング、55バイト応答） · 実データコーパス · ベンチ復旧テスト · 試験用FC-03をベンチで検証中</span></div>
+      <div style="padding:22px;border-radius:16px;border:1px solid #23262a;background:#0d0e0f;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;font-weight:600;color:#8b8f93">– 未着手</span><span style="font-size:14px;line-height:1.6;color:#cfd2d4">ECUへの書き込み · 点火時期の提案 · 2台目のECU（FC-03の試験で実績が出てから）</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:1px;background:#23262a;border:1px solid #23262a;border-radius:16px;overflow:hidden">
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">30</span><span style="font-size:13px;color:#a9adb1">Pythonテスト合格</span></div>
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">17</span><span style="font-size:13px;color:#a9adb1">Swiftテスト合格</span></div>
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">7</span><span style="font-size:13px;color:#a9adb1">出典付きルールカード</span></div>
+      <div style="padding:20px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:48px;font-weight:700;line-height:1">0</span><span style="font-size:13px;color:#a9adb1">許可されたECU書き込み</span></div>
+    </div>
+        </div>
+  </div>
+</section>
+
+
+<section id="community" style="background:#121315;border-top:1px solid #1d2023;border-bottom:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:820px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">オープンなコミュニティ開発</span><h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95;text-wrap:balance">今もこれらのECUを使う人たちの手で。</h2><p style="margin:0;font-size:17px;line-height:1.55;color:#a9adb1;text-wrap:pretty">AhhPuckはチューナーの代わりになることも、古いECUを新品に見せかけることも目指していません。まだ動くハードウェアに、役立つサポートを取り戻すための共同の道です。</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px">
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">01</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">オーナー</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">ベースのセッティング、ログ、車両プロファイルを共有。</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ ベースラインを記録 · セッションデータを送る</span></div>
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">02</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">チューナー</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">提案のレビュー、ルールカードの作成、エンジンごとの限界の確認。</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ 実験をレビュー · ルールカードを追加</span></div>
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">03</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">開発者</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">デコーダーとアダプターを開発。すべてテスト済み、まずは読み取り専用で。</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ アダプターを作る · テストを実行</span></div>
+      <div style="padding:22px;border-radius:16px;background:#0d0e0f;border:1px solid #23262a;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#8b8f93">04</span><span style="font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:28px;font-weight:700;line-height:1">知識の継承者</span><span style="font-size:14px;line-height:1.5;color:#cfd2d4">マニュアル、回路図、古いソフトやケーブルを、失われる前に。</span><span style="margin-top:auto;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:11px;color:#a9adb1;line-height:1.5">→ 資料を共有 · ハッシュ化して出典を記録</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px">
+      <span style="padding:8px 12px;border-radius:8px;border:1px solid #2f3336">オーナーのデータ</span><span style="color:#6f7377">+</span><span style="padding:8px 12px;border-radius:8px;border:1px solid #2f3336">チューナーの経験</span><span style="color:#6f7377">+</span><span style="padding:8px 12px;border-radius:8px;border:1px solid #2f3336">開発者のツール</span><span style="color:#6f7377">→</span><span style="padding:8px 12px;border-radius:8px;background:#e8e6e1;color:#111;font-weight:600">共有の根拠コア</span><span style="color:#6f7377">→</span><span style="padding:8px 12px;border-radius:8px;border:1px solid oklch(0.80 0.10 210);color:oklch(0.80 0.10 210)">続いていくサポート</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;padding-top:24px;border-top:1px solid #23262a">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-weight:600;font-size:16px">オープンが基本</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">プロセスと根拠は、使う人が理解できるものであるべきです。</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-weight:600;font-size:16px">古い ≠ 壊れている</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">動くECUには、交換される前にサポートへ戻る道があるべきです。</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-weight:600;font-size:16px">自信より実証</span><span style="font-size:14px;line-height:1.5;color:#a9adb1">データが再現したときだけ、結果は共有記録に入ります。</span></div>
+    </div>
+  </div>
+</section>
+<section id="faq" style="max-width:860px;margin:0 auto;padding:96px 24px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#8b8f93">よくある質問</span>
+    <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:.95">オーナーがまず聞く質問。</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #23262a">
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f0t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">AhhPuckはECUに書き込みますか？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f0c }}</span></div><sc-if value="{{ f0 }}" hint-placeholder-val="{{ true }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">いいえ。これまでのビルドはすべて読み取り専用で、ECUへの書き込みはコードでロックされています。書き込みには、プロトコル、スケーリング、チェックサム、復旧のベンチでの実証と、人の承認が別途必要です。</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f1t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">どのECUに対応していますか？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f1c }}</span></div><sc-if value="{{ f1 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">まずは4A-GE 20VのFreedom FC-03です。他のECUは候補リストにあり、FC-03の試験が完了するまで着手しません。</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f2t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">車をつなぐには何が必要ですか？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f2c }}</span></div><sc-if value="{{ f2 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">FCSSシリアルケーブルとUSB-シリアルアダプターです。Freedomは9600 bps、7E1で通信します。ライブ読み取りが完成するまでは、記録データを使ってオフラインで動作します。</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f3t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">中古のFreedomは自分の車に付きますか？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f3c }}</span></div><sc-if value="{{ f3 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">あなたの車のECUカプラー用に作られたものだけです。Freedomは車種ごとのカプラーオンで、銀色のラベルのコードでわかります。私たちの試験機はAE111カプラーのFC-03なので、AE111のエンジンハーネスが必要です。</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f4t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">公道でチューニングできますか？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f4c }}</span></div><sc-if value="{{ f4 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">いいえ。公道はチューニングの場ではありません。変更はダイナモかクローズドコースで、上限付きの一歩ずつテストします。</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f5t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">AIがセッティングを決めるのですか？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f5c }}</span></div><sc-if value="{{ f5 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">いいえ。計測データと文書化されたルールから、テスト可能な最小の選択肢を提案するだけです。安全ゲートが確認し、テストするかどうかは人が決めます。</p></sc-if></div>
+    <div style="border-bottom:1px solid #23262a;cursor:pointer" onClick="{{ f6t }}"><div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0"><span style="font-size:18px;font-weight:600">アプリは日本語に対応していますか？</span><span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:18px;color:#8b8f93">{{ f6c }}</span></div><sc-if value="{{ f6 }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#a9adb1">はい。アプリは英語と日本語に対応し、チューニング用語も統一しています。</p></sc-if></div>
+  </div>
+</section>
+
+<section id="help" style="padding:0 24px 96px">
+  <div style="max-width:1152px;margin:0 auto;padding:56px;border-radius:24px;background:#e8e6e1;color:#111;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:32px;align-items:end;box-sizing:border-box">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans JP',monospace;font-size:12px;letter-spacing:.1em;color:#4a4f54">コミュニティに協力する</span>
+      <h2 style="margin:0;font-family:'Barlow Condensed','IBM Plex Sans JP',sans-serif;font-size:clamp(40px,5vw,60px);font-weight:700;line-height:.95;text-wrap:balance">ベースのセッティングやFreedom ECUの知識はありますか？</h2>
+      <p style="margin:0;font-size:16px;line-height:1.55;color:#33373b">読み取り専用ビルドのテスト、ベースのセッティングやログの共有、Freedom ECUについての知識の提供にご協力ください。あらゆる情報が、まだ動くハードウェアにサポートを取り戻す力になります。</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="mailto:contact@wheelhave.com?subject=AhhPuck" style="padding:16px 20px;border-radius:12px;background:#111;color:#fff;font-weight:600;text-decoration:none;display:flex;justify-content:space-between">AhhPuckチームにメール<span>→</span></a>
+      <a href="https://wheelhave.com/messages" style="padding:16px 20px;border-radius:12px;border:1px solid #111;color:#111;font-weight:600;text-decoration:none;display:flex;justify-content:space-between">Wheel Haveでメッセージ<span>→</span></a>
+      <a href="https://github.com/jlilburne86/ahhpuck" style="padding:16px 20px;border-radius:12px;border:1px solid #111;color:#111;font-weight:600;text-decoration:none;display:flex;justify-content:space-between">リポジトリを見る<span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid #1d2023">
+  <div style="max-width:1200px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#8b8f93">
+    <span>AhhPuck by Wheel Have · 読み取り専用 · ECU書き込みロック</span>
+    <div style="display:flex;gap:16px"><a href="https://wheelhave.com/privacy" style="color:#8b8f93">プライバシー</a><a href="https://wheelhave.com/terms" style="color:#8b8f93">利用規約</a><a href="https://www.instagram.com/wheelhave" style="color:#8b8f93">Instagram</a></div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;hero&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Two phones&quot;,&quot;Single phone&quot;],&quot;default&quot;:&quot;Two phones&quot;,&quot;tsType&quot;:&quot;'Two phones'|'Single phone'&quot;}}">
+class Component extends DCLogic {
+  LANG = 'JA';
+  state = { mode: 2, faq: 0, req: {}, sent: false };
+  componentDidMount() { document.documentElement.lang = this.LANG === 'JA' ? 'ja' : 'en'; }
+  renderVals() {
+    const { mode, faq } = this.state, ja = this.LANG === 'JA';
+    const v = {
+      enHref: 'AhhPuck Landing.dc.html', jaHref: 'AhhPuck Landing JA.dc.html',
+      enBg: ja ? 'transparent' : '#e8e6e1', enFg: ja ? '#a9adb1' : '#111', jaBg: ja ? '#e8e6e1' : 'transparent', jaFg: ja ? '#111' : '#a9adb1',
+      twoPhones: (this.props.hero ?? 'Two phones') === 'Two phones',
+      isM0: mode === 0, isM1: mode === 1, isM2: mode === 2
+    };
+    v.heroShift = v.twoPhones ? '120px' : '0px';
+    [0, 1, 2].forEach(i => { const on = mode === i; v['m' + i + 'bg'] = on ? '#e8e6e1' : 'transparent'; v['m' + i + 'fg'] = on ? '#111' : '#cfd2d4'; v['m' + i + 'bd'] = on ? '#e8e6e1' : '#2f3336'; v['setM' + i] = () => this.setState({ mode: i }); });
+    const active = [[1, 2, 3, 4], [1, 2, 3, 4, 5, 8], [1, 2, 3, 4, 5, 6, 7, 8, 9]][mode];
+    for (let i = 1; i <= 9; i++) v['o' + i] = active.includes(i) ? 1 : 0.28;
+    for (let i = 0; i < 7; i++) { v['f' + i] = faq === i; v['f' + i + 'c'] = faq === i ? '−' : '+'; v['f' + i + 't'] = () => this.setState({ faq: faq === i ? -1 : i }); }
+        const ecuList = ['MoTeC M4 / M48 / M800', 'Autronic SM2 / SM4', 'Emerald K3 / K6', 'Haltech Platinum', 'AEM Infinity / Series 2', 'Link G1 – G4+', 'DTA S-series', 'VEMS V3', 'MegaSquirt MS2 / MS3', 'rusEFI / Speeduino', 'Other'];
+    const req = this.state.req || {}, n = ecuList.filter(e => req[e]).length;
+    v.ecus = ecuList.map(e => ({ label: e === 'Other' && ja ? 'その他' : e, bg: req[e] ? '#e8e6e1' : 'transparent', fg: req[e] ? '#111' : '#cfd2d4', bd: req[e] ? '#e8e6e1' : '#2f3336', tap: () => this.setState(s => ({ sent: false, req: Object.assign({}, s.req, { [e]: !(s.req || {})[e] }) })) }));
+    v.reqLabel = this.state.sent ? (ja ? '✓ リクエストを受け付けました' : '✓ Request noted, thank you') : n ? (ja ? n + '件のECUをリクエスト' : 'Request support for ' + n + ' ECU' + (n > 1 ? 's' : '')) : (ja ? 'ECUを選んでください' : 'Pick at least one ECU');
+    v.reqBg = this.state.sent ? 'oklch(0.78 0.14 150)' : n ? '#e8e6e1' : '#2a2d30'; v.reqFg = n || this.state.sent ? '#111' : '#6f7377';
+    v.sendReq = () => { if (n) this.setState({ sent: true }); };
+    return v;
+  }
+}
+</script>
+</body>
+</html>
