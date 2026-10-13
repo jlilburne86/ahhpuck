@@ -70,6 +70,8 @@ final class Router {
 
     /// Tapping the active tab pops it to its root.
     func select(_ t: AppTab) {
+        // S03 is optional and its tab bar is the way out of the first-run flow.
+        if onboarding { finishOnboarding(); tab = t; return }
         if t == tab { paths[t] = [] }
         tab = t
     }
