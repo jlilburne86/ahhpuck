@@ -35,9 +35,11 @@ Launch arguments (Scheme → Run → Arguments, or `xcrun simctl launch <device>
 
 ### Things that look odd but are deliberate
 
-- **Bar heights.** The design's CSS is content-box, so its 50 px status bar with 6 px padding renders 56 pt tall, and its 82 px tab bar with 10 px padding renders 92 pt. The app uses the rendered sizes.
+- **Chrome (F02).** iOS draws the status bar and home indicator, as the design shows them; the app reserves the design's 50 pt status band and draws the 83 pt tab bar with the design's icons.
 - **Status glyphs.** The prototype loads Plex from Google Fonts in Latin/Greek/Cyrillic subsets, so ✓ ✕ ⌀ ◐ ◷ ↺ ↗ ₂ ≈ λ are drawn by fallback fonts (Menlo, Courier, Times, Zapf Dingbats). `T(…)` in `Fonts.swift` applies the same faces so the glyphs match.
-- **The system status bar is hidden.** Each screen draws the design's status bar (time and transport), and tapping the transport opens the connection sheet (S04).
+- **Navigation the design doesn't draw.** Where the README's flows need a step the design has no button for, an existing element is tappable instead, so screens still look like the design: S16 headline → S17, the S27 cards → S22 / S23, the S22 decision card → S26, the S23 track record → S24, the S09 readout → S21, S35 "used by S14" → S14, the S32 vehicle row → S02 (its subtitle → S43), the S32 density note in tuner mode → S33, a threshold row → S42. Gated buttons open S41. Tapping a tab during first run finishes onboarding.
+- **One visible addition:** during first run, S04 shows a "Continue" button so the flow can move on to S02.
+- **Timers.** The prototype ages telemetry (S07) and times recording (S11) with its demo tick; the app uses real time for both, so the states actually progress.
 
 ## Checking a screen against the design
 
