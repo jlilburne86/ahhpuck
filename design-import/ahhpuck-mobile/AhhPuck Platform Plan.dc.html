@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0d0e0f;color:#e8e6e1;font-family:'IBM Plex Sans',sans-serif}a{color:oklch(0.80 0.15 75);text-decoration:none}a:hover{color:#fff}ul{margin:0;padding-left:16px}li{margin:2px 0}</style>
+</helmet>
+<div style="max-width:1240px;margin:0 auto;padding:48px 24px 80px;display:flex;flex-direction:column;gap:44px">
+
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;color:#8b8f93">AHHPUCK · PLATFORM UI/UX PLAN · v0.1</div>
+    <h1 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:700;line-height:1">Every page, what it shows, what it gates</h1>
+    <p style="margin:0;max-width:760px;font-size:16px;line-height:1.55;color:#a9adb1;text-wrap:pretty">20 pages in six stages, from owner setup to tuner-grade evidence. Every page answers one of the four product questions: what happened, can we trust the data, why did it happen, what's the safest next step.</p>
+  </header>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Navigation model</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b8f93">TAB BAR — 5 ROOTS</span>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center;font-size:12px">
+          <span style="padding:8px 0;border-radius:8px;background:#2a2d30">Live</span><span style="padding:8px 0;border-radius:8px;background:#2a2d30">Map</span><span style="padding:8px 0;border-radius:8px;background:#2a2d30">Runs</span><span style="padding:8px 0;border-radius:8px;background:#2a2d30">Review</span><span style="padding:8px 0;border-radius:8px;background:#2a2d30">Garage</span>
+        </div>
+        <span style="font-size:13px;line-height:1.45;color:#a9adb1">Live and Map need a connection. Runs, Review and Garage work offline on saved sessions.</span>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b8f93">FULL-SCREEN MODALS</span>
+        <span style="font-size:13px;line-height:1.5;color:#cfd2d4">Recording · Critical alert · Approval. These take over the screen: the only exits are finishing the task or a stop control.</span>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b8f93">PERSISTENT CHROME</span>
+        <span style="font-size:13px;line-height:1.5;color:#cfd2d4">Status strip on every page: transport · ECU identity · READ-ONLY lock · active session. Tap it to open Connection.</span>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b8f93">TWO DENSITIES</span>
+        <span style="font-size:13px;line-height:1.5;color:#cfd2d4">Owner mode: plain-language summaries. Tuner mode: raw values, hashes, σ and frame counts. Same pages, a toggle in Garage.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Core loop</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px">
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px">Profile</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px">Connect</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px">Preflight</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px;background:#1f2225">Baseline run</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px">Proposal</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px">Approve</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px;background:#1f2225">Candidate + repeat</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border:1px solid #2f3336;border-radius:8px">Assess</span><span style="color:#6f7377">→</span>
+      <span style="padding:8px 12px;border-radius:8px;background:oklch(0.80 0.15 75);color:#111">Accept · Repeat · Rollback · Abort</span><span style="color:#6f7377">↺</span>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.80 0.15 75)">STAGE 1</span><h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Onboarding</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px">
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">01 · FIRST RUN</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Welcome &amp; safety boundary</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Sets expectations before anything connects: read-only, no writes, a human supervises every test.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>What the app does and refuses to do</li><li>Evidence tags explained (documented / observed / inferred / unverified)</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Acknowledgement is stored with the operator profile.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">02 · GARAGE</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Vehicle profile (engine passport)</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Stepped form: chassis → engine → ECU → fuel → ignition → mods → objective.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>ECU label decode (e.g. Ab-1EU, Z-J01030)</li><li>Load strategy, injection, ignition, VVT, injectors, cams, ITBs</li><li>Progress ring: fields known vs unknown</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Unknown is a real answer, not a blank. A field marked unknown that matters blocks Proposal (11), and the page says why.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">03 · GARAGE</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Phone mount calibration</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Guided: mount the phone, hold still for 5 s, drive straight, brake gently.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Live orientation level and axis mapping</li><li>Calibration quality: high / low / none</li><li>GPS accuracy in metres</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Dynamics data from an uncalibrated mount is tagged low-confidence everywhere it appears.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.80 0.15 75)">STAGE 2</span><h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Connect</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px">
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">04 · STATUS STRIP → SHEET</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Connection &amp; identity</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Shows the connection's state step by step: no cable → port found → bytes arriving → frames valid → ECU identified.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Transport, baud and framing (FCSS 9600 8N1)</li><li>ECU identity: verified / inferred / unknown</li><li>Frames, dropped/stale/out-of-order, last receive</li><li>Raw byte ticker (tuner mode)</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · A write lock that can't be toggled, always visible.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">05 · LIVE → PRE-RUN</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Preflight checklist</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Automatic checks first, then the operator confirms the rest by hand.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Auto: coolant warm, voltage, oil pressure at idle, lambda alive, frame rate</li><li>Manual: fuel, tyres, route clear, observer present</li><li>Each check: pass / fail / not measurable</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · You can't start Record until it passes. "Not measurable" lowers confidence but doesn't block.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.80 0.15 75)">STAGE 3</span><h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Drive &amp; capture</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px">
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">06 · TAB: LIVE</span><a href="AhhPuck Mobile.dc.html#1a" style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border-radius:4px;background:oklch(0.80 0.15 75);color:#111">DESIGNED · 1a</a></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Live dashboard</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Engine first. A big readout for RPM and lambda, small tiles with normal-range markers for everything else.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>RPM, load, lambda vs target, coolant, IAT, oil, fuel, battery, ignition, IDC, VVT, knock</li><li>Secondary swipe: speed, long/lat g, yaw</li><li>Telemetry health strip</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Next</b> · Rearrange tiles in tuner mode. Landscape layout for a dash mount.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">07 · TAB: MAP</span><a href="AhhPuck Mobile.dc.html#1b" style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border-radius:4px;background:oklch(0.80 0.15 75);color:#111">DESIGNED · 1b</a></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Map trace</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">The RPM × load grid, with a cursor on the cell the engine is in now. Switch between lambda error and coverage.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Error / hit-count heatmap, current-cell readout</li><li>Unvisited cells left blank (no claim)</li><li>Axis evidence tag (inferred until protocol is verified)</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Next</b> · Tap a cell to see its sample distribution. Third view: a session-vs-session diff.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">08 · RUNS → NEW</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Run setup</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Defines a test that can be repeated. A candidate pre-fills from its baseline so the conditions match.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Type: baseline / candidate / repeat</li><li>Objective, gear, RPM/load band, route/dyno/track</li><li>Fuel, ambient, notes</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · A repeat locks every condition field and flags any change.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">09 · MODAL</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Recording</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Built for glancing while driving: three numbers, a band-progress bar and a big Stop button.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>RPM, lambda error, elapsed</li><li>Target band coverage filling in</li><li>Frame health dot</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · No navigation and no touch targets under 64 px. Auto-locks the screen against stray taps.</div>
+      </div>
+      <div style="padding:18px;background:#1a1314;border:1px solid oklch(0.45 0.12 25);border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.75 0.15 25)">10 · MODAL · ANY PAGE</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Critical alert</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">A full-screen red takeover with sound and haptics. It runs on the fixed safety rules, never on AI.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Triggers</b><ul><li>Knock, lean under load, overheat, low oil, low voltage</li><li>RPM/trigger anomaly, telemetry loss</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Can't be dismissed while the condition is active. Locks Proposal until an investigation is logged.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.80 0.15 75)">STAGE 4</span><h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Experiment</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px">
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">11 · REVIEW → PROPOSE</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Objective &amp; proposal</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Pick an objective (grip, drift, 0–100, drivability…). The optimiser suggests bounded fuel-cell changes.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Affected cells on the grid with ± values</li><li>Expected effect + increment cap</li><li>Readiness score with its breakdown, labelled as readiness, not "perfection"</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Ignition is never proposed. Cells outside coverage can't be selected.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">12 · PROPOSAL STEP 2</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Concerns &amp; rollback plan</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">What could go wrong, how you'd know, and how to get back.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Concerns ranked by severity</li><li>Stop criteria in plain numbers</li><li>Last accepted state + hash</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · You must open each concern before you can continue.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">13 · MODAL</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Supervised approval</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Six confirmations, each its own toggle. Ends with a press-and-hold to sign.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Confirms</b><ul><li>Vehicle/ECU profile, backup &amp; rollback</li><li>Change + expected effect, warnings</li><li>Supervised conditions, stop criteria</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Creates an experiment record only. The copy says plainly that this doesn't write to the ECU.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.80 0.15 75)">STAGE 5</span><h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Analyse &amp; decide</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px">
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">14 · TAB: RUNS</span><a href="AhhPuck Mobile.dc.html#1c" style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border-radius:4px;background:oklch(0.80 0.15 75);color:#111">DESIGNED · 1c</a></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Run overlay</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Baseline, candidate and repeat traces stacked, with one shared cursor.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Lambda vs target, RPM, ignition, knock</li><li>Cursor readouts per run</li><li>Run hashes</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Next</b> · Choose channels, pinch to zoom time, rotate to landscape for a full-width chart.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">15 · TAB: REVIEW</span><a href="AhhPuck Mobile.dc.html#1d" style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border-radius:4px;background:oklch(0.80 0.15 75);color:#111">DESIGNED · 1d</a></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Assessment</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">The decision comes first, with the evidence checks underneath.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Accept / Repeat / Rollback / Abort</li><li>Error, repeatability, completeness, coverage, knock, plausibility</li><li>Max next increment; ignition locked</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · The safety gate makes the decision. The operator can choose a more cautious one, never a riskier one.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">16 · REVIEW → ASK</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Analyst explanation</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Explains the assessment in plain language. Every sentence links to the check or chart behind it.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Why it passed or failed, likely causes, missing evidence</li><li>Suggested questions ("Why repeat?")</li><li>Source chips for each claim</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Read-only next to the decision. It can't change the decision or raise the increment.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.80 0.15 75)">STAGE 6</span><h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">Records &amp; settings</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px">
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">17 · TAB: RUNS (ROOT)</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Learning ledger</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">A timeline of experiments: each one's decision, its change and its result.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Experiment cards with decision colour</li><li>Accepted-reference lineage</li><li>Filter by objective / decision</li></ul></div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">18 · LEDGER → DETAIL</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Session detail &amp; export</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">The full evidence bundle, ready to share with a tuner.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Files + SHA hashes, preflight, plan, approval, assessment</li><li>Operator notes</li><li>Export .zip via share sheet (no cloud)</li></ul></div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">19 · TAB: GARAGE</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Garage &amp; settings</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">Vehicles, safety thresholds, units and density.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Vehicle list → profile (02)</li><li>Protection thresholds, with where each value came from</li><li>λ/AFR, °C, bar · owner/tuner mode</li></ul></div>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Gate</b> · Making a threshold looser needs a reason, and the change is logged.</div>
+      </div>
+      <div style="padding:18px;background:#151719;border:1px solid #23262a;border-radius:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8b8f93">20 · TUNER MODE</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid #2f3336;border-radius:4px;color:#8b8f93">TO DESIGN</span></div>
+        <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600">Raw frames inspector</h3>
+        <p style="margin:0;font-size:13px;line-height:1.5;color:#a9adb1">For decoding the protocol: hex frames with their decoded fields alongside.</p>
+        <div style="font-size:13px;line-height:1.5;color:#cfd2d4"><b style="font-weight:600">Shows</b><ul><li>Sequence, timestamp, bytes</li><li>Byte → field mapping with evidence tag</li><li>Unknown bytes highlighted</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700">UX rules across every page</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#23262a;border:1px solid #23262a;border-radius:14px;overflow:hidden">
+      <div style="padding:16px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;font-size:14px">Missing = uncertain</b><span style="font-size:13px;line-height:1.45;color:#a9adb1">Empty states show a dot, never a zero or a green tick.</span></div>
+      <div style="padding:16px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;font-size:14px">Evidence tag on every value</b><span style="font-size:13px;line-height:1.45;color:#a9adb1">Documented, observed, inferred or unverified, with one colour per tag everywhere.</span></div>
+      <div style="padding:16px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;font-size:14px">Colour means state, not brand</b><span style="font-size:13px;line-height:1.45;color:#a9adb1">Green = OK, amber = caution, red = stop, always with a glyph and a word. White = selection and progress. Cyan = target, violet = candidate. Evidence tags stay grey.</span></div>
+      <div style="padding:16px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;font-size:14px">The cautious choice is always easy</b><span style="font-size:13px;line-height:1.45;color:#a9adb1">Stop, Repeat and Rollback are one tap. Riskier steps need confirmations.</span></div>
+      <div style="padding:16px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;font-size:14px">Glanceable while driving</b><span style="font-size:13px;line-height:1.45;color:#a9adb1">Pages used in the car: tap targets 64 px or larger, three numbers at most, alerts by sound and haptics.</span></div>
+      <div style="padding:16px;background:#0d0e0f;display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;font-size:14px">Baseline is never edited</b><span style="font-size:13px;line-height:1.45;color:#a9adb1">Hashes are visible on every run reference.</span></div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>
