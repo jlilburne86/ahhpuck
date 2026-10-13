@@ -30,8 +30,7 @@ struct S20View: View {
         let md = ms[app.gMode]
         let GN = 80
         let gx = { (i: Int) in Double(i) / Double(GN - 1) }
-        var allv: [Double] = []
-        for i in 0..<GN { let x = gx(i); allv += [md.b(x) + md.n(x), md.b(x) - md.n(x), md.c(x)] }
+        let allv = (0..<GN).flatMap { i -> [Double] in let x = gx(i); return [md.b(x) + md.n(x), md.b(x) - md.n(x), md.c(x)] }
         let mn = allv.min()!, mx = allv.max()!
         let yG = { (y: Double) in 172 - (y - mn) / (mx - mn == 0 ? 1 : mx - mn) * 164 }
         let pt = { (x: Double, y: Double) in CGPoint(x: Double(cFixed(x * 326, 1))!, y: Double(cFixed(yG(y), 1))!) }

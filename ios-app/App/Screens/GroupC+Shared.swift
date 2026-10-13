@@ -159,11 +159,12 @@ struct CMetricRow: View {
 /// #3b3b3b right of it) and a 15 pt accent thumb whose centre travels 7.5…w−7.5. Step 1.
 struct CRange: View {
     @Binding var value: Double
+    var max: Double = 100
 
     var body: some View {
         GeometryReader { geo in
             let w = geo.size.width
-            let cx = 7.5 + value / 100 * (w - 15)
+            let cx = 7.5 + value / self.max * (w - 15)
             ZStack(alignment: .topLeading) {
                 RoundedRectangle(cornerRadius: 4).fill(Color(hex: 0x3b3b3b))
                     .frame(width: w, height: 8).offset(y: 4)
@@ -176,7 +177,7 @@ struct CRange: View {
             }
             .contentShape(Rectangle())
             .gesture(DragGesture(minimumDistance: 0).onChanged { g in
-                value = (max(0, min(1, (g.location.x - 7.5) / (w - 15))) * 100).rounded()
+                value = (Swift.max(0, Swift.min(1, (g.location.x - 7.5) / (w - 15))) * self.max).rounded()
             })
         }
         .frame(height: 16)
