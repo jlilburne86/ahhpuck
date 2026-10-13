@@ -10,7 +10,7 @@ struct S01View: View {
                           ("INFERRED", "Plausible, not yet confirmed"), ("UNVERIFIED", "Never used for decisions")]
 
     var body: some View {
-        PhoneScreen(tab: nil, status: "", statusStyle: .dim) {
+        PhoneScreen(tab: nil) {
             // padding:24px 24px 0; gap 12
             VStack(alignment: .leading, spacing: 12) {
                 HStack(alignment: .center) {

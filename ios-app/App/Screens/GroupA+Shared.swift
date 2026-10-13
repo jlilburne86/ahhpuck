@@ -206,3 +206,80 @@ struct ABackNext: View {
         .frame(height: 54)
     }
 }
+
+/// The connection state machine labels (`cst` in the prototype).
+enum AConn {
+    static let steps = ["Cable detected", "Port open · 9600 7E1", "Bytes arriving", "Frames valid", "ECU identified"]
+}
+
+/// `glyphOf(c)`: green ✓ / amber ! / red ✕ (white) / anything else – (#cfd2d4).
+enum AGlyph {
+    static func of(_ c: Color) -> (String, Color) {
+        if c == AP.green { return ("✓", AP.ink) }
+        if c == AP.amber { return ("!", AP.ink) }
+        if c == AP.red { return ("✕", .white) }
+        return ("–", AP.text2)
+    }
+}
+
+/// Photo placeholder · h170 (+1 px dashed #3a3e42 border) · r12 · 135° stripes #121315/#151719 10 px · mono 11 centred.
+struct APhotoPlaceholder: View {
+    @Environment(AppModel.self) private var app
+    var text: String
+    var body: some View {
+        T(app.tr(text), .mono, 11).apFont(.mono, 11)
+            .foregroundStyle(AP.label)
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 25)
+            .frame(maxWidth: .infinity)
+            .frame(height: 172)
+            .background(Hatch(a: Color(hex: 0x121315), b: AP.card, stripe: 10).clipShape(RoundedRectangle(cornerRadius: 12)))
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(AP.hatchA, style: ADash.style))
+    }
+}
+
+/// Bordered list container: `border:1px #23262a; r12; overflow:hidden`; rows draw their own bottom divider.
+struct AList<Content: View>: View {
+    var radius: CGFloat = 12
+    var stroke: Color = AP.border
+    @ViewBuilder var content: () -> Content
+    var body: some View {
+        VStack(spacing: 0) { content() }
+            .clipShape(RoundedRectangle(cornerRadius: max(0, radius - 1)))
+            .padding(1)
+            .overlay(RoundedRectangle(cornerRadius: radius).strokeBorder(stroke, lineWidth: 1))
+    }
+}
+
+extension View {
+    /// `border-bottom:1px solid #1d2023` on a list row (content-box: the line adds 1 pt).
+    func aRowDivider(_ c: Color = AP.divider) -> some View {
+        self.padding(.bottom, 1)
+            .overlay(alignment: .bottom) { Rectangle().fill(c).frame(height: 1) }
+    }
+}
+
+/// Check row · `padding:10px 12px; gap:10px` · 20 pt glyph square r5 11/700 · 13/1.35 text · mono 10 status.
+struct ACheckRow: View {
+    @Environment(AppModel.self) private var app
+    var glyph: String
+    var fill: Color
+    var glyphColor: Color
+    var text: String
+    var st: String
+
+    var body: some View {
+        HStack(spacing: 10) {
+            T(glyph, .sans, 11, 700).apFont(.sans, 11, 700)
+                .foregroundStyle(glyphColor)
+                .frame(width: 20, height: 20)
+                .background(RoundedRectangle(cornerRadius: 5).fill(fill))
+            ASans(text: text, size: 13, lineHeight: 1.35)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            if !st.isEmpty { AMono(text: st, size: 10) }
+        }
+        .padding(.vertical, 10).padding(.horizontal, 12)
+        .aRowDivider()
+    }
+}
