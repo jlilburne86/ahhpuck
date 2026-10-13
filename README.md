@@ -1,6 +1,20 @@
-# Freedom ECU AE86 20V / AE101 / AE111 Research Workspace
+# AhhPuck by Wheel Have
 
-Purpose: understand the E&E Systems Freedom FC-03/FCSS ecosystem before connecting or writing to an ECU, with emphasis on an AE86 chassis using an AE101/AE111 20-valve 4A-GE.
+**Unsupported is not obsolete.** AhhPuck brings modern logging and evidence-based, repeatable tuning to second-hand standalone ECUs that their makers no longer support. It starts with the E&E Systems **Freedom FC-03** on Toyota 4A-GE 20V engines (AE86 / AE101 / AE111), and the same process is meant to carry over to every unsupported ECU like it.
+
+**Landing page: [wheelhave.com/ahhpuck](https://wheelhave.com/ahhpuck)** (English / 日本語)
+
+How it works, in one loop: plug a phone into the ECU over USB-C serial, record a baseline run, make one small capped fuel change by hand, then run the candidate and a repeat under the same conditions. A fixed safety gate decides whether to accept, repeat, roll back or abort, and an improvement only counts when the repeat confirms it. AhhPuck is **read-only**: in this release it never writes to the ECU and never proposes ignition changes.
+
+### About Wheel Have
+
+AhhPuck is built by [Wheel Have](https://wheelhave.com), a global car-culture marketplace for wheels, tyres, parts, cars and enthusiast gear, with direct deals and no platform cut. Wheel Have also makes [PuckIt](https://wheelhave.com/puckit), an open-hardware driver alert button for grassroots motorsport. AhhPuck sits alongside PuckIt as one of Wheel Have's tools for people who still drive, fix and tune these cars.
+
+Contact: [contact@wheelhave.com](mailto:contact@wheelhave.com?subject=AhhPuck) · [Instagram](https://www.instagram.com/wheelhave)
+
+### This repository
+
+This is the AhhPuck research and build workspace: the Freedom FC-03 / FCSS protocol research, the read-only analysis tools, the native iOS app, the Mac logger, and the landing page source. It started as a research workspace with one purpose: understand the Freedom FC-03/FCSS ecosystem before connecting to or writing to an ECU, with emphasis on an AE86 chassis running an AE101/AE111 20-valve 4A-GE.
 
 ## Safety boundary
 
@@ -8,7 +22,7 @@ The first engineering milestone is read-only documentation, file analysis, ECU i
 
 ## Landing page
 
-The AhhPuck landing page is `index.html` at the repository root, with its assets in `landing/`. It is a sub-URL of wheelhave.com, so it carries the Wheel Have site header, an AhhPuck sub-bar in the same frame as the PuckIt one, and the shared footer groups; those links point at wheelhave.com. The page is bilingual: all copy lives in `landing/i18n.js` in English and Japanese, the English/日本語 switch remembers the choice under the same key the PuckIt pages use, and `?lang=ja` opens it in Japanese. It is a static page, so any local server pointed at the repository (or its parent folder) will serve it, for example `python3 -m http.server 3000`. The app screenshots in `landing/img/` are captures of the local mobile prototype and browser workbench running the demo fixture, not ECU data.
+The live page is [wheelhave.com/ahhpuck](https://wheelhave.com/ahhpuck). Its source is `index.html` at the repository root, with its assets in `landing/`. It is a sub-URL of wheelhave.com, so it carries the Wheel Have site header, an AhhPuck sub-bar in the same frame as the PuckIt one, and the shared footer groups; those links point at wheelhave.com. The page is bilingual: all copy lives in `landing/i18n.js` in English and Japanese, the English/日本語 switch remembers the choice under the same key the PuckIt pages use, and `?lang=ja` opens it in Japanese. It is a static page, so any local server pointed at the repository (or its parent folder) will serve it, for example `python3 -m http.server 3000`. The app screenshots in `landing/img/` are captures of the local mobile prototype and browser workbench running the demo fixture, not ECU data.
 
 ## Workspace layout
 
