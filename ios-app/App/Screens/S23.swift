@@ -70,6 +70,8 @@ struct S23View: View {
                 }
             }
             .apCard()
+            .contentShape(Rectangle())
+            .onTapGesture { app.router.go(.S24) }   // → result dial & objective radar
             .padding(.horizontal, Metrics.gutter)
         }
     }

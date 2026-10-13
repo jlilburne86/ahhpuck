@@ -88,6 +88,8 @@ struct S16View: View {
                 .apFont(.mono, 9).foregroundStyle(AP.faint)
             }
             .apCard(vertical: 10, horizontal: 14)
+            .contentShape(Rectangle())
+            .onTapGesture { app.router.go(.S17) }   // next step of the experiment flow (no button in the design)
             .block(top: 10)
 
             HStack(spacing: 12) {

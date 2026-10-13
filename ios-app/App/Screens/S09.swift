@@ -74,6 +74,8 @@ struct S09View: View {
                 readout("MEAN ERR", b.lamErr, b.lamColor)
             }
             .apCard()
+            .contentShape(Rectangle())
+            .onTapGesture { app.router.go(.S21) }   // → map before / after
             .block(top: 12)
 
             M("38 of 120 cells have ≥10 samples. Upper-right cells are unvisited — no claim is made about them.", .sans, 13, color: AP.text3, lineHeight: 1.45)
