@@ -2,13 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "FreedomIOS",
-    platforms: [.iOS(.v17), .macOS(.v14)],
+    name: "FreedomMobileCore",
+    platforms: [.iOS(.v17), .macOS(.v13)],
     products: [
         .library(name: "FreedomMobileCore", targets: ["FreedomMobileCore"])
     ],
     targets: [
-        .target(name: "FreedomMobileCore"),
-        .testTarget(name: "FreedomMobileCoreTests", dependencies: ["FreedomMobileCore"])
+        .target(
+            name: "FreedomMobileCore",
+            path: "Sources/FreedomMobileCore"
+        ),
+        .testTarget(
+            name: "FreedomMobileCoreTests",
+            dependencies: ["FreedomMobileCore"],
+            path: "Tests/FreedomMobileCoreTests"
+        )
     ]
 )

@@ -1,0 +1,69 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B10000010000000000000001 /* FreedomIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000110000000000000001 /* FreedomIOSApp.swift */; };
+		B10000020000000000000001 /* MobileDashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000120000000000000001 /* MobileDashboardController.swift */; };
+		B10000030000000000000001 /* MobileExperimentAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000130000000000000001 /* MobileExperimentAssessment.swift */; };
+		B10000040000000000000001 /* MobileModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000140000000000000001 /* MobileModels.swift */; };
+		B10000050000000000000001 /* MobileReadiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000150000000000000001 /* MobileReadiness.swift */; };
+		B10000060000000000000001 /* MobileTrialSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000160000000000000001 /* MobileTrialSession.swift */; };
+		B10000070000000000000001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B10000180000000000000001 /* Localizable.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B10000100000000000000001 /* FreedomIOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreedomIOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10000110000000000000001 /* FreedomIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/FreedomIOSApp.swift; sourceTree = "<group>"; };
+		B10000120000000000000001 /* MobileDashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/FreedomMobileCore/MobileDashboardController.swift; sourceTree = "<group>"; };
+		B10000130000000000000001 /* MobileExperimentAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/FreedomMobileCore/MobileExperimentAssessment.swift; sourceTree = "<group>"; };
+		B10000140000000000000001 /* MobileModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/FreedomMobileCore/MobileModels.swift; sourceTree = "<group>"; };
+		B10000150000000000000001 /* MobileReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/FreedomMobileCore/MobileReadiness.swift; sourceTree = "<group>"; };
+		B10000160000000000000001 /* MobileTrialSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/FreedomMobileCore/MobileTrialSession.swift; sourceTree = "<group>"; };
+		B10000170000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B10000180000000000000001 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B10000200000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B10000300000000000000001 = {isa = PBXGroup; children = (B10000310000000000000001, B10000320000000000000001); sourceTree = "<group>"; };
+		B10000310000000000000001 /* FreedomIOSApp */ = {isa = PBXGroup; children = (B10000110000000000000001, B10000120000000000000001, B10000130000000000000001, B10000140000000000000001, B10000150000000000000001, B10000160000000000000001, B10000170000000000000001); path = .; sourceTree = "<group>"; };
+		B10000320000000000000001 /* Products */ = {isa = PBXGroup; children = (B10000100000000000000001); name = Products; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B10000400000000000000001 /* FreedomIOSApp */ = {isa = PBXNativeTarget; buildConfigurationList = B10000600000000000000001; buildPhases = (B10000500000000000000001, B10000200000000000000001, B10000510000000000000001); buildRules = (); dependencies = (); name = FreedomIOSApp; productName = FreedomIOSApp; productReference = B10000100000000000000001; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B10000700000000000000001 /* Project object */ = {isa = PBXProject; attributes = {LastUpgradeCheck = 2650; TargetAttributes = {B10000400000000000000001 = {CreatedOnToolsVersion = 26.0;};};}; buildConfigurationList = B10000610000000000000001; compatibilityVersion = "Xcode 3.2"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, ja, Base); mainGroup = B10000300000000000000001; productRefGroup = B10000320000000000000001; projectDirPath = ""; projectRoot = ""; targets = (B10000400000000000000001); };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B10000510000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (B10000070000000000000001); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B10000500000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000010000000000000001, B10000020000000000000001, B10000030000000000000001, B10000040000000000000001, B10000050000000000000001, B10000060000000000000001); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B10000800000000000000001 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CODE_SIGNING_ALLOWED = NO; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.ahhpuck.freedom; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		B10000810000000000000001 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CODE_SIGNING_ALLOWED = NO; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.ahhpuck.freedom; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+		B10000820000000000000001 /* Project Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; SWIFT_VERSION = 5.0; }; name = Debug; };
+		B10000830000000000000001 /* Project Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; SWIFT_VERSION = 5.0; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B10000600000000000000001 /* Build configuration list for PBXNativeTarget */ = {isa = XCConfigurationList; buildConfigurations = (B10000800000000000000001, B10000810000000000000001); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		B10000610000000000000001 /* Build configuration list for PBXProject */ = {isa = XCConfigurationList; buildConfigurations = (B10000820000000000000001, B10000830000000000000001); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = B10000700000000000000001;
+}

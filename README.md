@@ -72,7 +72,7 @@ See [notes/11-ecu-unit-label.md](notes/11-ecu-unit-label.md) for the decoded lab
 
 See [notes/10-future-platform-candidates.md](notes/10-future-platform-candidates.md) for separately documented ECU and tuner candidates. These remain out of scope until the Freedom FC-03 trial is connected, tested, and reviewed against real vehicle evidence.
 
-The native SwiftUI/Xcode implementation is in [ios-app](ios-app/README.md). It includes the imported mobile flow, deterministic experiment assessment, read-only safety boundary, and a fixture-backed first-trial workflow.
+The native SwiftUI/Xcode implementation is in [ios-app](ios-app/README.md). Open [`ios-app/FreedomIOSApp.xcodeproj`](ios-app/FreedomIOSApp.xcodeproj) to run it in Xcode. It includes the imported mobile flow, deterministic experiment assessment, read-only safety boundary, fixture-backed first-trial workflow, and the English/Japanese shell.
 
 The first-trial state machine runs profile/readiness → baseline → candidate → repeat → assessment → supervised approval locally. It is deliberately fixture-backed and read-only until the FC-03 protocol is verified.
 
@@ -81,8 +81,27 @@ The complete standalone handoff is [docs/engine-intelligence-end-to-end.md](docs
 ```sh
 python3 tools/engine_intelligence.py knowledge-check
 python3 tools/engine_intelligence.py diagnose tools/examples/baseline-telemetry.json
+python3 tools/engine_intelligence.py propose-fuel tools/examples/baseline-telemetry.json --evidence /path/to/verified-evidence.json
 python3 tools/engine_intelligence.py capture-bundle /tmp/ahhpuck-session /tmp/ahhpuck-passport.json tools/examples/raw-freedom-capture.json
 ```
+
+`propose-fuel` is deterministic and review-only. It requires complete,
+repeatable, sensor-plausible evidence, emits bounded RPM/load-cell fuel
+proposals, keeps ignition locked, and always reports `write_authorization:
+never`.
+
+Preserve a local tune or log with provenance and a source hash:
+
+```sh
+python3 tools/engine_intelligence.py artifact tune \
+  "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP" \
+  data/artifacts/ae86-a \
+  --metadata metadata/ae86-blacktop.json
+python3 tools/engine_intelligence.py artifact log run.json data/artifacts/run-001
+```
+
+Artifact records retain original bytes and parser summaries, but never infer
+undocumented map semantics or authorize ECU writes.
 
 Record and explain an iteration in the local learning ledger:
 

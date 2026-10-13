@@ -42,7 +42,9 @@ From the repository root:
 ```sh
 python3 tools/engine_intelligence.py knowledge-check
 python3 tools/engine_intelligence.py diagnose tools/examples/baseline-telemetry.json
+python3 tools/engine_intelligence.py propose-fuel tools/examples/baseline-telemetry.json --evidence /path/to/verified-evidence.json
 python3 tools/engine_intelligence.py capture-bundle /tmp/ahhpuck-session /tmp/ahhpuck-passport.json tools/examples/raw-freedom-capture.json
+python3 tools/engine_intelligence.py artifact tune "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP" data/artifacts/ae86-a
 python3 tools/fcp_parser.py "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP"
 python3 -m unittest discover -s tools -p 'test_*.py'
 ```
@@ -50,6 +52,10 @@ python3 -m unittest discover -s tools -p 'test_*.py'
 To create a session, first create a passport and then copy the passport plus raw
 inputs into a new directory. A session directory must never be reused for another
 hardware configuration.
+
+The artifact command preserves tune/log bytes, SHA-256 hashes, metadata, and
+parser revisions locally. FCP tables remain explicitly undocumented until the
+exact Freedom definition and firmware contract are verified.
 
 ## Explicitly not complete yet
 

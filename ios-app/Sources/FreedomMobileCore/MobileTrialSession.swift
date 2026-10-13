@@ -12,6 +12,7 @@ public enum MobileTrialStage: String, Codable, Sendable {
 /// state machine will be fed by the verified FC-03 transport later.
 public struct MobileTrialSession: Codable, Equatable, Sendable {
     public let profile: String
+    public var source: MobileEvidenceSource
     public var stage: MobileTrialStage
     public var readiness: MobileReadinessAssessment
     public private(set) var baseline: [MobileTelemetryFrame]
@@ -22,6 +23,7 @@ public struct MobileTrialSession: Codable, Equatable, Sendable {
 
     public init(profile: String = "AE86 · 4A-GE 20V Blacktop · Freedom FC-03") {
         self.profile = profile
+        self.source = .none
         self.stage = .setup
         self.readiness = MobileReadinessAssessor.assess(.init())
         self.baseline = []
@@ -83,6 +85,7 @@ public struct MobileTrialSession: Codable, Equatable, Sendable {
 
     public static func demo() -> MobileTrialSession {
         var session = MobileTrialSession()
+        session.source = .localReplay
         var evidence = MobileReadinessEvidence()
         evidence.ecuIdentityVerified = true
         evidence.protocolVerified = true

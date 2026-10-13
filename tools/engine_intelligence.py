@@ -14,7 +14,8 @@ import sys
 TOOLS = Path(__file__).parent
 sys.path.insert(0, str(TOOLS))
 
-from ahhpuck_intelligence import adapter, capture, experiment, explanation, passport, session
+from ahhpuck_intelligence import adapter, artifacts, capture, experiment, explanation, passport, session
+from ahhpuck_intelligence.fuel_proposal import propose as propose_fuel
 from ahhpuck_intelligence.contracts import write_json
 from ahhpuck_intelligence.knowledge import load_registry
 from telemetry_stats import load_frames, summarize
@@ -43,11 +44,21 @@ def main() -> None:
     d.add_argument("telemetry", type=Path)
     d.add_argument("--root", type=Path, default=Path("."))
     d.add_argument("--output", type=Path)
+    f = sub.add_parser("propose-fuel")
+    f.add_argument("telemetry", type=Path)
+    f.add_argument("--evidence", type=Path, required=True)
+    f.add_argument("--target-lambda", type=float, default=0.90)
+    f.add_argument("--output", type=Path)
     c = sub.add_parser("capture-bundle")
     c.add_argument("output", type=Path)
     c.add_argument("passport", type=Path)
     c.add_argument("raw_capture", type=Path)
     c.add_argument("--baud", type=int, default=9600)
+    r = sub.add_parser("artifact")
+    r.add_argument("kind", choices=("tune", "log"))
+    r.add_argument("input", type=Path)
+    r.add_argument("output", type=Path)
+    r.add_argument("--metadata", type=Path)
     e = sub.add_parser("experiment")
     e.add_argument("output", type=Path)
     e.add_argument("--id", required=True)
@@ -81,8 +92,20 @@ def main() -> None:
         if args.output:
             write_json(args.output, result)
             return
+    elif args.command == "propose-fuel":
+        frames = load_frames(args.telemetry)
+        evidence = json.loads(args.evidence.read_text(encoding="utf-8"))
+        result = propose_fuel(frames, evidence=evidence, target_lambda=args.target_lambda)
+        if args.output:
+            write_json(args.output, result)
+            return
     elif args.command == "capture-bundle":
         result = capture.bundle(args.output, args.passport, args.raw_capture, baud=args.baud)
+        print(json.dumps(result, indent=2, sort_keys=True))
+        return
+    elif args.command == "artifact":
+        metadata = json.loads(args.metadata.read_text(encoding="utf-8")) if args.metadata else {}
+        result = artifacts.create_tune(args.input, args.output, metadata) if args.kind == "tune" else artifacts.create_log(args.input, args.output, metadata)
         print(json.dumps(result, indent=2, sort_keys=True))
         return
     else:

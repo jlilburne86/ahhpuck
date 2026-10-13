@@ -4,19 +4,18 @@ This folder contains the native SwiftUI direction for the imported Freedom Mobil
 
 ## Open and test in Xcode
 
-Open the package:
+Open the native project:
 
 ```sh
-open /Users/boo2/freedom-ecu-research/ios-app/Package.swift
+open /Users/boo2/ahhpuck/engine-intelligence/ios-app/FreedomIOSApp.xcodeproj
 ```
 
 In Xcode:
 
 1. Select the `FreedomMobileCore` package scheme.
 2. Run the package tests with `Product → Test`.
-3. To preview the app screen, create an iOS App target in an Xcode project and add `App/FreedomIOSApp.swift` to that target.
-4. Add the local `FreedomMobileCore` package as a local package dependency.
-5. Select an iOS 17+ simulator or device and run.
+3. Select an iOS 17+ simulator or device and run.
+4. Use **Setup → Language** to switch the native shell between English and Japanese.
 
 The app currently includes native screens for:
 
@@ -37,10 +36,21 @@ The app includes a complete local first-trial workflow so the product flow can b
 
 The fixture is illustrative and does not represent a real ECU capture. The backend state machine is in `Sources/FreedomMobileCore/MobileTrialSession.swift`; SwiftUI only presents the current state and next action.
 
+For repeatable Simulator UI review, launch the native app with:
+
+```sh
+xcrun simctl launch <device> com.ahhpuck.freedom -- -loadFixture -glance
+xcrun simctl launch <device> com.ahhpuck.freedom -- -loadFixture -engineer
+xcrun simctl launch <device> com.ahhpuck.freedom -- -loadFixture -japanese -glance
+```
+
+These flags load local replay data, select the Live display mode, or select
+Japanese. They never connect to an ECU and do not enable writes.
+
 ## Command-line validation
 
 ```sh
-cd /Users/boo2/freedom-ecu-research/ios-app
+cd /Users/boo2/ahhpuck/engine-intelligence/ios-app
 swift test
 ```
 

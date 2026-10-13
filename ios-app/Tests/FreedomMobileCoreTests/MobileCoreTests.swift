@@ -30,6 +30,46 @@ final class MobileCoreTests: XCTestCase {
         }
     }
 
+    func testReplayTransportOnlyReplaysFramesAndHasNoWriteAuthority() async throws {
+        let frames = [MobileTelemetryFrame(sequence: 0, rpm: 3200, loadKPa: 55, lambda: 0.92)]
+        let transport = MobileReplayTransport(frames: frames)
+        let identity = try await transport.readOnlyIdentity()
+        XCTAssertEqual(identity, "LOCAL REPLAY · NO ECU")
+        var received: [MobileTelemetryFrame] = []
+        for try await frame in transport.frames() { received.append(frame) }
+        XCTAssertEqual(received, frames)
+    }
+
+    func testDemoSessionIsExplicitlyMarkedAsLocalReplay() {
+        let trial = MobileTrialSession.demo()
+        XCTAssertEqual(trial.source, .localReplay)
+        XCTAssertEqual(trial.source.badge, "LOCAL REPLAY · NO ECU")
+    }
+
+    func testCoverageBinsActualOperatingCellsAndProtectionEvents() {
+        let frames = [
+            MobileTelemetryFrame(sequence: 0, rpm: 3200, loadKPa: 55, lambda: 0.92),
+            MobileTelemetryFrame(sequence: 1, rpm: 3300, loadKPa: 56, lambda: 0.91, knockLevel: 0.3)
+        ]
+        let cells = MobileEvidenceAnalyzer.coverage(frames: frames)
+        XCTAssertEqual(cells.count, 1)
+        XCTAssertEqual(cells.first?.rpmBand, 3000)
+        XCTAssertEqual(cells.first?.loadBand, 50)
+        XCTAssertEqual(cells.first?.frameCount, 2)
+        XCTAssertEqual(cells.first?.state, .protectionEvent)
+    }
+
+    func testComparisonPreservesBaselineCandidateAndRepeatValues() {
+        let baseline = demoFrames(lambda: [1.0, 0.99])
+        let candidate = demoFrames(lambda: [0.93], start: 10)
+        let repeatRun = demoFrames(lambda: [0.92, 0.91], start: 20)
+        let points = MobileEvidenceAnalyzer.comparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun)
+        XCTAssertEqual(points.count, 2)
+        XCTAssertEqual(points[0].baselineLambda, 1.0)
+        XCTAssertEqual(points[0].candidateLambda, 0.93)
+        XCTAssertEqual(points[1].repeatLambda, 0.91)
+    }
+
     func testReadinessPausesOnMissingFuelPressureAndIgnitionReference() {
         var evidence = MobileReadinessEvidence()
         evidence.ecuIdentityVerified = true
