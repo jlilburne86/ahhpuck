@@ -96,6 +96,48 @@ final class MobileCoreTests: XCTestCase {
         XCTAssertEqual(result.decision, .stopAndAbort)
     }
 
+    func testBaselineSummaryCalculatesStatsAndFlagsMissingLambda() {
+        let start = Date(timeIntervalSince1970: 1_000)
+        let frames = [
+            MobileTelemetryFrame(timestamp: start, rpm: 900, loadKPa: 35, lambda: 1.02, coolantC: 82, batteryV: 13.7),
+            MobileTelemetryFrame(timestamp: start.addingTimeInterval(0.25), rpm: 1100, loadKPa: 40, lambda: nil, coolantC: 83, batteryV: 13.8),
+            MobileTelemetryFrame(timestamp: start.addingTimeInterval(0.5), rpm: 1300, loadKPa: 45, lambda: 0.98, coolantC: 84, batteryV: 13.9)
+        ]
+        let summary = MobileBaselineSummary(run: MobileRunRecord(kind: .baseline, title: "Desk baseline", frames: frames))
+        XCTAssertEqual(summary.frameCount, 3)
+        XCTAssertEqual(summary.rpm?.median, 1100)
+        XCTAssertEqual(summary.lambda?.count, 2)
+        XCTAssertTrue(summary.issues.contains(.missingLambda))
+        XCTAssertEqual(summary.coveragePercent, 100, accuracy: 0.01)
+    }
+
+    func testRunComparisonRequiresRepeatForConfirmation() {
+        let start = Date(timeIntervalSince1970: 2_000)
+        func run(_ kind: MobileRunKind, _ values: [Double], offset: TimeInterval) -> MobileRunRecord {
+            MobileRunRecord(kind: kind, title: kind.rawValue, frames: values.enumerated().map { i, lambda in
+                MobileTelemetryFrame(timestamp: start.addingTimeInterval(offset + Double(i) * 0.25), rpm: 3000, loadKPa: 60, lambda: lambda)
+            })
+        }
+        let baseline = run(.baseline, [1.08, 1.07, 1.09], offset: 0)
+        let candidate = run(.candidate, [1.03, 1.02, 1.03], offset: 10)
+        let repeatRun = run(.repeatRun, [1.031, 1.021, 1.029], offset: 20)
+        let result = MobileRunComparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun)
+        XCTAssertEqual(result.decision, .improvementConfirmed)
+        XCTAssertEqual(result.repeatable, true)
+        XCTAssertGreaterThan(result.improvementPercent ?? 0, 50)
+    }
+
+    func testRunStoreRoundTripsRawFrames() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let store = MobileRunStore(directory: directory)
+        let fixed = Date(timeIntervalSince1970: 3_000.125)
+        let run = MobileRunRecord(kind: .baseline, title: "Round trip", createdAt: fixed,
+                                  frames: [MobileTelemetryFrame(timestamp: fixed, rpm: 1200, loadKPa: 30)])
+        _ = try await store.save(run)
+        let loaded = try await store.loadAll()
+        XCTAssertEqual(loaded, [run])
+    }
+
     private func demoFrames(lambda: [Double], start: Int = 0) -> [MobileTelemetryFrame] {
         lambda.enumerated().map { index, value in
             MobileTelemetryFrame(sequence: start + index, rpm: 3000 + Double(index * 100), loadKPa: 50, lambda: value, coolantC: 85, intakeAirC: 32, oilPressureKPa: 380, fuelPressureKPa: 300, batteryV: 13.8)
