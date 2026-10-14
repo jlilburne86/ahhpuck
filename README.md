@@ -16,6 +16,26 @@ Contact: [contact@wheelhave.com](mailto:contact@wheelhave.com?subject=AhhPuck) �
 
 This is the AhhPuck research and build workspace: the Freedom FC-03 / FCSS protocol research, the read-only analysis tools, the native iOS app, the Mac logger, and the landing page source. It started as a research workspace with one purpose: understand the Freedom FC-03/FCSS ecosystem before connecting to or writing to an ECU, with emphasis on an AE86 chassis running an AE101/AE111 20-valve 4A-GE.
 
+## Current continuation status — 15 October 2026
+
+The active product path is the native iOS app in [`ios-app`](ios-app/README.md). The FCSS/FCST audit is complete and its safe findings are represented in the existing Live, Settings, Maps, Limits, Connection, Data Sources, Runs and Review flows. The app is ready for the first desk capture when the FC-03 and direct serial cable are available.
+
+Current boundaries:
+
+- FC-03 transport: `9600 baud · 7 data bits · even parity · 1 stop bit · no flow control`.
+- First request: `?DAT`; documented response: 55-byte payload, with a possible trailing byte retained as raw evidence.
+- Captures include timestamps, response length, validation state, ECU profile, vehicle profile, modifications, session kind and capture sources.
+- Unverified byte offsets/scaling are refused by the decoder and never promoted into telemetry or tuning decisions.
+- ECU map/settings writes, raw command testing and autonomous tuning remain locked.
+
+The latest TestFlight export is `build/testflight-export/AhhPuck.ipa`. The archive/export are valid for App Store distribution; upload still requires App Store Connect authentication on the Mac. See [`docs/continuation-handoff.md`](docs/continuation-handoff.md).
+
+## Public collaboration and security
+
+Original AhhPuck code is intended to be buildable and reusable under the [Apache-2.0 license](LICENSE). Research archives, downloaded pages, FCSS/FCST binaries, fonts, images and trademarks are not automatically covered; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). Contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and [TERMS-OF-USE.md](TERMS-OF-USE.md). Run `python3 tools/public_release_check.py` before publishing a source snapshot.
+
+Raw research evidence has been moved to the local private sibling repository `/Users/boo2/ahhpuck-evidence`. It is intentionally not part of the open build repository.
+
 ## Safety boundary
 
 The first engineering milestone is read-only documentation, file analysis, ECU identification, and serial logging. No ECU write, map modification, or engine-load test is authorized until the original ECU state is backed up and the electrical/sensor configuration is verified.
@@ -26,9 +46,7 @@ The live page is [wheelhave.com/ahhpuck](https://wheelhave.com/ahhpuck). Its sou
 
 ## Workspace layout
 
-- `source_files/` — original user-supplied archives, preserved unchanged.
-- `downloads/` — externally sourced diagrams and documentation.
-- `extracted/` — extracted working copies.
+- `source_files/`, `downloads/`, `extracted/` — private evidence is maintained in `/Users/boo2/ahhpuck-evidence`; this public repo retains derived notes, parsers and implementation contracts only.
 - `notes/` — research notes, source register, and decoded findings.
 - `logs/` — ECU/FCSS serial captures and engine data; do not overwrite originals.
 - `tools/` — analysis utilities and future read-only tooling.
@@ -83,6 +101,12 @@ See [docs/user-stories.md](docs/user-stories.md) for the owner, tuner, and devel
 See [docs/product-design-overview.md](docs/product-design-overview.md) for the engineering product design, application surfaces, collected and displayed data, normalized telemetry model, processing pipeline, assessment states, safety boundaries, storage, and implementation phases.
 
 See [notes/11-ecu-unit-label.md](notes/11-ecu-unit-label.md) for the decoded label of the purchased FC-03 unit (`Ab-1EU`, `Z-J01030`, group injection, direct ignition) and what it changes for the harness plug and engine profile.
+
+See [notes/12-fcst-fcss-capability-and-protocol-inventory.md](notes/12-fcst-fcss-capability-and-protocol-inventory.md) for the recovered FCSS/FCST capability inventory.
+
+See [notes/13-fcss-fcst-forensic-audit.md](notes/13-fcss-fcst-forensic-audit.md) for the forensic audit of binaries, imports, strings, configuration, maps, logs and protocol evidence.
+
+See [docs/continuation-handoff.md](docs/continuation-handoff.md) for the current implementation map, verification results, signing/upload status, bench procedure and non-negotiable safety boundaries.
 
 See [notes/10-future-platform-candidates.md](notes/10-future-platform-candidates.md) for separately documented ECU and tuner candidates. These remain out of scope until the Freedom FC-03 trial is connected, tested, and reviewed against real vehicle evidence.
 
@@ -148,11 +172,17 @@ python3 tools/safety_gate.py tools/examples/safety-gate-input.json \
 
 ## Implemented inspection commands
 
+For local evidence-backed commands, point the environment variable at the private archive first:
+
+```sh
+export AHHPUCK_EVIDENCE_ROOT=/Users/boo2/ahhpuck-evidence
+```
+
 Inspect one Freedom map and preserve its structure as JSON:
 
 ```sh
 python3 tools/fcp_parser.py \
-  "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP" \
+  "$AHHPUCK_EVIDENCE_ROOT/extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP" \
   --json-out notes/AE86-A.parsed.json
 ```
 
@@ -160,7 +190,7 @@ Inventory all supplied base maps:
 
 ```sh
 python3 tools/fcp_inventory.py \
-  "extracted/base_maps/BASE MAPS - FC OE DATA" \
+  "$AHHPUCK_EVIDENCE_ROOT/extracted/base_maps/BASE MAPS - FC OE DATA" \
   --json-out notes/fcp-structure-inventory.json
 ```
 
@@ -168,7 +198,7 @@ Create a guarded comparison report against the AE111 Blacktop profile:
 
 ```sh
 python3 tools/fcp_adapter_report.py \
-  "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP" \
+  "$AHHPUCK_EVIDENCE_ROOT/extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP" \
   tools/examples/ae111_blacktop_fc03_target.json \
   --report notes/AE86-A-to-AE111-report.json
 ```

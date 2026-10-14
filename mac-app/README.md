@@ -2,7 +2,9 @@
 
 Mac-native foundation for an FC-03 / FCSS-compatible tool.
 
-This is a clean compatibility layer, not a direct conversion of the Windows executable. The original FCST package is preserved under `../source_files/FCST`; its extracted .NET assembly is the behavioral reference. The first milestone is read-only serial capture and offline analysis.
+This is a clean compatibility layer, not a direct conversion of the Windows executable. The original FCST package is preserved in the local private evidence archive at `/Users/boo2/ahhpuck-evidence/source_files/FCST`; its extracted .NET assembly is the behavioral reference. The first milestone is read-only serial capture and offline analysis.
+
+The authoritative current status is in [`../docs/continuation-handoff.md`](../docs/continuation-handoff.md) and the [`../notes/13-fcss-fcst-forensic-audit.md`](../notes/13-fcss-fcst-forensic-audit.md). The native iOS app is currently the primary product path. Keep this Mac tool read-only and use it as a diagnostic/reference implementation while the direct FC-03 cable is verified.
 
 ## Run
 

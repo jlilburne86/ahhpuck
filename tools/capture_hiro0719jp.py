@@ -11,8 +11,10 @@ from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 
+from evidence_paths import evidence_root
+
 BLOG = "https://ameblo.jp/hiro0719jp/"
-OUT = Path("downloads/hiro0719jp_freedom")
+OUT = evidence_root() / "downloads/hiro0719jp_freedom"
 
 
 class PageParser(HTMLParser):
@@ -57,7 +59,7 @@ def slug(url: str) -> str:
 
 
 def article_links() -> list[str]:
-    candidates = [Path("downloads/hiro0719jp_blog_index.html"), Path("downloads/paddock_fcst_development.html")]
+    candidates = [evidence_root() / "downloads/hiro0719jp_blog_index.html", evidence_root() / "downloads/paddock_fcst_development.html"]
     found: set[str] = set()
     for path in candidates:
         if not path.exists():

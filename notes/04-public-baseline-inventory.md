@@ -6,7 +6,7 @@ Research date: 2026-10-08
 
 | Source | Vehicle/configuration | Evidence level | Local asset |
 |---|---|---|---|
-| FCSS supplied OE base maps | AE86 A/B/C/D, AE86-TS, plus other 4-valve/4-throttle examples | Actual FCP files; calibration provenance is limited | `extracted/base_maps/BASE MAPS - FC OE DATA/` |
+| FCSS supplied OE base maps | AE86 A/B/C/D, AE86-TS, plus other 4-valve/4-throttle examples | Actual FCP files; calibration provenance is limited | Private archive: `extracted/base_maps/BASE MAPS - FC OE DATA/` |
 | FCSS supplied example | `f00611mt.FCP` | Actual FCP file; exact engine/hardware metadata not yet established | `extracted/software/.../f00611mt.FCP` |
 | `MIXCONT.FCP` | Air/fuel feedback-related definition/example | Actual FCP file; not a complete engine tune | `extracted/base_maps/BASE MAPS - FC OE DATA/MIXCONT.FCP` |
 

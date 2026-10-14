@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 
+from evidence_paths import evidence_root
+
 ROOT = "https://sites.google.com/view/paddock-n/home/car-life/ecufreedom-computer%E3%82%BB%E3%83%83%E3%88%88%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%97"
 # Correct URL encoded root; kept separately so the path is readable above.
 ROOT = "https://sites.google.com/view/paddock-n/home/car-life/ecufreedom-computer%E3%82%BB%E3%83%83%E3%88%88%E3%83%83%E3%88%88%E3%83%88"
@@ -65,7 +67,7 @@ def safe_name(url: str) -> str:
 
 
 def main() -> None:
-    root = Path("downloads/paddock_freedom")
+    root = evidence_root() / "downloads/paddock_freedom"
     asset_root = root / "assets"
     asset_root.mkdir(parents=True, exist_ok=True)
     manifest: dict = {"captured_at": datetime.now(timezone.utc).isoformat(), "pages": []}

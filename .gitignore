@@ -22,10 +22,19 @@ data/
 .vscode/
 xcuserdata/
 DerivedData/
+/build/
+.env
+.env.*
+!.env.example
 
 # macOS app signing / local secrets
 *.p12
 *.mobileprovision
 *.cer
+*.crt
 *.pem
 *.key
+*.p8
+*.ipa
+*.xcarchive
+*.dSYM/

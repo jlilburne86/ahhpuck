@@ -7,6 +7,8 @@ import json
 from html.parser import HTMLParser
 from pathlib import Path
 
+from evidence_paths import evidence_root
+
 
 class P(HTMLParser):
     def __init__(self) -> None:
@@ -20,7 +22,7 @@ class P(HTMLParser):
 
 
 def main() -> None:
-    root = Path("downloads/hiro0719jp_freedom")
+    root = evidence_root() / "downloads/hiro0719jp_freedom"
     articles = []
     for page in sorted(root.glob("entry-*.html")):
         raw = page.read_bytes(); parser = P(); parser.feed(raw.decode(errors="replace"))
