@@ -18,6 +18,10 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - `FC03CaptureRecorder` retains raw request/reply bytes, timestamps, validation result, response length and evidence note.
 - `FC03CaptureCoordinator` provides the bench-facing read-only path and persists a `FC03CaptureSession` JSON file.
 - `FC03CaptureFileStore` stores sessions under Application Support and Runs/Review exports `fc03-capture.json`.
+- `MobileRunRecord` stores baseline, candidate, repeat and observation runs with raw telemetry frames and vehicle/modification context.
+- `MobileBaselineSummary` calculates signal statistics, frame coverage, timestamp gaps, missing channels and a conservative quality score.
+- `MobileRunComparison` compares lambda error across baseline/candidate/repeat runs and only confirms improvement when the repeat is within tolerance.
+- `MobileRunStore` persists run records locally with millisecond timestamp precision for later review and export.
 - `FC03VerifiedTelemetryDecoder` refuses to decode until field offsets/scaling are verified.
 - ECU writes, map writes, raw command testing and autonomous tuning remain locked.
 - Heavy demo projections are cached and the demo ticker is 250 ms for better responsiveness.
@@ -29,7 +33,7 @@ cd /Users/boo2/ahhpuck-testflight
 swift test --package-path ios-app
 ```
 
-Current result: 16 tests pass.
+Current result: 13 core tests pass, including baseline statistics, repeat confirmation and run-store round trips.
 
 The Release archive/export succeeds with:
 
