@@ -1,9 +1,11 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// S30 · Learning ledger (Runs tab root) — experiment cards with a decision stripe and filters.
 /// Tuner density adds each run's hash.
 struct S30View: View {
     @Environment(AppModel.self) private var app
+    @State private var importPresented = false
 
     struct Exp { let id, title, dec, date, res, h: String }
     static let exps: [Exp] = [
@@ -19,6 +21,16 @@ struct S30View: View {
         let rows = S30View.exps.filter { app.filt == "All" || $0.dec == app.filt }
         PhoneScreen(tab: .runs, status: "OFFLINE", statusStyle: .dim) {
             ScreenHeader(title: "Ledger", subtitle: app.tr("AE86 · 4A-GE 20V BLACKTOP ·") + " " + app.tr(app.runsLoaded && !app.persistedRuns.isEmpty ? "REAL CAPTURES" : "DEMO REPLAY"))
+
+            HStack(spacing: 8) {
+                PrimaryButton(label: "Import run JSON", height: 44) { importPresented = true }
+                PrimaryButton(label: "Capture baseline", fill: AP.raised, fg: AP.text, height: 44) { app.router.go(.S04) }
+            }
+            .block(top: 10)
+
+            if let runImportError = app.runImportError {
+                DT(runImportError, .mono, 10).foregroundStyle(AP.red).block(top: 6)
+            }
 
             if let comparison = app.persistedComparison {
                 evidenceSummary(comparison)
@@ -43,6 +55,10 @@ struct S30View: View {
             }
             .block()
             Spacer(minLength: 0)
+        }
+        .fileImporter(isPresented: $importPresented, allowedContentTypes: [.json], allowsMultipleSelection: false) { result in
+            guard case .success(let urls) = result, let url = urls.first else { return }
+            Task { await app.importRun(from: url) }
         }
     }
 

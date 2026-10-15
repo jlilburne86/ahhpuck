@@ -84,6 +84,7 @@ final class AppModel {
     let runStore = MobileRunStore()
     var persistedRuns: [MobileRunRecord] = []
     var runsLoaded = false
+    var runImportError: String?
 
     var persistedComparison: MobileRunComparison? {
         guard let baseline = persistedRuns.first(where: { $0.kind == .baseline }),
@@ -122,6 +123,25 @@ final class AppModel {
             guard let self else { return }
             self.persistedRuns = runs
             self.runsLoaded = true
+        }
+    }
+
+    func importRun(from url: URL) async {
+        let accessed = url.startAccessingSecurityScopedResource()
+        defer { if accessed { url.stopAccessingSecurityScopedResource() } }
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .millisecondsSince1970
+            let run = try decoder.decode(MobileRunRecord.self, from: data)
+            guard !run.frames.isEmpty else { throw CocoaError(.fileReadCorruptFile) }
+            _ = try await runStore.save(run)
+            persistedRuns.removeAll { $0.id == run.id }
+            persistedRuns.insert(run, at: 0)
+            runsLoaded = true
+            runImportError = nil
+        } catch {
+            runImportError = "IMPORT FAILED · (error.localizedDescription)"
         }
     }
 
