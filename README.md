@@ -28,7 +28,7 @@ Current boundaries:
 - Unverified byte offsets/scaling are refused by the decoder and never promoted into telemetry or tuning decisions.
 - ECU map/settings writes, raw command testing and autonomous tuning remain locked.
 
-The latest TestFlight export is `build/testflight-export/AhhPuck.ipa`. The archive/export are valid for App Store distribution; upload still requires App Store Connect authentication on the Mac. See [`docs/continuation-handoff.md`](docs/continuation-handoff.md).
+The current iOS project is marketing version `1.2`, build `2`. The corrected bundle build number is sourced from Xcode's `CURRENT_PROJECT_VERSION`; verify the compiled archive before upload. A signed TestFlight export still requires App Store Connect authentication on the Mac. See [`docs/continuation-handoff.md`](docs/continuation-handoff.md) and [`docs/app-store-review-notes.md`](docs/app-store-review-notes.md).
 
 ## Public collaboration and security
 

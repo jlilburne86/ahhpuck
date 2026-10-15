@@ -2,9 +2,12 @@
 
 ## Review build
 
+Marketing version: `1.2`
+Build: `2`
+
 AhhPuck is a native iOS read-only companion for collecting and reviewing evidence from unsupported standalone ECUs. This build does not write to an ECU, change a calibration, or authorize a tuning change.
 
-The current build operates in replay/demo mode until the FC-03 cable, serial electrical levels, and first real capture have been validated on a physical iPhone. Screens that show replay values are labelled `DEMO DATA`, `SIMULATED`, or `DEMO PREVIEW`.
+The current build operates in replay/demo mode until the FC-03 cable, serial electrical levels, and first real capture have been validated on a physical iPhone. Screens that show replay values are labelled `DEMO DATA`, `SIMULATED`, or `DEMO PREVIEW`. The notification and Live Activity screen is an in-app preview only; this build does not request notification access or publish Live Activities.
 
 ## Hardware
 

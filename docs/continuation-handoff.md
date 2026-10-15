@@ -1,6 +1,6 @@
 # AhhPuck continuation handoff
 
-Updated: 15 October 2026  
+Updated: 15 October 2026 — App Store review/build follow-up
 Canonical repository: `/Users/boo2/ahhpuck-testflight`  
 Working branch: `feat/testflight`
 
@@ -36,6 +36,8 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - `FC03VerifiedTelemetryDecoder` refuses to decode until field offsets/scaling are verified.
 - ECU writes, map writes, raw command testing and autonomous tuning remain locked.
 - Heavy demo projections are cached and the demo ticker is 250 ms for better responsiveness.
+- App Store review fixes are complete: permission rows are honest and non-interactive, system-notification screens are marked as demo previews, in-app privacy/terms links are present, and the AppIcon asset is configured.
+- The iOS bundle is marketing version `1.2`, build `2`; `CFBundleVersion` is sourced from `CURRENT_PROJECT_VERSION` so the compiled bundle matches the upload build number.
 - Deterministic offline AI explanations are implemented in `MobileAIAnalysis.swift`; they map
   existing assessment concerns to plain-language evidence explanations and next checks only.
 - AI results are persisted under `Application Support/AhhPuck/AIResults`, surfaced in the existing
@@ -52,7 +54,7 @@ cd /Users/boo2/ahhpuck-testflight
 swift test --package-path ios-app
 ```
 
-Current result: 21 core tests pass, including the read-only capture runner's exact `?DAT` requests,
+Current result: 23 core tests pass, including the read-only capture runner's exact `?DAT` requests,
 invalid-reply retention and zero-sample rejection, plus offline AI critical-stop behavior, identifier-only
 deep-link parsing, AI result persistence, baseline statistics, repeat confirmation, run-store round trips,
 ordered replay transport coverage and raw FC-03 capture persistence.
@@ -81,7 +83,8 @@ xcodebuild -exportArchive \
   -allowProvisioningUpdates
 ```
 
-An earlier signed export was produced at `build/testflight-export/AhhPuck.ipa`; rebuild and sign again after any source change before TestFlight submission.
+The simulator build has been verified with bundle version `1.2` and build `2`. Any signed export at
+`build/testflight-export/AhhPuck.ipa` must be rebuilt after source or project changes before TestFlight submission.
 
 ## TestFlight upload
 
@@ -102,7 +105,9 @@ xcrun altool --upload-app \
   --api-issuer "$ASC_ISSUER_ID"
 ```
 
-If App Store Connect reports a duplicate build, increment `CURRENT_PROJECT_VERSION` in the Xcode project before rebuilding. Do not change the marketing version without an explicit release decision.
+The next upload target is build `2`. If App Store Connect reports a duplicate build, increment
+`CURRENT_PROJECT_VERSION` in the Xcode project before rebuilding; the plist now inherits that value.
+Do not change the marketing version without an explicit release decision.
 
 ## First real desk capture
 
