@@ -13,17 +13,18 @@ struct BOutlineButton: View {
     var action: () -> Void = {}
 
     var body: some View {
-        T(app.tr(label), .sans, 15, 600)
-            .apFont(.sans, 15, 600)
-            .foregroundStyle(fg)
-            .lineLimit(1)
-            .frame(maxWidth: .infinity)
-            .frame(height: height)
-            .background(RoundedRectangle(cornerRadius: 14).fill(fill))
-            .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(border, lineWidth: 1))
-            .contentShape(RoundedRectangle(cornerRadius: 14))
-            .onTapGesture(perform: action)
-            .accessibilityAddTraits(.isButton)
+        Button(action: action) {
+            T(app.tr(label), .sans, 15, 600)
+                .apFont(.sans, 15, 600)
+                .foregroundStyle(fg)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+                .frame(height: height)
+                .background(RoundedRectangle(cornerRadius: 14).fill(fill))
+                .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(border, lineWidth: 1))
+                .contentShape(RoundedRectangle(cornerRadius: 14))
+        }
+        .buttonStyle(APPressableStyle())
     }
 }
 

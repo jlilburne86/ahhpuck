@@ -90,7 +90,9 @@ struct S04View: View {
                 // Not in the design: the first-run flow needs a way on to S02 once the ECU is identified.
                 MButton(label: "Continue", bottom: 8) { app.router.nextInFirstRun(after: .S04) }
             }
+            #if DEBUG
             MButton(label: "Simulate unplug", bg: .clear, fg: AP.text2) { app.conn = 0 }
+            #endif
         }
     }
 }

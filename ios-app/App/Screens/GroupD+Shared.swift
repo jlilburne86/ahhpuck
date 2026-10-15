@@ -40,17 +40,19 @@ struct DOption: View {
 
     var body: some View {
         let s = DSel(on)
-        DT(app.tr(label), .sans, size)
-            .foregroundStyle(s.fg)
-            .lineLimit(1)
-            .padding(.vertical, height == nil ? vPad + 1 : 0)
-            .padding(.horizontal, hPad + 1)
-            .frame(maxWidth: fill ? .infinity : nil)
-            .frame(height: height)
-            .background(RoundedRectangle(cornerRadius: radius).fill(s.bg))
-            .overlay(RoundedRectangle(cornerRadius: radius).strokeBorder(s.border, lineWidth: 1))
-            .contentShape(RoundedRectangle(cornerRadius: radius))
-            .onTapGesture(perform: action)
+        Button(action: action) {
+            DT(app.tr(label), .sans, size)
+                .foregroundStyle(s.fg)
+                .lineLimit(1)
+                .padding(.vertical, height == nil ? vPad + 1 : 0)
+                .padding(.horizontal, hPad + 1)
+                .frame(maxWidth: fill ? .infinity : nil)
+                .frame(height: height)
+                .background(RoundedRectangle(cornerRadius: radius).fill(s.bg))
+                .overlay(RoundedRectangle(cornerRadius: radius).strokeBorder(s.border, lineWidth: 1))
+                .contentShape(RoundedRectangle(cornerRadius: radius))
+        }
+        .buttonStyle(APPressableStyle())
     }
 }
 

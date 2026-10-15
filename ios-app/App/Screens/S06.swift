@@ -21,7 +21,9 @@ struct S06View: View {
     private var dashboard: some View {
         let b = app.base
         return PhoneScreen(tab: .live) {
-            ScreenHeader(title: "Live", subtitle: "BASELINE · RUN 03 · " + b.clock) { ReadOnlyPill() }
+            ScreenHeader(title: "Live", subtitle: "BASELINE · RUN 03 · " + b.clock) {
+                HStack(spacing: 6) { ReadOnlyPill(); DemoDataPill() }
+            }
 
             // RPM hero with the 7k limit bar
             VStack(alignment: .leading, spacing: 10) {
@@ -73,13 +75,19 @@ struct S06View: View {
                     Spacer(minLength: 0)
                     Text(b.lamErr).apFont(.mono, 14).foregroundStyle(b.lamColor)
                 }
-                Canvas { ctx, _ in
+                Canvas { ctx, size in
+                    let scale = size.width / 322
                     var target = Path()
-                    target.move(to: CGPoint(x: 0, y: 22)); target.addLine(to: CGPoint(x: 322, y: 22))
+                    target.move(to: CGPoint(x: 0, y: 22)); target.addLine(to: CGPoint(x: size.width, y: 22))
                     ctx.stroke(target, with: .color(AP.cyan), style: StrokeStyle(lineWidth: 1, dash: [3, 3]))
-                    ctx.stroke(Path(polyline: b.lamSpark), with: .color(AP.text), lineWidth: 1.6)
+                    var spark = Path()
+                    for (i, point) in b.lamSpark.enumerated() {
+                        let scaled = CGPoint(x: point.x * scale, y: point.y)
+                        if i == 0 { spark.move(to: scaled) } else { spark.addLine(to: scaled) }
+                    }
+                    ctx.stroke(spark, with: .color(AP.text), lineWidth: 1.6)
                 }
-                .frame(width: 322, height: 44)
+                .frame(maxWidth: .infinity).frame(height: 44)
             }
             .apCard(vertical: 14, horizontal: 16, radius: 14)
             .block()
@@ -100,7 +108,7 @@ struct S06View: View {
                 Spacer(minLength: 0)
                 T(app.tr("KNOCK —"), .mono, 11)
                 Spacer(minLength: 0)
-                T(app.tr("✓ HEALTH OK"), .mono, 11).foregroundStyle(AP.green)
+                T(app.tr("DEMO DATA · DECODER LOCKED"), .mono, 11).foregroundStyle(AP.amber)
             }
             .apFont(.mono, 11)
             .foregroundStyle(AP.text3)

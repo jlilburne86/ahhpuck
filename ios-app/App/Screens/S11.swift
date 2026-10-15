@@ -49,7 +49,7 @@ struct S11View: View {
                                 RoundedRectangle(cornerRadius: 3).fill(i < filled ? AP.text : AP.disabled).frame(height: 26)
                             }
                         }
-                        M(frames + " " + app.tr("FRAMES · HEALTH OK"), .mono, 11, color: AP.label, translate: false)
+                        M(frames + " " + app.tr("FRAMES · DEMO DATA"), .mono, 11, color: AP.amber, translate: false)
                     }
                     Spacer(minLength: 0)
                     HStack {

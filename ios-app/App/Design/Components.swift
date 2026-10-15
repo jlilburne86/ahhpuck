@@ -44,7 +44,7 @@ struct PhoneScreen<Content: View>: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     }
                 }
-                if let tab { TabBar(active: tab) }
+                if let tab, !app.router.onboarding { TabBar(active: tab) }
                 else { Color.clear.frame(height: outer.safeAreaInsets.bottom) }
             }
             .ignoresSafeArea()
@@ -66,20 +66,22 @@ struct TabBar: View {
         HStack(spacing: 0) {
             ForEach(AppTab.allCases) { t in
                 let on = t == active
-                VStack(spacing: 2) {
-                    TabIcon(tab: t)
-                        .stroke(style: StrokeStyle(lineWidth: on ? 2.1 : 1.7, lineCap: .round, lineJoin: .round))
-                        .frame(width: 25, height: 25)
-                    T(app.tr(t.title), .sans, 10, on ? 600 : 500)
-                        .apFont(.sans, 10, on ? 600 : 500)
-                        .apTracking(0.01, size: 10)
-                        .lineLimit(1)
+                Button { app.router.select(t) } label: {
+                    VStack(spacing: 2) {
+                        TabIcon(tab: t)
+                            .stroke(style: StrokeStyle(lineWidth: on ? 2.1 : 1.7, lineCap: .round, lineJoin: .round))
+                            .frame(width: 25, height: 25)
+                        T(app.tr(t.title), .sans, 10, on ? 600 : 500)
+                            .apFont(.sans, 10, on ? 600 : 500)
+                            .apTracking(0.01, size: 10)
+                            .lineLimit(1)
+                    }
+                    .foregroundStyle(on ? Color.white : AP.label)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 49)
+                    .contentShape(Rectangle())
                 }
-                .foregroundStyle(on ? Color.white : AP.label)
-                .frame(maxWidth: .infinity)
-                .frame(height: 49)
-                .contentShape(Rectangle())
-                .onTapGesture { app.router.select(t) }
+                .buttonStyle(APPressableStyle())
             }
         }
         .padding(.top, 6 + 1)
@@ -129,16 +131,21 @@ struct ScreenHeader<Trailing: View>: View {
     @ViewBuilder var trailing: () -> Trailing
 
     var body: some View {
-        HStack(alignment: .center) {
-            VStack(alignment: .leading, spacing: 2) {
-                T(app.tr(title), .barlow, 24, 700).apFont(.barlow, 24, 700)
-                if let subtitle { T(app.tr(subtitle), .mono, 11, 400).apFont(.mono, 11).foregroundStyle(AP.label) }
+        VStack(alignment: .leading, spacing: 0) {
+            if app.router.onboarding ? !app.router.onboardingPath.isEmpty : (app.router.paths[app.router.tab]?.isEmpty == false) {
+                BackRow()
             }
-            Spacer(minLength: 8)
-            trailing()
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 2) {
+                    T(app.tr(title), .barlow, 24, 700).apFont(.barlow, 24, 700)
+                    if let subtitle { T(app.tr(subtitle), .mono, 11, 400).apFont(.mono, 11).foregroundStyle(AP.label) }
+                }
+                Spacer(minLength: 8)
+                trailing()
+            }
+            .padding(.horizontal, Metrics.gutter)
+            .padding(.top, 10)
         }
-        .padding(.horizontal, Metrics.gutter)
-        .padding(.top, 10)
     }
 }
 
@@ -160,6 +167,37 @@ struct ReadOnlyPill: View {
         .foregroundStyle(AP.text2)
         .padding(.horizontal, 9).padding(.vertical, 6)
         .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(AP.control, lineWidth: 1))
+    }
+}
+
+struct DemoDataPill: View {
+    @Environment(AppModel.self) private var app
+    var body: some View {
+        Text(app.tr("DEMO DATA"))
+            .apFont(.mono, 11, 600)
+            .foregroundStyle(AP.amber)
+            .padding(.horizontal, 9).padding(.vertical, 6)
+            .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(AP.amber.opacity(0.7), lineWidth: 1))
+            .accessibilityLabel(app.tr("Demo data"))
+    }
+}
+
+struct BackRow: View {
+    @Environment(AppModel.self) private var app
+    var body: some View {
+        Button {
+            app.router.back()
+        } label: {
+            HStack(spacing: 4) {
+                Text("‹").font(.system(size: 25, weight: .regular))
+                Text(app.tr("Back")).apFont(.sans, 13, 600)
+            }
+            .foregroundStyle(AP.text2)
+            .frame(minWidth: 44, minHeight: 44, alignment: .leading)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(APPressableStyle())
+        .padding(.horizontal, Metrics.gutter)
     }
 }
 
@@ -249,16 +287,17 @@ struct PrimaryButton: View {
     var onGated: (() -> Void)? = nil
 
     var body: some View {
-        T(app.tr(label), .sans, 15, 600)
-            .apFont(.sans, 15, 600)
-            .foregroundStyle(enabled ? fg : AP.faint)
-            .lineLimit(1)
-            .frame(maxWidth: .infinity)
-            .frame(height: height)
-            .background(RoundedRectangle(cornerRadius: 14).fill(enabled ? fill : AP.disabled))
-            .contentShape(RoundedRectangle(cornerRadius: 14))
-            .onTapGesture { if enabled { action() } else { onGated?() } }
-            .accessibilityAddTraits(.isButton)
+        Button { if enabled { action() } else { onGated?() } } label: {
+            T(app.tr(label), .sans, 15, 600)
+                .apFont(.sans, 15, 600)
+                .foregroundStyle(enabled ? fg : AP.faint)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+                .frame(height: height)
+                .background(RoundedRectangle(cornerRadius: 14).fill(enabled ? fill : AP.disabled))
+                .contentShape(RoundedRectangle(cornerRadius: 14))
+        }
+        .buttonStyle(APPressableStyle())
     }
 }
 
@@ -270,15 +309,23 @@ struct Chip: View {
     var action: () -> Void
 
     var body: some View {
-        T(app.tr(label), .sans, 13, 400)
-            .apFont(.sans, 13)
-            .foregroundStyle(selected ? AP.ink : AP.text2)
-            .lineLimit(1)
-            .padding(.horizontal, 12).padding(.vertical, 8)
-            .background(RoundedRectangle(cornerRadius: 8).fill(selected ? AP.text : .clear))
-            .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(selected ? AP.text : AP.control, lineWidth: 1))
-            .contentShape(RoundedRectangle(cornerRadius: 8))
-            .onTapGesture(perform: action)
+        Button(action: action) {
+            T(app.tr(label), .sans, 13, 400)
+                .apFont(.sans, 13)
+                .foregroundStyle(selected ? AP.ink : AP.text2)
+                .lineLimit(1)
+                .padding(.horizontal, 12).padding(.vertical, 8)
+                .background(RoundedRectangle(cornerRadius: 8).fill(selected ? AP.text : .clear))
+                .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(selected ? AP.text : AP.control, lineWidth: 1))
+                .contentShape(RoundedRectangle(cornerRadius: 8))
+        }
+        .buttonStyle(APPressableStyle())
+    }
+}
+
+struct APPressableStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.opacity(configuration.isPressed ? 0.62 : 1)
     }
 }
 
