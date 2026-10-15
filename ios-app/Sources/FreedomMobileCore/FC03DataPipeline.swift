@@ -113,3 +113,70 @@ public actor FC03CaptureCoordinator {
         try store.save(await recorder.snapshot())
     }
 }
+
+/// Minimal byte transport required by the desk-capture runner. A concrete USB/serial
+/// adapter can be added later without changing capture storage or protocol safety.
+public protocol FC03ByteTransport: Sendable {
+    func open() async throws
+    func close() async
+    func exchange(_ request: Data) async throws -> Data
+}
+
+public enum FC03CaptureRunError: Error, LocalizedError, Sendable, Equatable {
+    case invalidSampleCount
+
+    public var errorDescription: String? {
+        switch self { case .invalidSampleCount: return "A read-only capture needs at least one sample." }
+    }
+}
+
+public struct FC03CaptureRunSummary: Codable, Equatable, Sendable {
+    public let requestedSamples: Int
+    public let capturedSamples: Int
+    public let validSamples: Int
+    public let invalidSamples: Int
+    public let persistedURL: URL
+
+    public init(requestedSamples: Int, capturedSamples: Int, validSamples: Int,
+                invalidSamples: Int, persistedURL: URL) {
+        self.requestedSamples = requestedSamples; self.capturedSamples = capturedSamples
+        self.validSamples = validSamples; self.invalidSamples = invalidSamples
+        self.persistedURL = persistedURL
+    }
+}
+
+/// Runs repeated read-only `?DAT` exchanges against a supplied byte transport.
+/// It deliberately has no generic command method: the runner can only issue the
+/// recovered read-only request and always persists the raw replies before analysis.
+public struct FC03ReadOnlyCaptureRunner: Sendable {
+    private let transport: any FC03ByteTransport
+
+    public init(transport: any FC03ByteTransport) { self.transport = transport }
+
+    public func capture(metadata: FC03CaptureMetadata, samples: Int,
+                        store: FC03CaptureFileStore = FC03CaptureFileStore()) async throws -> FC03CaptureRunSummary {
+        guard samples > 0 else { throw FC03CaptureRunError.invalidSampleCount }
+        let coordinator = FC03CaptureCoordinator(metadata: metadata, store: store)
+        try await transport.open()
+        var captured = 0
+        do {
+            for _ in 0..<samples {
+                let requestedAt = Date()
+                let response = try await transport.exchange(FC03ReadOnlyProtocol.makeDATRequest())
+                let receivedAt = Date()
+                _ = await coordinator.ingestDAT(response: response, requestedAt: requestedAt, receivedAt: receivedAt)
+                captured += 1
+            }
+            await transport.close()
+            let url = try await coordinator.finish()
+            let session = try store.loadLatest()
+            return .init(requestedSamples: samples, capturedSamples: captured,
+                         validSamples: session?.validExchangeCount ?? 0,
+                         invalidSamples: session?.invalidExchangeCount ?? captured,
+                         persistedURL: url)
+        } catch {
+            await transport.close()
+            throw error
+        }
+    }
+}

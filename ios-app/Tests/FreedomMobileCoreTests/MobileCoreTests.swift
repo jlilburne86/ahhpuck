@@ -223,9 +223,57 @@ final class MobileCoreTests: XCTestCase {
         XCTAssertEqual(loaded, result)
     }
 
+    func testReadOnlyCaptureRunnerSendsOnlyDATAndPersistsInvalidReplies() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let store = FC03CaptureFileStore(directory: directory)
+        let metadata = FC03CaptureMetadata(ecuLabel: "desk FC-03", ecuProfile: "unknown",
+                                            adapter: "test adapter", cableNotes: "bench")
+        let transport = FixedFC03Transport(response: Data(repeating: 0xAA, count: 2))
+        let summary = try await FC03ReadOnlyCaptureRunner(transport: transport)
+            .capture(metadata: metadata, samples: 3, store: store)
+        XCTAssertEqual(summary.requestedSamples, 3)
+        XCTAssertEqual(summary.capturedSamples, 3)
+        XCTAssertEqual(summary.invalidSamples, 3)
+        let requests = await transport.requests
+        let opened = await transport.opened
+        let closed = await transport.closed
+        XCTAssertEqual(requests, [FC03ReadOnlyProtocol.makeDATRequest(), FC03ReadOnlyProtocol.makeDATRequest(), FC03ReadOnlyProtocol.makeDATRequest()])
+        XCTAssertTrue(opened)
+        XCTAssertTrue(closed)
+    }
+
+    func testReadOnlyCaptureRunnerRejectsZeroSamples() async {
+        let transport = FixedFC03Transport(response: Data())
+        do {
+            _ = try await FC03ReadOnlyCaptureRunner(transport: transport).capture(
+                metadata: .init(ecuLabel: "desk", ecuProfile: "unknown", adapter: "test", cableNotes: "test"),
+                samples: 0)
+            XCTFail("zero samples must be rejected")
+        } catch let error as FC03CaptureRunError {
+            XCTAssertEqual(error, .invalidSampleCount)
+        } catch {
+            XCTFail("unexpected error: \(error)")
+        }
+    }
+
     private func demoFrames(lambda: [Double], start: Int = 0) -> [MobileTelemetryFrame] {
         lambda.enumerated().map { index, value in
             MobileTelemetryFrame(sequence: start + index, rpm: 3000 + Double(index * 100), loadKPa: 50, lambda: value, coolantC: 85, intakeAirC: 32, oilPressureKPa: 380, fuelPressureKPa: 300, batteryV: 13.8)
         }
+    }
+}
+
+private actor FixedFC03Transport: FC03ByteTransport {
+    let response: Data
+    private(set) var requests: [Data] = []
+    private(set) var opened = false
+    private(set) var closed = false
+
+    init(response: Data) { self.response = response }
+    func open() async throws { opened = true }
+    func close() async { closed = true }
+    func exchange(_ request: Data) async throws -> Data {
+        requests.append(request)
+        return response
     }
 }

@@ -18,6 +18,8 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - `FC03CaptureRecorder` retains raw request/reply bytes, timestamps, validation result, response length and evidence note.
 - `FC03CaptureCoordinator` provides the bench-facing read-only path and persists a `FC03CaptureSession` JSON file.
 - `FC03CaptureFileStore` stores sessions under Application Support and Runs/Review exports `fc03-capture.json`.
+- `FC03ReadOnlyCaptureRunner` repeats only the recovered `?DAT` request through an injected byte transport,
+  persists valid and invalid replies, closes the transport on success/error, and returns a capture summary.
 - `MobileRunRecord` stores baseline, candidate, repeat and observation runs with raw telemetry frames and vehicle/modification context.
 - `MobileBaselineSummary` calculates signal statistics, frame coverage, timestamp gaps, missing channels and a conservative quality score.
 - `MobileRunComparison` compares lambda error across baseline/candidate/repeat runs and only confirms improvement when the repeat is within tolerance.
@@ -44,7 +46,10 @@ cd /Users/boo2/ahhpuck-testflight
 swift test --package-path ios-app
 ```
 
-Current result: 19 core tests pass, including offline AI critical-stop behavior, identifier-only deep-link parsing, AI result persistence, baseline statistics, repeat confirmation, run-store round trips, ordered replay transport coverage and raw FC-03 capture persistence.
+Current result: 21 core tests pass, including the read-only capture runner's exact `?DAT` requests,
+invalid-reply retention and zero-sample rejection, plus offline AI critical-stop behavior, identifier-only
+deep-link parsing, AI result persistence, baseline statistics, repeat confirmation, run-store round trips,
+ordered replay transport coverage and raw FC-03 capture persistence.
 
 The unsigned Debug iOS app target also builds successfully with:
 
@@ -118,6 +123,7 @@ If App Store Connect reports a duplicate build, increment `CURRENT_PROJECT_VERSI
 - Protocol: `ios-app/Sources/FreedomMobileCore/FC03Protocol.swift`
 - Capture/persistence: `ios-app/Sources/FreedomMobileCore/FC03Capture.swift` and `FC03DataPipeline.swift`
 - Transport boundary: `ios-app/Sources/FreedomMobileCore/MobileModels.swift`
+- Desk capture runner: `ios-app/Sources/FreedomMobileCore/FC03DataPipeline.swift`
 - Shared state/performance: `ios-app/App/Model/AppModel.swift`
 - Connection UI: `ios-app/App/Screens/S04.swift`
 - Vehicle profile: `ios-app/App/Screens/S02.swift`
