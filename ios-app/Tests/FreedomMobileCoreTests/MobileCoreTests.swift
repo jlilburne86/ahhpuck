@@ -206,6 +206,7 @@ final class MobileCoreTests: XCTestCase {
         let baseline = UUID(), candidate = UUID(), repeatID = UUID()
         let url = URL(string: "ahhpuck://ai/assess?baseline=\(baseline.uuidString)&candidate=\(candidate.uuidString)&repeat=\(repeatID.uuidString)")!
         XCTAssertEqual(MobileDeepLink.parse(url), .assess(baseline: baseline, candidate: candidate, repeatID: repeatID))
+        XCTAssertEqual(MobileDeepLink.parse(MobileDeepLink.assess(baseline: baseline, candidate: candidate, repeatID: repeatID).url!), .assess(baseline: baseline, candidate: candidate, repeatID: repeatID))
         XCTAssertEqual(MobileDeepLink.parse(URL(string: "ahhpuck://runs/\(baseline.uuidString)")!), .run(baseline))
         XCTAssertNil(MobileDeepLink.parse(URL(string: "https://example.com/ai/assess")!))
         XCTAssertNil(MobileDeepLink.parse(URL(string: "ahhpuck://ai/assess?lambda=0.9")!))

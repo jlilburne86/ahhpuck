@@ -130,6 +130,19 @@ struct S30View: View {
                 metric("REPEAT Δ", comparison.repeatDelta.map { String(format: "%.3f", $0) } ?? "—")
                 metric("WRITE", "NEVER")
             }
+            HStack {
+                Spacer()
+                DT("EXPLAIN OFFLINE ↗", .mono, 10, 700).foregroundStyle(AP.ink)
+                    .padding(.vertical, 6).padding(.horizontal, 9)
+                    .background(RoundedRectangle(cornerRadius: 6).fill(AP.text))
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        app.refreshAIResult(baselineID: comparison.baselineID,
+                                            candidateID: comparison.candidateID,
+                                            repeatID: comparison.repeatID)
+                        app.router.go(.S26)
+                    }
+            }
         }
         .apCard()
     }

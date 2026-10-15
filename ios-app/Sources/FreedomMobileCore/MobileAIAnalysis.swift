@@ -199,6 +199,26 @@ public enum MobileDeepLink: Equatable, Sendable {
     case explain(run: UUID)
     case run(UUID)
 
+    public var url: URL? {
+        var components = URLComponents()
+        components.scheme = "ahhpuck"
+        switch self {
+        case let .assess(baseline, candidate, repeatID):
+            components.host = "ai"; components.path = "/assess"
+            components.queryItems = [
+                baseline.map { URLQueryItem(name: "baseline", value: $0.uuidString) },
+                candidate.map { URLQueryItem(name: "candidate", value: $0.uuidString) },
+                repeatID.map { URLQueryItem(name: "repeat", value: $0.uuidString) }
+            ].compactMap { $0 }
+        case let .explain(run):
+            components.host = "ai"; components.path = "/explain"
+            components.queryItems = [URLQueryItem(name: "run", value: run.uuidString)]
+        case let .run(id):
+            components.host = "runs"; components.path = "/\(id.uuidString)"
+        }
+        return components.url
+    }
+
     public static func parse(_ url: URL) -> MobileDeepLink? {
         guard url.scheme?.lowercased() == "ahhpuck" else { return nil }
         let host = url.host?.lowercased()
