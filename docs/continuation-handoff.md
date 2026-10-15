@@ -37,7 +37,7 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - ECU writes, map writes, raw command testing and autonomous tuning remain locked.
 - Heavy demo projections are cached and the demo ticker is 250 ms for better responsiveness.
 - App Store review fixes are complete: permission rows are honest and non-interactive, system-notification screens are marked as demo previews, in-app privacy/terms links are present, and the AppIcon asset is configured.
-- The iOS bundle is marketing version `1.2`, build `2`; `CFBundleVersion` is sourced from `CURRENT_PROJECT_VERSION` so the compiled bundle matches the upload build number.
+- The iOS bundle is marketing version `1.2`, build `3`, bundle ID `com.wheelhave.ahhpuck`; `CFBundleVersion` is sourced from `CURRENT_PROJECT_VERSION` so the compiled bundle matches the upload build number.
 - Deterministic offline AI explanations are implemented in `MobileAIAnalysis.swift`; they map
   existing assessment concerns to plain-language evidence explanations and next checks only.
 - AI results are persisted under `Application Support/AhhPuck/AIResults`, surfaced in the existing
@@ -105,7 +105,7 @@ xcrun altool --upload-app \
   --api-issuer "$ASC_ISSUER_ID"
 ```
 
-The next upload target is build `2`. If App Store Connect reports a duplicate build, increment
+The next upload target is build `3` (builds 1–2 were never uploaded). If App Store Connect reports a duplicate build, increment
 `CURRENT_PROJECT_VERSION` in the Xcode project before rebuilding; the plist now inherits that value.
 Do not change the marketing version without an explicit release decision.
 

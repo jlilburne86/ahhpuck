@@ -14,7 +14,7 @@ open ios-app/FreedomIOSApp.xcodeproj
 
 Pick the **AhhPuck** scheme and an iPhone simulator, then run. The iPhone 16e simulator is 390×844 pt, the same as the design frame, so it is the one to compare against.
 
-Launch arguments (Scheme → Run → Arguments, or `xcrun simctl launch <device> com.ahhpuck.freedom …`):
+Launch arguments (Scheme → Run → Arguments, or `xcrun simctl launch <device> com.wheelhave.ahhpuck …`):
 
 | Argument | Effect |
 |---|---|

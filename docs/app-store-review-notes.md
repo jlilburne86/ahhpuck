@@ -3,7 +3,7 @@
 ## Review build
 
 Marketing version: `1.2`
-Build: `2`
+Build: `3`
 
 AhhPuck is a native iOS read-only companion for collecting and reviewing evidence from unsupported standalone ECUs. This build does not write to an ECU, change a calibration, or authorize a tuning change.
 

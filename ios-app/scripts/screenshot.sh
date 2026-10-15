@@ -16,8 +16,8 @@ if (( build )); then
     -derivedDataPath "$dd" build 2>&1 | grep -E "error:|BUILD (SUCCEEDED|FAILED)" | head -30
   xcrun simctl install "$sim" "$dd/Build/Products/Debug-iphonesimulator/AhhPuck.app"
 fi
-xcrun simctl terminate "$sim" com.ahhpuck.freedom 2>/dev/null || true
-xcrun simctl launch "$sim" com.ahhpuck.freedom -screen "$screen" -demoClock "$@" >/dev/null
+xcrun simctl terminate "$sim" com.wheelhave.ahhpuck 2>/dev/null || true
+xcrun simctl launch "$sim" com.wheelhave.ahhpuck -screen "$screen" -demoClock "$@" >/dev/null
 sleep 3
 xcrun simctl io "$sim" screenshot "$out" >/dev/null 2>&1
 echo "$out"
