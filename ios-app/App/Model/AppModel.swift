@@ -141,7 +141,7 @@ final class AppModel {
             runsLoaded = true
             runImportError = nil
         } catch {
-            runImportError = "IMPORT FAILED · (error.localizedDescription)"
+            runImportError = "IMPORT FAILED · \(error.localizedDescription)"
         }
     }
 

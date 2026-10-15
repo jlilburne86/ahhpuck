@@ -30,6 +30,27 @@ final class MobileCoreTests: XCTestCase {
         }
     }
 
+    func testReplayTransportYieldsStoredFramesInOrderAndNeverWrites() async throws {
+        let frames = [
+            MobileTelemetryFrame(sequence: 10, rpm: 1200, loadKPa: 25, lambda: 1.02),
+            MobileTelemetryFrame(sequence: 11, rpm: 1800, loadKPa: 35, lambda: 0.99)
+        ]
+        let transport = MobileReplayTransport(frames: frames)
+        do {
+            _ = try await transport.readOnlyIdentity()
+            XCTFail("replay must require connect")
+        } catch let error as MobileTransportError {
+            XCTAssertEqual(error, .notConnected)
+        }
+        try await transport.connect()
+        let identity = try await transport.readOnlyIdentity()
+        XCTAssertEqual(identity, "LOCAL EVIDENCE REPLAY")
+        var received: [MobileTelemetryFrame] = []
+        for try await frame in transport.frames() { received.append(frame) }
+        XCTAssertEqual(received, frames)
+        await transport.disconnect()
+    }
+
     func testReadinessPausesOnMissingFuelPressureAndIgnitionReference() {
         var evidence = MobileReadinessEvidence()
         evidence.ecuIdentityVerified = true

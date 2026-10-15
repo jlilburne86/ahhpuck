@@ -17,10 +17,13 @@ struct S31View: View {
 
     var body: some View {
         PhoneScreen(tab: .runs, status: "OFFLINE", statusStyle: .dim) {
-            ScreenHeader(title: "Session 0412", subtitle: "13 OCT · EXP-04 · 8 FILES · LOCAL ONLY")
+            ScreenHeader(title: app.persistedRuns.isEmpty ? "Session 0412" : "Evidence export",
+                         subtitle: app.persistedRuns.isEmpty
+                            ? "13 OCT · EXP-04 · 8 FILES · LOCAL ONLY"
+                            : "\(app.persistedRuns.count) RUNS · REAL CAPTURES · LOCAL ONLY")
 
             VStack(spacing: 0) {
-                ForEach(S31View.files, id: \.n) { f in
+                ForEach(displayFiles, id: \.n) { f in
                     HStack(spacing: 8) {
                         DT(f.n, .mono, 12).frame(maxWidth: .infinity, alignment: .leading)
                         DT(f.h, .mono, 10).foregroundStyle(AP.label).frame(width: 70, alignment: .leading)
@@ -38,7 +41,7 @@ struct S31View: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 DT(app.tr("OPERATOR NOTES"), .mono, 10).foregroundStyle(AP.label)
-                DT(app.tr(S31View.notes), .sans, 13, lh: 1.45).foregroundStyle(AP.text2)
+                DT(app.tr(app.persistedRuns.isEmpty ? S31View.notes : "Raw frames and derived summaries stay on this device. Export is read-only; ECU writes are never included."), .sans, 13, lh: 1.45).foregroundStyle(AP.text2)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .apCard()
@@ -65,6 +68,18 @@ struct S31View: View {
         .sheet(item: $share) { item in
             DShareSheet(items: [item.url]).ignoresSafeArea()
         }
+    }
+
+    private var displayFiles: [(n: String, h: String, s: String)] {
+        guard !app.persistedRuns.isEmpty else { return S31View.files }
+        let runFiles = app.persistedRuns.map { run in
+            (n: "run-\(run.id.uuidString.prefix(8)).json",
+             h: "stored",
+             s: "\(run.frames.count) frames")
+        }
+        let hasAssessment = app.persistedComparison != nil
+        return runFiles + (hasAssessment ? [(n: "assessment.json", h: "derived", s: "read-only")] : [])
+            + [(n: "manifest.json", h: "derived", s: "read-only")]
     }
 
     /// Writes the session bundle to a temporary folder and zips it with the system archiver.

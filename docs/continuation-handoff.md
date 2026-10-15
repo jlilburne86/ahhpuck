@@ -22,6 +22,8 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - `MobileBaselineSummary` calculates signal statistics, frame coverage, timestamp gaps, missing channels and a conservative quality score.
 - `MobileRunComparison` compares lambda error across baseline/candidate/repeat runs and only confirms improvement when the repeat is within tolerance.
 - `MobileRunStore` persists run records locally with millisecond timestamp precision for later review and export.
+- `MobileReplayTransport` replays persisted decoded frames through the read-only transport contract for UI and assessment testing without claiming USB compatibility.
+- Runs/Review can import a run JSON file, shows real stored evidence when available, and exports run JSON, assessment and manifest files with `writeAuthorization: never`.
 - `FC03VerifiedTelemetryDecoder` refuses to decode until field offsets/scaling are verified.
 - ECU writes, map writes, raw command testing and autonomous tuning remain locked.
 - Heavy demo projections are cached and the demo ticker is 250 ms for better responsiveness.
@@ -33,7 +35,7 @@ cd /Users/boo2/ahhpuck-testflight
 swift test --package-path ios-app
 ```
 
-Current result: 13 core tests pass, including baseline statistics, repeat confirmation and run-store round trips.
+Current result: 14 core tests pass, including baseline statistics, repeat confirmation, run-store round trips and ordered replay transport coverage.
 
 The Release archive/export succeeds with:
 
@@ -51,7 +53,7 @@ xcodebuild -exportArchive \
   -allowProvisioningUpdates
 ```
 
-The latest export is `build/testflight-export/AhhPuck.ipa`, signed for App Store distribution with bundle ID `com.wheelhave.ahhpuck`, version `1.2 (1)`, `beta-reports-active = true` and `get-task-allow = false`.
+An earlier signed export was produced at `build/testflight-export/AhhPuck.ipa`; rebuild and sign again after any source change before TestFlight submission.
 
 ## TestFlight upload
 
