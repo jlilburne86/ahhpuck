@@ -28,16 +28,18 @@ struct ALangPill: View {
 
     private func opt(_ l: L10n.Language, _ label: String) -> some View {
         let s = ASel(app.lang == l)
-        return T(app.tr(label), .sans, 12, 600)
-            .apFont(.sans, 12, 600)
-            .foregroundStyle(s.fg)
-            .lineLimit(1)
-            .fixedSize()
-            .padding(.horizontal, 10)
-            .frame(height: 28)
-            .background(RoundedRectangle(cornerRadius: 6).fill(s.bg))
-            .contentShape(Rectangle())
-            .onTapGesture { app.lang = l }
+        return Button { app.lang = l } label: {
+            T(app.tr(label), .sans, 12, 600)
+                .apFont(.sans, 12, 600)
+                .foregroundStyle(s.fg)
+                .lineLimit(1)
+                .fixedSize()
+                .padding(.horizontal, 10)
+                .frame(height: 28)
+                .background(RoundedRectangle(cornerRadius: 6).fill(s.bg))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(APPressableStyle())
     }
 }
 
@@ -55,19 +57,20 @@ struct AButton: View {
     var action: () -> Void = {}
 
     var body: some View {
-        T(app.tr(label), .sans, size, weight)
-            .apFont(.sans, size, weight)
-            .foregroundStyle(fg)
-            .lineLimit(1)
-            .frame(maxWidth: .infinity)
-            .frame(height: height + (border == nil ? 0 : 2))
-            .background(RoundedRectangle(cornerRadius: radius).fill(bg))
-            .overlay {
-                if let border { RoundedRectangle(cornerRadius: radius).strokeBorder(border, lineWidth: 1) }
-            }
-            .contentShape(RoundedRectangle(cornerRadius: radius))
-            .onTapGesture(perform: action)
-            .accessibilityAddTraits(.isButton)
+        Button(action: action) {
+            T(app.tr(label), .sans, size, weight)
+                .apFont(.sans, size, weight)
+                .foregroundStyle(fg)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+                .frame(height: height + (border == nil ? 0 : 2))
+                .background(RoundedRectangle(cornerRadius: radius).fill(bg))
+                .overlay {
+                    if let border { RoundedRectangle(cornerRadius: radius).strokeBorder(border, lineWidth: 1) }
+                }
+                .contentShape(RoundedRectangle(cornerRadius: radius))
+        }
+        .buttonStyle(APPressableStyle())
     }
 }
 
@@ -132,16 +135,21 @@ struct AHeader<Trailing: View>: View {
     @ViewBuilder var trailing: () -> Trailing
 
     var body: some View {
-        HStack(alignment: .center, spacing: 8) {
-            VStack(alignment: .leading, spacing: 2) {
-                T(app.tr(title), .barlow, 24, 700).apFont(.barlow, 24, 700)
-                if let sub { T(sub, .mono, 11).apFont(.mono, 11).foregroundStyle(AP.label) }
+        VStack(alignment: .leading, spacing: 0) {
+            if app.router.onboarding ? !app.router.onboardingPath.isEmpty : (app.router.paths[app.router.tab]?.isEmpty == false) {
+                BackRow()
             }
-            Spacer(minLength: 0)
-            trailing()
+            HStack(alignment: .center, spacing: 8) {
+                VStack(alignment: .leading, spacing: 2) {
+                    T(app.tr(title), .barlow, 24, 700).apFont(.barlow, 24, 700)
+                    if let sub { T(sub, .mono, 11).apFont(.mono, 11).foregroundStyle(AP.label) }
+                }
+                Spacer(minLength: 0)
+                trailing()
+            }
+            .padding(.horizontal, Metrics.gutter)
+            .padding(.top, 10)
         }
-        .padding(.horizontal, Metrics.gutter)
-        .padding(.top, 10)
     }
 }
 
@@ -165,15 +173,17 @@ struct AStepPills: View {
     var body: some View {
         HStack(spacing: 4) {
             ForEach(Array(labels.enumerated()), id: \.offset) { i, l in
-                T(app.tr(l), .sans, 11, 600)
-                    .apFont(.sans, 11, 600)
-                    .lineLimit(1)
-                    .foregroundStyle(i == cur ? AP.ink : i < cur ? AP.text2 : AP.faint)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 7)
-                    .background(RoundedRectangle(cornerRadius: 6).fill(i == cur ? AP.text : i < cur ? AP.disabled : .clear))
-                    .contentShape(Rectangle())
-                    .onTapGesture { go(i) }
+                Button { go(i) } label: {
+                    T(app.tr(l), .sans, 11, 600)
+                        .apFont(.sans, 11, 600)
+                        .lineLimit(1)
+                        .foregroundStyle(i == cur ? AP.ink : i < cur ? AP.text2 : AP.faint)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 7)
+                        .background(RoundedRectangle(cornerRadius: 6).fill(i == cur ? AP.text : i < cur ? AP.disabled : .clear))
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(APPressableStyle())
             }
         }
     }

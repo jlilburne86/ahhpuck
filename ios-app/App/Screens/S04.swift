@@ -16,7 +16,9 @@ struct S04View: View {
 
     var body: some View {
         let s = app.conn, t = app.t
-        let cst = ["Cable detected", "Port open · 9600 7E1", "Bytes arriving", "Frames valid", "ECU identified"]
+        let cst = app.hardwareTransportAvailable
+            ? ["Cable detected", "Port open · 9600 7E1", "Bytes arriving", "Frames valid", "ECU identified"]
+            : ["Replay mode", "Protocol profile loaded · 9600 7E1", "Demo bytes only", "Decoder locked", "ECU not connected"]
         let bytes = s >= 3 ? Self.rawBytes(t) : "— waiting for bytes —"
         let stats: [(String, String)] = [
             ("FRAMES", s >= 4 ? app.base.frames : "0"),
@@ -26,14 +28,14 @@ struct S04View: View {
         ]
 
         PhoneScreen(tab: .live) {
-            AHeader(title: "Connection", sub: app.tr(s >= 5 ? "CONNECTED · IDENTITY INFERRED" : "CONNECTING…"))
+            AHeader(title: "Connection", sub: app.tr(app.hardwareTransportAvailable && s >= 5 ? "CONNECTED · IDENTITY INFERRED" : "SIMULATED · NO ECU CONNECTED"))
 
             VStack(spacing: 2) {
                 ForEach(Array(cst.enumerated()), id: \.offset) { i, l in
                     MDotRow(label: l,
                             dot: i < s ? AP.green : i == s ? AP.text : AP.disabled,
                             fg: i <= s ? AP.text : AP.faint,
-                            state: i < s ? "OK" : i == s ? "…" : "")
+                    state: app.hardwareTransportAvailable ? (i < s ? "OK" : i == s ? "…" : "") : (i < s ? "REPLAY" : "LOCKED"))
                 }
             }
             .block()
@@ -55,10 +57,10 @@ struct S04View: View {
                 HStack {
                     M("ECU IDENTITY", .mono, 10, color: AP.label)
                     Spacer()
-                    M(s >= 5 ? "INFERRED" : "UNKNOWN", .mono, 10, color: s >= 5 ? AP.text3 : AP.label)
+                    M(app.hardwareTransportAvailable && s >= 5 ? "INFERRED" : "DEMO ONLY", .mono, 10, color: AP.label)
                 }
-                M("FC-03 · Ab-1EU · Z-J01030", .sans, 14, translate: false)
-                M("Group injection · direct ignition (from unit label)", .sans, 12, color: AP.label)
+                M(app.hardwareTransportAvailable ? "FC-03 · Ab-1EU · Z-J01030" : "FC-03 profile · ECU not connected", .sans, 14, translate: false)
+                M(app.hardwareTransportAvailable ? "Group injection · direct ignition (from unit label)" : "Profile values are not live identity evidence.", .sans, 12, color: AP.label)
             }
             .apCard()
             .block()
@@ -77,7 +79,7 @@ struct S04View: View {
             .block()
 
             VStack(alignment: .leading, spacing: 8) {
-                M("RAW BYTES · 9600 7E1", .mono, 10, color: AP.label)
+                M(app.hardwareTransportAvailable ? "RAW BYTES · 9600 7E1" : "SIMULATED BYTES · NOT ECU DATA", .mono, 10, color: AP.label)
                 M(bytes, .mono, 11, color: AP.text3, lineHeight: 1.6)
             }
             .apCard()
@@ -88,7 +90,9 @@ struct S04View: View {
                 // Not in the design: the first-run flow needs a way on to S02 once the ECU is identified.
                 MButton(label: "Continue", bottom: 8) { app.router.nextInFirstRun(after: .S04) }
             }
+            #if DEBUG
             MButton(label: "Simulate unplug", bg: .clear, fg: AP.text2) { app.conn = 0 }
+            #endif
         }
     }
 }

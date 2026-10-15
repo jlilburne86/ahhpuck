@@ -7,7 +7,17 @@ struct S22View: View {
     var body: some View {
         let b = app.base, d = b.dec
         PhoneScreen(tab: .review) {
-            AHeader(title: "Review", sub: app.tr("DETERMINISTIC GATE · AI EXPLAINS ONLY"))
+            AHeader(title: "Review", sub: app.persistedComparison == nil
+                ? app.tr("DETERMINISTIC GATE · AI EXPLAINS ONLY")
+                : app.tr("REAL EVIDENCE · READ-ONLY · AI EXPLAINS ONLY"))
+
+            if let comparison = app.persistedComparison {
+                evidenceAssessment(comparison)
+                    .block(top: 12)
+                M("POLICY PREVIEW · NOT A LIVE DECISION", .mono, 10, 600, color: AP.label)
+                    .apTracking(0.05, size: 10)
+                    .block(top: 12)
+            }
 
             HStack(spacing: 4) {
                 ForEach(Array(b.decisions.enumerated()), id: \.offset) { i, x in
@@ -87,5 +97,54 @@ struct S22View: View {
             .block(top: 12)
             Spacer(minLength: 0)
         }
+    }
+
+    private func evidenceAssessment(_ comparison: MobileRunComparison) -> some View {
+        let baseline = app.persistedRuns.first { $0.id == comparison.baselineID }
+        let candidate = app.persistedRuns.first { $0.id == comparison.candidateID }
+        let repeatRun = comparison.repeatID.flatMap { id in app.persistedRuns.first { $0.id == id } }
+        let baselineSummary = baseline.map { MobileBaselineSummary(run: $0) }
+        let candidateSummary = candidate.map { MobileBaselineSummary(run: $0) }
+        let status: (String, Color) = {
+            switch comparison.decision {
+            case .improvementConfirmed: return ("REPEAT CONFIRMED", AP.green)
+            case .repeatRequired: return ("REPEAT REQUIRED", AP.amber)
+            case .regression: return ("REGRESSION", AP.red)
+            case .insufficientData: return ("INSUFFICIENT DATA", AP.label)
+            }
+        }()
+
+        return VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .firstTextBaseline) {
+                M("CAPTURED RUN ASSESSMENT", .mono, 10, 600, color: AP.label)
+                Spacer()
+                M(status.0, .mono, 10, 700, color: status.1)
+            }
+            M("No ECU write decision is produced.", .barlow, 24, 700)
+            M("The comparison is derived only from persisted decoded frames. Unknown FC-03 bytes remain excluded.", .sans, 12, color: AP.text2, lineHeight: 1.35)
+
+            HStack(spacing: 6) {
+                evidenceMetric("BASE", baselineSummary.map { "\($0.frameCount)" } ?? "—")
+                evidenceMetric("CAND", candidateSummary.map { "\($0.frameCount)" } ?? "—")
+                evidenceMetric("REPEAT", repeatRun.map { "\($0.frames.count)" } ?? "—")
+                evidenceMetric("ERROR Δ", comparison.repeatDelta.map { String(format: "%.3f", $0) } ?? "—")
+            }
+
+            if let baselineSummary, let candidateSummary {
+                M("QUALITY · BASELINE \(baselineSummary.qualityScore)% · CANDIDATE \(candidateSummary.qualityScore)%", .mono, 10, color: AP.text3)
+            }
+        }
+        .foregroundStyle(AP.ink)
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(RoundedRectangle(cornerRadius: 14).fill(AP.raised))
+    }
+
+    private func evidenceMetric(_ label: String, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            M(value, .barlow, 18, 700)
+            M(label, .mono, 8, color: AP.label)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

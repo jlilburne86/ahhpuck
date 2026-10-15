@@ -42,6 +42,7 @@ struct RootView: View {
             }
         }
         .background(AP.screen)
+        .onOpenURL { url in app.handle(deepLink: url) }
         .fullScreenCover(item: $router.modal) { ScreenView(id: $0).environment(app) }
         .sheet(item: $router.sheet) { id in
             ScreenView(id: id)

@@ -54,17 +54,18 @@ struct MButton: View {
     var action: () -> Void = {}
 
     var body: some View {
-        T(app.tr(label), .sans, 15, 600)
-            .apFont(.sans, 15, 600)
-            .foregroundStyle(fg)
-            .lineLimit(1)
-            .frame(maxWidth: .infinity)
-            .frame(height: 52)
-            .background(RoundedRectangle(cornerRadius: 14).fill(bg))
-            .overlay { if let border { RoundedRectangle(cornerRadius: 14).strokeBorder(border, lineWidth: 1) } }
-            .contentShape(RoundedRectangle(cornerRadius: 14))
-            .onTapGesture(perform: action)
-            .accessibilityAddTraits(.isButton)
+        Button(action: action) {
+            T(app.tr(label), .sans, 15, 600)
+                .apFont(.sans, 15, 600)
+                .foregroundStyle(fg)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+                .frame(height: 52)
+                .background(RoundedRectangle(cornerRadius: 14).fill(bg))
+                .overlay { if let border { RoundedRectangle(cornerRadius: 14).strokeBorder(border, lineWidth: 1) } }
+                .contentShape(RoundedRectangle(cornerRadius: 14))
+        }
+        .buttonStyle(APPressableStyle())
             .padding(.horizontal, Metrics.gutter)
             .padding(.bottom, bottom)
     }
@@ -106,14 +107,16 @@ struct MChip: View {
     var center = false
     var action: () -> Void
     var body: some View {
-        T(app.tr(label), .sans, size).apFont(.sans, size)
-            .foregroundStyle(on ? AP.ink : AP.text2)
-            .lineLimit(1).fixedSize(horizontal: !center, vertical: false)
-            .padding(.vertical, v + 1).padding(.horizontal, h + 1)
-            .frame(maxWidth: center ? .infinity : nil)
-            .background(RoundedRectangle(cornerRadius: 8).fill(on ? AP.text : .clear))
-            .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(on ? AP.text : AP.control, lineWidth: 1))
-            .contentShape(Rectangle())
-            .onTapGesture(perform: action)
+        Button(action: action) {
+            T(app.tr(label), .sans, size).apFont(.sans, size)
+                .foregroundStyle(on ? AP.ink : AP.text2)
+                .lineLimit(1).fixedSize(horizontal: !center, vertical: false)
+                .padding(.vertical, v + 1).padding(.horizontal, h + 1)
+                .frame(maxWidth: center ? .infinity : nil)
+                .background(RoundedRectangle(cornerRadius: 8).fill(on ? AP.text : .clear))
+                .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(on ? AP.text : AP.control, lineWidth: 1))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(APPressableStyle())
     }
 }

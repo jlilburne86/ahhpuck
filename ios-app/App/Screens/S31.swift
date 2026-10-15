@@ -17,10 +17,13 @@ struct S31View: View {
 
     var body: some View {
         PhoneScreen(tab: .runs, status: "OFFLINE", statusStyle: .dim) {
-            ScreenHeader(title: "Session 0412", subtitle: "13 OCT · EXP-04 · 8 FILES · LOCAL ONLY")
+            ScreenHeader(title: app.selectedRunID.flatMap { id in app.persistedRuns.first { $0.id == id } }?.title ?? (app.persistedRuns.isEmpty && app.latestCapture == nil ? "Session 0412" : "Evidence export"),
+                         subtitle: app.persistedRuns.isEmpty && app.latestCapture == nil
+                            ? "13 OCT · EXP-04 · 8 FILES · LOCAL ONLY"
+                            : "\(app.persistedRuns.count) RUNS · \(app.latestCapture == nil ? 0 : 1) RAW SESSION · LOCAL ONLY")
 
             VStack(spacing: 0) {
-                ForEach(S31View.files, id: \.n) { f in
+                ForEach(displayFiles, id: \.n) { f in
                     HStack(spacing: 8) {
                         DT(f.n, .mono, 12).frame(maxWidth: .infinity, alignment: .leading)
                         DT(f.h, .mono, 10).foregroundStyle(AP.label).frame(width: 70, alignment: .leading)
@@ -38,7 +41,7 @@ struct S31View: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 DT(app.tr("OPERATOR NOTES"), .mono, 10).foregroundStyle(AP.label)
-                DT(app.tr(S31View.notes), .sans, 13, lh: 1.45).foregroundStyle(AP.text2)
+                DT(app.tr(app.persistedRuns.isEmpty ? S31View.notes : "Raw frames and derived summaries stay on this device. Export is read-only; ECU writes are never included."), .sans, 13, lh: 1.45).foregroundStyle(AP.text2)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .apCard()
@@ -67,10 +70,24 @@ struct S31View: View {
         }
     }
 
+    private var displayFiles: [(n: String, h: String, s: String)] {
+        guard !app.persistedRuns.isEmpty else { return S31View.files }
+        let runFiles = app.persistedRuns.map { run in
+            (n: "run-\(run.id.uuidString.prefix(8)).json",
+             h: "stored",
+             s: "\(run.frames.count) frames")
+        }
+        let hasAssessment = app.persistedComparison != nil
+        let rawFiles = app.latestCapture == nil ? [] : [(n: "fc03-capture.json", h: "raw", s: "retained")]
+        let aiFiles = app.aiResult == nil ? [] : [(n: "ai-assessment.json", h: "derived", s: "offline")]
+        return runFiles + rawFiles + (hasAssessment ? [(n: "assessment.json", h: "derived", s: "read-only")] : []) + aiFiles
+            + [(n: "manifest.json", h: "derived", s: "read-only")]
+    }
+
     /// Writes the session bundle to a temporary folder and zips it with the system archiver.
     private func export() {
         do {
-            let url = try S31View.makeBundle()
+            let url = try S31View.makeBundle(runs: app.persistedRuns, capture: app.latestCapture, aiResult: app.aiResult)
             exportError = nil
             app.exported = true
             share = DShareItem(url: url)
@@ -81,14 +98,45 @@ struct S31View: View {
         }
     }
 
-    static func makeBundle() throws -> URL {
+    static func makeBundle(runs: [MobileRunRecord] = [], capture: FC03CaptureSession? = nil,
+                           aiResult: MobileAIResult? = nil) throws -> URL {
         let fm = FileManager.default
         let root = fm.temporaryDirectory.appendingPathComponent("export-\(UUID().uuidString)")
         let dir = root.appendingPathComponent("session-0412")
         try fm.createDirectory(at: dir, withIntermediateDirectories: true)
-        for f in files {
-            let body = f.n == "operator-notes.md" ? notes + "\n" : "\(f.n) · \(f.h) · demo placeholder (\(f.s))\n"
-            try Data(body.utf8).write(to: dir.appendingPathComponent(f.n))
+        if runs.isEmpty && capture == nil {
+            for f in files {
+                let body = f.n == "operator-notes.md" ? notes + "\n" : "\(f.n) · \(f.h) · demo placeholder (\(f.s))\n"
+                try Data(body.utf8).write(to: dir.appendingPathComponent(f.n))
+            }
+        } else {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .millisecondsSince1970
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            for run in runs {
+                let data = try encoder.encode(run)
+                try data.write(to: dir.appendingPathComponent("run-\(run.id.uuidString).json"), options: .atomic)
+            }
+            if let capture {
+                try capture.jsonData().write(to: dir.appendingPathComponent("fc03-capture.json"), options: .atomic)
+            }
+            if let baseline = runs.first(where: { $0.kind == .baseline }),
+               let candidate = runs.first(where: { $0.kind == .candidate }) {
+                let repeatRun = runs.first(where: { $0.kind == .repeatRun })
+                let assessment = MobileRunComparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun)
+                try encoder.encode(assessment).write(to: dir.appendingPathComponent("assessment.json"), options: .atomic)
+            }
+            if let aiResult {
+                try encoder.encode(aiResult).write(to: dir.appendingPathComponent("ai-assessment.json"), options: .atomic)
+            }
+            let manifest = [
+                "runCount": String(runs.count),
+                "exportedAt": ISO8601DateFormatter().string(from: Date()),
+                "writeAuthorization": "never",
+                "source": "AhhPuck local evidence workspace",
+                "analysisMode": aiResult?.mode ?? "not_generated"
+            ]
+            try encoder.encode(manifest).write(to: dir.appendingPathComponent("manifest.json"), options: .atomic)
         }
         // NSFileCoordinator's .forUploading read of a directory yields a zip archive of it.
         var zipped: URL?

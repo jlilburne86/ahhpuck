@@ -22,6 +22,20 @@ struct S26View: View {
         PhoneScreen(tab: .review, status: "OFFLINE", statusStyle: .dim) {
             ScreenHeader(title: "Analyst", subtitle: "ON-DEVICE · EXPLAINS, NEVER DECIDES")
 
+            if let result = app.aiResult {
+                localAssessment(result)
+                    .block(top: 12)
+            } else if app.runsLoaded {
+                VStack(alignment: .leading, spacing: 8) {
+                    DT("LOCAL EVIDENCE EXPLANATION", .mono, 10).foregroundStyle(AP.label)
+                    DT("Generate a deterministic explanation from the persisted runs. No cloud account or API key is required.", .sans, 13, lh: 1.35)
+                        .foregroundStyle(AP.text2)
+                    PrimaryButton(label: "Explain evidence", height: 42) { app.refreshAIResult() }
+                }
+                .apCard()
+                .block(top: 12)
+            }
+
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     DT(app.tr("GATE DECISION"), .mono, 10).foregroundStyle(AP.label)
@@ -74,5 +88,38 @@ struct S26View: View {
 
             Spacer(minLength: 0)
         }
+    }
+
+    private func localAssessment(_ result: MobileAIResult) -> some View {
+        VStack(alignment: .leading, spacing: 9) {
+            HStack(alignment: .firstTextBaseline) {
+                DT("LOCAL ASSESSMENT", .mono, 10).foregroundStyle(AP.label)
+                Spacer()
+                DT(result.mode.replacingOccurrences(of: "_", with: " ").uppercased(), .mono, 9, 600)
+                    .foregroundStyle(AP.green)
+            }
+            DT(result.summary, .barlow, 22, 700, lh: 1.05)
+            DT("CONFIDENCE \(Int((result.confidence * 100).rounded()))% · \(result.sourceRunIDs.count) SOURCE RUNS", .mono, 9)
+                .foregroundStyle(AP.text3)
+            ForEach(result.findings.prefix(3)) { finding in
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack(spacing: 6) {
+                        DT(finding.severity.rawValue.uppercased(), .mono, 9, 700)
+                            .foregroundStyle(finding.severity == .critical ? AP.red : finding.severity == .warning ? AP.amber : AP.green)
+                        DT(finding.title, .sans, 13, 600)
+                    }
+                    DT(finding.explanation, .sans, 12, lh: 1.3).foregroundStyle(AP.text2)
+                    DT("NEXT · \(finding.nextCheck)", .mono, 9).foregroundStyle(AP.label)
+                }
+                .padding(.top, 3)
+            }
+            DT("NEXT ACTION · \(result.nextAction)", .sans, 12, 600, lh: 1.3).foregroundStyle(AP.ink)
+            HStack {
+                DT("WRITE AUTHORIZATION", .mono, 9).foregroundStyle(AP.label)
+                Spacer()
+                DT(result.writeAuthorization.uppercased(), .mono, 10, 700).foregroundStyle(AP.green)
+            }
+        }
+        .apCard()
     }
 }

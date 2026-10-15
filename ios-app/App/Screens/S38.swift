@@ -32,6 +32,7 @@ struct S38View: View {
 
     var body: some View {
         let sx = src[app.srcSel]
+        let ecuAvailable = app.hardwareTransportAvailable
         PhoneScreen(tab: .garage, scrolls: false) {
             AHeader(title: "Data sources", sub: app.tr("ECU FIRST · PHONE ADDS · ADD-ONS FILL GAPS"))
 
@@ -48,7 +49,8 @@ struct S38View: View {
                                 M(x.meta, .mono, 10, color: AP.label)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            M(x.st, .mono, 10, 600, color: x.sc).lineLimit(1).fixedSize()
+                            let status = x.kind == "ECU" || x.n == "Oil pressure" ? (ecuAvailable ? x.st : "DEMO ONLY") : x.st
+                            M(status, .mono, 10, 600, color: x.kind == "ECU" || x.n == "Oil pressure" ? (ecuAvailable ? x.sc : AP.amber) : x.sc).lineLimit(1).fixedSize()
                         }
                         .padding(.vertical, 7).padding(.horizontal, 12)
                         .background(i == app.srcSel ? AP.selectedRow : .clear)

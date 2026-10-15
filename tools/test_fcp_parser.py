@@ -5,10 +5,10 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fcp_parser import parse_fcp
+from evidence_paths import evidence_root
 
 
-ROOT = Path(__file__).resolve().parents[1]
-SAMPLE = ROOT / "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP"
+SAMPLE = evidence_root() / "extracted/base_maps/BASE MAPS - FC OE DATA/AE86-A.FCP"
 
 
 class FcpParserTest(unittest.TestCase):
