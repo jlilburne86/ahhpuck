@@ -70,7 +70,7 @@ struct S31View: View {
     /// Writes the session bundle to a temporary folder and zips it with the system archiver.
     private func export() {
         do {
-            let url = try S31View.makeBundle()
+            let url = try S31View.makeBundle(runs: app.persistedRuns)
             exportError = nil
             app.exported = true
             share = DShareItem(url: url)
@@ -81,14 +81,37 @@ struct S31View: View {
         }
     }
 
-    static func makeBundle() throws -> URL {
+    static func makeBundle(runs: [MobileRunRecord] = []) throws -> URL {
         let fm = FileManager.default
         let root = fm.temporaryDirectory.appendingPathComponent("export-\(UUID().uuidString)")
         let dir = root.appendingPathComponent("session-0412")
         try fm.createDirectory(at: dir, withIntermediateDirectories: true)
-        for f in files {
-            let body = f.n == "operator-notes.md" ? notes + "\n" : "\(f.n) · \(f.h) · demo placeholder (\(f.s))\n"
-            try Data(body.utf8).write(to: dir.appendingPathComponent(f.n))
+        if runs.isEmpty {
+            for f in files {
+                let body = f.n == "operator-notes.md" ? notes + "\n" : "\(f.n) · \(f.h) · demo placeholder (\(f.s))\n"
+                try Data(body.utf8).write(to: dir.appendingPathComponent(f.n))
+            }
+        } else {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .millisecondsSince1970
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            for run in runs {
+                let data = try encoder.encode(run)
+                try data.write(to: dir.appendingPathComponent("run-\(run.id.uuidString).json"), options: .atomic)
+            }
+            if let baseline = runs.first(where: { $0.kind == .baseline }),
+               let candidate = runs.first(where: { $0.kind == .candidate }) {
+                let repeatRun = runs.first(where: { $0.kind == .repeatRun })
+                let assessment = MobileRunComparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun)
+                try encoder.encode(assessment).write(to: dir.appendingPathComponent("assessment.json"), options: .atomic)
+            }
+            let manifest = [
+                "runCount": String(runs.count),
+                "exportedAt": ISO8601DateFormatter().string(from: Date()),
+                "writeAuthorization": "never",
+                "source": "AhhPuck local evidence workspace"
+            ]
+            try encoder.encode(manifest).write(to: dir.appendingPathComponent("manifest.json"), options: .atomic)
         }
         // NSFileCoordinator's .forUploading read of a directory yields a zip archive of it.
         var zipped: URL?
