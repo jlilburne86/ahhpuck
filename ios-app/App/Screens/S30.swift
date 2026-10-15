@@ -106,6 +106,14 @@ struct S30View: View {
                 .foregroundStyle(AP.text2)
             DT("\(capture.metadata.ecuLabel) · \(capture.metadata.serialProfile.baudRate) \(capture.metadata.serialProfile.dataBits)E\(capture.metadata.serialProfile.stopBits) · writes never", .mono, 10)
                 .foregroundStyle(AP.text3)
+            HStack(spacing: 8) {
+                DT(capture.isSafeForReplay ? "REPLAYABLE" : "REPLAY BLOCKED", .mono, 9, 700)
+                    .foregroundStyle(capture.isSafeForReplay ? AP.green : AP.red)
+                if !capture.validationIssues.isEmpty {
+                    DT(capture.validationIssues.joined(separator: " · ").uppercased(), .mono, 9)
+                        .foregroundStyle(AP.amber)
+                }
+            }
         }
         .apCard()
     }

@@ -24,6 +24,8 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
   every request except `?DAT`, never claims USB connectivity, and resets its cursor on each open.
 - Raw sessions expose `validationIssues` and `isSafeForReplay`; unexpected requests are retained for audit but
   cannot be replayed as if they were safe evidence.
+- The Connection screen explicitly labels the current transport as simulated until a verified concrete adapter
+  is installed; demo bytes and inferred identity are no longer presented as a live ECU connection.
 - `MobileRunRecord` stores baseline, candidate, repeat and observation runs with raw telemetry frames and vehicle/modification context.
 - `MobileBaselineSummary` calculates signal statistics, frame coverage, timestamp gaps, missing channels and a conservative quality score.
 - `MobileRunComparison` compares lambda error across baseline/candidate/repeat runs and only confirms improvement when the repeat is within tolerance.

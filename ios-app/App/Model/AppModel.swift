@@ -29,6 +29,9 @@ final class AppModel {
     var prof: [String: String] = ["chassis": "AE86", "engine": "4A-GE 20V Blacktop", "ecu": "FC-03 Ab-1EU", "load": "Unknown", "inj": "Group", "ign": "Direct", "obj": "Drivability"]
     var cal = 1
     var conn = 5
+    /// The concrete USB/serial adapter is intentionally unavailable until the cable
+    /// and electrical levels are verified. All current connection visuals are replay/demo only.
+    let hardwareTransportAvailable = false
     var pf: [String: Bool] = ["fuel": true, "tyres": false, "route": false, "observer": false]
     var rType = "Candidate"
     var rec = true
