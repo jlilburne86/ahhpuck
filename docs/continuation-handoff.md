@@ -24,6 +24,7 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - `MobileRunStore` persists run records locally with millisecond timestamp precision for later review and export.
 - `MobileReplayTransport` replays persisted decoded frames through the read-only transport contract for UI and assessment testing without claiming USB compatibility.
 - Runs/Review can import a run JSON file, shows real stored evidence when available, and exports run JSON, assessment and manifest files with `writeAuthorization: never`.
+- Runs/Review can also import a raw `FC03CaptureSession` JSON from the desktop/bench workflow; the session remains byte-for-byte raw and exports as `fc03-capture.json`.
 - `FC03VerifiedTelemetryDecoder` refuses to decode until field offsets/scaling are verified.
 - ECU writes, map writes, raw command testing and autonomous tuning remain locked.
 - Heavy demo projections are cached and the demo ticker is 250 ms for better responsiveness.

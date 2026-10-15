@@ -88,6 +88,7 @@ final class AppModel {
     var runImportError: String?
     var latestCapture: FC03CaptureSession?
     var captureLoaded = false
+    var captureImportError: String?
 
     var persistedComparison: MobileRunComparison? {
         guard let baseline = persistedRuns.first(where: { $0.kind == .baseline }),
@@ -156,6 +157,24 @@ final class AppModel {
             runImportError = nil
         } catch {
             runImportError = "IMPORT FAILED · \(error.localizedDescription)"
+        }
+    }
+
+    func importCapture(from url: URL) async {
+        let accessed = url.startAccessingSecurityScopedResource()
+        defer { if accessed { url.stopAccessingSecurityScopedResource() } }
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let session = try decoder.decode(FC03CaptureSession.self, from: data)
+            guard !session.exchanges.isEmpty else { throw CocoaError(.fileReadCorruptFile) }
+            _ = try captureStore.save(session)
+            latestCapture = session
+            captureLoaded = true
+            captureImportError = nil
+        } catch {
+            captureImportError = "CAPTURE IMPORT FAILED · \(error.localizedDescription)"
         }
     }
 

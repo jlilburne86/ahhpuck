@@ -6,6 +6,7 @@ import UniformTypeIdentifiers
 struct S30View: View {
     @Environment(AppModel.self) private var app
     @State private var importPresented = false
+    @State private var captureImportPresented = false
 
     struct Exp { let id, title, dec, date, res, h: String }
     static let exps: [Exp] = [
@@ -28,8 +29,20 @@ struct S30View: View {
             }
             .block(top: 10)
 
+            PrimaryButton(label: "Import FC-03 raw session", fill: AP.raised, fg: AP.text, height: 42) {
+                captureImportPresented = true
+            }
+            .block(top: 6)
+
             if let runImportError = app.runImportError {
                 DT(runImportError, .mono, 10).foregroundStyle(AP.red).block(top: 6)
+            }
+            if let captureImportError = app.captureImportError {
+                DT(captureImportError, .mono, 10).foregroundStyle(AP.red).block(top: 6)
+            }
+
+            if let capture = app.latestCapture {
+                rawCaptureSummary(capture).block(top: 12)
             }
 
             if let comparison = app.persistedComparison {
@@ -60,6 +73,10 @@ struct S30View: View {
             guard case .success(let urls) = result, let url = urls.first else { return }
             Task { await app.importRun(from: url) }
         }
+        .fileImporter(isPresented: $captureImportPresented, allowedContentTypes: [.json], allowsMultipleSelection: false) { result in
+            guard case .success(let urls) = result, let url = urls.first else { return }
+            Task { await app.importCapture(from: url) }
+        }
     }
 
     private var emptyEvidenceCard: some View {
@@ -73,6 +90,22 @@ struct S30View: View {
                     .background(RoundedRectangle(cornerRadius: 4).fill(AP.green))
                 DT("NO ECU WRITES", .mono, 10).foregroundStyle(AP.label)
             }
+        }
+        .apCard()
+    }
+
+    private func rawCaptureSummary(_ capture: FC03CaptureSession) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                DT("FC-03 RAW SESSION", .mono, 10).foregroundStyle(AP.label)
+                Spacer()
+                DT(capture.validExchangeCount == capture.exchanges.count ? "SHAPE VALID" : "REVIEW NEEDED", .mono, 10, 600)
+                    .foregroundStyle(capture.validExchangeCount == capture.exchanges.count ? AP.green : AP.amber)
+            }
+            DT("\(capture.exchanges.count) exchanges · \(capture.validExchangeCount) valid · \(capture.invalidExchangeCount) retained invalid", .sans, 13)
+                .foregroundStyle(AP.text2)
+            DT("\(capture.metadata.ecuLabel) · \(capture.metadata.serialProfile.baudRate) \(capture.metadata.serialProfile.dataBits)E\(capture.metadata.serialProfile.stopBits) · writes never", .mono, 10)
+                .foregroundStyle(AP.text3)
         }
         .apCard()
     }
