@@ -78,6 +78,20 @@ final class AppModel {
     // MARK: navigation
     let router = Router()
 
+    // MARK: evidence workspace
+    /// Local run records are loaded once at launch. The prototype ledger remains
+    /// available when the device has no captured runs yet.
+    let runStore = MobileRunStore()
+    var persistedRuns: [MobileRunRecord] = []
+    var runsLoaded = false
+
+    var persistedComparison: MobileRunComparison? {
+        guard let baseline = persistedRuns.first(where: { $0.kind == .baseline }),
+              let candidate = persistedRuns.first(where: { $0.kind == .candidate }) else { return nil }
+        let repeatRun = persistedRuns.first(where: { $0.kind == .repeatRun })
+        return MobileRunComparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun)
+    }
+
     // MARK: ticker
     private var timer: Timer?
     private func startTicker() {
@@ -98,6 +112,17 @@ final class AppModel {
         if args.contains("-afr") { units = .afr }
         if args.contains("-tuner") { tuner = true }
         if args.contains("-live") { live = true; startTicker() }
+        loadPersistedRuns()
+    }
+
+    private func loadPersistedRuns() {
+        let store = runStore
+        Task { [weak self] in
+            let runs = (try? await store.loadAll()) ?? []
+            guard let self else { return }
+            self.persistedRuns = runs
+            self.runsLoaded = true
+        }
     }
 
     // MARK: shared demo values (port of the prototype's `baseVals()`)
