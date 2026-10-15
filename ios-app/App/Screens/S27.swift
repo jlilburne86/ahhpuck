@@ -8,17 +8,21 @@ struct S27View: View {
 
     var body: some View {
         PhoneScreen(tab: .review, status: "OFFLINE", statusStyle: .dim) {
-            ScreenHeader(title: "Gains", subtitle: "DRIVABILITY · GOAL ≤ 1.5% AVG ERROR")
-            DEased { ease in
-                VStack(spacing: 0) {
-                    ringView(ease)
-                        .padding(.top, 4)
-                        .contentShape(Rectangle())
-                        .onTapGesture { ring.replay() }
-                    legend.padding(.top, 2).padding(.horizontal, Metrics.gutter)
-                    // Review root → the assessment screens (no buttons in the design).
-                    stepCard(ease).contentShape(Rectangle()).onTapGesture { app.router.go(.S22) }.block()
-                    cellsCard.contentShape(Rectangle()).onTapGesture { app.router.go(.S23) }.block()
+            ScreenHeader(title: "Gains", subtitle: app.persistedComparison == nil ? "DRIVABILITY · GOAL ≤ 1.5% AVG ERROR" : "LOCAL EVIDENCE · READ-ONLY")
+            if let comparison = app.persistedComparison {
+                realEvidenceView(comparison)
+            } else {
+                DEased { ease in
+                    VStack(spacing: 0) {
+                        ringView(ease)
+                            .padding(.top, 4)
+                            .contentShape(Rectangle())
+                            .onTapGesture { ring.replay() }
+                        legend.padding(.top, 2).padding(.horizontal, Metrics.gutter)
+                        // Review root → the assessment screens (no buttons in the design).
+                        stepCard(ease).contentShape(Rectangle()).onTapGesture { app.router.go(.S22) }.block()
+                        cellsCard.contentShape(Rectangle()).onTapGesture { app.router.go(.S23) }.block()
+                    }
                 }
             }
             Spacer(minLength: 0)
@@ -26,6 +30,62 @@ struct S27View: View {
         // Tab roots are all mounted at launch, so play the ring when Review is shown.
         .onAppear { ring.replay() }
         .onChange(of: app.router.tab) { _, t in if t == .review { ring.replay() } }
+    }
+
+    private func realEvidenceView(_ comparison: MobileRunComparison) -> some View {
+        let title: String
+        let color: Color
+        switch comparison.decision {
+        case .improvementConfirmed: title = "REPEAT CONFIRMED"; color = AP.green
+        case .repeatRequired: title = "REPEAT REQUIRED"; color = AP.amber
+        case .regression: title = "REGRESSION"; color = AP.red
+        case .insufficientData: title = "INSUFFICIENT DATA"; color = AP.label
+        }
+        return VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 4) {
+                DT("EVIDENCE ASSESSMENT", .mono, 10).foregroundStyle(AP.label)
+                DT(title, .barlow, 30, 700).foregroundStyle(color)
+                DT("No ECU write decision is produced. This result only describes the captured runs.", .sans, 12, lh: 1.35)
+                    .foregroundStyle(AP.text2)
+            }
+            .apCard()
+
+            HStack(spacing: 6) {
+                realMetric("BASE ERROR", comparison.baselineLambdaError.map { String(format: "%.3f", $0) } ?? "—", AP.baseline)
+                realMetric("CAND ERROR", comparison.candidateLambdaError.map { String(format: "%.3f", $0) } ?? "—", AP.candidate)
+                realMetric("REPEAT Δ", comparison.repeatDelta.map { String(format: "%.3f", $0) } ?? "—", color)
+            }
+
+            VStack(alignment: .leading, spacing: 7) {
+                DT("DECISION", .mono, 10).foregroundStyle(AP.label)
+                DT(decisionText(comparison.decision), .sans, 14, 600)
+                DT("Comparison uses only decoded, persisted telemetry frames. Unknown ECU bytes remain excluded.", .mono, 10, lh: 1.4)
+                    .foregroundStyle(AP.text3)
+            }
+            .apCard()
+            .contentShape(Rectangle())
+            .onTapGesture { app.router.go(.S22) }
+        }
+        .block(top: 10)
+    }
+
+    private func realMetric(_ label: String, _ value: String, _ color: Color) -> some View {
+        VStack(alignment: .leading, spacing: 3) {
+            DT(value, .barlow, 21, 700).foregroundStyle(color)
+            DT(label, .mono, 8).foregroundStyle(AP.label)
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .outlined(AP.border, radius: 10)
+    }
+
+    private func decisionText(_ decision: MobileRunComparison.Decision) -> String {
+        switch decision {
+        case .improvementConfirmed: return "The candidate improvement repeated within tolerance."
+        case .repeatRequired: return "The candidate changed, but the repeat did not confirm it."
+        case .regression: return "The candidate is no better than baseline. Preserve evidence and investigate."
+        case .insufficientData: return "More valid frames are required before comparing runs."
+        }
     }
 
     private func ringView(_ ease: Double) -> some View {
