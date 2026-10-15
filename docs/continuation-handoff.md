@@ -20,6 +20,10 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - `FC03CaptureFileStore` stores sessions under Application Support and Runs/Review exports `fc03-capture.json`.
 - `FC03ReadOnlyCaptureRunner` repeats only the recovered `?DAT` request through an injected byte transport,
   persists valid and invalid replies, closes the transport on success/error, and returns a capture summary.
+- `FC03ReplayByteTransport` replays stored raw responses through that same runner for offline QA; it rejects
+  every request except `?DAT`, never claims USB connectivity, and resets its cursor on each open.
+- Raw sessions expose `validationIssues` and `isSafeForReplay`; unexpected requests are retained for audit but
+  cannot be replayed as if they were safe evidence.
 - `MobileRunRecord` stores baseline, candidate, repeat and observation runs with raw telemetry frames and vehicle/modification context.
 - `MobileBaselineSummary` calculates signal statistics, frame coverage, timestamp gaps, missing channels and a conservative quality score.
 - `MobileRunComparison` compares lambda error across baseline/candidate/repeat runs and only confirms improvement when the repeat is within tolerance.

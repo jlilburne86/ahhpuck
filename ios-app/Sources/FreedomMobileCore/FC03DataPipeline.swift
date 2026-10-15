@@ -124,9 +124,13 @@ public protocol FC03ByteTransport: Sendable {
 
 public enum FC03CaptureRunError: Error, LocalizedError, Sendable, Equatable {
     case invalidSampleCount
+    case noReplayResponses
 
     public var errorDescription: String? {
-        switch self { case .invalidSampleCount: return "A read-only capture needs at least one sample." }
+        switch self {
+        case .invalidSampleCount: return "A read-only capture needs at least one sample."
+        case .noReplayResponses: return "The replay session contains no raw responses."
+        }
     }
 }
 
@@ -179,4 +183,51 @@ public struct FC03ReadOnlyCaptureRunner: Sendable {
             throw error
         }
     }
+}
+
+/// Offline transport for exercising the same runner with a previously captured
+/// session. It never claims that USB is connected and only replays raw replies.
+public final class FC03ReplayByteTransport: FC03ByteTransport, @unchecked Sendable {
+    private let responses: [Data]
+    private let state = ReplayByteState()
+
+    public init(session: FC03CaptureSession) {
+        responses = session.exchanges.map(\.response)
+    }
+
+    public func open() async throws {
+        guard !responses.isEmpty else { throw FC03CaptureRunError.noReplayResponses }
+        await state.setOpen(true)
+    }
+
+    public func close() async { await state.setOpen(false) }
+
+    public func exchange(_ request: Data) async throws -> Data {
+        guard request == FC03ReadOnlyProtocol.makeDATRequest() else {
+            throw FC03TransportError.readOnlyRequestRequired
+        }
+        guard await state.opened else { throw FC03TransportError.notOpen }
+        let index = await state.nextIndex()
+        guard index < responses.count else { throw FC03CaptureRunError.noReplayResponses }
+        return responses[index]
+    }
+}
+
+public enum FC03TransportError: Error, LocalizedError, Sendable, Equatable {
+    case notOpen
+    case readOnlyRequestRequired
+
+    public var errorDescription: String? {
+        switch self {
+        case .notOpen: return "The FC-03 replay transport is not open."
+        case .readOnlyRequestRequired: return "Only the verified read-only ?DAT request is permitted."
+        }
+    }
+}
+
+private actor ReplayByteState {
+    private(set) var opened = false
+    private var index = 0
+    func setOpen(_ value: Bool) { opened = value; if value { index = 0 } }
+    func nextIndex() -> Int { defer { index += 1 }; return index }
 }

@@ -256,6 +256,32 @@ final class MobileCoreTests: XCTestCase {
         }
     }
 
+    func testReplayByteTransportUsesRawResponsesAndReadOnlyRequest() async throws {
+        let metadata = FC03CaptureMetadata(ecuLabel: "desk", ecuProfile: "unknown", adapter: "test", cableNotes: "test")
+        let recorder = FC03CaptureRecorder(metadata: metadata)
+        _ = await recorder.record(request: FC03ReadOnlyProtocol.makeDATRequest(), response: Data([1, 2, 3]))
+        let session = await recorder.snapshot()
+        let transport = FC03ReplayByteTransport(session: session)
+        do { _ = try await transport.exchange(FC03ReadOnlyProtocol.makeDATRequest()); XCTFail("must open first") }
+        catch let error as FC03TransportError { XCTAssertEqual(error, .notOpen) }
+        try await transport.open()
+        let response = try await transport.exchange(FC03ReadOnlyProtocol.makeDATRequest())
+        XCTAssertEqual(response, Data([1, 2, 3]))
+        do { _ = try await transport.exchange(Data("WRITE".utf8)); XCTFail("writes must be rejected") }
+        catch let error as FC03TransportError { XCTAssertEqual(error, .readOnlyRequestRequired) }
+        await transport.close()
+    }
+
+    func testRawSessionValidationFlagsUnexpectedRequestsWithoutDroppingEvidence() async {
+        let metadata = FC03CaptureMetadata(ecuLabel: "desk", ecuProfile: "unknown", adapter: "test", cableNotes: "test")
+        let recorder = FC03CaptureRecorder(metadata: metadata)
+        _ = await recorder.record(request: Data("WRITE".utf8), response: Data(repeating: 0, count: 2))
+        let session = await recorder.snapshot()
+        XCTAssertTrue(session.validationIssues.contains("unexpected_request"))
+        XCTAssertFalse(session.isSafeForReplay)
+        XCTAssertEqual(session.exchanges.count, 1)
+    }
+
     private func demoFrames(lambda: [Double], start: Int = 0) -> [MobileTelemetryFrame] {
         lambda.enumerated().map { index, value in
             MobileTelemetryFrame(sequence: start + index, rpm: 3000 + Double(index * 100), loadKPa: 50, lambda: value, coolantC: 85, intakeAirC: 32, oilPressureKPa: 380, fuelPressureKPa: 300, batteryV: 13.8)

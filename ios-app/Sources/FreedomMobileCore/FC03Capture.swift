@@ -96,6 +96,23 @@ public struct FC03CaptureSession: Codable, Equatable, Sendable {
     public var invalidExchangeCount: Int { exchanges.count - validExchangeCount }
     public var hasDecodedFields: Bool { exchanges.contains(where: \.fieldDecoded) }
 
+    /// Issues are descriptive only. Raw evidence remains exportable even when a
+    /// session is incomplete or contains an unexpected request/response.
+    public var validationIssues: [String] {
+        var issues: [String] = []
+        if exchanges.isEmpty { issues.append("no_exchanges") }
+        if exchanges.contains(where: { $0.request != FC03ReadOnlyProtocol.makeDATRequest() }) {
+            issues.append("unexpected_request")
+        }
+        if exchanges.contains(where: { !$0.shapeValid }) { issues.append("invalid_response_shape") }
+        if exchanges.contains(where: { $0.fieldDecoded }) { issues.append("decoded_mapping_present") }
+        return issues
+    }
+
+    public var isSafeForReplay: Bool {
+        !exchanges.isEmpty && !validationIssues.contains("unexpected_request")
+    }
+
     public func jsonData(prettyPrinted: Bool = true) throws -> Data {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
