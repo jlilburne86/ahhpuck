@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// S14 · Notifications & Live Activity — the lock-screen Live Activity and the four notification types.
+/// S14 · Notification and Live Activity preview. This release does not post system notifications.
 struct S14View: View {
     @Environment(AppModel.self) private var app
 
@@ -19,6 +19,11 @@ struct S14View: View {
         let filled = min(10, Int(secs / 2.5))
 
         PhoneScreen(tab: nil, background: Color(hex: 0x0e1012)) {
+            HStack(spacing: 8) {
+                StatusChip(text: "DEMO PREVIEW", fill: AP.amber, fg: AP.ink)
+                M("NOT SYSTEM NOTIFICATIONS", .mono, 10, color: AP.amber)
+            }
+            .padding(.horizontal, 14).padding(.top, 10)
             VStack(spacing: 0) {
                 M("Tuesday 13 October", .sans, 16, color: AP.text2)
                 Clock().font(APFont.font(.sans, 84, 600)).apFont(.sans, 84, 600, lineHeight: 1).apTracking(-0.02, size: 84)
