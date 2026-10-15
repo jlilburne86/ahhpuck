@@ -80,6 +80,15 @@ public final class FC03CaptureFileStore: @unchecked Sendable {
         let decoder = JSONDecoder(); decoder.dateDecodingStrategy = .iso8601
         return try decoder.decode(FC03CaptureSession.self, from: data)
     }
+
+    public func loadAll() throws -> [FC03CaptureSession] {
+        guard fileManager.fileExists(atPath: directory.path) else { return [] }
+        let decoder = JSONDecoder(); decoder.dateDecodingStrategy = .iso8601
+        return try fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
+            .filter { $0.pathExtension == "json" }
+            .compactMap { try? decoder.decode(FC03CaptureSession.self, from: Data(contentsOf: $0)) }
+            .sorted { $0.metadata.startedAt > $1.metadata.startedAt }
+    }
 }
 
 /// Bench-facing read-only coordinator. The serial adapter owns bytes; this

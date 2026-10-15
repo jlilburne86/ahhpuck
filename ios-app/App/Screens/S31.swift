@@ -17,10 +17,10 @@ struct S31View: View {
 
     var body: some View {
         PhoneScreen(tab: .runs, status: "OFFLINE", statusStyle: .dim) {
-            ScreenHeader(title: app.persistedRuns.isEmpty ? "Session 0412" : "Evidence export",
-                         subtitle: app.persistedRuns.isEmpty
+            ScreenHeader(title: app.persistedRuns.isEmpty && app.latestCapture == nil ? "Session 0412" : "Evidence export",
+                         subtitle: app.persistedRuns.isEmpty && app.latestCapture == nil
                             ? "13 OCT · EXP-04 · 8 FILES · LOCAL ONLY"
-                            : "\(app.persistedRuns.count) RUNS · REAL CAPTURES · LOCAL ONLY")
+                            : "\(app.persistedRuns.count) RUNS · \(app.latestCapture == nil ? 0 : 1) RAW SESSION · LOCAL ONLY")
 
             VStack(spacing: 0) {
                 ForEach(displayFiles, id: \.n) { f in
@@ -78,14 +78,15 @@ struct S31View: View {
              s: "\(run.frames.count) frames")
         }
         let hasAssessment = app.persistedComparison != nil
-        return runFiles + (hasAssessment ? [(n: "assessment.json", h: "derived", s: "read-only")] : [])
+        let rawFiles = app.latestCapture == nil ? [] : [(n: "fc03-capture.json", h: "raw", s: "retained")]
+        return runFiles + rawFiles + (hasAssessment ? [(n: "assessment.json", h: "derived", s: "read-only")] : [])
             + [(n: "manifest.json", h: "derived", s: "read-only")]
     }
 
     /// Writes the session bundle to a temporary folder and zips it with the system archiver.
     private func export() {
         do {
-            let url = try S31View.makeBundle(runs: app.persistedRuns)
+            let url = try S31View.makeBundle(runs: app.persistedRuns, capture: app.latestCapture)
             exportError = nil
             app.exported = true
             share = DShareItem(url: url)
@@ -96,12 +97,12 @@ struct S31View: View {
         }
     }
 
-    static func makeBundle(runs: [MobileRunRecord] = []) throws -> URL {
+    static func makeBundle(runs: [MobileRunRecord] = [], capture: FC03CaptureSession? = nil) throws -> URL {
         let fm = FileManager.default
         let root = fm.temporaryDirectory.appendingPathComponent("export-\(UUID().uuidString)")
         let dir = root.appendingPathComponent("session-0412")
         try fm.createDirectory(at: dir, withIntermediateDirectories: true)
-        if runs.isEmpty {
+        if runs.isEmpty && capture == nil {
             for f in files {
                 let body = f.n == "operator-notes.md" ? notes + "\n" : "\(f.n) · \(f.h) · demo placeholder (\(f.s))\n"
                 try Data(body.utf8).write(to: dir.appendingPathComponent(f.n))
@@ -113,6 +114,9 @@ struct S31View: View {
             for run in runs {
                 let data = try encoder.encode(run)
                 try data.write(to: dir.appendingPathComponent("run-\(run.id.uuidString).json"), options: .atomic)
+            }
+            if let capture {
+                try capture.jsonData().write(to: dir.appendingPathComponent("fc03-capture.json"), options: .atomic)
             }
             if let baseline = runs.first(where: { $0.kind == .baseline }),
                let candidate = runs.first(where: { $0.kind == .candidate }) {

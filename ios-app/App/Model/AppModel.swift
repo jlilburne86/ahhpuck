@@ -82,9 +82,12 @@ final class AppModel {
     /// Local run records are loaded once at launch. The prototype ledger remains
     /// available when the device has no captured runs yet.
     let runStore = MobileRunStore()
+    let captureStore = FC03CaptureFileStore()
     var persistedRuns: [MobileRunRecord] = []
     var runsLoaded = false
     var runImportError: String?
+    var latestCapture: FC03CaptureSession?
+    var captureLoaded = false
 
     var persistedComparison: MobileRunComparison? {
         guard let baseline = persistedRuns.first(where: { $0.kind == .baseline }),
@@ -114,6 +117,7 @@ final class AppModel {
         if args.contains("-tuner") { tuner = true }
         if args.contains("-live") { live = true; startTicker() }
         loadPersistedRuns()
+        loadLatestCapture()
     }
 
     private func loadPersistedRuns() {
@@ -123,6 +127,16 @@ final class AppModel {
             guard let self else { return }
             self.persistedRuns = runs
             self.runsLoaded = true
+        }
+    }
+
+    private func loadLatestCapture() {
+        let store = captureStore
+        Task { [weak self] in
+            let capture = try? store.loadLatest()
+            guard let self else { return }
+            self.latestCapture = capture ?? nil
+            self.captureLoaded = true
         }
     }
 

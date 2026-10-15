@@ -118,11 +118,11 @@ struct S30View: View {
                 HStack {
                     DT(kind + " · " + run.title, .sans, 14, 500).lineLimit(1)
                     Spacer()
-                    DT("QUALITY (summary.qualityScore)", .mono, 9, 600).foregroundStyle(summary.isUsable ? AP.green : AP.amber)
+                    DT("QUALITY \(summary.qualityScore)%", .mono, 9, 600).foregroundStyle(summary.isUsable ? AP.green : AP.amber)
                 }
                 DT("\(summary.frameCount) frames · \(String(format: "%.1f", summary.durationSeconds))s · \(summary.coveragePercent.rounded())% coverage", .mono, 10).foregroundStyle(AP.text3)
                 if let issue = summary.issues.first {
-                    DT(issue.rawValue.replacingOccurrences(of: "", with: "").uppercased(), .mono, 9).foregroundStyle(AP.amber)
+                    DT(issue.rawValue.replacingOccurrences(of: "([a-z])([A-Z])", with: "$1 $2", options: .regularExpression).uppercased(), .mono, 9).foregroundStyle(AP.amber)
                 }
             }
         }
