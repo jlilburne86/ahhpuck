@@ -182,6 +182,46 @@ final class MobileCoreTests: XCTestCase {
         XCTAssertEqual(loaded, [run])
     }
 
+    func testOfflineAIStopsOnCriticalEvidenceAndNeverAuthorizesWrites() {
+        let frames = demoFrames(lambda: [0.98, 0.99]).map { frame in
+            MobileTelemetryFrame(timestamp: frame.timestamp, sequence: frame.sequence, rpm: frame.rpm,
+                                  loadKPa: frame.loadKPa, lambda: frame.lambda, knockLevel: 0.3)
+        }
+        let baseline = MobileRunRecord(kind: .baseline, title: "base", frames: frames)
+        let candidate = MobileRunRecord(kind: .candidate, title: "candidate", frames: frames)
+        let repeatRun = MobileRunRecord(kind: .repeatRun, title: "repeat", frames: frames)
+        let assessment = MobileExperimentAssessor.assess(baseline: frames, candidate: frames, repeatRun: frames)
+        let result = DeterministicMobileAIEngine().analyze(.init(
+            baselineID: baseline.id, candidateID: candidate.id, repeatID: repeatRun.id,
+            comparison: MobileRunComparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun),
+            assessment: assessment,
+            summaries: [MobileBaselineSummary(run: baseline)]))
+        XCTAssertEqual(result.decision, .stopAndAbort)
+        XCTAssertTrue(result.findings.contains { $0.id == "knock_detected" })
+        XCTAssertEqual(result.writeAuthorization, "never")
+        XCTAssertFalse(result.nextAction.contains("lambda"))
+    }
+
+    func testDeepLinksCarryOnlyRunIdentifiers() {
+        let baseline = UUID(), candidate = UUID(), repeatID = UUID()
+        let url = URL(string: "ahhpuck://ai/assess?baseline=\(baseline.uuidString)&candidate=\(candidate.uuidString)&repeat=\(repeatID.uuidString)")!
+        XCTAssertEqual(MobileDeepLink.parse(url), .assess(baseline: baseline, candidate: candidate, repeatID: repeatID))
+        XCTAssertEqual(MobileDeepLink.parse(URL(string: "ahhpuck://runs/\(baseline.uuidString)")!), .run(baseline))
+        XCTAssertNil(MobileDeepLink.parse(URL(string: "https://example.com/ai/assess")!))
+        XCTAssertNil(MobileDeepLink.parse(URL(string: "ahhpuck://ai/assess?lambda=0.9")!))
+    }
+
+    func testAIResultStoreRoundTripsLocalAssessment() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let store = MobileAIResultStore(directory: directory)
+        let result = MobileAIResult(id: UUID(), createdAt: Date(timeIntervalSince1970: 4_000),
+                                    summary: "Repeat required", confidence: 0.6, findings: [],
+                                    nextAction: "Repeat", decision: .repeatExperiment)
+        _ = try await store.save(result)
+        let loaded = try await store.loadLatest()
+        XCTAssertEqual(loaded, result)
+    }
+
     private func demoFrames(lambda: [Double], start: Int = 0) -> [MobileTelemetryFrame] {
         lambda.enumerated().map { index, value in
             MobileTelemetryFrame(sequence: start + index, rpm: 3000 + Double(index * 100), loadKPa: 50, lambda: value, coolantC: 85, intakeAirC: 32, oilPressureKPa: 380, fuelPressureKPa: 300, batteryV: 13.8)

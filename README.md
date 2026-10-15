@@ -233,3 +233,24 @@ readiness target combining objective score, safety-pass fraction, map coverage,
 repeatability, and sensor confidence. It is not a claim that the engine is 96%
 perfect. Missing evidence counts as zero, so the system cannot reach the target
 from a few attractive dyno pulls or an LLM opinion.
+
+## Offline AI explanations and deep links
+
+The native app includes a free, deterministic local explanation layer. It reads
+persisted baseline/candidate/repeat evidence and explains the existing gate's
+decision, evidence quality and smallest next check. It does not call a cloud
+model, require an API key, produce calibration values, override safety gates or
+write to an ECU. Results are stored locally as `ai-assessment.json` and included
+in the existing evidence export when generated.
+
+The flow uses the existing Runs, Review and Analyst screens. External tools can
+open those surfaces with identifier-only links:
+
+```text
+ahhpuck://ai/assess?baseline=<uuid>&candidate=<uuid>&repeat=<uuid>
+ahhpuck://ai/explain?run=<uuid>
+ahhpuck://runs/<uuid>
+```
+
+Links never contain raw frames, credentials or tuning commands. The custom URL
+scheme is registered in the iOS target as `ahhpuck`.

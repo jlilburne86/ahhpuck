@@ -28,6 +28,14 @@ Build a native iOS companion for unsupported Freedom FC-03 ECUs that collects tr
 - `FC03VerifiedTelemetryDecoder` refuses to decode until field offsets/scaling are verified.
 - ECU writes, map writes, raw command testing and autonomous tuning remain locked.
 - Heavy demo projections are cached and the demo ticker is 250 ms for better responsiveness.
+- Deterministic offline AI explanations are implemented in `MobileAIAnalysis.swift`; they map
+  existing assessment concerns to plain-language evidence explanations and next checks only.
+- AI results are persisted under `Application Support/AhhPuck/AIResults`, surfaced in the existing
+  Analyst screen, and exported as `ai-assessment.json` with `writeAuthorization: never`.
+- The existing Review/Analyst flow is deep-linkable with `ahhpuck://ai/assess`,
+  `ahhpuck://ai/explain` and `ahhpuck://runs/<uuid>`; links carry identifiers only.
+- `PRODUCT.md` records the product and UI constraints: preserve the current instrument-like UI,
+  show evidence before explanation, and keep deterministic safety logic authoritative.
 
 ## Verification
 
@@ -36,7 +44,15 @@ cd /Users/boo2/ahhpuck-testflight
 swift test --package-path ios-app
 ```
 
-Current result: 16 core tests pass, including baseline statistics, repeat confirmation, run-store round trips, ordered replay transport coverage and raw FC-03 capture persistence.
+Current result: 19 core tests pass, including offline AI critical-stop behavior, identifier-only deep-link parsing, AI result persistence, baseline statistics, repeat confirmation, run-store round trips, ordered replay transport coverage and raw FC-03 capture persistence.
+
+The unsigned Debug iOS app target also builds successfully with:
+
+```sh
+xcodebuild -project ios-app/FreedomIOSApp.xcodeproj -scheme AhhPuck \
+  -configuration Debug -destination 'generic/platform=iOS' \
+  -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO build
+```
 
 The Release archive/export succeeds with:
 
@@ -107,6 +123,8 @@ If App Store Connect reports a duplicate build, increment `CURRENT_PROJECT_VERSI
 - Vehicle profile: `ios-app/App/Screens/S02.swift`
 - Provenance: `ios-app/App/Screens/S38.swift`
 - Export: `ios-app/App/Screens/S31.swift`
+- Offline AI and deep links: `ios-app/Sources/FreedomMobileCore/MobileAIAnalysis.swift`,
+  `ios-app/App/Model/AppModel.swift`, `ios-app/App/Screens/S26.swift`
 - Capability presentation: `ios-app/App/Screens/S43.swift`
 
 Keep changes read-only and add a test for every newly verified protocol fact.

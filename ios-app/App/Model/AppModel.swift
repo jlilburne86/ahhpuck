@@ -83,12 +83,18 @@ final class AppModel {
     /// available when the device has no captured runs yet.
     let runStore = MobileRunStore()
     let captureStore = FC03CaptureFileStore()
+    let aiResultStore = MobileAIResultStore()
+    let aiEngine = DeterministicMobileAIEngine()
     var persistedRuns: [MobileRunRecord] = []
     var runsLoaded = false
     var runImportError: String?
     var latestCapture: FC03CaptureSession?
     var captureLoaded = false
     var captureImportError: String?
+    var aiResult: MobileAIResult?
+    var aiLoading = false
+    var aiError: String?
+    var selectedRunID: UUID?
 
     var persistedComparison: MobileRunComparison? {
         guard let baseline = persistedRuns.first(where: { $0.kind == .baseline }),
@@ -119,6 +125,7 @@ final class AppModel {
         if args.contains("-live") { live = true; startTicker() }
         loadPersistedRuns()
         loadLatestCapture()
+        loadLatestAIResult()
     }
 
     private func loadPersistedRuns() {
@@ -128,6 +135,69 @@ final class AppModel {
             guard let self else { return }
             self.persistedRuns = runs
             self.runsLoaded = true
+            self.refreshAIResult()
+        }
+    }
+
+    private func loadLatestAIResult() {
+        let store = aiResultStore
+        Task { [weak self] in
+            let result = try? await store.loadLatest()
+            guard let self else { return }
+            self.aiResult = result
+        }
+    }
+
+    /// Runs the free, local explanation engine against persisted evidence.
+    /// The result is linked to source run IDs and persisted for export; no network is used.
+    func refreshAIResult(baselineID: UUID? = nil, candidateID: UUID? = nil, repeatID: UUID? = nil) {
+        guard runsLoaded else { return }
+        let baseline = persistedRuns.first { $0.id == (baselineID ?? persistedRuns.first(where: { $0.kind == .baseline })?.id) }
+        let candidate = persistedRuns.first { $0.id == (candidateID ?? persistedRuns.first(where: { $0.kind == .candidate })?.id) }
+        let repeatRun = persistedRuns.first { $0.id == (repeatID ?? persistedRuns.first(where: { $0.kind == .repeatRun })?.id) }
+        guard let baseline, let candidate else {
+            aiResult = nil
+            return
+        }
+        let comparison = MobileRunComparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun)
+        let assessment = MobileExperimentAssessor.assess(baseline: baseline.frames, candidate: candidate.frames,
+                                                          repeatRun: repeatRun?.frames ?? [])
+        let request = MobileAIRequest(baselineID: baseline.id, candidateID: candidate.id, repeatID: repeatRun?.id,
+                                      comparison: comparison, assessment: assessment,
+                                      summaries: [MobileBaselineSummary(run: baseline), MobileBaselineSummary(run: candidate)] + (repeatRun.map { [MobileBaselineSummary(run: $0)] } ?? []))
+        aiLoading = true
+        aiError = nil
+        let engine = aiEngine
+        let store = aiResultStore
+        Task { [weak self] in
+            let result = engine.analyze(request)
+            do { _ = try await store.save(result) }
+            catch { self?.aiError = "ASSESSMENT SAVE FAILED · \(error.localizedDescription)" }
+            guard let self else { return }
+            self.aiResult = result
+            self.aiLoading = false
+        }
+    }
+
+    func handle(deepLink url: URL) {
+        guard let link = MobileDeepLink.parse(url) else { return }
+        if router.onboarding { router.finishOnboarding() }
+        switch link {
+        case let .assess(baseline, candidate, repeatID):
+            router.select(.review)
+            refreshAIResult(baselineID: baseline, candidateID: candidate, repeatID: repeatID)
+            router.go(.S22)
+        case let .explain(run):
+            router.select(.review)
+            let selected = persistedRuns.first { $0.id == run }
+            refreshAIResult(baselineID: selected?.kind == .baseline ? run : nil,
+                            candidateID: selected?.kind == .candidate ? run : nil,
+                            repeatID: selected?.kind == .repeatRun ? run : nil)
+            router.go(.S26)
+        case let .run(id):
+            router.select(.runs)
+            selectedRunID = id
+            router.go(.S31)
         }
     }
 

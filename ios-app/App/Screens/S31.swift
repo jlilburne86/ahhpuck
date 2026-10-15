@@ -17,7 +17,7 @@ struct S31View: View {
 
     var body: some View {
         PhoneScreen(tab: .runs, status: "OFFLINE", statusStyle: .dim) {
-            ScreenHeader(title: app.persistedRuns.isEmpty && app.latestCapture == nil ? "Session 0412" : "Evidence export",
+            ScreenHeader(title: app.selectedRunID.flatMap { id in app.persistedRuns.first { $0.id == id } }?.title ?? (app.persistedRuns.isEmpty && app.latestCapture == nil ? "Session 0412" : "Evidence export"),
                          subtitle: app.persistedRuns.isEmpty && app.latestCapture == nil
                             ? "13 OCT · EXP-04 · 8 FILES · LOCAL ONLY"
                             : "\(app.persistedRuns.count) RUNS · \(app.latestCapture == nil ? 0 : 1) RAW SESSION · LOCAL ONLY")
@@ -79,14 +79,15 @@ struct S31View: View {
         }
         let hasAssessment = app.persistedComparison != nil
         let rawFiles = app.latestCapture == nil ? [] : [(n: "fc03-capture.json", h: "raw", s: "retained")]
-        return runFiles + rawFiles + (hasAssessment ? [(n: "assessment.json", h: "derived", s: "read-only")] : [])
+        let aiFiles = app.aiResult == nil ? [] : [(n: "ai-assessment.json", h: "derived", s: "offline")]
+        return runFiles + rawFiles + (hasAssessment ? [(n: "assessment.json", h: "derived", s: "read-only")] : []) + aiFiles
             + [(n: "manifest.json", h: "derived", s: "read-only")]
     }
 
     /// Writes the session bundle to a temporary folder and zips it with the system archiver.
     private func export() {
         do {
-            let url = try S31View.makeBundle(runs: app.persistedRuns, capture: app.latestCapture)
+            let url = try S31View.makeBundle(runs: app.persistedRuns, capture: app.latestCapture, aiResult: app.aiResult)
             exportError = nil
             app.exported = true
             share = DShareItem(url: url)
@@ -97,7 +98,8 @@ struct S31View: View {
         }
     }
 
-    static func makeBundle(runs: [MobileRunRecord] = [], capture: FC03CaptureSession? = nil) throws -> URL {
+    static func makeBundle(runs: [MobileRunRecord] = [], capture: FC03CaptureSession? = nil,
+                           aiResult: MobileAIResult? = nil) throws -> URL {
         let fm = FileManager.default
         let root = fm.temporaryDirectory.appendingPathComponent("export-\(UUID().uuidString)")
         let dir = root.appendingPathComponent("session-0412")
@@ -124,11 +126,15 @@ struct S31View: View {
                 let assessment = MobileRunComparison(baseline: baseline, candidate: candidate, repeatRun: repeatRun)
                 try encoder.encode(assessment).write(to: dir.appendingPathComponent("assessment.json"), options: .atomic)
             }
+            if let aiResult {
+                try encoder.encode(aiResult).write(to: dir.appendingPathComponent("ai-assessment.json"), options: .atomic)
+            }
             let manifest = [
                 "runCount": String(runs.count),
                 "exportedAt": ISO8601DateFormatter().string(from: Date()),
                 "writeAuthorization": "never",
-                "source": "AhhPuck local evidence workspace"
+                "source": "AhhPuck local evidence workspace",
+                "analysisMode": aiResult?.mode ?? "not_generated"
             ]
             try encoder.encode(manifest).write(to: dir.appendingPathComponent("manifest.json"), options: .atomic)
         }
