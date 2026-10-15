@@ -35,7 +35,7 @@ cd /Users/boo2/ahhpuck-testflight
 swift test --package-path ios-app
 ```
 
-Current result: 14 core tests pass, including baseline statistics, repeat confirmation, run-store round trips and ordered replay transport coverage.
+Current result: 16 core tests pass, including baseline statistics, repeat confirmation, run-store round trips, ordered replay transport coverage and raw FC-03 capture persistence.
 
 The Release archive/export succeeds with:
 

@@ -30,6 +30,29 @@ final class MobileCoreTests: XCTestCase {
         }
     }
 
+    func testFC03ProtocolUsesExactReadOnlyDATRequest() {
+        XCTAssertEqual(FC03ReadOnlyProtocol.makeDATRequest(), Data([0x3F, 0x44, 0x41, 0x54]))
+        XCTAssertEqual(FC03ReadOnlyProtocol.serialProfile, .documented)
+    }
+
+    func testFC03CoordinatorRetainsInvalidRawResponseAndPersistsSession() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let store = FC03CaptureFileStore(directory: directory)
+        let metadata = FC03CaptureMetadata(ecuLabel: "FC-03 desk unit", ecuProfile: "unknown",
+                                            adapter: "bench adapter", cableNotes: "unverified")
+        let coordinator = FC03CaptureCoordinator(metadata: metadata, store: store)
+        let exchange = await coordinator.ingestDAT(response: Data([0x00, 0x01]))
+        XCTAssertEqual(exchange.request, FC03ReadOnlyProtocol.makeDATRequest())
+        XCTAssertFalse(exchange.shapeValid)
+        XCTAssertEqual(exchange.responseLength, 2)
+        let url = try await coordinator.finish()
+        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
+        let loaded = try store.loadLatest()
+        XCTAssertEqual(loaded?.exchanges.count, 1)
+        XCTAssertEqual(loaded?.invalidExchangeCount, 1)
+        XCTAssertEqual(loaded?.metadata.serialProfile, .documented)
+    }
+
     func testReplayTransportYieldsStoredFramesInOrderAndNeverWrites() async throws {
         let frames = [
             MobileTelemetryFrame(sequence: 10, rpm: 1200, loadKPa: 25, lambda: 1.02),
