@@ -27,8 +27,8 @@ enum AppTab: Int, CaseIterable, Identifiable {
 @MainActor
 @Observable
 final class Router {
-    /// First-run flow: S01 → S34 → S35 → S36 → S04 → S02 → S03, then Live (S40 coach marks on first visit).
-    static let firstRun: [ScreenID] = [.S01, .S34, .S35, .S36, .S04, .S02, .S03]
+    /// First-run flow: S01 → S34 → S35 → S36 → S04 → S02, then Live (S40 coach marks on first visit).
+    static let firstRun: [ScreenID] = [.S01, .S34, .S35, .S36, .S04, .S02]
 
     var onboarding: Bool
     var onboardingPath: [ScreenID] = []
@@ -76,7 +76,8 @@ final class Router {
         tab = t
     }
 
-    /// Advance along the first-run flow; leaving S03 (or skipping it) finishes onboarding.
+    /// Advance along the first-run flow; leaving the last step finishes onboarding. (The phone-mount
+    /// screen S03 is out of the flow: this build uses no phone sensors.)
     func nextInFirstRun(after id: ScreenID) {
         guard let i = Router.firstRun.firstIndex(of: id), i + 1 < Router.firstRun.count else { finishOnboarding(); return }
         let next = Router.firstRun[i + 1]

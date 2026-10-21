@@ -72,7 +72,7 @@ struct CWhyPanel: View {
                             .background(RoundedRectangle(cornerRadius: 5).fill(st.color))
                         VStack(alignment: .leading, spacing: 1) {
                             T(app.tr(r.t), .sans, 13).apFont(.sans, 13)
-                            T(app.tr(cleared ? "Cleared (preview)" : r.d), .mono, 10).apFont(.mono, 10).foregroundStyle(AP.label)
+                            T(app.tr(cleared ? "Cleared" : r.d), .mono, 10).apFont(.mono, 10).foregroundStyle(AP.label)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         if !cleared, !r.act.isEmpty {
@@ -86,12 +86,13 @@ struct CWhyPanel: View {
                     .background(Color(hex: 0x0f1012))
                     .overlay(alignment: .bottom) { Rectangle().fill(AP.divider).frame(height: 1) }
                     .contentShape(Rectangle())
-                    .onTapGesture { if let k = r.k { app.why[k] = !(app.why[k] ?? false) } }
+                    .onTapGesture { if Features.prototypeControls, let k = r.k { app.why[k] = !(app.why[k] ?? false) } }
                 }
             }
             .padding(1)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .outlined(AP.border, radius: 12)
+            if Features.proposals {
             T(app.tr(blk > 0 ? "\(blk) to clear · proposals locked" : "Open proposal"), .sans, 15, 600)
                 .apFont(.sans, 15, 600)
                 .foregroundStyle(blk > 0 ? AP.faint : AP.ink)
@@ -100,6 +101,7 @@ struct CWhyPanel: View {
                 .background(RoundedRectangle(cornerRadius: 14).fill(blk > 0 ? AP.disabled : AP.text))
                 .contentShape(Rectangle())
                 .onTapGesture { if blk == 0 { app.router.dismiss(); app.router.go(.S15) } }
+            }
         }
         .padding(.horizontal, 18).padding(.top, 11).padding(.bottom, 16)
         .frame(maxWidth: .infinity, alignment: .leading)

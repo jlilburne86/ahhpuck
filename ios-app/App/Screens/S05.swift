@@ -10,7 +10,7 @@ struct S05View: View {
     ]
     private let man: [(String, String)] = [
         ("fuel", "Fuel level and type confirmed"), ("tyres", "Tyres and brakes checked"),
-        ("route", "Route or dyno clear"), ("observer", "Observer present in the car"),
+        ("route", "Dyno or closed course clear"), ("observer", "Observer present"),
     ]
 
     var body: some View {

@@ -19,8 +19,8 @@ struct S32View: View {
 
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    M("AE86 · Blacktop 20V", .barlow, 22, 600)
-                    M("FC-03 Ab-1EU · ITBs · 98 RON", .mono, 11, color: AP.label, translate: false)
+                    M([app.prof["chassis"], app.prof["engine"]].compactMap { $0 }.joined(separator: " · "), .barlow, 22, 600, translate: false)
+                    M([app.prof["ecu"], app.prof["inj"].map { "Injection: \($0)" }].compactMap { $0 }.joined(separator: " · "), .mono, 11, color: AP.label, translate: false)
                         .onTapGesture { app.router.go(.S43) }
                 }
                 Spacer()
@@ -68,7 +68,6 @@ struct S32View: View {
             }
             .block(top: 6)
 
-            M("Loosening a threshold needs a reason, and the change is logged.", .sans, 12, color: AP.label).block(top: 8)
 
             // About: the legal documents (the same as wheelhave.com), permissions, and the build.
             M("ABOUT", .mono, 10, color: AP.label).block(top: 14)

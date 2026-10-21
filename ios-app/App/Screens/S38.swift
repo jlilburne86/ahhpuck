@@ -12,11 +12,6 @@ struct S38View: View {
         Src(kind: "ECU", n: "Freedom FC-03", meta: "USB-C · 31 Hz · 9 FIELDS", st: "✓ CONNECTED", sc: AP.green, gate: "USED BY SAFETY GATE", gc: AP.green,
             f: [("RPM", "OBSERVED"), ("TPS", "OBSERVED"), ("Coolant", "INFERRED"), ("Intake temp", "INFERRED"), ("O₂ mV", "INFERRED"), ("Ignition adv", "UNVERIFIED"), ("Battery", "OBSERVED"), ("Knock", "OBSERVED"), ("Speed", "OBSERVED")],
             note: "The main source. Ignition scaling is unverified, so it is shown but never used to decide."),
-        Src(kind: "PHONE", n: "GPS", meta: "1 Hz · ±2.4 m", st: "✓ ON", sc: AP.green, gate: "NEVER USED TO DECIDE", gc: AP.label,
-            f: [("Speed", "INFERRED"), ("Position", "OBSERVED")], note: "Used to cross-check ECU speed and to draw the route."),
-        Src(kind: "PHONE", n: "Motion", meta: "100 Hz · MOUNT CALIBRATED", st: "✓ ON", sc: AP.green, gate: "NEVER USED TO DECIDE", gc: AP.label,
-            f: [("Long g", "OBSERVED"), ("Lat g", "OBSERVED"), ("Yaw", "OBSERVED"), ("Power est.", "INFERRED")],
-            note: "Used to check that runs were driven the same way, and for power estimates."),
         Src(kind: "EXT", n: "Oil pressure", meta: "ADD-ON · 10 Hz", st: "✓ CONNECTED", sc: AP.green, gate: "USED BY SAFETY GATE", gc: AP.green,
             f: [("Oil pressure", "OBSERVED")], note: "Fills a gap: the FC-03 doesn't report oil pressure."),
         Src(kind: "EXT", n: "Wideband lambda", meta: "ADD-ON · RECOMMENDED", st: "+ ADD", sc: AP.text, gate: "WOULD REPLACE ECU O₂", gc: AP.amber,
@@ -25,8 +20,6 @@ struct S38View: View {
             f: [("Fuel pressure", "OBSERVED")], note: "Lets AhhPuck tell a fuel-supply problem apart from a map error."),
     ]
     private let checks: [(Status, String, String)] = [
-        (.ok, "ECU speed vs GPS speed", "62.1 vs 61.4 km/h · 1.1% apart"),
-        (.ok, "Pull consistency (phone g-force)", "Runs 03 and 04 match 94%"),
         (.caution, "Lambda source", "ECU narrowband O₂ · wideband recommended"),
     ]
 
@@ -34,7 +27,7 @@ struct S38View: View {
         let sx = src[app.srcSel]
         let ecuAvailable = app.hardwareTransportAvailable
         PhoneScreen(tab: .garage, scrolls: false) {
-            AHeader(title: "Data sources", sub: app.tr("ECU FIRST · PHONE ADDS · ADD-ONS FILL GAPS"))
+            AHeader(title: "Data sources", sub: app.tr("ECU FIRST · ADD-ONS FILL GAPS"))
 
             ScrollView {
                 VStack(spacing: 0) {

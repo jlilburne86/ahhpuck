@@ -62,7 +62,7 @@ struct S11View: View {
                             .accessibilityAddTraits(.isButton)
                         Spacer()
                     }
-                    M("Screen locked against stray taps · alerts by sound + haptics", .sans, 11, color: AP.faint)
+                    M("Tap STOP to end the run", .sans, 11, color: AP.faint)
                         .frame(maxWidth: .infinity)
                 }
                 .padding(.top, 16).padding(.horizontal, 22).padding(.bottom, 30)

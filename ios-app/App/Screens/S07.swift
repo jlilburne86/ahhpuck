@@ -72,11 +72,15 @@ struct S07View: View {
             .block()
 
             Spacer(minLength: 16)
-            MButton(label: app.live2 ? "Simulate: drop connection" : "Reconnect", bg: .clear, fg: AP.text, border: AP.control, bottom: 14) {
-                if app.live2 {
-                    app.live2 = false; app.staleAt = app.t; droppedAt = .now
-                } else {
-                    app.live2 = true; droppedAt = nil
+            Group {
+                if Features.prototypeControls {
+                    MButton(label: app.live2 ? "Simulate: drop connection" : "Reconnect", bg: .clear, fg: AP.text, border: AP.control, bottom: 14) {
+                        if app.live2 {
+                            app.live2 = false; app.staleAt = app.t; droppedAt = .now
+                        } else {
+                            app.live2 = true; droppedAt = nil
+                        }
+                    }
                 }
             }
             .onChange(of: ph) { _, new in

@@ -23,7 +23,7 @@ struct S25View: View {
              body: "A critical event happened. Nothing continues until a person investigates.", btn: "Abort and lock",
              done: "Session sealed · investigation log opened",
              steps: [("Session sealed", "No further runs in this session"), ("Tuning locked app-wide", "Proposals disabled everywhere"),
-                     ("Investigation required", "Opens the investigation log (S13)"), ("Observer notified", "Critical lock-screen notification")]),
+                     ("Investigation required", "Opens the investigation log (S13)")]),
     ]
 
     var body: some View {
@@ -81,10 +81,11 @@ struct S25View: View {
             }
 
             Spacer(minLength: 0)
-            PrimaryButton(label: app.dDone ? "Undo (demo)" : f.btn,
+            PrimaryButton(label: app.dDone ? (Features.prototypeControls ? "Undo (demo)" : "Recorded") : f.btn,
                           fill: app.dDone ? .clear : f.col,
                           fg: app.dDone ? AP.text2 : f.fg,
                           height: 54) {
+                if app.dDone && !Features.prototypeControls { return }
                 app.dDone.toggle()
                 // Abort seals the session and opens the investigation log (S13).
                 if app.dDone && f.k == "Abort" { app.router.go(.S13) }

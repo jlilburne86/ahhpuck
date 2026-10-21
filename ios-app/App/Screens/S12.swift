@@ -25,7 +25,7 @@ struct S12View: View {
                     .padding(.vertical, 7).padding(.horizontal, 11)
                     .background(RoundedRectangle(cornerRadius: 6).fill(active ? Color.white : .clear))
                     .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(Color.white, lineWidth: 1))
-                M("Lift off and come to a safe stop. This alert comes from fixed rules and works even if the analyst is off.", .sans, 14, lineHeight: 1.5)
+                M("Back off the throttle and bring the engine to idle. This alert comes from fixed rules and works even if the analyst is off.", .sans, 14, lineHeight: 1.5)
                 Spacer(minLength: 0)
                 M(acked ? "Acknowledged · tuning locked until investigated" : active ? "Can't acknowledge while active" : "Acknowledge",
                   .sans, 16, 600, color: acked ? .white : active ? Color.white.opacity(0.65) : deep)
@@ -37,11 +37,13 @@ struct S12View: View {
                         if acked { app.router.dismiss(); app.router.go(.S13) }      // next step: log the investigation
                         else if !active { app.alertAck = true }
                     }
-                M(active ? "Simulate: condition clears" : "Simulate: condition returns", .sans, 12)
-                    .underline().opacity(0.8)
-                    .frame(maxWidth: .infinity)
-                    .contentShape(Rectangle())
-                    .onTapGesture { app.alertActive.toggle(); app.alertAck = false }
+                if Features.prototypeControls {
+                    M(active ? "Simulate: condition clears" : "Simulate: condition returns", .sans, 12)
+                        .underline().opacity(0.8)
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
+                        .onTapGesture { app.alertActive.toggle(); app.alertAck = false }
+                }
             }
             .padding(.top, 20).padding(.horizontal, 22).padding(.bottom, 30)
         }

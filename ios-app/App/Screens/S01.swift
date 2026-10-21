@@ -23,7 +23,7 @@ struct S01View: View {
                 (T(app.tr("Read the engine."), .barlow, 46, 700) + Text(verbatim: "\n") + T(app.tr("Change nothing yet."), .barlow, 46, 700))
                     .apFont(.barlow, 46, 700, lineHeight: 0.95)
                     .fixedSize(horizontal: false, vertical: true)
-                ASans(text: "AhhPuck records what your ECU is doing, compares controlled runs, and recommends the smallest safe next step.",
+                ASans(text: "AhhPuck records what your ECU is doing, compares controlled runs, and explains the evidence.",
                       size: 14, color: AP.text3, lineHeight: 1.5)
                     .fixedSize(horizontal: false, vertical: true)
             }

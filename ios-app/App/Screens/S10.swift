@@ -9,7 +9,7 @@ struct S10View: View {
         let lt = rt == "Repeat" ? "LOCKED" : rt == "Candidate" ? "FROM BASELINE" : "EDITABLE"
         let tc = rt == "Repeat" ? AP.text : rt == "Candidate" ? AP.text3 : AP.faint
         let fields: [(String, String)] = [("Objective", "Drivability"), ("Gear", "3rd"), ("RPM band", "2,500–7,000"), ("Load band", "40–100 %"),
-                                          ("Context", "Route · Lakeside loop"), ("Fuel", "98 RON"), ("Ambient", "22 °C · 1012 hPa")]
+                                          ("Context", "Dyno · bay 2"), ("Fuel", "98 RON"), ("Ambient", "22 °C · 1012 hPa")]
         let ref = rt == "Baseline" ? "Creates a new baseline. It can never be edited." : rt == "Candidate" ? "Compared against Baseline 03 · sha 3f9a…c21e" : "Repeats Candidate 04 · sha 81d0…4b07"
         let note = rt == "Repeat" ? "Every condition must match the candidate. Any change is flagged in Review." : "Conditions are copied from the baseline so the comparison is fair."
 

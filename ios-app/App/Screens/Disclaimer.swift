@@ -22,6 +22,15 @@ enum Disclaimer {
         "AhhPuck is provided “as is”, without any warranty. To the extent the law allows, Wheel Have is not liable for damage to engines, vehicles, ECUs or other property, or for any injury, loss or cost, arising from using AhhPuck or acting on what it shows.",
         "Nothing in this disclaimer excludes, restricts or modifies any right or remedy you have under the Australian Consumer Law or other law that cannot lawfully be excluded.",
     ]
+
+    /// The first-run summary: five short lines. The full text is one tap away.
+    static let summary: [String] = [
+        "Read-only: AhhPuck never writes to your ECU.",
+        "Information only, not tuning advice.",
+        "Use on a bench or closed course. Never while driving.",
+        "You are responsible for your vehicle and the law.",
+        "As far as the law allows, we are not liable for damage.",
+    ]
 }
 
 /// The legal documents the app carries. Terms and Privacy are offline copies of the website
@@ -60,15 +69,16 @@ enum LegalDoc: String, Identifiable, CaseIterable {
     }
 }
 
-/// The numbered disclaimer text, shared by the first-run gate and the disclaimer document.
+/// The full numbered disclaimer (the reader; first run shows `Disclaimer.summary`).
 struct DisclaimerText: View {
+    var size: CGFloat = 13
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             ForEach(Array(Disclaimer.points.enumerated()), id: \.offset) { i, p in
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
                     AMono(text: String(format: "%02d", i + 1), size: 10, color: AP.label)
                         .frame(width: 18, alignment: .leading)
-                    ASans(text: p, size: 13, color: AP.text2, lineHeight: 1.45)
+                    ASans(text: p, size: size, color: AP.text2, lineHeight: 1.45)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -76,7 +86,8 @@ struct DisclaimerText: View {
     }
 }
 
-/// First launch: read and accept the disclaimer, Terms and Privacy Policy before anything else.
+/// First launch: a short summary of the disclaimer, links to the full disclaimer, Terms and
+/// Privacy Policy (offline readers), and "I understand". Fits one 6.1" screen.
 struct DisclaimerGate: View {
     @Environment(AppModel.self) private var app
     var onAccept: () -> Void
@@ -85,42 +96,55 @@ struct DisclaimerGate: View {
 
     var body: some View {
         PhoneScreen(tab: nil, demoStrip: false) {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .center) {
                     AMono(text: "AHHPUCK", size: 11, color: AP.label, tracking: 0.1)
                     Spacer(minLength: 0)
                     ALangPill()
                 }
                 .frame(height: 36)
-                T(app.tr(Disclaimer.title), .barlow, 36, 700)
-                    .apFont(.barlow, 36, 700, lineHeight: 0.95)
+                T(app.tr(Disclaimer.title), .barlow, 28, 700)
+                    .apFont(.barlow, 28, 700, lineHeight: 1.0)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, 24)
-            .padding(.top, 24)
+            .padding(.top, 20)
 
-            DisclaimerText()
-                .apCard()
-                .block(top: 14)
+            VStack(alignment: .leading, spacing: 9) {
+                ForEach(Disclaimer.summary, id: \.self) { line in
+                    HStack(alignment: .firstTextBaseline, spacing: 9) {
+                        Circle().fill(AP.label).frame(width: 4, height: 4).alignmentGuide(.firstTextBaseline) { $0[.bottom] + 4 }
+                        ASans(text: line, size: 13, color: AP.text2, lineHeight: 1.35)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                Button(app.tr("Read the full disclaimer")) { doc = .disclaimer }
+                    .apFont(.sans, 12, 600)
+                    .foregroundStyle(AP.cyan)
+                    .padding(.top, 2)
+            }
+            .apCard()
+            .block(top: 16)
 
-            // "By continuing you agree to the Terms and Privacy Policy", each one readable here.
-            VStack(alignment: .leading, spacing: 8) {
-                ASans(text: "By continuing you agree to the Terms of Service and the Privacy Policy.",
-                      size: 13, color: AP.text2, lineHeight: 1.45)
+            VStack(alignment: .leading, spacing: 6) {
+                ASans(text: "By continuing you agree to the Terms of Service and Privacy Policy.",
+                      size: 12, color: AP.text3, lineHeight: 1.4)
                     .fixedSize(horizontal: false, vertical: true)
                 HStack(spacing: 16) {
                     Button(app.tr("Terms of Service")) { doc = .terms }
                     Button(app.tr("Privacy Policy")) { doc = .privacy }
                 }
-                .apFont(.sans, 13, 600)
+                .apFont(.sans, 12, 600)
                 .foregroundStyle(AP.cyan)
             }
             .block(top: 14)
 
-            HStack(alignment: .top, spacing: 12) {
-                ATick(on: agreed, size: 24, radius: 6, fontSize: 16)
-                ASans(text: "I have read and accept the disclaimer, the Terms of Service and the Privacy Policy. I use AhhPuck at my own risk.",
-                      size: 13, color: AP.text2, lineHeight: 1.45)
+            Spacer(minLength: 0)
+
+            HStack(alignment: .top, spacing: 10) {
+                ATick(on: agreed, size: 22, radius: 6, fontSize: 15)
+                ASans(text: "I have read and accept these. I use AhhPuck at my own risk.",
+                      size: 12, color: AP.text2, lineHeight: 1.4)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 0)
             }
@@ -128,9 +152,7 @@ struct DisclaimerGate: View {
             .onTapGesture { agreed.toggle() }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(agreed ? [.isButton, .isSelected] : .isButton)
-            .block(top: 14)
-
-            Spacer(minLength: 0)
+            .padding(.horizontal, 18)
 
             AButton(label: agreed ? "I understand" : "Tick the box to continue",
                     bg: agreed ? AP.text : AP.disabled, fg: agreed ? AP.ink : AP.faint) {
@@ -139,8 +161,8 @@ struct DisclaimerGate: View {
                 onAccept()
             }
             .padding(.horizontal, 18)
-            .padding(.top, 14)
-            .padding(.bottom, 28)
+            .padding(.top, 12)
+            .padding(.bottom, 24)
         }
         .sheet(item: $doc) { LegalDocView(doc: $0).environment(app) }
     }
@@ -154,7 +176,7 @@ struct LegalDocView: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 12) {
+            LazyVStack(alignment: .leading, spacing: 10) {
                 HStack {
                     if let url = doc.webURL {
                         Link(app.tr("Open on wheelhave.com"), destination: url)
@@ -167,8 +189,8 @@ struct LegalDocView: View {
                         .foregroundStyle(AP.cyan)
                 }
                 if doc == .disclaimer {
-                    T(app.tr(Disclaimer.title), .barlow, 30, 700).apFont(.barlow, 30, 700)
-                    DisclaimerText()
+                    T(app.tr(Disclaimer.title), .barlow, 24, 700).apFont(.barlow, 24, 700)
+                    DisclaimerText(size: 12.5)
                 } else {
                     ForEach(Array(doc.blocks.enumerated()), id: \.offset) { _, b in block(b) }
                 }
@@ -182,21 +204,21 @@ struct LegalDocView: View {
     // The documents are English, as on the website, so they are not passed through tr().
     @ViewBuilder private func block(_ b: String) -> some View {
         if b.hasPrefix("# ") {
-            Text(String(b.dropFirst(2))).apFont(.barlow, 30, 700).fixedSize(horizontal: false, vertical: true)
+            Text(String(b.dropFirst(2))).apFont(.barlow, 24, 700).fixedSize(horizontal: false, vertical: true)
         } else if b.hasPrefix("## ") {
-            Text(String(b.dropFirst(3))).apFont(.barlow, 21, 700).padding(.top, 8).fixedSize(horizontal: false, vertical: true)
+            Text(String(b.dropFirst(3))).apFont(.barlow, 18, 700).padding(.top, 10).fixedSize(horizontal: false, vertical: true)
         } else if b.hasPrefix("### ") {
-            Text(String(b.dropFirst(4))).apFont(.sans, 15, 600).fixedSize(horizontal: false, vertical: true)
+            Text(String(b.dropFirst(4))).apFont(.sans, 13, 600).fixedSize(horizontal: false, vertical: true)
         } else if b.hasPrefix("    ") {
             Text(b.split(separator: "\n", omittingEmptySubsequences: false).map { $0.hasPrefix("    ") ? String($0.dropFirst(4)) : String($0) }.joined(separator: "\n"))
                 .apFont(.mono, 11).foregroundStyle(AP.text3).fixedSize(horizontal: false, vertical: true)
         } else if b.hasPrefix("• ") {
             HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Text(verbatim: "•").apFont(.sans, 14)
-                Text(String(b.dropFirst(2))).apFont(.sans, 14, lineHeight: 1.45).foregroundStyle(AP.text2).fixedSize(horizontal: false, vertical: true)
+                Text(verbatim: "•").apFont(.sans, 12)
+                Text(String(b.dropFirst(2))).apFont(.sans, 12.5, lineHeight: 1.45).foregroundStyle(AP.text2).fixedSize(horizontal: false, vertical: true)
             }
         } else {
-            Text(b).apFont(.sans, 14, lineHeight: 1.45).foregroundStyle(AP.text2).fixedSize(horizontal: false, vertical: true)
+            Text(b).apFont(.sans, 12.5, lineHeight: 1.45).foregroundStyle(AP.text2).fixedSize(horizontal: false, vertical: true)
         }
     }
 }

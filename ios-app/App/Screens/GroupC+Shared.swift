@@ -74,8 +74,6 @@ enum CMetrics {
             M(k: "Lean cells under load", u: "", cur: 6, mid: max(0.6, 6 - 5 * inc), w: 0.8, bt: -1, n: 0.5, d: (0, 8), dp: 0),
             M(k: "Rich overshoot cells", u: "", cur: 0, mid: 0.2 + ov * 10, w: 0.5 + ov * 3, bt: -1, n: 0.5, d: (0, 8), dp: 0),
             M(k: "Peak injector duty", u: "%", cur: 86, mid: 86 + 1.1 * inc, w: 0.6, bt: -1, n: 0.4, d: (82, 92), dp: 1, lim: 88),
-            M(k: "Est. wheel power · phone", u: "%", cur: 0, mid: 0.5 * inc, w: 0.6, bt: 1, n: 3, d: (-5, 5), dp: 1, sg: true),
-            M(k: "60–120 km/h in 3rd", u: " s", cur: 6.42, mid: 6.42 - 0.03 * inc, w: 0.03, bt: -1, n: 0.08, d: (6.2, 6.6), dp: 2),
         ]
     }
 
