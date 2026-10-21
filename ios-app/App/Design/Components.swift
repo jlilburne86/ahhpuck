@@ -24,7 +24,7 @@ struct PhoneScreen<Content: View>: View {
     var background: Color = AP.screen
     var foreground: Color = AP.text
     var scrolls: Bool = true
-    /// The "BETA · demo data" strip; off for the disclaimer itself and the first-run flow.
+    /// The demo-data strip; off for the disclaimer itself and the first-run flow.
     var demoStrip: Bool = true
     @ViewBuilder var content: () -> Content
 

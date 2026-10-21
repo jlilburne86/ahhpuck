@@ -3,15 +3,15 @@
 ## Review build
 
 Marketing version: `1.2`
-Build: `4`
+Build: `5`
 
 AhhPuck is a native iOS read-only companion for collecting and reviewing evidence from unsupported standalone ECUs. This build does not write to an ECU, change a calibration, or authorize a tuning change.
 
 The current build operates in replay/demo mode until the FC-03 cable, serial electrical levels, and first real capture have been validated on a physical iPhone. Screens that show replay values are labelled `DEMO DATA`, `SIMULATED`, or `DEMO PREVIEW`. The notification and Live Activity screen is an in-app preview only; this build does not request notification access or publish Live Activities.
 
-## Beta and disclaimer
+## Disclaimer and legal documents
 
-Build 4 is for public TestFlight testing. On first launch the app shows a beta disclaimer that must be accepted ("I understand") before anything else, and it can be read again under Garage › About › Disclaimer. Every in-app screen carries a "BETA · Demo data until the FC-03 connection is verified" strip. The text is in `TERMS-OF-USE.md`. Ready-to-paste TestFlight and App Store metadata, plus 6.9" screenshots, are in `appstore/`.
+On first launch the app shows the disclaimer and links to the Terms of Service and Privacy Policy, and the user must accept them ("I understand") before anything else. Every legal document can be read again, offline, under Garage › About: Terms of Service, Privacy Policy, Disclaimer, and Open-source notices. Terms and Privacy are copies of wheelhave.com/terms and /privacy, regenerated with `ios-app/scripts/sync-legal.py`. Every in-app screen carries a "DEMO DATA · Engine values are demo data until the FC-03 connection is verified" strip. Store metadata and 6.9" screenshots are in `appstore/`.
 
 ## Hardware
 

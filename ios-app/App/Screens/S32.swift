@@ -6,7 +6,7 @@ import SwiftUI
 /// a threshold row opens the Glossary (S42).
 struct S32View: View {
     @Environment(AppModel.self) private var app
-    @State private var showDisclaimer = false
+    @State private var doc: LegalDoc?
 
     var body: some View {
         let afr = app.units == .afr
@@ -70,21 +70,21 @@ struct S32View: View {
 
             M("Loosening a threshold needs a reason, and the change is logged.", .sans, 12, color: AP.label).block(top: 8)
 
-            // About: the beta disclaimer, permissions and legal, and the build.
+            // About: the legal documents (the same as wheelhave.com), permissions, and the build.
             M("ABOUT", .mono, 10, color: AP.label).block(top: 14)
             MList {
-                aboutRow("Disclaimer") { showDisclaimer = true }
-                aboutRow("Permissions, privacy and terms") { app.router.go(.S35) }
+                ForEach(LegalDoc.allCases) { d in aboutRow(d.title) { doc = d } }
+                aboutRow("Permissions") { app.router.go(.S35) }
                 HStack(spacing: 8) {
                     M("Version", .sans, 13).frame(maxWidth: .infinity, alignment: .leading)
-                    M("\(Self.version) · BETA", .mono, 12, color: AP.label, translate: false)
+                    M(Self.version, .mono, 12, color: AP.label, translate: false)
                 }
                 .mRow(9, 12)
             }
             .block(top: 6)
             Spacer(minLength: 0)
         }
-        .sheet(isPresented: $showDisclaimer) { DisclaimerSheet().environment(app) }
+        .sheet(item: $doc) { LegalDocView(doc: $0).environment(app) }
     }
 
     private static let version: String = {
