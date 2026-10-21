@@ -46,8 +46,8 @@ struct S32View: View {
                     .onTapGesture { if app.tuner { app.router.go(.S33) } }
                 M("LANGUAGE", .mono, 10, color: AP.label)
                 LazyVGrid(columns: two, spacing: 6) {
-                    MChip(label: "English", on: app.lang == .en, size: 13, v: 7, h: 11, center: true) { app.lang = .en }
-                    MChip(label: "日本語", on: app.lang == .ja, size: 13, v: 7, h: 11, center: true) { app.lang = .ja }
+                    MChip(label: "English", on: app.lang == .en, size: 13, v: 7, h: 11, center: true) { app.chooseLanguage(.en) }
+                    MChip(label: "日本語", on: app.lang == .ja, size: 13, v: 7, h: 11, center: true) { app.chooseLanguage(.ja) }
                 }
             }
             .apCard()

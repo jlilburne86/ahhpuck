@@ -28,7 +28,7 @@ struct ALangPill: View {
 
     private func opt(_ l: L10n.Language, _ label: String) -> some View {
         let s = ASel(app.lang == l)
-        return Button { app.lang = l } label: {
+        return Button { app.chooseLanguage(l) } label: {
             T(app.tr(label), .sans, 12, 600)
                 .apFont(.sans, 12, 600)
                 .foregroundStyle(s.fg)

@@ -12,7 +12,11 @@ final class AppModel {
     enum Units: String { case lambda = "Lambda", afr = "AFR" }
     var units: Units = .lambda
     var tuner = false
+    /// Starts in the phone's language (see `L10n.initialLanguage`).
     var lang: L10n.Language = .en
+    /// The in-app English/日本語 switch. Only this saves, so a launch never records the
+    /// phone's language as if the user had picked it (`@Observable` runs `didSet` in init).
+    func chooseLanguage(_ l: L10n.Language) { lang = l; L10n.saveChoice(l) }
     var isJA: Bool { lang == .ja }
     func tr(_ s: String) -> String { L10n.t(s, lang) }
 
@@ -122,7 +126,7 @@ final class AppModel {
 
     init() {
         let args = ProcessInfo.processInfo.arguments
-        if args.contains("-ja") { lang = .ja }
+        lang = args.contains("-ja") ? .ja : args.contains("-en") ? .en : L10n.initialLanguage()
         if args.contains("-afr") { units = .afr }
         if args.contains("-tuner") { tuner = true }
         if args.contains("-live") { live = true; startTicker() }
