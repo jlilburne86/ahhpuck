@@ -12,11 +12,11 @@ You are responsible for:
 
 The project does not promise that an ECU, cable, adapter, vehicle, map or protocol is compatible. Demo values, inferred fields and AI-generated explanations are not evidence of a safe tune. No contribution or documentation in this repository authorizes ECU writes or removes the requirement for human supervision.
 
-## Beta disclaimer (shown in the app)
+## Disclaimer (shown in the app)
 
-The iOS app shows this on first launch, the user must accept it with "I understand" before using the app, and it can be read again from Garage › About › Disclaimer. Keep this text identical to `ios-app/App/Screens/Disclaimer.swift` and the AhhPuck section of wheelhave.com/terms. **Needs a lawyer's review before a public App Store release.**
+The iOS app shows this on first launch together with the Terms of Service and Privacy Policy (bundled offline copies of wheelhave.com/terms and /privacy, regenerated with `ios-app/scripts/sync-legal.py`). The user must accept with "I understand" before using the app, and every document can be read again from Garage › About. Keep this text identical to `ios-app/App/Screens/Disclaimer.swift` and §15 of wheelhave.com/terms. **The wording should have a lawyer's review.**
 
-1. AhhPuck is beta software. It is unfinished, may contain errors, and can change or stop working at any time.
+1. AhhPuck may contain errors, and it can change or stop working at any time.
 2. This build is read-only. It never writes to your ECU, changes a calibration or ignition timing, or controls your engine.
 3. Until the FC-03 connection is verified, the engine numbers you see are demo data, not readings from your engine. Imported captures show what is in the file.
 4. Everything AhhPuck shows is information only. It is not tuning advice, and it does not tell you that an engine, a map or a change is safe.

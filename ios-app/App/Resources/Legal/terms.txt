@@ -1,0 +1,225 @@
+Copy of https://wheelhave.com/terms, bundled so it can be read offline. The website version is the current one.
+
+Last updated: 10 October 2026
+
+# Terms of Service
+
+## Plain Language Summary
+
+This summary is for convenience only. The full terms below are legally binding.
+
+• Who we are: Wheel Have (ABN 73 472 468 412), an Australian business. PuckIt is one of our products. The Platform is available worldwide, and these Terms are governed by the laws of Victoria, Australia.
+
+• Your local rights stay: Nothing here takes away consumer rights your local law gives you and does not let us exclude.
+
+• We are a venue: Wheel Have is a classifieds platform where buyers and sellers connect directly.
+
+• No commissions or fees: We do not charge any commission on sales between users.
+
+• Direct payments: Payments are arranged directly between buyers and sellers. Wheel Have does not process, hold, or transfer funds.
+
+• No escrow or shipping service: Wheel Have does not provide escrow, arrange shipping, insure shipments, guarantee delivery, or settle disputes.
+
+• Your transaction, your responsibility: All transactions are between buyer and seller. We are not a party to any sale.
+
+• No warranties: We do not own, inspect, verify, endorse, warrant, or guarantee any listings, users, items, or sale outcomes unless we explicitly state otherwise in writing.
+
+• Be careful: Use your judgment, verify items before purchasing, agree payment directly, and keep records.
+
+• PuckIt is not a safety device: It is a DIY hazard-warning aid built from third-party parts. We do not sell it. You can drive with your phone alone; a Puck adds car-to-car hazard warnings and accuracy. Your speed, lap times and course times are never public.
+
+• Competitive features are off by default: Ghosts, course times and comparisons only switch on when you confirm you are on a private road or closed course you may use, or inside an organiser's event. That confirmation is your promise, and you are responsible for it. Always obey the law.
+
+• 18 or older: You must be 18 or older to hold an account.
+
+• Organisers own their events: If you run a PuckIt event, you are responsible for your roster, your messages and your results, and you must not publish drivers' times outside the event.
+
+## 1. Agreement to Terms
+
+These Terms of Service (“Terms”) constitute a legally binding agreement between you (“User”, “you”, or “your”) and Wheel Have (ABN 73 472 468 412) (“Wheel Have”, “we”, “us”, or “our”) governing your access to and use of the Wheel Have website, mobile applications, and related services (collectively, the “Platform”). By accessing or using the Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Platform.
+
+## 2. Nature of Service
+
+2.1 Platform as Venue. Wheel Have operates solely as an online venue where users may list automotive parts, wheels, tires, and accessories for sale, trade, or purchase. Wheel Have is not a party to any transaction between users and does not buy, sell, resell, or provide any items listed on the Platform.
+
+2.2 Listing and Communication Tools Only. The Platform provides tools for advertising listings, messaging other users, making offers, discussing shipping, recording agreed sale details, and sharing transaction-related information. These tools do not make Wheel Have a buyer, seller, broker, agent, payment processor, shipping provider, insurer, escrow provider, dispute resolver, or guarantor.
+
+2.3 No Agency Relationship. Nothing in these Terms creates any agency, partnership, joint venture, employment, or franchise relationship between Wheel Have and any user. Users act solely on their own behalf and not as agents of Wheel Have.
+
+2.4 No Commission or Transaction Fees. Wheel Have does not charge any commission, transaction fee, or percentage on sales between users. The Platform is provided free of charge for individual sellers, with optional premium features available for commercial sellers.
+
+## 3. Payments and Financial Transactions
+
+3.1 Direct Payments. All payments for transactions between users are made directly between the buyer and seller. Wheel Have does not process, receive, hold, or transfer any funds on behalf of users.
+
+3.2 No Platform Checkout. Wheel Have does not provide a marketplace checkout, escrow service, hosted payment flow, or managed shipping service for user-to-user transactions. Any payment method, receipt, pickup, delivery, or tracking arrangement is agreed directly between the buyer and seller.
+
+3.3 Payment Methods. Users are free to arrange payment through any mutually agreed method, including but not limited to bank transfer, PayPal, cash on collection, or other payment services. Wheel Have makes no representation about the suitability or security of any payment method.
+
+3.4 No Escrow or Buyer Protection. Wheel Have does not provide escrow services, buyer protection, or seller protection. Users transact entirely at their own risk.
+
+3.5 Payment Issues. Wheel Have is not responsible for failed sales, payment issues, refunds, deposits, chargebacks, reversals, non-payment, misdirected payments, off-platform agreements, or any outcome arising from a payment method selected by users. Users must handle payment disputes directly with each other, their payment provider, or the relevant legal authority, unless applicable law requires otherwise.
+
+## 4. User Obligations
+
+4.1 Eligibility. You must be at least 18 years of age and legally capable of entering into binding contracts to use the Platform. By using the Platform, you represent and warrant that you meet these requirements.
+
+4.2 Accurate Information. You agree to provide accurate, current, and complete information when creating an account and posting listings. You are solely responsible for all activity on your account.
+
+4.3 Legal Compliance. You agree to comply with all applicable laws and regulations, including consumer protection laws, tax obligations, and import/export regulations in your jurisdiction.
+
+4.4 Prohibited Conduct. You agree not to: (a) post false, misleading, or fraudulent listings; (b) list counterfeit, stolen, or prohibited items; (c) violate any third party’s intellectual property rights; (d) harass, threaten, or defame other users; (e) attempt to circumvent or manipulate the Platform’s systems; (f) use automated means to access the Platform without permission; (g) ask for or send payment credentials, bank log-in details or identity documents through messages.
+
+4.4A Prohibited Items. Listings must be for physical automotive goods you have the right to sell. You must not list: stolen goods or parts with altered or removed identification numbers; counterfeit or replica goods described as genuine; items subject to a safety recall that has not been remedied, such as recalled airbags or inflators; weapons, drugs or other illegal goods; items whose sale or export is restricted where you or the buyer are; or services, digital goods or anything that is not a physical item.
+
+4.5 Your Content. You keep ownership of the listings, photos, messages and other content you post. You give Wheel Have a non-exclusive, worldwide, royalty-free licence to host, store, copy, display and adapt that content to run the Platform, and to promote your published listings, including by posting them to Wheel Have's own social media pages. The licence ends when the content is deleted from the Platform, except where it is kept as described in our Privacy Policy or has already been shared. You must have the right to post everything you post.
+
+4.6 Objectionable Content and Abusive Users. There is no tolerance on Wheel Have for objectionable content or abusive users. You must not post, send or share content that is sexually explicit, hateful, discriminatory, violent, threatening, harassing, defamatory, or otherwise offensive, or that promotes illegal activity, whether in a listing, photo, message, offer, review, profile, crew or event. You can report a listing or a conversation from its menu, choosing the reason that fits, and block a user from a conversation, in the app and on the website; blocked users cannot message you, and you can unblock them in your settings. We moderate what is posted: display names are checked automatically, and reported listings, messages and profiles are reviewed promptly, aiming to act within 24 hours, and we remove content that breaks these Terms and suspend or permanently remove the accounts of users who post it. You can also report content to us at any time through our contact page.
+
+## 5. Transactions Between Users
+
+Important: Please read this section carefully.
+
+5.1 Buyer-Seller Relationship. All transactions, agreements, and contracts formed through the Platform are exclusively between the buyer and seller. Wheel Have is not a party to any such agreement and has no obligations or liability under any buyer-seller contract.
+
+5.2 User Responsibility. Users are solely responsible for: (a) verifying the identity and reliability of other users; (b) evaluating item condition, authenticity, and suitability; (c) negotiating and agreeing terms of sale; (d) arranging payment and delivery; (e) resolving any disputes arising from transactions.
+
+5.3 No Verification. Wheel Have does not verify: (a) the accuracy of listings or item descriptions; (b) the identity, creditworthiness, or reliability of users; (c) the quality, safety, or legality of items; (d) the ability of sellers to complete sales or buyers to complete purchases.
+
+5.4 Shipping, Insurance, and Delivery. Shipping estimates, package details, tracking information, carrier choices, insurance decisions, customs handling, pickup arrangements, delivery timing, and damage or loss claims are agreed and managed directly by the buyer and seller. Wheel Have does not arrange, guarantee, insure, or take responsibility for shipping, delivery, tracking, customs, damage, delay, or loss.
+
+5.5 Dispute Resolution. Wheel Have does not mediate, arbitrate, settle, or otherwise participate in disputes between users. Users must resolve disputes directly between themselves, through their payment or shipping provider, or through appropriate legal channels.
+
+## 6. International Use
+
+6.1 Global Access. The Platform is accessible worldwide. Users accessing the Platform from outside Australia are responsible for compliance with all applicable local laws, including import/export regulations, customs requirements, and consumer protection laws.
+
+6.2 Cross-Border Transactions. Users engaging in cross-border transactions assume all risks including: (a) customs duties and taxes; (b) shipping delays and damages; (c) currency exchange fluctuations; (d) legal requirements in multiple jurisdictions.
+
+6.3 No Jurisdiction Representation. Wheel Have makes no representation that items listed on the Platform are appropriate or legal for use in any particular jurisdiction.
+
+## 7. Disclaimers
+
+Important Legal Disclaimers
+
+7.1 Service Provided As Is. Subject to section 7.5, we provide the Platform as it is and as available. To the extent the law allows, we give no promises about it beyond those these Terms state, including implied promises that it is fit for a particular purpose, of a particular quality, or uninterrupted.
+
+7.2 No Endorsement. WHEEL HAVE DOES NOT ENDORSE, WARRANT, OR GUARANTEE ANY LISTING, USER, ITEM, OR TRANSACTION. THE INCLUSION OF ANY LISTING ON THE PLATFORM DOES NOT CONSTITUTE AN ENDORSEMENT OR RECOMMENDATION.
+
+7.3 No Item Ownership or Inspection. UNLESS WHEEL HAVE EXPLICITLY STATES OTHERWISE IN WRITING FOR A SPECIFIC ITEM OR SERVICE, WHEEL HAVE DOES NOT OWN, SELL, INSPECT, VERIFY, WARRANT, OR GUARANTEE ANY LISTED ITEM, ITS CONDITION, AUTHENTICITY, FITMENT, SAFETY, LEGALITY, OR DESCRIPTION.
+
+7.4 Automotive Parts Risk. AUTOMOTIVE PARTS, PARTICULARLY USED PARTS, INVOLVE INHERENT RISKS. USERS ASSUME FULL RESPONSIBILITY FOR VERIFYING COMPATIBILITY, CONDITION, AND SAFETY. WHEEL HAVE IS NOT RESPONSIBLE FOR ANY DAMAGE TO VEHICLES, PROPERTY, OR PERSONS ARISING FROM ITEMS OBTAINED THROUGH THE PLATFORM.
+
+7.5 Your Consumer Rights. Nothing in these Terms excludes, restricts or changes any right or remedy you have under consumer law that cannot lawfully be excluded, restricted or changed. That includes the consumer guarantees in the Australian Consumer Law, the statutory rights of consumers in the European Union and the United Kingdom, Japan's Consumer Contract Act, and the equivalent laws where you live. Where our liability for failing to meet an Australian consumer guarantee can be limited, it is limited to supplying the service again or paying the cost of having it supplied again.
+
+## 8. Limitation of Liability
+
+8.1 Exclusion of Damages. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WHEEL HAVE AND ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR IN CONNECTION WITH: (A) YOUR USE OF OR INABILITY TO USE THE PLATFORM; (B) ANY TRANSACTION BETWEEN USERS; (C) ANY CONTENT POSTED BY USERS; (D) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR TRANSMISSIONS OR DATA; (E) FAILED SALES, PAYMENT ISSUES, CHARGEBACKS, SHIPPING DAMAGE, LOST ITEMS, INACCURATE LISTINGS, SELLER MISREPRESENTATION, BUYER NON-PAYMENT, OR OFF-PLATFORM AGREEMENTS.
+
+8.2 Maximum Liability. Subject to sections 7.5 and 8.3, and to the extent the law allows, our total liability to you for all claims arising out of or related to these Terms or your use of the Platform is limited to one hundred Australian dollars (AUD $100). The Platform is free, and this cap reflects that; it does not apply to anything the law does not allow us to limit.
+
+8.3 Statutory Rights. Some laws do not allow warranties to be excluded or liability to be limited, or allow it only in part. Where they apply, our exclusions and limits apply only as far as those laws allow. Nothing in these Terms excludes or limits liability that cannot be excluded or limited, including liability for death or personal injury caused by our negligence, or for fraud.
+
+## 9. Indemnification
+
+You agree to defend, indemnify, and hold harmless Wheel Have and its officers, directors, employees, agents, affiliates, successors, and assigns from and against any claims, damages, obligations, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from or related to: (a) your use of the Platform; (b) your violation of these Terms; (c) your violation of any third party rights; (d) your listings and any items you offer for sale; (e) your transactions with other users; (f) any content you post or transmit through the Platform; (g) any dispute between you and another user. This indemnification obligation survives termination of these Terms.
+
+## 10. Dispute Resolution
+
+10.1 User-to-User Disputes. You release Wheel Have and its officers, directors, agents, subsidiaries, and employees from all claims, demands, and damages (actual and consequential) of every kind and nature, known and unknown, arising out of or in any way connected with any dispute you have with another user.
+
+10.2 Governing Law. These Terms are governed by the laws of Victoria, Australia.
+
+10.3 Jurisdiction. You and we submit to the jurisdiction of the courts of Victoria, Australia. This does not take away any right you have, as a consumer, to bring proceedings in the courts of the country where you live, or the protection of the mandatory laws of that country.
+
+## 11. General Provisions
+
+11.1 Entire Agreement. These Terms, together with our Privacy Policy, constitute the entire agreement between you and Wheel Have regarding the Platform.
+
+11.2 Severability. If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.
+
+11.3 Waiver. No waiver of any term of these Terms shall be deemed a further or continuing waiver of such term or any other term.
+
+11.4 Assignment. Wheel Have may assign its rights and obligations under these Terms. You may not assign your rights or obligations without our prior written consent.
+
+11.5 Account Deletion. You may request deletion of your account at any time. On request your account is locked immediately, your listings are delisted, your conversations are closed, notifications stop, and any PuckIt device claimed to your account is released. Permanent erasure runs 30 days later, and signing in again during that period cancels it. Deletion is blocked while you have an unsettled order. Some records are retained after erasure, including messages, offers and orders, because they form the other party's record of a transaction. Our Privacy Policy sets out precisely what is and is not removed.
+
+11.6 Amendments. We may modify these Terms at any time by posting the amended terms on the Platform. Your continued use of the Platform after such posting constitutes acceptance of the amended Terms.
+
+11.7 Suspension and Termination. We may suspend or close an account, or remove content, if these Terms are broken, if we need to protect other users or the Platform, or if the law requires it. Where it is safe and lawful to do so, we will tell you why. You can stop using the Platform and delete your account at any time.
+
+## 12. PuckIt in the App
+
+12.1 Not a Safety Device. PuckIt is an experimental driver-to-driver hazard-warning aid. It is not a safety device, is not certified, and can fail without warning. It does not replace marshals, flags, safe driving or your own judgement. The PuckIt Terms of Use and Disclaimer apply to the device, its firmware and anything you build, and form part of these Terms.
+
+12.2 A Wheel Have Product, Built by You. PuckIt is a Wheel Have product, operated by Wheel Have (ABN 73 472 468 412); there is no separate PuckIt company. A Puck is a do-it-yourself build from third-party parts. Wheel Have publishes the designs and firmware and does not sell, supply or assemble PuckIt hardware, unless a separate written agreement says otherwise. Wheel Have handles no payment or shipping for PuckIt parts.
+
+12.3 Drives. Keeping your drives is optional (“Keep your drives?”). It works only while your phone is connected to a Puck you have claimed, and it uses your phone's location and motion as our Privacy Policy describes. Drives upload to your account when you have agreed to that. Drive figures, laps, sectors, course times, braking points and other metrics come from a phone and radio signals. They are estimates, not official timing, and must not be relied on for anything that matters.
+
+12.4 Public Roads and Radio. Obey the law and road rules at all times. Drives on open roads are never given lap or sector times, course times on public roads are shown only to you and your crew and are never ranked, and you must not use the Platform to time, rank, organise or encourage speeding or racing on public roads. Do not handle your phone or watch the screen while driving; set it up before you leave, and let a passenger use it. A Puck is a radio transmitter: use only the firmware build and band that are legal in the country you drive in, and reflash before you drive in another country.
+
+12.5 Sharing. You decide which crews see a drive and whether your crew sees you on the live crew map. Speed, stats, lap times and course times are never shown publicly. Do not share, publish or misrepresent another driver's data without their permission, and do not use the live crew map to follow, chase or race another driver on a public road.
+
+12.6 Competitive Features and Private Roads. Ghosts, course times, comparisons with your best, crew comparisons and coaching overlays are off by default. You can switch them on only after confirming, for the place you are and the drive you are on, that you are on a private road or closed course you have permission to use; at an organiser's event they are on inside that event's course zone. When you confirm, you promise that it is true and that your use there is lawful, and you are responsible for it. We keep a record of each confirmation as our Privacy Policy describes. We may switch these features off, for you or for everyone, at any time.
+
+12.7 Buttons and Alerts. On a Puck, the red button raises a hazard and the blue button sends a Puck Yeah. Red flags come only from an event's Event Box, run by the organiser. Treat every alert as a prompt to look and slow down, never as a guarantee that a hazard is, or is not, ahead.
+
+## 13. Crews and Events
+
+13.1 Crews. Crews are mutual: nobody is added without agreeing. Treat what crew members share with you, including where they are on the live crew map, as theirs. Do not pass it on outside the crew without their permission.
+
+13.1A Convoy Routes. A crew's organiser can set a convoy route, and members can propose one for the crew to vote on. A convoy route is a shared destination, not an instruction to drive in any particular way. Each driver remains responsible for their own driving and for obeying the law.
+
+13.2 Joining an Event. An event is run by its organiser, not by Wheel Have, unless we say otherwise in writing. When you join, the organiser sees your roster entry; the email address on your account only if they invited that same address; and, during the event, which sector you were last detected in if you share your position with the event roster. The organiser's own rules and waivers apply to the event itself.
+
+13.3 Organiser Responsibilities. If you run an event on the Platform, you agree that:
+
+• you are responsible for your event, the venue, permissions, safety arrangements, marshals and flags, and for complying with the law and any sanctioning body's rules;
+
+• you are responsible for the roster data you receive, including drivers' names, cars and any email addresses, and you will use it only to run that event and keep it secure, complying with the privacy laws that apply to you;
+
+• you invite only people who expect to hear from you, and you are responsible for the messages you send to your roster and for anything you say in them;
+
+• any lap, sector or position information you receive for your event is for running that event and sharing results with its participants. You must not publish drivers' times or positions beyond the event, or use them for any other purpose, without each driver's permission;
+
+• you run crowd votes fairly and do not use them to collect personal information; and
+
+• you tell your participants that you use PuckIt, and that it is an aid that can fail, not a safety system.
+
+13.4 Event Box and Loan Devices. Event Box and Race Control software are governed by the Race Control Licence. Any device you lend to a participant is lent by you, not by Wheel Have.
+
+13.5 Our Role. Wheel Have provides the tools and is not responsible for how an organiser runs an event or uses roster data. We may remove an event, a message or an organiser's access if these Terms are broken.
+
+## 14. Contact Information
+
+For questions or concerns about these Terms, please contact us:
+
+Wheel Have, ABN 73 472 468 412
+
+Email: contact@wheelhave.com
+
+General inquiries: contact@wheelhave.com
+
+## 15. AhhPuck
+
+AhhPuck is a separate, free iOS app from Wheel Have. These Terms apply to it. It shows this disclaimer on first launch, and you must accept it to use the app:
+
+• AhhPuck may contain errors, and it can change or stop working at any time.
+
+• This build is read-only. It never writes to your ECU, changes a calibration or ignition timing, or controls your engine.
+
+• Until the FC-03 connection is verified, the engine numbers you see are demo data, not readings from your engine. Imported captures show what is in the file.
+
+• Everything AhhPuck shows is information only. It is not tuning advice, and it does not tell you that an engine, a map or a change is safe.
+
+• Use it only with the vehicle stationary, on a bench or a closed course. Never use it on a public road or while driving.
+
+• You are responsible for your vehicle, engine and ECU, for every change you make, and for complying with road, roadworthiness and emissions laws where you live.
+
+• AhhPuck is provided “as is”, without any warranty. To the extent the law allows, Wheel Have is not liable for damage to engines, vehicles, ECUs or other property, or for any injury, loss or cost, arising from using AhhPuck or acting on what it shows.
+
+• Nothing in this disclaimer excludes, restricts or modifies any right or remedy you have under the Australian Consumer Law or other law that cannot lawfully be excluded.
+
+Sections 7 (Disclaimers) and 8 (Limitation of Liability) also apply to AhhPuck. Questions: contact@wheelhave.com.
+
+By using Wheel Have, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you are accepting these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind that entity to these Terms.

@@ -1,0 +1,447 @@
+Copy of https://wheelhave.com/privacy, bundled so it can be read offline. The website version is the current one.
+
+Last updated: 10 October 2026
+
+# Privacy Policy
+
+## Introduction
+
+Wheel Have (ABN 73 472 468 412) (“Wheel Have”, “we”, “our”, or “us”) runs the Wheel Have website, the Wheel Have mobile app, and PuckIt. PuckIt is a Wheel Have product; there is no separate PuckIt company. Wheel Have is an Australian business and the organisation responsible for your personal information (the “controller” under the GDPR). We serve people worldwide. This policy says what we collect, why, who else receives it, how long we keep it, and what happens when you delete it. It is written to describe what the software actually does. If you do not agree with it, please do not use the Platform.
+
+We handle personal information under the Australian Privacy Act 1988 and the Australian Privacy Principles, wherever you are. Where other privacy laws apply to you, such as Japan’s APPI, the EU or UK GDPR, US state laws or Canada’s PIPEDA, you also have the rights set out under “Your Rights Where You Live”.
+
+PuckIt is an experimental driver-to-driver hazard-warning aid. It is not a safety device and not a certified system. It is a do-it-yourself build from third-party parts, and Wheel Have does not sell PuckIt hardware. Nothing in this policy changes that.
+
+## What We Collect
+
+### Your account
+
+• Email address. This is the only way to sign in. We email you a 4-digit code. The code is stored hashed and expires after 10 minutes. Your email address is your identity on the Platform.
+
+• Sign-in attempts. Each request for a code records the IP address and browser or app user-agent it came from, so we can rate-limit abuse.
+
+• Profile. Your display name, your preferred currency and language, and your notification settings. Your display name is shown to other users on your listings and in conversations.
+
+• Saved location. If you set a location, we keep it at city level: suburb or city, state, postcode, country, and coordinates rounded to about a kilometre. We do not store a street address. Other users see the city, never an address. We use it to pre-fill forms, estimate shipping and show listings near you.
+
+• Sessions. Web and mobile sessions. For mobile sessions we also keep the device name, platform, user-agent and IP address, so you stay signed in and can sign other devices out.
+
+### Marketplace activity
+
+• Listings you create, including specifications, fitment details, the city the item is in, price and currency, and view and save counts.
+
+• Messages and offers between you and other users: the message text, images you attach, offer amounts, and the sale and shipping updates you record in a conversation. Message content is stored in our database in readable form.
+
+• Reviews. When a sale completes, the buyer can leave a 1 to 5 rating and a comment. It is stored in that conversation and shown to the two of you.
+
+• Orders, including the shipping address and items, where you use the order features.
+
+• Saved listings, saved sellers, saved searches, want-to-buy posts and favourites, and the alerts you ask for. A job checks saved searches for new matches every six hours.
+
+• Garage vehicles you add, which we use to match listings to your car.
+
+• Blocks and reports. If you block someone or report a listing or message, we record it, with the reason and details you give.
+
+### Images
+
+Photos you attach to listings or messages come from your camera or photo library. They are uploaded to Cloudflare R2 storage, with a record of the image (size, dimensions, file type, file name and your user id) in our database. When we process a photo we re-encode it, which removes embedded EXIF data, including any GPS position your camera recorded. A processed copy is also kept on our application server. Photos on a published listing are served from public addresses, so treat anything in the frame as public.
+
+### Chat translation
+
+In the app, translating a message happens on your phone, using Apple’s Translation framework on iOS or Google’s ML Kit on Android. The message text is not sent to us or anyone else to be translated. Your phone may download language packs from Apple or Google. Translations are cached on your phone.
+
+### PuckIt: your Puck
+
+This section applies only if you build and use a Puck.
+
+• Bluetooth. The app uses Bluetooth to find, claim, name and update a Puck, to read its live status while you drive, and to carry its records to us (below). It scans only for the PuckIt service. It reads the device id, firmware and hardware version, region, pairing state and health, including battery, how full its storage is and whether a button is stuck, where the firmware reports them.
+
+• Claiming. When you claim a Puck we store the link between its device id and your account, and the name you give it. Each Puck has a pairing key, which we hold. To prove you own the Puck, it signs a one-time challenge from us with that key, and we check the signature. We keep a record of each claim attempt, with the email, IP address and user-agent, to stop abuse.
+
+• Firmware updates. For an over-the-air update, the app passes the name and password of a Wi-Fi hotspot to the Puck over an encrypted Bluetooth link. The Puck uses it to download the firmware and then forgets it. The name and password are not sent to us.
+
+• How a Puck’s records reach us. A Puck’s records reach us in one of three ways: over the Puck’s own Wi-Fi, where its firmware has that switched on; through the Wheel Have app, which reads them from a Puck you own over Bluetooth, sends them to us, and passes our receipt back so the Puck can free exactly those records; or from a USB offload, for example at an event. When the app carries records, it also sends us a short sync report — how many records the Puck held, how many we receipted and how many remain — so a missing record shows up instead of going unnoticed.
+
+• What a Puck uploads. The upload is signed by the Puck. It contains the radio packets the Puck recorded, hazards and Puck Yeahs it sent, received or relayed, red flags, timing-gate crossings, and the other Pucks it heard, with their device ids and signal strength. It also contains messages it received from, or carried for, other Pucks. So data about other people’s Pucks reaches us through your Puck, and data about yours reaches us through theirs. Pucks are identified by device id, not by name or email. A device id is linked to a person only through a claim in our records. A Puck has no GPS. We also record a hashed form of the upload’s IP address, the network name only as a hash, and a coarse region (country, region and city) derived from the connection.
+
+• Alerts on your phone. The Puck, not the phone, is the alert device. During a guided drive the app can also show, as a banner, a hazard your Puck heard on the radio, or a red flag at an event. It does not vibrate or sound for them. On a Puck the red button raises a hazard and the blue button sends a Puck Yeah; red flags come only from an event’s Event Box.
+
+• Progression and leaderboards. If your Puck is linked to your account, we keep points, level, tier and achievements, together with the suburb, city and country recorded against them. You appear on the PuckIt leaderboard only if you switch it on (it is off by default), under the display name you choose, ranked by mesh contribution only — Puck Yeahs, Pucks met and packets relayed — globally or by country. Lap times and speeds are never on a leaderboard. Switching it off removes you straight away.
+
+### PuckIt: drives on your phone
+
+• It is opt-in, and asked once. Nothing is kept until you say yes on the “Keep your drives?” screen. You can turn it off in Ride data at any time.
+
+• Your drives stay on your phone. Your exact location, speed and timings stay on your phone. Drives on roads, and at circuits outside an organised event, are never sent to us. Your drive history, stats, segments, ghosts and comparisons are worked out and kept on your phone.
+
+• Drives with or without a Puck. You can drive with your phone alone. If a Puck you own is connected when a drive starts, the Puck signs a challenge from us and the drive is linked to that Puck, which adds its records and accuracy to the drive.
+
+• What the app reads. During a drive, the app reads your phone’s GPS position, speed, heading and altitude about ten times a second, and acceleration, rotation and orientation from its motion sensors, up to 100 times a second in current versions of the app. It also records laps and sectors where the drive is timed.
+
+• At an organised event, if you choose to share. At an organised closed-course event you have joined, the app asks whether to “Share this event’s drive data with the event”. It is on by default only for drives inside that event, and you can switch it off. If it is on, the app uploads that event drive: the trace, a summary (start and end time, duration, distance, top and average speed, braking and cornering g), any laps and sectors, the venue it matched, the Puck’s device id if one was connected, and the app version. We check it was inside the event’s time and venue; if it was not, we delete it. It is combined with the event’s own timing from its Event Box and Pucks. The trace is kept in private storage and is sent to you, to the event’s organiser, and to drivers approved into the same event. The detailed motion samples stay on your phone; they are not uploaded.
+
+• Laps are only timed at circuits and events. A drive on an open road has no lap or sector times. A point-to-point course you drive (from a start to a finish) shows your own time on your phone. Course times are never sent to us, never ranked and never public.
+
+• Competitive features are off by default. Ghosts, course times, comparisons with your best and crew comparisons stay off until you confirm, for the place you are and the drive you are on, that you are on a private road or closed course you have permission to use, and switch them on. At an organiser’s event they are on inside that event’s course zone. Whether a road is private is always your call: the app never decides it. Your confirmation is kept on your phone. If a confirmation is sent to us, we store your account, the Puck, the place only as a coarse area (a map cell of about five square kilometres) or the id of a course on your phone, never your position, when it started and when it ends, the wording you saw and the app version. It does not include your speed. A confirmation ends when the drive ends, when you leave that area, or after 12 hours, whichever comes first.
+
+• Separately: your general area. The consent screen has its own switch, “Use my general area for nearby listings”. If you turn it on, we may use a coarse zone (an area of roughly five square kilometres), never your route, to rank nearby listings. It is off unless you turn it on, and it goes off whenever keeping drives is off.
+
+• Background only during a drive. The app asks for location only while it is open and in use. Once you start a drive, location, motion and the Bluetooth link to your Puck keep running if you lock the phone or switch apps, until you end the drive; iOS shows the blue location indicator while they do. Outside a drive the app does not use location or Bluetooth in the background. The drive is still saved on your phone only.
+
+### PuckIt: crews and events
+
+• Crews. A crew is mutual: you are only in one when you and the crew have both agreed. Crew data is shared between crew members only. You can share an event drive that you shared with its event with a crew. Crew members then see its date, venue, distance, speed and stats, its lap and sector times, and its route only if you switch “Include the route” on (it is off unless you do). They do not see your Puck’s id. A crew leaderboard ranks the best event laps members chose to share. Other drives stay on your phone and cannot be shared through us.
+
+• Live position at an event. At an event you can share your position with your crew or the event roster. It is a sector of the course and how long ago you passed it, never coordinates. It lasts for that session, four hours by default and twelve at most, then stops by itself.
+
+• Live crew map. If you share your position with your crew, crew members who also share see roughly where you are on a live map while you drive: the area of about five kilometres you are in, how recently you were seen and whether your Puck is online. Your phone sends us only that coarse area, never your exact position, your heading or your speed. Nobody outside your crew sees it. This live position is held for up to 12 hours and is not stored with your drives.
+
+• Convoy routes. A crew’s organiser can set a destination as the crew’s convoy route, or a member can propose one for the crew to vote on. We keep the route, who proposed it and the votes for up to 12 hours; an open vote expires after 10 minutes.
+
+• Event roster. When you join an event, the roster holds the name you give, your car, whether you will run with a Puck, your running order, your role, whether you are confirmed as taking part, and your Puck’s id. Other drivers only see you if you turn on “show me on the roster”.
+
+• What the organiser sees. The organiser of an event you join sees your roster entry, whether or not you show yourself to other drivers. They see the email address on your account only if they invited that same address to the event, so it is one they already had; otherwise they see a masked hint (like “d•••@g•••.com”) and reach you through the event’s driver messages, which never show your address. While the event runs, they see which sector you were last detected in only if you share your position with the event roster.
+
+• Invitations. An organiser can invite you by email. We store your email address and the name they entered. If you have an account, you are told in the app and sign in as usual to join. If you do not, the email’s link creates an account for that address and signs you in. That link works once, lasts 30 days, and is never used for an existing account or an admin account.
+
+• Organiser messages and reminders. Organisers can send messages to their roster. Messages and event reminders arrive in the app and by push notification. If you have no phone registered for push, an organiser’s message is emailed instead.
+
+• Crowd votes. At an event, drivers on the roster who are confirmed as taking part can vote in polls the organiser runs. One vote per account per round. We store your vote.
+
+• Event Control enquiries. If you register interest as an organiser, we email the name, email address, event type and place you enter to ourselves, through Resend. We do not store them in our database.
+
+• Timing gates. At a timed event, the organiser’s Event Box records when each Puck passes a gate, with the signal strength, and uploads it to us. We use it to work out laps and sectors for the event.
+
+• Signing up at an Event Box. When an organiser lends you a Puck at an event, you can sign up on their Event Box with your name, your car (make, model and, if you like, year, colour and number) and your email address. The Box stores this with the Puck’s id and uploads it to us when it has a connection. We use it to run that event, and the event’s organiser sees it, including the email address you typed. We email you only if you tick “Wheel Have may email me about this event”; a separate, unticked box adds you to a list for one email when the PuckIt app launches. We record what you ticked, the wording you saw and when. If an account already uses that email address, we note the link, but nobody is signed in and no account is created. Every one of these emails has an unsubscribe link.
+
+• Signing up to test the app. If you ask to test the app on wheelhave.com/puckit, we keep the email address you type, your answer to “Do you have a Puck?” if you gave one, the page language, the wording you agreed to and when. We use the email only to invite you to test the PuckIt app (TestFlight on iPhone); there is no newsletter. We do not store your IP address with it. It is not linked to an account. To be removed from the list, email contact@wheelhave.com.
+
+### Notifications and email
+
+If you allow push notifications, we store the push token issued to your install, an app-generated device identifier, the platform, the app version, and your device’s language and time zone. Delivery goes through Expo’s push service to Apple or Google. A new-message notification can include the first 140 characters of the message. We also send email: sign-in codes, offers and sale updates, saved-search matches, listing expiry, and, if a message goes unread for 15 minutes, an email with that message in it. You can change which notifications you get in your settings. Security email cannot be turned off.
+
+### Diagnostics and crash reports
+
+When the app hits an unhandled error, it sends a report to our own servers. The report has the error message, the stack trace, the screen, the app version and platform, the device user-agent, and some context the app attaches. Before a report is stored or emailed, we remove anything in it that looks like a position, a speed or a heading. Reports from the app are not linked to your account. Reports from the website are linked to your account if you are signed in. Reports are stored in our database and also emailed to us. We use no third-party crash, analytics or advertising SDK in the mobile app.
+
+### Anonymous quality data
+
+To find out where GPS, Bluetooth and Pucks work badly and fix it, the app sends us a short summary after each drive, built on your phone. It holds GPS accuracy figures, gaps and time to the first good fix; whether motion-sensor calibration worked and a vibration level; Bluetooth connection, signal, sync and update results; your Puck’s model, firmware, battery level band, uptime band, last reset reason, whether it has a crash record and how many other Pucks it heard (a number, never which ones); your phone model, iOS and app version; the drive’s distance and length in broad bands; the roughly 5 km area the drive started in; and the date. It never includes your route, any position finer than that 5 km area, speed, acceleration, lap or segment times, the time of day, or your account, name, email or Puck id. It is sent without signing in, tagged only with a random code made on your phone that is replaced every 30 days, and we do not store your IP address with it, so we cannot link it to you or to your account. In admin views an area is shown only once five or more different phones have used it. You can turn this off in Ride data with “Share anonymous quality data”; it is on by default, and when it is off nothing is sent. Because these summaries cannot be linked to you, we cannot find or delete one person’s, and deleting your account does not remove them.
+
+### Website analytics and cookies
+
+If you accept analytics cookies, the Wheel Have website uses Google Analytics 4 and Ahrefs Web Analytics. Google then receives the pages you visit, including any query string, your browser language, your search terms, and events such as viewing a listing (with its id, category and price), starting or publishing a listing, and uploading images. Ahrefs receives page views. Both hold that data under their own terms, and we cannot delete it for you. The mobile app has no analytics, advertising or attribution SDK.
+
+We use cookies for signing you in and keeping you signed in; those are necessary and always on. Google Analytics and Ahrefs Web Analytics load only if you accept analytics cookies in the banner, and are off until you do. You can change your choice at any time from “Cookie settings” in the footer; declining clears Google Analytics' cookies.
+
+### Network information
+
+Our website is served through Cloudflare, which sees the IP address of every request. We use short-lived counters keyed to your address to rate-limit our APIs; they are not a stored record of your browsing. To guess your currency, the website sends your IP address to ipapi.co. The IP addresses we store are the ones named above: sign-in attempts, mobile sessions, Puck claim attempts, and the hashed address on a Puck’s upload.
+
+## How We Use It
+
+• Signing you in and keeping your session alive
+
+• Running the marketplace: listings, search, messages, offers, reviews, orders and shipping estimates
+
+• Matching listings to your garage, your saved searches and your want-to-buy posts
+
+• Sending the email and push notifications you have asked for
+
+• Operating PuckIt, a Wheel Have product: claiming Pucks, network statistics, progression and leaderboards
+
+• Storing event drives you share with an event, combining them with the event’s timing, showing them to you, the event and the crews you choose
+
+• Carrying your Puck’s records to us through the app, and confirming them so the Puck can free that space
+
+• Showing your crew where you are on the live crew map, if you share it, and running convoy routes
+
+• Keeping competitive features off unless you confirm a private road or closed course, or are at an organiser’s event, and keeping a record of that confirmation
+
+• Running events: rosters, invitations, organiser messages, votes, live sectors and gate timing
+
+• Ranking nearby listings by your general area, only if you turned that switch on
+
+• Moderation, blocking and handling reports
+
+• Rate-limiting, fraud prevention and platform security
+
+• Fixing faults from crash and error reports
+
+• Understanding how the website is used
+
+• Meeting legal obligations
+
+We use your information for the purpose we collected it for. Where a second purpose needs your agreement, such as using your general area from your drives for nearby listings, we ask separately and you can say no.
+
+## Who Sees Your Drives
+
+• You. Everything: the route, speed, g-force, lean, laps, sectors and course times, on your phone.
+
+• An event you share a drive with. The event’s organiser and drivers approved into the same event see that event drive, including its route, speed, laps and sectors, combined with the event’s own timing.
+
+• Your crew, when you share an event drive with it. Date, venue, distance, speed and stats, lap and sector times, and the route only if you switch it on for that share.
+
+• Your crew, live, if you share your position. As described under “Live crew map”.
+
+• Nobody else. There is no public or link sharing of drives. Drives outside an event never leave your phone. Your speed, stats, lap times and course times are never public.
+
+Speed and stats come from your phone during a drive, and from your Puck too when one is connected. They are never public.
+
+## Who Else Receives Your Information
+
+We do not sell your personal information. These are the third parties that receive it, and what each one gets:
+
+• Other users. Your display name, your listings, and the messages, offers, reviews and images in a conversation are visible to the people in that listing or conversation. Listing photos are public. PuckIt crews and event organisers see what is described above.
+
+• Neon (database hosting, United States). Everything we store server-side lives in a Neon PostgreSQL database.
+
+• Cloudflare. Stores image files, and the traces of event drives you share with an event, in R2. Sits in front of our website, so it sees the IP address and request details of web traffic, and supplies the coarse region we attach to Puck uploads.
+
+• Hostinger. Hosts the server our application runs on, including a short-lived cache and processed copies of uploaded photos.
+
+• GitHub. Runs our scheduled jobs, which call our own servers to send alerts, sweep old ride traces and finish account deletions.
+
+• Resend (email). Receives your email address and the content of the email we send you. Our internal error-report emails also go through Resend.
+
+• Expo, Apple and Google (push notifications). Receive your push token and the notification content.
+
+• Google (Analytics) and Ahrefs. Receive the website usage described above. Not used in the app.
+
+• ipapi.co. Receives your IP address when the website guesses your currency.
+
+• OpenStreetMap (Nominatim). Receives the place name you type when you search for a location.
+
+• OpenRouter and the model provider it uses (Anthropic). Receive a listing’s brand, model, category, specifications, condition and price to write the product story on a listing page, and a vehicle’s make and model for garage suggestions. Not your name or email.
+
+• Meta (Facebook and Instagram). When you publish a listing, its title, photos, price, condition, description and city may be posted to Wheel Have’s own Facebook and Instagram pages.
+
+• Stripe. Used on the website for paid business features, where we offer them. There are no payments in the mobile app and none between users.
+
+• Legal requirements. Where required by law, court order or a government investigation.
+
+• Business transfers. In connection with a merger, acquisition or sale of assets.
+
+Wheel Have does not process marketplace payments between users, hold funds, provide escrow, or arrange shipping for buyer-seller transactions. Do not send payment credentials, bank login details or identity documents through messages.
+
+## Deleting Your Data
+
+### Ride data
+
+In the app, Settings › Ride data › Delete everything deletes every ride from your account first, then from your phone. If we cannot be reached, nothing is deleted and the app tells you. On the website, Account settings › Ride data deletes a ride, or all your rides, from our servers. Either way the trace, summary, laps, sectors and shares go. Deleting a single ride in the app removes the phone’s copy and stops it uploading; delete a ride already in your account on the website. Turning off “Keep your drives” stops new uploads but does not delete rides already in your account. Since 11 October 2026 only event drives you share with the event are uploaded; drives uploaded before then stay in your account until you delete them or they reach the retention below.
+
+### Your account
+
+You can request deletion in the app (Account › Delete account), on the website under Account settings › Privacy › Delete my account, or by emailing us. Deletion happens in two stages.
+
+### Straight away
+
+• You are signed out everywhere.
+
+• Your push registrations are deleted, so notifications stop.
+
+• Any Puck claimed to your account is released, so its next owner can claim it.
+
+• Your active and draft listings are delisted.
+
+• Your conversations are closed.
+
+• Saved-search alerts are switched off.
+
+• Your live crew position is removed, your crew-sharing is switched off, and your convoy proposals and votes, and any convoy route you set, are removed.
+
+• Private-road confirmations stop counting: competitive features cannot be switched on from your account.
+
+### A 30-day grace period
+
+The permanent erasure runs 30 days after your request. Signing in again before then cancels it. Cancelling does not undo the steps above: your listings stay delisted until you publish them, and your Pucks stay released.
+
+Deletion is blocked while you have an unsettled order as a buyer or a seller. Settle or cancel those first.
+
+### What the erasure removes
+
+• Your email address is replaced with a meaningless placeholder, which frees it for a new account.
+
+• Your display name becomes “Deleted user” and your verification status is cleared.
+
+• Saved listings, saved sellers, saved searches, favourites and notifications are deleted.
+
+• Your garage and its vehicles are deleted.
+
+• Blocks you created are deleted.
+
+• Sessions and push registrations are deleted.
+
+• The link between your account and any Puck is deleted.
+
+• Listings that were never sold, discussed or ordered are deleted.
+
+• Every ride in your account is deleted, with its trace, laps, sectors and shares, and your ride-recording consent history.
+
+• Your private-road confirmations and the Puck sync reports the app sent for you are deleted.
+
+• PuckIt crews. Your crew memberships are deleted. A crew you own is handed to its longest-standing admin, or if it has none, its longest-standing member; a crew with nobody else in it is deleted.
+
+• PuckIt events. Your event roster entries, votes, live-position shares, event follows and invitations addressed to you are deleted, and you are removed as a marshal. Events you organised that had not started are archived, and their outstanding invitations deleted; events that ran stay for the other drivers.
+
+• PuckIt leaderboard. Your leaderboard opt-in is deleted. It, and any live-position share, is switched off as soon as you ask for deletion, not 30 days later.
+
+• Puck claim records. Records of Puck claim attempts and transfers keep the device history but have your user id, email, IP address and user-agent removed. Claim support requests and identity-link requests are deleted.
+
+• Sign-in attempt records (email, IP address and user-agent) and crash and error reports filed under your account are deleted.
+
+• Image files for listings that are deleted, and uploads not attached to a remaining listing, are deleted from storage.
+
+### What it does not remove
+
+Some records are kept on purpose, because they belong to someone else as much as to you. Others are simply not covered by the erasure yet. We would rather tell you than let you assume.
+
+• Messages, offers and reviews are kept. A conversation has two sides. Your side shows as “Deleted user”.
+
+• Orders are kept, including shipping addresses. They are the other party’s record.
+
+• Listings that were sold or discussed are kept and delisted. Their photos stay published, because they are part of the buyer’s record.
+
+• Reports you filed are kept, so deleting an account cannot erase moderation history.
+
+• A placeholder account record is kept, because messages, offers and orders point at it.
+
+• What Pucks logged stays, without your name on it. Radio packets, hazards, Puck Yeahs, gate crossings and nearby-Puck records that Pucks uploaded stay, identified only by device id, because they are the network’s safety history and other drivers’ Pucks recorded them too. The link between your Puck and your account is deleted, so they are no longer joined to you through our records. Achievements and progression recorded against the device, with the suburb, city and country held there, also stay.
+
+• Messages you sent to an event roster as its organiser are kept, as the drivers’ record of the event.
+
+• Some saved location details are not removed in full.
+
+• Data held by Google, Ahrefs, Meta, Stripe, Expo or the other providers above is governed by them, and we cannot delete it for you.
+
+If you want anything in that list removed, email contact@wheelhave.com and we will deal with it by hand.
+
+Rides still on your phone are separate. Deleting your account does not touch them. Erase them in the app, or by removing the app.
+
+## How Long We Keep It
+
+We only list a fixed period where something deletes the data on that schedule.
+
+• Detailed drive traces (event drives you shared, and drives uploaded before 11 October 2026): deleted 90 days after the drive, by a sweep that runs every day. The summary, laps and sectors are kept until you delete the drive. Drives kept only on your phone stay there until you delete them.
+
+• Motion samples: kept only on your phone, with the drive, until you delete it or remove the app.
+
+• Private-road confirmations: deleted 90 days after you made them, by a clean-up that runs every day, and straight away with your account.
+
+• Puck sync reports: deleted 90 days after the app sent them, by a clean-up that runs every day, and straight away with your account.
+
+• Live crew position, convoy routes and votes: held for up to 12 hours, then removed automatically. An open convoy vote expires after 10 minutes. When you ask us to delete your account, your live position, your convoy proposals and votes, and any route you set are removed straight away.
+
+• Sign-in codes: expire after 10 minutes and work once.
+
+• Your account: as long as it exists. When you ask us to delete it, the steps above happen straight away, and the permanent erasure runs after the 30-day grace period.
+
+• Recovery copies: our database provider keeps short-term recovery copies so we can restore after a fault. Deleted data drops out of them as they roll over.
+
+Everything else we keep for as long as your account exists, and after deletion as described above. If you want a record removed sooner, ask us.
+
+## Data Security
+
+Traffic to the Platform is encrypted in transit. Sign-in codes are stored hashed and expire. Ride traces are kept in private storage with no public address. On your phone, your session tokens are held in the device keychain; rides and recording settings are held in ordinary app storage, protected by the operating system rather than encrypted by us. Message content is stored in readable form in our database. No system is completely secure, and we do not claim otherwise.
+
+## Your Rights Where You Live
+
+Everyone. Wherever you live, you can ask us to access, correct, delete or give you a copy of your personal information, and you can withdraw a consent you gave, such as keeping your drives or the general-area switch. Withdrawing consent stops future collection for that purpose. It does not delete what was already collected; you can delete that separately, as described above. We do not sell your personal information, we do not use it for targeted advertising, and we will not treat you differently for using your rights. If you are unhappy with our answer you can complain to the privacy regulator where you live.
+
+### Australia
+
+The Privacy Act 1988 and the Australian Privacy Principles apply. You can ask for access and correction under APPs 12 and 13. If you are not satisfied with how we handle a complaint, you can contact the Office of the Australian Information Commissioner (oaic.gov.au).
+
+### Japan
+
+The Act on the Protection of Personal Information (APPI) applies. The purposes of use are those under “How We Use It”. You can ask us to disclose, correct, add to, delete, or stop using or providing your personal data, and for a record of what we provided to third parties. We send personal data to providers outside Japan, listed under “International Data Transfers”, including in the United States and Australia. You can complain to the Personal Information Protection Commission (ppc.go.jp).
+
+### European Union, EEA and United Kingdom
+
+The GDPR and UK GDPR apply. Our legal bases are:
+
+• Performing our contract with you: your account, sign-in, listings, messages, offers, orders, saved searches, notifications you ask for, Puck claims, storing and sharing your rides, crews and events.
+
+• Your consent: keeping and uploading your drives, the general-area switch, push notifications, and optional emails. You can withdraw it at any time.
+
+• Our legitimate interests: security, rate-limiting and fraud prevention, moderation, fixing faults, running the PuckIt network and its statistics, checking that a Puck’s records arrived complete, keeping a record of private-road confirmations, understanding website use, and promoting published listings on our social media pages. You can object to these.
+
+• Legal obligation: where the law requires us to keep or disclose information.
+
+You have the rights of access, rectification, erasure, restriction, portability and objection, and the right not to be subject to decisions based solely on automated processing that significantly affect you (we make none). You can complain to the data protection authority in your country, or to the UK Information Commissioner’s Office. Transfers out of the EEA or UK rely on the safeguards under “International Data Transfers”.
+
+### United States
+
+Some US states, including California (CCPA as amended by the CPRA), give residents privacy rights. In the last 12 months we collected these categories, for the purposes under “How We Use It”: identifiers (email, account id, device ids, IP address); customer records (name, shipping address); commercial information (listings, offers, orders); internet activity (on the website, as described under analytics); geolocation (city-level location, a coarse area of about five kilometres for your live position if you share it with your crew, and precise location only for event drives you choose to share with an event); and sensory data (photos you upload). We do not create profiles or inferences about you. We do not collect sensitive personal information for inferring characteristics about you. We do not sell or share personal information for cross-context behavioural advertising, and we have not done so. You have the right to know, delete and correct your personal information, to limit the use of sensitive personal information (we do not use it beyond what the law allows), and not to be discriminated against for using these rights. You or an agent you authorise can make a request by email; we will verify it by emailing a code to your account address.
+
+### Canada
+
+PIPEDA and similar provincial laws apply. You can ask for access and correction, and withdraw consent, subject to legal and contractual limits. You can complain to the Office of the Privacy Commissioner of Canada (priv.gc.ca).
+
+### Everywhere else
+
+If your local law gives you privacy rights, we will honour them. Email us and tell us where you live.
+
+### How to make a request
+
+Email contact@wheelhave.com from the address on your account, or say which account you mean. We may ask you to confirm a code we email to that address. We aim to reply within 30 days. If the law where you live sets a shorter time, we follow it; if a request is complex and the law allows more time, we will tell you why and when to expect an answer. Requests are free unless they are clearly unfounded or excessive. The deletion section above says exactly what our automated deletion reaches; anything beyond that we handle by hand.
+
+## Device Permissions We Ask For
+
+• Bluetooth: to find, claim, name and update a Puck, to read it while you drive, and to carry its records to us. Used only for PuckIt: while the app is open, and during a drive you start, also if you lock the phone or switch apps, until you end the drive.
+
+• Location, while the app is in use: for drives, directions during a drive, the live crew map if you share it, and checking whether you are at an event you joined. We ask only for permission while the app is in use, never for “Always”; a drive you start keeps recording if you lock the phone or switch apps, until you end it, and iOS shows the blue location indicator while it does.
+
+• Motion sensors: only during a drive, including while the phone is locked, until you end it.
+
+• Camera and photo library: to add photos to listings and messages.
+
+• Notifications: for messages, offers, sales, saved-search alerts and PuckIt events.
+
+## AhhPuck (iOS app)
+
+AhhPuck is a separate, read-only app for engines run by a Freedom FC-03 ECU. It has no account and sends us nothing:
+
+• Stays on your phone: your vehicle profile, settings, captures, runs and notes are stored on the phone only. Deleting the app deletes them.
+
+• Files you choose: AhhPuck reads only the files you pick to import, and an export goes only where you send it with the share sheet.
+
+• No analytics, ads or tracking: it contains no analytics, advertising, crash-reporting or tracking code, and makes no network requests of its own.
+
+• No permissions: it does not ask for location, motion, Bluetooth, camera, photos, contacts, microphone or notifications.
+
+The links in the app to this page and our Terms open in your browser, which is covered by the website parts of this policy.
+
+## Third-Party Links
+
+The Platform links to other websites, including supplier and affiliate links on the PuckIt build pages. We are not responsible for their privacy practices or content. Please read their privacy policies.
+
+## Children’s Privacy
+
+You must be 18 or older to create a Wheel Have account, and to claim or operate a Puck. We do not knowingly collect personal information from anyone under 18. If we learn that an account belongs to someone under 18, we will close it. If you believe a child has given us personal information, please contact us straight away.
+
+## International Data Transfers
+
+Wheel Have is based in Australia and serves people worldwide, so your information is processed outside the country you live in. It is processed in Australia (by us) and in the countries where our providers operate:
+
+• United States: our database (Neon, in the US East region), email (Resend), push notifications (Expo, Apple and Google), scheduled jobs (GitHub), product-story generation (OpenRouter and Anthropic), website analytics (Google), and social posting (Meta).
+
+• Cloudflare’s global network: website traffic, and image and ride-trace storage in R2, which Cloudflare places in its own data centres.
+
+• Hostinger: the server our application runs on, in the data centre where that server is hosted.
+
+• Other countries where Ahrefs, ipapi.co and OpenStreetMap operate, for the website features described above.
+
+We only use providers that commit to protecting the information. Before sending personal information out of Australia we take reasonable steps to make sure the recipient handles it consistently with the Australian Privacy Principles, and we remain accountable for it. For transfers out of the EEA and UK we rely on an adequacy decision where one exists, and otherwise on standard contractual clauses (or the UK addendum) in our providers’ terms, or another safeguard the GDPR allows. For people in Japan, we provide personal data to overseas providers that maintain measures equivalent to those the APPI requires, or with your consent; you can ask us for details of those measures. Ask us for a copy of the relevant safeguards at the contact below.
+
+## Changes to This Privacy Policy
+
+We may update this policy. We post the new version here and change the “Last updated” date. When a change matters, the app asks you to accept it before your next post, message, offer or sale update. If we want to use your information for a new purpose that needs your consent, we will ask first.
+
+## Contact Us
+
+Questions about this policy, a request about your data, or a complaint. We aim to reply within 30 days. If you are not satisfied, you can complain to the regulator where you live, listed above.
+
+Wheel Have, ABN 73 472 468 412
+
+Email: contact@wheelhave.com

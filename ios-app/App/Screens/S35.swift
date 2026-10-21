@@ -3,7 +3,7 @@ import SwiftUI
 /// S35 · Permissions and legal information.
 struct S35View: View {
     @Environment(AppModel.self) private var app
-    @State private var showDisclaimer = false
+    @State private var doc: LegalDoc?
 
     private let P: [(k: String, t: String, lvl: String, d: String, used: String)] = [
         ("notif", "Notifications", "NOT ENABLED", "This build does not request notification access. Critical events remain in the app.", "READ-ONLY BUILD"),
@@ -27,9 +27,9 @@ struct S35View: View {
                       size: 13, color: AP.text2, lineHeight: 1.5)
                     .fixedSize(horizontal: false, vertical: true)
                 HStack(spacing: 16) {
-                    Link(app.tr("Privacy policy"), destination: URL(string: "https://wheelhave.com/privacy#ahhpuck")!)
-                    Link(app.tr("Terms of use"), destination: URL(string: "https://wheelhave.com/terms#ahhpuck")!)
-                    Button(app.tr("Disclaimer")) { showDisclaimer = true }
+                    Button(app.tr("Privacy Policy")) { doc = .privacy }
+                    Button(app.tr("Terms of Service")) { doc = .terms }
+                    Button(app.tr("Disclaimer")) { doc = .disclaimer }
                 }
                 .apFont(.sans, 13, 600)
                 .foregroundStyle(AP.cyan)
@@ -45,7 +45,7 @@ struct S35View: View {
             }
             .padding(.horizontal, 18).padding(.top, 10).padding(.bottom, 24)
         }
-        .sheet(isPresented: $showDisclaimer) { DisclaimerSheet().environment(app) }
+        .sheet(item: $doc) { LegalDocView(doc: $0).environment(app) }
     }
 
     private func row(_ p: (k: String, t: String, lvl: String, d: String, used: String)) -> some View {
