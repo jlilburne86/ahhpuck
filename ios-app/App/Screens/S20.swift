@@ -11,14 +11,8 @@ struct S20View: View {
     }
 
     static func modes(_ lamLabel: String) -> [Mode] {
-        let pb = { (x: Double) in 38 + 72 * x - 28 * x * x + 2 * sin(x * 9) }
-        let pcand = { (x: Double) in pb(x) * 1.004 + (x > 0.65 ? (x - 0.65) * 6 : 0) }
         let ex = { (x: Double) in 1.4 + 3.6 * max(0, x - 0.45) * 1.8 + 0.8 * sin(x * 8) * 0.5 + 0.6 }
         return [
-            Mode(k: "Power (est.)", unit: "EST. WHEEL POWER · kW", tag: "INFERRED · PHONE ACCEL ±3%", tc: AP.amber, hi: true, dp: 1, u: " kW",
-                 b: pb, c: pcand, n: { pb($0) * 0.03 }),
-            Mode(k: "Accel", unit: "LONGITUDINAL ACCEL · g", tag: "OBSERVED · CALIBRATED MOUNT", tc: AP.label, hi: true, dp: 3, u: " g",
-                 b: { pb($0) / (95 + 120 * $0) }, c: { pcand($0) / (95 + 120 * $0) }, n: { pb($0) / (95 + 120 * $0) * 0.03 }),
             Mode(k: lamLabel == "AFR" ? "AFR err" : "λ error", unit: "ABS " + lamLabel + " ERROR · %", tag: "OBSERVED · ECU STREAM", tc: AP.label, hi: false, dp: 1, u: "%",
                  b: ex, c: { ex($0) * 0.5 }, n: { _ in 0.3 }),
         ]
@@ -27,7 +21,7 @@ struct S20View: View {
     var body: some View {
         let b = app.base
         let ms = S20View.modes(b.lamLabel)
-        let md = ms[app.gMode]
+        let md = ms[min(app.gMode, ms.count - 1)]   // one mode: the phone-derived power and accel modes are gone
         let GN = 80
         let gx = { (i: Int) in Double(i) / Double(GN - 1) }
         let allv = (0..<GN).flatMap { i -> [Double] in let x = gx(i); return [md.b(x) + md.n(x), md.b(x) - md.n(x), md.c(x)] }

@@ -286,8 +286,17 @@ struct PrimaryButton: View {
     var fill: Color = AP.text
     var fg: Color = AP.ink
     var height: CGFloat = 52
-    var action: () -> Void = {}
-    var onGated: (() -> Void)? = nil
+    var action: () -> Void
+    var onGated: (() -> Void)?
+
+    /// An explicit init so a trailing closure always binds to `action`. The memberwise init let
+    /// `PrimaryButton(label: …) { … }` bind to `onGated` (Swift's backward trailing-closure
+    /// match), which left seven buttons doing nothing.
+    init(label: String, enabled: Bool = true, fill: Color = AP.text, fg: Color = AP.ink, height: CGFloat = 52,
+         action: @escaping () -> Void, onGated: (() -> Void)? = nil) {
+        self.label = label; self.enabled = enabled; self.fill = fill; self.fg = fg; self.height = height
+        self.action = action; self.onGated = onGated
+    }
 
     var body: some View {
         Button { if enabled { action() } else { onGated?() } } label: {

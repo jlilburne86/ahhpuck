@@ -12,10 +12,15 @@ struct S26View: View {
     ]
 
     /// Where each source chip leads (README: every claim links to the check or chart it came from).
-    private static let links: [String: ScreenID] = [
-        "Repeatability": .S22, "Run setup · gear": .S10, "Overlay S19": .S19, "Map S09": .S09, "IDC 86%": .S16,
-        "Concern c4": .S17, "Preflight": .S05, "Coverage 38/120": .S09, "Safety gate": .S22, "Knock 0": .S22,
-    ]
+    private static let links: [String: ScreenID] = {
+        var l: [String: ScreenID] = [
+            "Repeatability": .S22, "Run setup · gear": .S10, "Overlay S19": .S19, "Map S09": .S09, "IDC 86%": .S16,
+            "Concern c4": .S17, "Preflight": .S05, "Coverage 38/120": .S09, "Safety gate": .S22, "Knock 0": .S22,
+        ]
+        // The proposal flow (S15–S18) is hidden in Release until live data drives it.
+        if !Features.proposals { l["IDC 86%"] = nil; l["Concern c4"] = nil }
+        return l
+    }()
 
     var body: some View {
         let cur = S26View.qs[app.q]

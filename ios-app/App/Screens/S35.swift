@@ -8,7 +8,7 @@ struct S35View: View {
     private let P: [(k: String, t: String, lvl: String, d: String, used: String)] = [
         ("notif", "Notifications", "NOT ENABLED", "This build does not request notification access. Critical events remain in the app.", "READ-ONLY BUILD"),
         ("la", "Live Activities", "NOT ENABLED", "This build does not publish lock-screen activities. Recording stays inside the app.", "READ-ONLY BUILD"),
-        ("loc", "Location", "NOT ENABLED", "This build does not request location access. Phone-only GPS capture is not available yet.", "READ-ONLY BUILD"),
+        ("loc", "Location", "NOT ENABLED", "This build does not request location access.", "READ-ONLY BUILD"),
         ("mot", "Motion", "NOT ENABLED", "This build does not request motion access. ECU replay and raw capture do not need it.", "READ-ONLY BUILD"),
     ]
 

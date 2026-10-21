@@ -18,11 +18,20 @@ struct AhhPuckApp: App {
 struct RootView: View {
     @Environment(AppModel.self) private var app
     @State private var disclaimerAccepted = Disclaimer.accepted
+    /// `-legal terms|privacy|disclaimer|notices` shows one legal reader on its own, like `-screen`
+    /// (launch arguments for screenshots; not reachable by users).
+    private static let legalArg: LegalDoc? = {
+        let args = ProcessInfo.processInfo.arguments
+        guard let i = args.firstIndex(of: "-legal"), i + 1 < args.count else { return nil }
+        return LegalDoc(rawValue: args[i + 1])
+    }()
 
     var body: some View {
         @Bindable var router = app.router
         Group {
-            if let single = router.single {
+            if let doc = Self.legalArg {
+                LegalDocView(doc: doc)
+            } else if let single = router.single {
                 ScreenView(id: single)
             } else if !disclaimerAccepted {
                 DisclaimerGate { disclaimerAccepted = true }

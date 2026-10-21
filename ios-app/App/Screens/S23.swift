@@ -6,7 +6,7 @@ struct S23View: View {
 
     var body: some View {
         let b = app.base
-        let actVals: [Double] = [2.1, 29, 1, 0, 86.9, 0.8, 6.44]
+        let actVals: [Double] = [2.1, 29, 1, 0, 86.9]
         let rows = CMetrics.metrics(1, lamLabel: b.lamLabel).enumerated().map { CMetrics.row($1, act: actVals[$0]) }
         let nIn = rows.filter { $0.vc == AP.green }.count
         let tr = [1, 1, 0, 1, 1, 1, 0, 1, 1, 1]

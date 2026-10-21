@@ -66,13 +66,13 @@ struct S13View: View {
             M(note, .sans, 12, color: cause == "Unknown" && !signed ? AP.amber : AP.text3, lineHeight: 1.4).block(top: 6)
 
             Spacer(minLength: 16)
-            M(signed ? "Reset demo" : "Sign and unlock tuning", .sans, 15, 600, color: btnOn ? AP.ink : AP.faint)
+            M(signed ? (Features.prototypeControls ? "Reset demo" : "Signed") : "Sign the investigation", .sans, 15, 600, color: btnOn ? AP.ink : AP.faint)
                 .frame(maxWidth: .infinity).frame(height: 48)
                 .background(RoundedRectangle(cornerRadius: 14).fill(btnOn ? AP.text : AP.disabled))
                 .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(AP.control, lineWidth: 1))
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    if app.invSigned { app.invSigned = false; app.invCause = nil; app.invAct = [:] }
+                    if app.invSigned { if Features.prototypeControls { app.invSigned = false; app.invCause = nil; app.invAct = [:] } }
                     else if canInv { app.invSigned = true; app.alertAck = false; app.alertActive = false }
                     else { app.router.go(.S41) }
                 }

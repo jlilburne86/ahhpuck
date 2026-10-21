@@ -32,7 +32,7 @@ struct S37View: View {
         Case(l: "Battery", k: "! LOW BATTERY", t: "Phone battery at 9%", bg: AP.amber, fg: AP.ink,
              st: [("BATTERY", "9%", AP.amber), ("STOPS AT", "5%", AP.text2), ("RUN", "02:41", AP.text2)],
              m: "Recording stops safely at 5% so the session is saved.",
-             steps: ["Plug the phone into car power", "Turn off Low Power Mode during runs", "Saved runs are never lost"],
+             steps: ["Keep the phone on a charger", "Turn off Low Power Mode during runs", "Saved runs are never lost"],
              imp: "At 5% the run is saved and closed automatically.", ic: AP.label, cta: "OK"),
     ]}
 
