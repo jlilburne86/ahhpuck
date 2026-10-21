@@ -5,7 +5,7 @@ App Store Connect app **6825259927** (AhhPuck, bundle `com.wheelhave.ahhpuck`, S
 ## Listing (en-AU)
 
 - **Name (≤30):** AhhPuck
-- **Subtitle (≤30):** Read your FC-03. Change nothing (28)
+- **Subtitle (≤30):** Read the ECU. Change nothing (27)
 - **Promotional text:** Record what your Freedom FC-03 ECU reports, compare runs and see the evidence. Read-only: AhhPuck never writes to the ECU.
 - **Description:** see `DESCRIPTION` in `ios-app/scripts/asc-fill.py`, which is the exact text sent to App Store Connect.
 - **Keywords (≤100):** ecu,fc-03,freedom,engine,tuning,lambda,afr,datalog,dyno,ae86,4a-ge,jdm,motorsport,track

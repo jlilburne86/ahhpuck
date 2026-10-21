@@ -14,7 +14,7 @@ APP = '6825259927'
 VERSION = '1.2'
 LOCALE = 'en-AU'
 
-SUBTITLE = 'Read your FC-03. Change nothing'
+SUBTITLE = 'Read the ECU. Change nothing'
 PROMO = ('Record what your Freedom FC-03 ECU reports, compare runs and see the evidence. '
          'Read-only: AhhPuck never writes to the ECU.')
 KEYWORDS = 'ecu,fc-03,freedom,engine,tuning,lambda,afr,datalog,dyno,ae86,4a-ge,jdm,motorsport,track'
@@ -107,6 +107,12 @@ def main(build_number, shots_dir):
     c, j = call('GET', f'/v1/apps/{APP}/appStoreVersions?filter[platform]=IOS')
     ver = next((v for v in j.get('data', []) if v['attributes']['versionString'] == VERSION), None)
     if not ver:
+        # A new app comes with an empty 1.0 version; rename it to match the build.
+        draft = next((v for v in j.get('data', []) if v['attributes'].get('appStoreState') == 'PREPARE_FOR_SUBMISSION'), None)
+        if draft:
+            r = must(f"rename version {draft['attributes']['versionString']} to {VERSION}", call('PATCH', f"/v1/appStoreVersions/{draft['id']}", {'data': {'type': 'appStoreVersions', 'id': draft['id'], 'attributes': {'versionString': VERSION}}}))
+            ver = r['data'] if r else sys.exit('could not rename the draft version')
+    if not ver:
         r = must('create version', call('POST', '/v1/appStoreVersions', {'data': {'type': 'appStoreVersions', 'attributes': {'platform': 'IOS', 'versionString': VERSION}, 'relationships': {'app': {'data': {'type': 'apps', 'id': APP}}}}}))
         ver = r['data']
     vid = ver['id']
@@ -143,9 +149,9 @@ def main(build_number, shots_dir):
     if c == 200:
         ad = j['data']; attrs = {}
         for k, v in ad['attributes'].items():
-            if k in ('kidsAgeBand', 'ageRatingOverride', 'ageRatingOverrideV2', 'koreaAgeRatingOverride', 'developerAgeRatingInfoUrl'):
+            if k in ('kidsAgeBand', 'ageRatingOverride', 'ageRatingOverrideV2', 'koreaAgeRatingOverride', 'developerAgeRatingInfoUrl', 'gracRatingClassificationNumber'):
                 continue
-            if isinstance(v, bool) or k in ('gambling', 'unrestrictedWebAccess', 'lootBox', 'messagingAndChat', 'parentalControls', 'ageAssurance', 'userGeneratedContent', 'advertising', 'healthOrWellnessTopics', 'seventeenPlus'):
+            if isinstance(v, bool) or k in ('gambling', 'unrestrictedWebAccess', 'lootBox', 'messagingAndChat', 'parentalControls', 'ageAssurance', 'userGeneratedContent', 'advertising', 'healthOrWellnessTopics', 'seventeenPlus', 'socialMedia', 'socialMediaAgeRestricted'):
                 attrs[k] = False
             else:
                 attrs[k] = 'NONE'
