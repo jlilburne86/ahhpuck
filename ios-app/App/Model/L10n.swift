@@ -7,6 +7,21 @@ import Foundation
 enum L10n {
     enum Language: String { case en = "EN", ja = "JA" }
 
+    private static let choiceKey = "appLanguage"
+
+    /// The language a launch starts in: the user's own pick on the in-app switch if they made
+    /// one, otherwise the phone's. `preferredLocalizations` matches the phone's language list
+    /// (and Settings › AhhPuck › Language) against the bundle's `en`/`ja`, so a Japanese phone
+    /// opens in Japanese and every other language falls back to English.
+    static func initialLanguage(defaults: UserDefaults = .standard, preferred: [String] = Bundle.main.preferredLocalizations) -> Language {
+        if let saved = defaults.string(forKey: choiceKey), let l = Language(rawValue: saved) { return l }
+        return preferred.first?.hasPrefix("ja") == true ? .ja : .en
+    }
+
+    static func saveChoice(_ lang: Language, defaults: UserDefaults = .standard) {
+        defaults.set(lang.rawValue, forKey: choiceKey)
+    }
+
     private static let jaBundle: Bundle? = Bundle.main.path(forResource: "ja", ofType: "lproj").flatMap(Bundle.init(path:))
     private static let missing = "\u{0}__missing__"
 
