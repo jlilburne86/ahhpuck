@@ -24,6 +24,8 @@ struct PhoneScreen<Content: View>: View {
     var background: Color = AP.screen
     var foreground: Color = AP.text
     var scrolls: Bool = true
+    /// The "BETA · demo data" strip; off for the disclaimer itself and the first-run flow.
+    var demoStrip: Bool = true
     @ViewBuilder var content: () -> Content
 
     var body: some View {
@@ -44,6 +46,7 @@ struct PhoneScreen<Content: View>: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     }
                 }
+                if demoStrip, !app.router.onboarding { DemoStrip() }
                 if let tab, !app.router.onboarding { TabBar(active: tab) }
                 else { Color.clear.frame(height: outer.safeAreaInsets.bottom) }
             }

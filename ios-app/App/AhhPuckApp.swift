@@ -17,12 +17,15 @@ struct AhhPuckApp: App {
 /// Tabs, the first-run flow, full-screen modals (S11, S12, S18) and sheets (S04, S41).
 struct RootView: View {
     @Environment(AppModel.self) private var app
+    @State private var disclaimerAccepted = Disclaimer.accepted
 
     var body: some View {
         @Bindable var router = app.router
         Group {
             if let single = router.single {
                 ScreenView(id: single)
+            } else if !disclaimerAccepted {
+                DisclaimerGate { disclaimerAccepted = true }
             } else if router.onboarding {
                 NavigationStack(path: $router.onboardingPath) {
                     ScreenView(id: .S01)

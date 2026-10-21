@@ -6,6 +6,7 @@ import SwiftUI
 /// a threshold row opens the Glossary (S42).
 struct S32View: View {
     @Environment(AppModel.self) private var app
+    @State private var showDisclaimer = false
 
     var body: some View {
         let afr = app.units == .afr
@@ -68,7 +69,37 @@ struct S32View: View {
             .block(top: 6)
 
             M("Loosening a threshold needs a reason, and the change is logged.", .sans, 12, color: AP.label).block(top: 8)
+
+            // About: the beta disclaimer, permissions and legal, and the build.
+            M("ABOUT", .mono, 10, color: AP.label).block(top: 14)
+            MList {
+                aboutRow("Disclaimer") { showDisclaimer = true }
+                aboutRow("Permissions, privacy and terms") { app.router.go(.S35) }
+                HStack(spacing: 8) {
+                    M("Version", .sans, 13).frame(maxWidth: .infinity, alignment: .leading)
+                    M("\(Self.version) · BETA", .mono, 12, color: AP.label, translate: false)
+                }
+                .mRow(9, 12)
+            }
+            .block(top: 6)
             Spacer(minLength: 0)
         }
+        .sheet(isPresented: $showDisclaimer) { DisclaimerSheet().environment(app) }
+    }
+
+    private static let version: String = {
+        let info = Bundle.main.infoDictionary
+        return "\(info?["CFBundleShortVersionString"] as? String ?? "?") (\(info?["CFBundleVersion"] as? String ?? "?"))"
+    }()
+
+    private func aboutRow(_ label: String, action: @escaping () -> Void) -> some View {
+        HStack(spacing: 8) {
+            M(label, .sans, 13).frame(maxWidth: .infinity, alignment: .leading)
+            M("›", .sans, 16, color: AP.label, translate: false)
+        }
+        .mRow(9, 12)
+        .contentShape(Rectangle())
+        .onTapGesture(perform: action)
+        .accessibilityAddTraits(.isButton)
     }
 }
