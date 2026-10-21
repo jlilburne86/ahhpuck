@@ -16,6 +16,7 @@ struct S01View: View {
                 HStack(alignment: .center) {
                     AMono(text: "AHHPUCK · FREEDOM FC-03", size: 11, color: AP.label, tracking: 0.1)
                         .lineLimit(1)
+                    BetaTag()
                     Spacer(minLength: 0)
                     ALangPill()
                 }

@@ -1105,3 +1105,25 @@
 "Port open · 9600 7E1" = "ポート開放 · 9600 7E1";
 "RAW BYTES · 9600 7E1" = "生バイト · 9600 7E1";
 "Confirm the ECU serial output is 9600 7E1" = "ECUのシリアル出力が9600 7E1か確認";
+
+/* Beta disclaimer (21 Oct 2026) */
+"BETA" = "ベータ";
+"Beta" = "ベータ";
+"Before you use AhhPuck" = "AhhPuckをご利用になる前に";
+"AhhPuck is beta software. It is unfinished, may contain errors, and can change or stop working at any time." = "AhhPuckはベータ版ソフトウェアです。未完成で誤りを含む可能性があり、予告なく変更・停止することがあります。";
+"This build is read-only. It never writes to your ECU, changes a calibration or ignition timing, or controls your engine." = "このビルドは読み取り専用です。ECUへの書き込み、キャリブレーションや点火時期の変更、エンジンの制御は一切行いません。";
+"Until the FC-03 connection is verified, the engine numbers you see are demo data, not readings from your engine. Imported captures show what is in the file." = "FC-03との接続が検証されるまで、表示されるエンジンの数値はデモデータであり、お客様のエンジンの実測値ではありません。読み込んだキャプチャはファイルの内容を表示します。";
+"Everything AhhPuck shows is information only. It is not tuning advice, and it does not tell you that an engine, a map or a change is safe." = "AhhPuckが表示する内容はすべて情報提供のみを目的としています。チューニングの助言ではなく、エンジン・マップ・変更が安全であることを示すものでもありません。";
+"Use it only with the vehicle stationary, on a bench or a closed course. Never use it on a public road or while driving." = "車両が停止している状態、ベンチ上、またはクローズドコースでのみ使用してください。公道や運転中には絶対に使用しないでください。";
+"You are responsible for your vehicle, engine and ECU, for every change you make, and for complying with road, roadworthiness and emissions laws where you live." = "車両・エンジン・ECU、行うすべての変更、およびお住まいの地域の道路・車検・排出ガスに関する法令の遵守は、お客様の責任です。";
+"AhhPuck is provided “as is”, without any warranty. To the extent the law allows, Wheel Have is not liable for damage to engines, vehicles, ECUs or other property, or for any injury, loss or cost, arising from using AhhPuck or acting on what it shows." = "AhhPuckは「現状のまま」提供され、いかなる保証もありません。法律で認められる範囲において、Wheel Haveは、AhhPuckの使用またはその表示内容に基づく行動から生じるエンジン・車両・ECUその他の財産の損害、または負傷・損失・費用について責任を負いません。";
+"Nothing in this disclaimer excludes, restricts or modifies any right or remedy you have under the Australian Consumer Law or other law that cannot lawfully be excluded." = "この免責事項は、オーストラリア消費者法その他の法律に基づき、法的に除外できないお客様の権利または救済を除外・制限・変更するものではありません。";
+"I have read this and accept it. I use AhhPuck at my own risk." = "内容を読み、同意します。AhhPuckは自己の責任で使用します。";
+"I understand" = "理解しました";
+"Tick the box to continue" = "続けるにはチェックを入れてください";
+"You accepted this disclaimer on first launch." = "この免責事項には初回起動時に同意済みです。";
+"Demo data until the FC-03 connection is verified. Information only." = "FC-03接続の検証まではデモデータです。情報提供のみ。";
+"ABOUT" = "このアプリについて";
+"Disclaimer" = "免責事項";
+"Permissions, privacy and terms" = "権限・プライバシー・利用規約";
+"Version" = "バージョン";
